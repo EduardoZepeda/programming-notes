@@ -174,4 +174,106 @@ Una vez identificados debemos priorizarlos para resolver aquellos riesgos que po
 Reestricciones
 ==============
 
-Las limitaciones a las opciones de diseño disponibles para desarrollar. Estas pueden ser tecnológicas, legales o relacionadas con el contexto de negocio.
+Las limitaciones a las opciones de diseño disponibles para desarrollar no se limitan a la parte tecnológica, pueden ser también legales o relacionadas con el contexto de negocio.
+
+Estilos de arquitectura
+=======================
+
+Citando a Software Architecture: Foundations, Theory and Practice (Taylor, 2010)
+
+    Un estilo de arquitectura es una colección de decisiones de diseño, aplicables en un contexto determinado, que restringen las decisiones arquitectónicas específicas en ese contexto y obtienen beneficios en cada sistema resultante.
+
+Existen diferentes estilos de arquitectura: 
+
+Llamado y retorno
+-----------------
+
+Los componentes invocan a componentes externos y reciben la información que les proporcionan.
+
+Llamadas y subrutinas
+^^^^^^^^^^^^^^^^^^^^^
+
+se tiene una rutina y se manda a llamar otra subrutina en donde la subrutina puede retornar o no un resultado, pero la rutina principal continua hasta que acabe la subrutina.
+
+Orientado a objetos 
+^^^^^^^^^^^^^^^^^^^
+
+Tratamos de juntar el estado de la aplicación creando objetos los cuales tienen una interfaz publica y los objetos interactuan entre si.
+
+Arquitectura multinivel 
+^^^^^^^^^^^^^^^^^^^^^^^
+Son diferentes componentes que se van a comunicar en un orden en especifico donde un componente principal crea el llamado a un componente inferior en algún momento, un ejemplo de esto son las aplicaciones cliente-servidor.
+
+
+Flujo de datos
+--------------
+
+Este estilo se utiliza cuando tenemos un proceso con una salida clara; la salida puede segmentarse en partes. 
+
+Secuencial
+^^^^^^^^^^
+
+Se basa en dividir el trabajo en subproceso llamados lotes los cuales se procesan uno tras otro y dan un resultado que sirve como entrada para el siguiente
+
+Tubos y filtros
+^^^^^^^^^^^^^^^
+
+Igualmente se divide el trabajo en subproceso pero la principal ventaja es que es continuo, y puede haber procesos en paralelo además se pueden añadir o remover procesos sin afectar el comportamiento del resto.
+
+Centrados en datos
+------------------
+
+Pizarrón
+^^^^^^^^
+
+Múltiples componentes que interactuan con un componente central, cada componente tiene la responsabilidad de procesar, calcular o recibir un dato y escribirlo al componente central; el pizarrón. El pizarrón puede o no devolver una salida de acuerdo a su propia lógica. Es un estilo poco común.
+
+Centrado en datos 
+^^^^^^^^^^^^^^^^^
+
+Ideal para aplicaciones con base de datos que tienen una segunda aplicación con la misma base de datos. Los componentes **no se comunican entre sí**, estos directamente utilizan la base de datos y así pueden leer que hizo el otro componente.
+
+Experto o basado en reglas
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+El componente de tipo cliente se comunica con un segundo componente, que intentará inferir  si recibe una regla o una consulta, para saberlo consulta con con el tercer componente; la base de datos de reglas o knowledge database. Generalmente usado en Inteligencia Artificial.
+
+
+Componentes independientes
+--------------------------
+
+Se trata de un estilo que busca el desacoplamiento de los componentes. 
+
+Existen dos tipos: invocación implícita e invocación explicíta.
+
+Invocación implícita
+^^^^^^^^^^^^^^^^^^^^
+
+Se suele basar en eventos. Los componentes pueden comunciarse sin saber a quien le está hablando.
+
+Es parecido al patrón observer, con un bus central de eventos sobre el cual escriben los componentes, el bus comunica los eventos a los componentes adecuados.
+
+Existen buses sencillos donde un componente publica un evento y los componentes suscritos reciben la notificación
+
+También hay buses con lógica (Enterprise Service Bus). El cual tiene componentes registrados que interactuan con el bus, los componentes no se conocen entre si, pero están programados para cumplir con su objetivo.
+
+Invocación explícita
+^^^^^^^^^^^^^^^^^^^^
+
+Componentes desarollados individualmente pero que se concen entre sí. 
+
+
+¿Cómo elegir un estilo?
+=======================
+
+Se dividen en estilos monolíticos y distribuidos
+
+monolíticos
+-----------
+
+Sencillos pues todos los componentes están en un mismo lugar.
+
+Distribuidos
+------------
+
+Más complicados pues cada parte es un despliegue diferente y quizás deban tenerse consideraciones al momento de comunicarse por red. Se puede considerar a cada servicio individual es como un monolito.

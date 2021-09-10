@@ -16,6 +16,7 @@ Si no sabes como empezar aquí hay una `guia sobre el trabajo remoto <https://bl
 Páginas para trabajadores remotos
 ---------------------------------
 
+* `Meerkad <https://meerkad.com/>`_
 * `Remoto list <https://remotolist.com/>`_
 * `Swiss dev jobs <https://swissdevjobs.ch/>`_
 * `Jobmofy <https://jobmofy.com>`_
@@ -23,7 +24,7 @@ Páginas para trabajadores remotos
 * `Flat world <https://flatworld.co>`_
 * `Remote leaf <https://remoteleaf.com>`_
 * `Lemon io <https://lemon.io>`_
-* `Raisin dev <https://raisin-dev>`_
+* `Raisin dev <https://raisin.dev>`_
 * `Remote ok <https://remoteok.io>`_
 * `Flexjobs <https://www.flexjobs.com/>`_
 * `Remote <https://remote.co>`_
