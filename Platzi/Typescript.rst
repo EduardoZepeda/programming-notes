@@ -234,6 +234,12 @@ De igual manera podemos optar por una notación alternativa
 .. code:: javascript
 
    const months: Array<string> = ["Enero", "Febrero"];
+   
+Esta última notación es muy popular cuando se usan hooks en React
+
+.. code:: javascript
+
+    export const getStaticProps: GetStaticProps<HomeProps|null> = async () => {}
 
 Tuplas
 ~~~~~~

@@ -549,7 +549,7 @@ Dado que el servidor no tiene el objeto window podemos usar la librería
 isomorphic-fetch para reemplazar todas las llamadas a windows.fetch por
 fetch. *Fetch solamente aceptará url absolutas*
 
-   .. code:: javascript
+.. code:: javascript
 
       import fetch from 'isomorphic-fetch'
 
@@ -563,6 +563,37 @@ fetch. *Fetch solamente aceptará url absolutas*
               }
           }
       }
+
+Variables de entorno
+====================
+
+Si queremos que nextjs cargue variables de entorno en nuestra aplicación deberemos crear un archivo llamado .env en la raiz de la aplicación
+
+.. code:: javascript
+   
+    HOSTNAME=localhost
+    PORT=8080
+    HOST=http://$HOSTNAME:$PORT
+
+
+Las variables que se carguen de esta manera estarán solo disponibles en el entorno de node, no se expondrán al navegador. 
+
+Si queremos exponer una variable al navegador deberemos usar el prefijo *NEXT_PUBLIC_*
+
+.. code:: javascript
+
+    NEXT_PUBLIC_ANALYTICS_ID=abcdefghijk
+
+Lo que permite que la variable se inyecte en el código Javascript
+
+Podemos usar variables diferentes para desarrollo creando diferentes archivos .env
+
+* .env: comunes a todos los entornos 
+* .env.development: para desarrollo
+* .env.production: para producción
+* .env.local: sobreescribe todos los anteriores
+
+Las 3 primeras deben incluirse en los repositorios. *.env.local* debería añadirse a *.gitignore* y *.env.local* contendrá aquellos valores sensibles.
 
 SSG
 ===
@@ -712,6 +743,7 @@ archivos planos de HTML, CSS y JavaScript desde Next.js
 Tras correr el comando nos generará una carpeta llamada out. Esta
 carpeta contiene páginas estáticas en html completamente planas. Estás
 páginas podemos usarlas con cualquier servidor que sirva html plano.
+
 
 Diferencia entre next build y next export
 =========================================
