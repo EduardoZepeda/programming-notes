@@ -271,9 +271,17 @@ Se dividen en estilos monolíticos y distribuidos
 monolíticos
 -----------
 
-Sencillos pues todos los componentes están en un mismo lugar.
+Es fácil priorizar eficiencia en comunicaciones
+Sencillos de testear
+Curva de aprendizaje baja
+Capacidad de modularización muy complicada
+Desafio para el despliegue pues todo el sistema tiene que coincidir
 
 Distribuidos
 ------------
 
-Más complicados pues cada parte es un despliegue diferente y quizás deban tenerse consideraciones al momento de comunicarse por red. Se puede considerar a cada servicio individual es como un monolito.
+Para testear se tienen que tener todos los componentes
+Curva de aprendizaje más elevada
+Cada servicio se versionea de manera diferente, lo que complica su modificación
+Su modularización es sencilla.
+Adaptabilidad más fácil por la diferencia de contextos en cada despliegue.
