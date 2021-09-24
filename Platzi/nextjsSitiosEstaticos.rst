@@ -2,9 +2,9 @@
 NextJS: Sitios estáticos y Jamstack
 ===================================
 
-Jamstack es una arquitectura de desarrollo web moderna basada en JavaScript del lado del cliente, API reutilizables y marcado predefinido.
+Jamstack es una arquitectura de desarrollo web moderna basada en JavaScript del lado del cliente, API reutilizables y marcado predefinido, en donde el contenido prerenderizado es servido por un CDN y se vuelve dinámico usando APIs y serverless functions. 
 
-Hay dos tipos de formas de renderizar una aplicación:
+Existen dos tipos de formas de renderizar una aplicación:
 
 * Navegador
 * Servidor
@@ -133,7 +133,9 @@ Incremental Site Regeneration
 
 Permite escalar el sitio sin importar el número de páginas por medio de la generación dinámica de páginas estáticas. Se construye un número bajo de páginas estáticas y las demás páginas se generan bajo demanda. 
 
-Para implementar ISR, simplemente agregamos un parámetro revalidate dentro de nuestra función getStaticProps, que le dice a Nextjs durante cuanto tiempo serán válidas las páginas.
+Con SSG se tienen que construir todas las páginas en tiempo de compilación (build time); con ISG solo un fragmento, y el resto se hace incrementalmente en producción.
+
+ISG permite regenerar las páginas cada cierto periodo de tiempo para actualizarlas, para hacerlo agregamos un parámetro revalidate dentro de nuestra función getStaticProps, que le dice a Nextjs durante cuanto tiempo serán válidas las páginas.
 
 .. code:: javascript
 
@@ -190,9 +192,9 @@ El parámetro fallback de getStaticPaths puede tomar tres valores, 'blocking', f
       }
     }
 
-* false: devuelve 404 si la página no está prerendrizada.
-* blocking: si una página no existe, la busca la página en el servidor. Ideal cuando el prerendrizado no toma mucho tiempo.
-* true: avisa del estado de carga del servidor, útil para devolver estados de loading por medio de la propiedad isFallback del router. 
+* false: Devuelve 404 si la página no está prerendrizada.
+* blocking: Si una página no existe, la busca la página en el servidor y la devuelve usando SSR. Peticiones futuras servirán la página desde la caché. Ideal cuando el prerendrizado no demora mucho tiempo.
+* true: Avisa del estado de carga del servidor, útil para devolver estados de loading donde avisamos que la página está siendo procesado, esto por medio de la propiedad isFallback del objeto router que nos provee nextjs
 
 .. code:: javascript
 
