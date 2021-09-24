@@ -105,6 +105,14 @@ Los comentarios se marcan usando dos diagonales seguidas
 
     // Este es un comentario en go.
 
+Los comentarios multilinea se realizan con /**/
+
+.. code-block:: go
+
+    /*
+    Este es un comentario multilinea
+    */
+
 Operadores aritméticos en go 
 ============================
 
@@ -541,13 +549,14 @@ También es posible primero declarando el tipo de dato y después accediendo a l
     var myVideogame videogame
     myVideogame.genre = "Horror"
 
-Privacidad en structs
----------------------
+Privacidad en structs, funciones y variables
+============================================
 
-Para marcar un struct como privado o público, igual que sus campos. Basta con especificar los campos con mayúsculas o minúsculas, para público y privado, respectivamente.
+Para marcar un struct, función o variable como privada o pública, igual que sus respectivos campos para el struct. Basta con especificar los campos con mayúsculas o minúsculas, para público y privado, respectivamente. **Al intentar acceder a una entidad privada desde otro módulo el compilador la procesará como si no existiera, devolviéndo un error**.
 
 * mayúsculas, público
 * minúsculas, privado
+
 
 Si queremos declarar un struct como público necesitaremos agregar un comentario en su parte superior o el compilador marcará error.
 
@@ -576,15 +585,20 @@ En go no existen las importaciones relativas. Se debe usar la ruta absoluta cons
 go mod 
 ------
 
-Go mod permite establecer un directorio afuera de GOPATH para tomar los paquetes. Esto creará un archivo go.mod en donde lo ejecutemos. El nombre demoproject será la base de la ruta desde la que importaremos nuestros paquetes.
+Go mod permite establecer un directorio afuera de GOPATH para tomar los paquetes. Esto creará un archivo go.mod en donde lo ejecutemos. El nombre mypackage será la base de la ruta desde la que importaremos nuestros paquetes.
 
 
 .. code-block:: go
 
     go mod init mypackage 
 
+Es buena práctica colocar el path completo de la dirección de github
 
-Nos quedará una ruta con la siguiente estructura.
+.. code-block:: go
+
+    go mod init github.com/usuario/paquete
+
+Nos quedará una ruta con la siguiente estructura. D
 
 .. code-block:: go
 
@@ -594,6 +608,14 @@ Nos quedará una ruta con la siguiente estructura.
         └── mymodel
             └── mymodel.go
     
+
+Dentro de go.mod se especificará el nombre del modulo, a partir del cual crearemos la ruta de importación, así como la versión de go.
+
+.. code-block:: go
+
+    module demoproject
+
+    go 1.15
 
 Ahora podemos crear un modelo en model.go 
 
@@ -606,7 +628,7 @@ Ahora podemos crear un modelo en model.go
         Title       string
     }
 
- Para referirnos a ese modelo hacemos referencia a la ruta demoproject/src/model
+ Para referirnos a ese modelo hacemos referencia a la ruta mypackage/src/model, observa como la ruta empieza con el nombre que aparece en el archivo *go.mod*
 
 .. code-block:: go
 
@@ -634,3 +656,371 @@ Podemos declarar un alias a la hora de importar un paquete anteponiendo el alias
 .. code-block:: go 
 
     import nuestroAlias "ruta/a/paquete"
+    
+Structs y punteros
+==================
+
+Cuando se crea una variable se le asigna una dirección de memoria, a la que podemos acceder con el operador ampersand
+
+.. code-block:: go
+
+    a := 50
+    b := &a
+
+Para modificar la variable usamos el caracter de desestructuración.
+
+.. code-block:: go
+
+    *b = 100
+
+Para acceder a instancias de structs en las  funciones necesitamos pasarle un parentesis antes del nombre de la función, que contiene el nombre que usaremos para acceder al struct seguido del nombre del struct.
+
+.. tip:: Recuerda que debes cuidar la privacidad de la función, si la declaras con minúsculas no podrás acceder a ella desde un archivo externo.
+
+.. code-block:: go
+
+    func (myStructVariable Videogame) Ping{
+        fmt.Println(myStructVariable.Title)
+    }
+
+
+Podemos acceder a sus valores mediante punteros lo pasamos dentro del parentesis con el caracter de desestructuración.
+
+.. code-block:: go
+
+    func (myStructVariable *Videogame) IncreaseYear{
+        myStructVariable.year = myStructVariable.year + 1
+    }
+
+Para posteriormente llamar al método a través de una instancia del struct.
+
+.. code-block:: go
+
+    videogame.IncreaseYear()
+
+Interfaces y listas de interfaces
+=================================
+
+Las interfaces son un método para compartir métodos entre structs y evitar repetir códigos. Una interface se encargará de llamar al método que le especificamos correspondiente a su tipo de struct.
+
+.. code-block:: go
+
+    type figuras4Lados interface{
+        area() float64
+    }
+
+Teniendo múltiples structs, llamará al método area de cada uno.
+
+
+.. code-block:: go
+
+    type rectangulo struct {
+        base float64
+        altura float64
+    }
+
+    type cuadrado struct {
+        base float64
+        altura float64
+    }
+
+    func (c cuadrado) area() float64 {
+        return c.base * c.base 
+    }
+
+    func (r rectangulo) area() float64 {
+        return r.base * r.base 
+    }
+
+La función que crearemos recibirá cualquiera de nuestros structs, ejecutará su respectivo método area.
+
+.. code-block:: go
+
+    func calcular (f figuras4Lados) {
+        fmt.Println("Area", f.area())
+    }
+
+Para llamar al método respectivo solo llamamos la función pasándole una instancia del struct
+
+.. code-block:: go
+
+    miCuadrado := cuadrado{base: 2}
+    calcular(cuadrado)
+    miRectangulo := rectangulo{base:2, altura: 4}
+    calcular(miRectangulo)
+
+slice de interfaces
+-------------------
+
+Existen los slice de interfaces. Lleva doble par de llaves
+
+.. code-block:: go
+
+    myInterface := []interface{}{"Hola", 1, 3.4}
+    fmt.Println(myInterface...)
+
+Concurrencia
+============
+
+Uno de las mejores características del lenguaje. La función main se ejecuta dentro de una goroutine.
+
+Para ejecutar una goroutine basta con agregar el keyword go antes de una función.
+
+.. code-block:: go
+
+    fmt.Println("hey")
+    go write("hey again")
+
+sync
+----
+
+Creamos un WaitGroup, que acumula un conjunto de goroutines y las va liberando paulatinamente. El método Wait, esperará a que se ejecuten todas las gorotuines. 
+
+.. code-block:: go
+
+    var wg sync.WaitGroup
+    wg.add(1)
+    wg.Wait()
+
+El método add dice cuantas goroutinas queremos añadirle al gestor al WaitGroup.
+
+Para indicarle cuando se ha finalizado llamaremos al método done.
+
+.. code-block:: go
+
+    go say("hey again", &wg)
+
+Dentro de esa función usamos defer sobre el método done para garantizar que sea lo último que se ejecute.
+
+.. code-block:: go
+
+    say(text string, wg *sync.WaitGroup) {
+        defer wg.done()
+        fmt.Println(text)
+    }
+
+funciones anónimas en gorotuines
+--------------------------------
+
+Se usan frecuentemente en goroutines.
+
+.. code-block:: go
+
+    go func() {
+    }()
+
+Los parentesis del final reciben los argumentos.
+
+.. code-block:: go
+
+    go func(text string) {
+    }("Texto")
+
+Channels
+========
+
+Son un conducto que permite manejar un único tipo de dato. Los channels permiten a las goroutines comunicarse entre ellas. Podemos pasarle como un argmento extra la cantidad límite de datos simultaneos que manejará ese canal.
+
+.. code-block:: go
+
+    c := make(chan string, 1)
+
+cuando querramos hacer referencia al canal como argumento de otra función tenemos que pasar el tipod e dato
+
+.. code-block:: go
+
+    func say(text string, c chan string) {
+    
+    }
+
+Y para indicar la entrada de datos a través del channel usamos <-
+
+.. code-block:: go
+
+    func say(text string, c chan string) {
+        c <- text
+    }
+
+Para obtener la respuesta del canal invertimos el orden de <-
+
+.. code-block:: go
+
+    fmt.Println(<-c)
+
+También podemos definir un canal como entrada o salida únicamente.
+
+Este es un canal de salida
+
+.. code-block:: go
+
+    func say(text string, c <-chan string) {
+        
+    }
+
+Y este de entrada
+
+.. code-block:: go
+
+    func say(text string, c chan<- string) {
+        
+    }
+
+Range, close y select en channels
+=================================
+
+La función len nos dice cuantas goroutines hay en un channel y cap nos devuelve la capacidad máxima, respectivamente.
+
+.. code-block:: go
+
+    c :=make(chan string, 2)
+    c <- "dato1"
+    c <- "dato2"
+    fmt.Println(len(c), cap(c))
+
+close
+-----
+
+close cierra el canal, incluso aunque tenga capacidad
+
+.. code-block:: go
+
+    c :=make(chan string, 2)
+    c <- "dato1"
+    c <- "dato2"
+    close(c)
+
+Range 
+-----
+
+Range es ideal para iterar sobre los datos de los canales.
+
+.. code-block:: go
+
+    for message := range c {
+    
+    }
+
+Sin embargo **noexiste certeza sobre que dato recibiremos**
+
+Select
+------
+
+Select nos permite definir acciones diferentes para cada canal. Por lo que es importante conocer el número de canales y de datos para poder procesarlos.
+
+.. code-block:: go
+
+    func message(text string, c chan string) {
+        c <- text
+    }
+    funct main() {
+        email1 := make(chan string)
+        email2 := make(chan string)
+
+        go message("mensaje1", email1)
+        go message("mensaje2", email2)
+
+        for i:= 0; i < 2; i++ {
+            select {
+                case m1 := <- email1:
+                    fmt.Println("Recibido email1", m1)
+                case m2 := <- email2:
+                    fmt.Println("Recibido email1", m2)
+            }
+        }
+    }
+
+Go get: manejador de paquetes  
+=============================
+
+El equivalente de pip y npm pero en go.
+
+Para obtener paquetes se obtienen corriendo el comando go get en consola. **Recuerda configurar el GOPATH o correr go mod init proyecto** en la raiz de tu proyecto antes de obtener los paquetes.
+
+.. code-block:: go
+
+    go get golang.org/x/website/tour
+
+Si quieres más nivel de verbosidad agrega la opción -v.
+
+Librerías 
+---------
+
+Hay un directorio de frameworks, librerías y utilidades en `Awesome go <http://awesome-go.com/>`_ 
+
+Go modules: Ir más allá del GoPath con Echo
+===========================================
+
+Para reemplazar librerías usamos replace. Esto creará una redirección en el archivo go.mod
+
+.. code-block:: go
+
+    go mod edit -replace github.com/usuario/proyecto=./libreriaLocal
+
+Para cancelar un replace usamos dropreplace y especificamos cual queremos cancelar.
+
+.. code-block:: go
+
+    go mod edit -dropreplace github.com/usuario/proyecto
+
+Si queremos verificarl os modulos
+
+.. code-block:: go
+
+    go mod verify
+
+Imprime las dependencias del módulo actual.
+
+.. code-block:: go
+
+    go list -m all
+
+Para empaquetar todo el código del proyecto, incluyendo librerías de terceros y el código de go, usamos vendor.
+
+.. code-block:: go
+
+    go mod vendor
+
+Esto creará una carpeta vendor con los archivos necesarios para que el proyecto se pueda ejecutar de la manera correcta.
+
+.. code-block:: go
+
+    vendor/
+    ├── github.com
+    │   ├── golang-jwt
+    │   │   └── jwt
+    │   │       ├── claims.go
+
+
+En go.sum se listarán todos los archivos y sus hashes.
+
+.. code-block:: go
+
+    github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+
+
+El comando para limpiar librerías no utilizadas.
+
+.. code-block:: go
+
+    go mod tidy
+
+
+Librerías de desarrollo web
+===========================
+
+* `Hugo <https://gohugo.io/>`_ 
+* `Hugo themes <https://themes.gohugo.io/>`_ 
+* `Echo <https://echo.labstack.com/>`_ 
+* `Gin gonic <https://gin-gonic.com/>`_ 
+* `Beego <https://beego.me/>`_
+* `Revel <https://revel.github.io/>`_  
+* `Buffalo <https://gobuffalo.io/en/>`_ 
+
+Enlaces útiles
+==============
+
+* `Atour of go <http://tour.golang.com/>`_ 
+* `Play with go <https://play-with-go.dev/>`_ 
+* `Go by example <https://gobyexample.com/>`_ 
+* `Comunidad go slack <http://gophers.slack.com/>`_ 
+* `Podcast de go <https://open.spotify.com/show/2cKdcxETn7jDp7uJCwqmSE?si=q88UkEYQTxS0t1QVws22tw&amp;nd=1>`_ 
