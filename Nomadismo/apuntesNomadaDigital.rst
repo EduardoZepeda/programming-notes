@@ -6,7 +6,7 @@ Nomadismo digital para programadores
 Es muy tarde para ser nómada digital
 ====================================
 
-En algunos `foros <https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digital-nomad-at-40/4750>`_ se discute sobre si es correcto, o posible, emprender el camino del nomadismo digital en la mediana edad. Sin embargo, de acuerdo a `Forbes <https://www.forbes.com/sites/elainepofeldt/2018/08/30/digital-nomadism-goes-mainstream/>`_\ , la mayoría de las nomadas digitales empiezan cercad de los 38 años.
+En algunos `foros <https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digital-nomad-at-40/4750>`_ se discute sobre si es correcto, o posible, emprender el camino del nomadismo digital en la mediana edad. Sin embargo, de acuerdo a `Forbes <https://www.forbes.com/sites/elainepofeldt/2018/08/30/digital-nomadism-goes-mainstream/>`_\ , la mayoría de las nomadas digitales empiezan cercad de los 38 años. Otros dicen que la mayoría de los nómadas digitales se centran en gente al principio de sus 20's y finales de sus 30's.
 
 Guia sobre el trabajo remoto
 ============================
@@ -47,19 +47,18 @@ Páginas para trabajadores remotos
 Empresas amigables con trabajo remoto
 -------------------------------------
 
-
 * `Sngular <https://www.sngular.com>`_
 
 Recursos para mejorar entrevistas
 ---------------------------------
-
 
 * `Tech interview handbook <https://yangshun.github.io/tech-interview-handbook/introduction>`_
 
 Seguros
 -------
 
-El cofundador de Platzi recomendó `seguros Bupa <https://www.bupaglobal.com/es>`_ para nómadas digitales.
+* `Bupa <https://www.bupaglobal.com/es>`_ 
+* `Iati <https://iatiseguros.com>`_
 
 Rentar ticktes de avión
 -----------------------
