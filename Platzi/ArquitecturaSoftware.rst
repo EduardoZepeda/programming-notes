@@ -17,6 +17,8 @@ Despliegue: Aquí vamos a necesitar de infraestructura y de roles de operación 
 
 Mantenimiento y evolución: Estamos en espera de mejoras. El software permanecerá en esta etapa hasta que concluya su periodo de vida.
 
+
+
 Dificultades en el desarrollo de software
 =========================================
 
@@ -37,17 +39,36 @@ Está relacionado con la plataforma que vamos a implementar, tecnología, lengua
 Roles en metodologías tradicionales y ágiles
 ============================================
 
-Se tiene que separar el rol del puesto de trabajo. Una misma persona puede desempeñar varios roles.
+Las Metodologías Ágiles Redifinieron los Roles para acomodarlos a su filosofia de Trabajo. Es necesario separar el rol del puesto de trabajo. Una misma persona puede desempeñar varios roles.
 
-Experto del dominio: En una metodología tradicional, es la persona a la que acudimos para entender las necesidades del negocio. En metodologías Ágiles --> stakeholders.
+Tradicional
+-----------
 
-Analista: La persona responsable de los requerimientos. En el caso de Ágiles el dueño del producto es quien arma las historias y que nos acompaña en el proceso de construcción del software.
+Experto de Dominio: Era la persona a la que consultabamos para resolver las necesidades de los requerimientos. Su contraparte en metodologías ágiles es el stakeholder.
 
-Administrador de sistemas / DevOps: Se refiere a operaciones y desarrollo, responsables de toda la infraestructura y comunicar el feedback.
+Analista: Es la persona que se encarga de definir el problema y con ellos los requerimientos. Su contraparte en metodologías ágiles es el product owner.
 
-Equipo de desarrollo: QA / Testing, que se encargan del testeo del Software. Desarrolladores, para implementar funcionalidades. Y Arquitecto, diseña la solución y análisis de los requerimientos, es un papel más estratégico.
+Administrador de sistemas: Se encargaban de toda la operación del sistema: servidores, librerarías, lectura de logs y feedback al equipo de desarrollo. Su contraparte en metodologías ágiles es el DevOps o el Site Reliability Engineer.
 
-Gestor del proyecto / facilitador: Acompañan al equipo a través de las iteraciones, para entender y motivar al equipo.
+QA-Tester: Se encargaban de asegurar la calidad el producto, había área de QA, testing, desarrolladores y arquitectos de software. Su contraparte en metodologías ágiles es el equipo de desarrollo.
+
+Gestor del Proyecto: Se ecargaba de todo lo que era la entrega, además de gestionar el ciclo de vida del proyecto. Su contraparte en metodologías ágiles es el SCRUM master o facilitador.
+
+
+Metodologías ágiles
+-------------------
+
+Stakeholders/Partes interesadas: Expertos en el área del producto.
+
+Dueño del producto: Cliente. Es la persona que define los requerimientos . Determina las historias y las prioriza.
+
+Devops: Es la persona responsable de Entender la Infraestructura a la que se dirige nuestra app, así como de entender los requerimientos de infraestructura asociados.
+
+Administrador de sistemas: Fue reemplazado por el SRE (Ing. de la Confianza del Sitio), es similar al Administrador de Sistemas pero conectando el mundo de sistemas con el mundo del dia a dia de la app.
+
+Equipo de desarrollo: Equipo autogestionado que diseña la solución y análisis de los requerimientos, es un papel más estratégico. La arquitectura a usar emergerá del consenso del equipo. 
+
+Facilitador o SCRUM master: Acompaña al equipo a través de las iteraciones, para entender y motivar al equipo.
 
 ¿Qué es arquitectura de software?
 =================================
@@ -130,17 +151,17 @@ Se puede dividir en 3.
 Requerimientos de negocio
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Son las reglas de negocio 
+Los objetivos y problemas que la empresa quiere resolver con el producto. Están basados en una necesidad del usuario. 
 
-Capa del usuario
-^^^^^^^^^^^^^^^^
+requerimientos del usuario
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-El desenvolvimiento del usuario en el sistema
+Describen las expectativas de los usuarios y como se interactuará con el producto. 
 
-Capa funcional
-^^^^^^^^^^^^^^
+requerimientos funcional
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-Son los requisitos que tienen ocurrir cuando la aplicación esté operando
+Proporcionan detalle de como debe comportarse un producto y especifican lo que se necesita para su desarrollo.
 
 Requerimientos de proyecto
 --------------------------
@@ -152,8 +173,8 @@ Estos dos mundos de requerimientos hablan de las prioridades del equipo de traba
 Requerimientos de acuerdo a funcionalidad
 -----------------------------------------
 
-De acuerdo a su personalidad, existen requisitos funcionales, relacionados con las historias de usuario, y requisitos no funcionales, que tienen que ver con las características del sistema, están muy relacionados con la arquitectura. Actualmente, los requisitos funcionales se relacionan con los no funcionales.
-
+* requisitos funcionales, relacionados con las historias de usuario. 
+* no funcionales, tienen que ver con las características del sistema y vienen de atributos cualitativos, o sea que modifican a los requerimientos funcionales para asignarles características, están muy relacionados con la arquitectura. Ejemplos: acceder de forma segura, en tiempo real u otros atributos que modifiquen la historia del usuario.
 
 Riesgos
 =======
@@ -190,25 +211,27 @@ Llamado y retorno
 
 Los componentes invocan a componentes externos y reciben la información que les proporcionan.
 
-Llamadas y subrutinas
-^^^^^^^^^^^^^^^^^^^^^
+Programa principal y subrutinas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-se tiene una rutina y se manda a llamar otra subrutina en donde la subrutina puede retornar o no un resultado, pero la rutina principal continua hasta que acabe la subrutina.
+Estilo más básico evolucionado de un script.
+Se tiene una rutina y se manda a llamar otra subrutina en donde la subrutina puede retornar o no un resultado, pero la rutina principal continua hasta que acabe la subrutina.
 
 Orientado a objetos 
 ^^^^^^^^^^^^^^^^^^^
 
-Tratamos de juntar el estado de la aplicación creando objetos los cuales tienen una interfaz publica y los objetos interactuan entre si.
+Tratamos de juntar el estado de la aplicación creando objetos los cuales tienen una interfaz pública y los objetos interactúan entre si.
 
 Arquitectura multinivel 
 ^^^^^^^^^^^^^^^^^^^^^^^
-Son diferentes componentes que se van a comunicar en un orden en especifico donde un componente principal crea el llamado a un componente inferior en algún momento, un ejemplo de esto son las aplicaciones cliente-servidor.
+
+Son diferentes componentes que se van a comunicar en un orden en especifico donde un componente principal crea el llamado a un componente inferior en algún momento, un ejemplo de esto son las aplicaciones cliente-servidor, donde una aplicación le habla a un servidor mediante una petición y el servidor le devuelve una respuesta.
 
 
 Flujo de datos
 --------------
 
-Este estilo se utiliza cuando tenemos un proceso con una salida clara; la salida puede segmentarse en partes. 
+Este estilo se utiliza cuando tenemos un proceso con una salida clara; la salida puede procesarse por partes. 
 
 Secuencial
 ^^^^^^^^^^
@@ -226,17 +249,24 @@ Centrados en datos
 Pizarrón
 ^^^^^^^^
 
-Múltiples componentes que interactuan con un componente central, cada componente tiene la responsabilidad de procesar, calcular o recibir un dato y escribirlo al componente central; el pizarrón. El pizarrón puede o no devolver una salida de acuerdo a su propia lógica. Es un estilo poco común.
+Múltiples componentes que interactuan con un componente central, cada componente tiene la responsabilidad de procesar, calcular o recibir un dato y escribirlo al componente central; el pizarrón. Una vez que todos los componentes hayan procesado su información, el pizarrón puede o no devolver una salida de acuerdo a su propia lógica. 
+
+Es un estilo poco común.
 
 Centrado en datos 
 ^^^^^^^^^^^^^^^^^
 
-Ideal para aplicaciones con base de datos que tienen una segunda aplicación con la misma base de datos. Los componentes **no se comunican entre sí**, estos directamente utilizan la base de datos y así pueden leer que hizo el otro componente.
+Toda la información se centra en una única base de datos. 
+Ideal para aplicaciones que tienen una segunda aplicación con la misma base de datos. 
+
+Los componentes involucrados en este estilo **no se comunican entre sí**, sino que utilizan la base de datos y así pueden leer que hizo el otro componente.
 
 Experto o basado en reglas
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-El componente de tipo cliente se comunica con un segundo componente, que intentará inferir  si recibe una regla o una consulta, para saberlo consulta con con el tercer componente; la base de datos de reglas o knowledge database. Generalmente usado en Inteligencia Artificial.
+Un componente de tipo cliente se comunica con un segundo componente, que intentará inferir si recibe una regla o una consulta, para saberlo consulta con un tercer componente; la base de datos de reglas o knowledge database. 
+
+Generalmente usado en Inteligencia Artificial.
 
 
 Componentes independientes
@@ -249,18 +279,16 @@ Existen dos tipos: invocación implícita e invocación explicíta.
 Invocación implícita
 ^^^^^^^^^^^^^^^^^^^^
 
-Se suele basar en eventos. Los componentes pueden comunciarse sin saber a quien le está hablando.
-
-Es parecido al patrón observer, con un bus central de eventos sobre el cual escriben los componentes, el bus comunica los eventos a los componentes adecuados.
+Es parecido al patrón observer, con un bus central de eventos sobre el cual escriben los componentes, el bus comunica los eventos, de manera reactiva, a los componentes que estén suscritos pero los componentes desconocen a donde se les están comunicando los eventos.
 
 Existen buses sencillos donde un componente publica un evento y los componentes suscritos reciben la notificación
 
-También hay buses con lógica (Enterprise Service Bus). El cual tiene componentes registrados que interactuan con el bus, los componentes no se conocen entre si, pero están programados para cumplir con su objetivo.
+También hay buses inteligentes que funcionan de acuerdo a cierta lógica (Enterprise Service Bus). El cual tiene componentes registrados que interactúan con el bus, los componentes no se conocen entre si, pero están programados para cumplir con su objetivo.
 
 Invocación explícita
 ^^^^^^^^^^^^^^^^^^^^
 
-Componentes desarollados individualmente pero que se concen entre sí. 
+Está basado en comunicación entre componentes pero, a diferencia de la invocación implicita, las aplicaciones saben con qué aplicación se están comunicando, incluso aunque se hayan desarrollado independientemente. Lo anterior se consigue registrando cada componente a una central donde indica sus relaciones entre si, al cual se puede consultar para ubicar al componente a utilizar.
 
 
 ¿Cómo elegir un estilo?
