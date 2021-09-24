@@ -801,6 +801,12 @@ modificación de datos sea mucho más rápida que la tabla estadistica.
 Comandos Linux
 ==============
 
+Entrar como el usuario postgres
+
+.. code:: bash
+
+    sudo -i -u postgres
+
 Para exportar una base de datos podemos usar el comando
 
 .. code:: bash
