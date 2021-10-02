@@ -67,7 +67,7 @@ Ahora importamos la configuración directo desde nuestro archivo.
 Autogeneración de data con graphql
 ==================================
 
-Es posible generar tipos de typescript usando graphql con el siguiente recurso
+Es posible generar tipos de typescript usando graphql con el siguiente recurso:
 
 https://www.graphql-code-generator.com/
 

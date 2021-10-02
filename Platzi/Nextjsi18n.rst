@@ -233,9 +233,7 @@ Para implementar SSR debemos asegurarnos de devolver la configuración de i18n e
 
 .. code:: javascript 
 
-import { serverSideTranslations } from 'next-i18next/ServerSideTranslations'
-
-
+    import { serverSideTranslations } from 'next-i18next/ServerSideTranslations'
     export const getStaticProps: GetStaticProps<OurProps> = async({locale}) => {
 
         const i18nConf = await ServerSideTranslations(locale!)
@@ -248,7 +246,7 @@ import { serverSideTranslations } from 'next-i18next/ServerSideTranslations'
             }
         
     }
-    
+
 Tras lo anterior ya podemos usar el hook para marcar las cadenas que queremos traducir. Solo tenemos que indicarle, por medio de un array, el componente o los componentes en los que se encuentran las traducciones del componente.
 
 .. code:: javascript 
