@@ -6,7 +6,7 @@ Go es un lenguaje compilado desarrollado por google. Es un lenguaje bastante apr
 
 Go está fuertemente orientado a las buenas prácticas de código. El compilador de Go fuerza buenas prácticas en el código, impidiendo que el código compile si hay variables que no se usan, o si falta documentación en structs públicos.
 
-La mascota oficial es gopher `Gopherizme <https://gopherize.me>`_ y es apreciado por la comunidad. Sin embargo el `logo oficial de go <https://blog.golang.org/go-brand>`_  ya ha sido definido.
+La mascota oficial es una ardilla de tierra. La comunidad ama tanto su mascota que creó una herramienta para crear avatares personalizados en `Gopherizme <https://gopherize.me>`_ y es apreciado por la comunidad. Sin embargo el `logo oficial de go <https://blog.golang.org/go-brand>`_  ya ha sido definido.
 
 Instalación
 ===========
@@ -135,8 +135,8 @@ Los operadores de go son similares al resto de los lenguajes.
 * ++, incremental
 * --, decremental
 
-Tipos priimitivos de datos
-==========================
+Tipos primitivos de datos
+=========================
 
 Los datos primitivos de go nos permiten definir un tipo de dato para una constante o varible.
 
@@ -193,7 +193,7 @@ Por ejemplo: c:=100+2i
 Paquete fmt
 ===========
 
-Es el paquete encargado de manejar entradas y salidas en la terminal
+Es el paquete encargado de manejar entradas y salidas en la terminal. Incluye todo lo necesario para lidiar con caracteres especiales, como el idioma chino.
 
 Println
 -------
@@ -492,7 +492,7 @@ Parecido a la sintaxis de Python, podemos recorrer un array donde asignamos cada
 .. code-block:: go
 
     slice := []string = ["aldo", "javier", "marti"]
-    for i:= range slice {
+        for i:= range slice {
     }
 
 Maps 
@@ -506,6 +506,14 @@ Los maps son el equivalente de los diccionarios, son una estructura de datos tip
     m["hidrogeno"] = 1
     m["Helio"] = 2
     
+Si intentamos acceder a una llave que no existe, go nos devolverá su respectivo zero value
+
+.. code-block:: go
+
+    m := make(map[string]int)
+    fmt.Println(m["no_existe"])
+    // 0
+
 Recorrer map con range
 ----------------------
 
@@ -514,7 +522,7 @@ De la misma manera que con un slice, podemos recorrer los maps con range, asigna
 .. code-block:: go
 
     for k, v := range m {
-        fmt.Println(k,v)
+        (k,v)
     }
 
 Recuerda que se puede ignorar el valor de una llave o valor con el guión bajo o underscore.
@@ -567,6 +575,18 @@ Si queremos declarar un struct como público necesitaremos agregar un comentario
         Genre string
         Year int
     }
+    
+Manejo de errores con go
+========================
+
+Go nos permite manejar errores creando una segunda variable de retorno para la función que queremos probar. Si ocurre un error lo obtendremos y err será diferente de nil.
+
+.. code-block:: go
+
+    message, err := greetings.Hello("")
+    if err != nil {
+        log.Fatal(err)
+    }
 
 
 Variables de entorno de go
@@ -574,8 +594,8 @@ Variables de entorno de go
 
 Go maneja dos variables de entorno:
 
-* GOROOTH, establece donde está localizado el SDK. Solo debe cambiarse para usar diferentes versiones de go. 
-* GOPATH, define la raliz del espacio de trabajo. Por defecto es un directorio llamado go, dentro de home.
+* GOROOT, establece donde está localizado el SDK. Solo debe cambiarse para usar diferentes versiones de go. 
+* GOPATH, define la raliz del espacio de trabajo. Por defecto es un directorio llamado go, dentro de home. Aquí se descargan los paquetes.
 
 Importacion de paquetes con go mod
 ==================================
@@ -628,7 +648,7 @@ Ahora podemos crear un modelo en model.go
         Title       string
     }
 
- Para referirnos a ese modelo hacemos referencia a la ruta mypackage/src/model, observa como la ruta empieza con el nombre que aparece en el archivo *go.mod*
+Para referirnos a ese modelo hacemos referencia a la ruta mypackage/src/model, observa como la ruta empieza con el nombre que aparece en el archivo *go.mod*
 
 .. code-block:: go
 
@@ -748,11 +768,17 @@ Para llamar al método respectivo solo llamamos la función pasándole una insta
     calcular(cuadrado)
     miRectangulo := rectangulo{base:2, altura: 4}
     calcular(miRectangulo)
+    
+String en structs
+=================
+
+La función para personalizar el output en consola en los structs debe llamarse String()    
+
 
 slice de interfaces
 -------------------
 
-Existen los slice de interfaces. Lleva doble par de llaves
+Existen los slice de interfaces, que nos permiten guardar diferentes tipos de datos en un solo slice. Un slice de interfaces lleva doble par de llaves
 
 .. code-block:: go
 
@@ -762,9 +788,9 @@ Existen los slice de interfaces. Lleva doble par de llaves
 Concurrencia
 ============
 
-Uno de las mejores características del lenguaje. La función main se ejecuta dentro de una goroutine.
+Uno de las mejores características del lenguaje. A las corrutinas de go se les conoce como goroutines. La función main se ejecuta dentro de una goroutine.
 
-Para ejecutar una goroutine basta con agregar el keyword go antes de una función.
+Ejecutar una goroutine basta con agregar el keyword go antes de una función.
 
 .. code-block:: go
 
@@ -849,7 +875,17 @@ Para obtener la respuesta del canal invertimos el orden de <-
 
 También podemos definir un canal como entrada o salida únicamente.
 
-Este es un canal de salida
+Para identificarlos, observa el flujo de la flecha alrededor de la palabra chan; una entra a chan y la otra sale de chan. 
+
+Este de entrada.
+
+.. code-block:: go
+
+    func say(text string, c chan<- string) {
+        
+    }
+
+Y este es un canal de salida.
 
 .. code-block:: go
 
@@ -857,13 +893,41 @@ Este es un canal de salida
         
     }
 
-Y este de entrada
+Operaciones bloqueantes
+=======================
+
+Las operaciones que mandan o reciben valores de canales son bloqueantes dentro de su propia goroutine.
+
+* Si una operación recibe información de un canal, se bloqueará hasta que la reciba.
+* Si una operación manda información a un canal, esperará hasta que la información enviada sea recibida.
 
 .. code-block:: go
 
-    func say(text string, c chan<- string) {
-        
+    package main
+
+    import (
+        "fmt"
+    )
+
+    func main() {
+        n := 2
+
+        out := make(chan int)
+
+        // La llamamos como una goroutine
+        go multiplyByTwo(n, out)
+
+        // Una vez que se reciba el resultado del canal out, se puede proceder
+        fmt.Println(<-out)
     }
+
+    func multiplyByTwo(num int, out chan<- int) {
+        result := num * 2
+
+        // redirige el resultado al canal out
+        out <- result
+
+La función que imprime el canal bloqueará la ejecución del código hasta que reciba la información del canal out.
 
 Range, close y select en channels
 =================================
@@ -872,7 +936,7 @@ La función len nos dice cuantas goroutines hay en un channel y cap nos devuelve
 
 .. code-block:: go
 
-    c :=make(chan string, 2)
+    c := make(chan string, 2)
     c <- "dato1"
     c <- "dato2"
     fmt.Println(len(c), cap(c))
@@ -950,7 +1014,7 @@ Hay un directorio de frameworks, librerías y utilidades en `Awesome go <http://
 Go modules: Ir más allá del GoPath con Echo
 ===========================================
 
-Para reemplazar librerías usamos replace. Esto creará una redirección en el archivo go.mod
+Para reemplazar librerías hacemos un git clone de la libreríaa que necesitamos, lo editamos y, posteriormente, usamos replace. Esto creará una redirección en el archivo go.mod
 
 .. code-block:: go
 
@@ -962,7 +1026,7 @@ Para cancelar un replace usamos dropreplace y especificamos cual queremos cancel
 
     go mod edit -dropreplace github.com/usuario/proyecto
 
-Si queremos verificarl os modulos
+Si queremos verificar los modulos
 
 .. code-block:: go
 
@@ -1024,3 +1088,4 @@ Enlaces útiles
 * `Go by example <https://gobyexample.com/>`_ 
 * `Comunidad go slack <http://gophers.slack.com/>`_ 
 * `Podcast de go <https://open.spotify.com/show/2cKdcxETn7jDp7uJCwqmSE?si=q88UkEYQTxS0t1QVws22tw&amp;nd=1>`_ 
+
