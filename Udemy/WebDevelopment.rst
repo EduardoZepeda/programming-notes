@@ -6,7 +6,7 @@ Questions to do before the project
 
 * What is the website about?
 * Is there a website whose design you like?
-* When is the project expected to be delivered? (DELIVER ON TIME, REJECT OTHERWISE)
+* When is the project expected to be delivered? (**DELIVER ON TIME, REJECT OTHERWISE**)
 * Do you have a budget?
 * Do you want custom coding or use of a CMS?
 * Will there be training? (Train the client to use CMS)
@@ -15,19 +15,23 @@ Questions to do before the project
 
 Sample Proposal
 ---------------
+
 Use the template
 Review point 3 in the Next Steps section and also the second paragraph in the Terms and conditions section in the video
 
 Revision Process
 ----------------
+
 You can agree a revision in 10 - 20 hours, at the middle of the project, etc. Make sure at the beginning they have approved the design.
 
 Working with a designer
 -----------------------
+
 If you can't design a website (graphically) you will work with a graphic designer, you need to clarify all of your questions. 
 
 How to over deliver a project?
 ------------------------------
+
 Give yourself more time than necessary, you'll finish before, of course this doesn't apply in urgent requests.
 Be proactive, propose solutions. Enfatize savings in time and money
 Offer aditional material that will help them with their business.
@@ -122,8 +126,6 @@ Payments
 --------
 
 Pay half at the beginning and half at the end. You can also use 1/3 or 1/4.
-Do not take on any project without a upfront payment, *NEVER EVER*.
-Always make sure you got control over the domain name and web hosting, so you can protect yourself in the case they don't pay you.
-
-
+Do not take on any project without a upfront payment, **NEVER EVER**.
+Always **make sure you got control over the domain name and web hosting**, so you can protect yourself in the case they don't pay you.
 

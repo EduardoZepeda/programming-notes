@@ -44,6 +44,11 @@ Páginas para trabajadores remotos
 * `Arc dev <https://arc.dev>`_
 * `Working nomads <https://workingnomads.co>`_
 
+Voluntariados pagados con hospedaje, comida y a veces dinero 
+------------------------------------------------------------
+
+* `Worldpackers <https://www.worldpackers.com/es>`_ 
+
 Empresas amigables con trabajo remoto
 -------------------------------------
 
