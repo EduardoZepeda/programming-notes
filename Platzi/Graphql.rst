@@ -12,7 +12,7 @@ Instalacion de graphql
 Tipos en graphql
 ================
 
-Existen 5 tipos de principales de datos en Graphql
+Existen 5 tipos de principales de datos en Graphql. Si no se especifica un tipo se tratará como null.
 
 * String
 * Int
@@ -20,12 +20,12 @@ Existen 5 tipos de principales de datos en Graphql
 * Boolean
 * ID
 
+En graphql **no existe un campo estándar definido para el tipo date**, usado para el manejo de fechas.
+
 Creación de un schema
 =====================
 
-Un schema es la estructura que define lo que devolverá un API.
-
-Creamos un schema 
+Un schema es la estructura que define lo que devolverá un API. En un schema solo puede haber un tipo Query, que es el que define el conjunto de búsquedas que se pueden realizar a la API.
 
 .. code-block:: javascript
 
@@ -48,9 +48,33 @@ Ahora le pasamos el schema ala función graphql
 Query
 =====
 
-Una query permite realizar una petición al API, dentro de una query se indica la consulta a realizar y los campos a obtener. GraphQL retornará siempre un objeto con la información dentro del objeto data
+Una query permite realizar una petición al API, dentro de una query se indica la consulta a realizar y los campos a obtener. 
 
-Para realizar la petición se requiere del objeto resolvers, ete objeto contiene una propiedad del mismo nombre que la query que va a resolver o ejecutar.
+GraphQL retornará siempre un objeto con la información dentro del objeto data.
+
+.. code-block:: javascript
+
+    {
+    "data": data,
+    //
+    }
+
+Errores la query
+----------------
+
+Graphql devuelve una respuesta en forma de objeto con un campo data y un campo error, este es un arreglo.
+
+.. code-block:: javascript
+
+    {
+    "data": data,
+    "error": []
+    }
+
+Resolver
+========
+
+Para realizar un query **se requiere del objeto resolvers**, este objeto contiene **una propiedad del mismo nombre que la query** que va a resolver o ejecutar.
 
 .. code-block:: javascript
 
@@ -59,6 +83,14 @@ Para realizar la petición se requiere del objeto resolvers, ete objeto contiene
             return 'Hola Mundo'
         }
     }
+
+Para ejecutar una query ejecutamos el método graphql, el primer argumento será el schema, el segundo la consulta y el último los resolvers. Esto nos devolverá una promesa que podremos procesar. La palabra query en la consulta es completamente opcional y puede omitirse.
+
+.. code-block:: javascript
+
+    graphql(schema, 'query { hello }', resolvers).then((data) => {
+        console.log(data);
+    });
 
 Graphql con express
 ===================
@@ -154,7 +186,7 @@ Requiere dos argumentos, los types y los resolvers
 
     const schema = makeExecutableSchema({ typeDefs, resolvers })
 
-Y configurar los resolvers
+El objeto resolvers **necesita una propiedad llamada Query** que contenga un objeto que, a su vez, tiene cada una de las queries o consultas. 
 
 .. code-block:: javascript
 
@@ -266,7 +298,7 @@ Mongo db requiere la instalación del paquete mongo
     npm i mongodb
 
 
-La función connect requiere una url en formato mongodb+srv://${DB_USER}:${DB_PASSWD}@${DB_HOST}/${DB_NAME} para conectarse. 
+La función connect requiere una url en formato *mongodb+srv://${DB_USER}:${DB_PASSWD}@${DB_HOST}/${DB_NAME}* para conectarse. 
 Y posteriormente un nombre de base de datos para su método db. 
 
 .. code-block:: javascript
@@ -318,8 +350,8 @@ Si queremos obtener un objeto individual usando MongoDB usamos el método findOn
 
 .. code-block:: javascript
 
-const connectDb = require('./db')
-const { ObjectId } = require('mongodb')
+    const connectDb = require('./db')
+    const { ObjectId } = require('mongodb')
 
     module.exports = {
     Query: {
@@ -369,7 +401,7 @@ Una vez creado el mutation se debe de especificar su comportamiento
 
 .. code-block:: javascript
 
-const connectDb = require('./db')
+    const connectDb = require('./db')
 
     module.exports = {
     createCourse: async (root, { input }) => {
@@ -391,7 +423,7 @@ const connectDb = require('./db')
     }
     }
 
-Y conectarse con los resolvers en la propiedad Mutation
+Una vez creado el objeto que contiene las Mutations, **se debe agregar al objeto resolvers como una propiedad llamada Mutation**
 
 .. code-block:: javascript
 
@@ -462,10 +494,13 @@ Y una vez especificado ya podemos agregarlo al schema.
 
 Y ahora tenemos que agregarlo a nuestros resolvers como si fuera uno más, desestructurándolo. Nuestros resolvers de campos anidados se ejecutarán cuando los campos sean consultados.
 
+
+.. code-block:: javascript
+
     module.exports = {
-    Query: queries,
-    Mutation: mutations,
-    ...types
+        Query: queries,
+        Mutation: mutations,
+        ...types
     }
 
 Alias y fragments
@@ -542,7 +577,7 @@ Y ahora podemos especificar ese tipo en cualquier otro type. **Recuerda añadir 
 Interfaces 
 ==========
 
-Una interfaz nos permite definir un tipo de dato padre que utilizando la palabra implements va a implementar los campos que tenga definidos dentro del tipo de dato que queramos.
+Una interfaz nos permite definir un tipo de datos padre que, utilizando la palabra implements, va a implementar los campos que tenga definidos dentro del tipo de dato que queramos. Es necesario que los tipos que hereden de una interfaz tengan, de manera forzosa, todos los campos que implementa la interfaz. 
 
 .. code-block:: javascript
 
@@ -566,7 +601,7 @@ Una interfaz nos permite definir un tipo de dato padre que utilizando la palabra
         phone: String
     }
 
-Necesitamos agregar un manejo personalizado a nuestros types en los resolvers. *__resolveType* devolverá el tipo adecuado como string.
+Una vez implementado podemos usar un resolver que maneje la interfaz y devolver resultados diferentes verificando el tipo del hijo. Para lo anterior, usamos la propiedad *__resolveType*, que deberá devolverá el type adecuado como un string.
 
 .. code-block:: javascript
 
@@ -583,9 +618,7 @@ Necesitamos agregar un manejo personalizado a nuestros types en los resolvers. *
 Queries con interfaces
 ----------------------
 
-Ese tipo puede ser usado para especificar campos de retorno opcionales en las queries, por medio de tres puntos seguidos de la palabra on. 
-
-Al retornoar la query graphql le agregará el campo phone a los tipos Monitor.
+En la query podemos usar el tipo de los hijos para agregar campos de retorno opcionales en las queries. La sintaxis es por medio de tres puntos seguidos de la palabra on. 
 
 .. code-block:: javascript
 
@@ -599,6 +632,8 @@ Al retornoar la query graphql le agregará el campo phone a los tipos Monitor.
         }
     }
     }
+
+Al retornar la query graphql le agregará el campo phone únicamente a los tipos Monitor.
 
 Directivas
 ==========
@@ -635,6 +670,15 @@ Ejemplo
 
 Omite su contenido si el argumento es true.
 
+.. code-block:: javascript
+    
+    query getPeopleData($monitor: Boolean!){
+        getPeople{
+            name
+            email
+            phone @skip(if: $monitor)
+            }
+        }
 
 @deprecated
 ----------
@@ -652,7 +696,7 @@ Para marcar propiedades que caducarán
 Unions
 ======
 
-Unions permite agrupar tipos personalizados
+Unions permite agrupar tipos personalizados usando la palabra *union*.
 
 Su sintaxis es la siguiente:
 
@@ -668,7 +712,15 @@ Y de esa forma también podemos definir arreglos de los unions
         searchItems(keyword: String!): [SearchResult]
     }
 
-Al momento de realizar una query que retorna una union podemos identificar el tipo de dato solicitando el campo __typename, que podremos usar para definir nuestros resultados en graphql
+Al momento de realizar una query que retorna una union podemos identificar el tipo de dato **solicitando el campo __typename**
+
+.. code-block:: javascript
+
+    getCourse{
+        __typename
+    }
+
+Y nos devolverá el __typename. 
 
 .. code-block:: javascript
 
@@ -684,7 +736,7 @@ Al momento de realizar una query que retorna una union podemos identificar el ti
     }
     }
 
-Ahora con ese __typename podemos modificar la query para que se comporte diferente dependiendo del type.
+Ahora con ese __typename podemos manipular la query para que se comporte diferente dependiendo del type.
 
 .. code-block:: graphql
 
@@ -735,7 +787,7 @@ Para efectuar una búsqueda en múltiples collections, primero necesitamos crear
 Preparar para producción
 ========================
 
-En producción usaremos el paquete cors, para los headers.
+Para subir un servidor de graphql a producción necesitamos el paquete de express y un middleware. Usaremos el paquete cors, para los headers necesarios para servir el contenido desde cualquier origen.
 
 .. code-block:: bash
 
