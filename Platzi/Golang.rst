@@ -96,6 +96,11 @@ Si no asignamos un valor go usará valores predeterminados diferentes para cada 
 * string: ""
 * bool: false
 
+Valor nulo
+----------
+
+Go usa la palabra nil para referirse a un valor nulo.
+
 comentarios
 ===========
 
@@ -105,7 +110,7 @@ Los comentarios se marcan usando dos diagonales seguidas
 
     // Este es un comentario en go.
 
-Los comentarios multilinea se realizan con /**/
+Los comentarios multilinea se realizan con una diagonal seguida de asterisco
 
 .. code-block:: go
 
@@ -120,7 +125,7 @@ Los operadores de go son similares al resto de los lenguajes.
 
 * +, suma 
 * -, resta
-* *, multiplicación
+* \*, multiplicación
 * /, división
 * <, menor que
 * <=, menor o igual que
@@ -190,6 +195,19 @@ Permite manejar números reales e imaginarios:
 
 Por ejemplo: c:=100+2i
 
+Funciones
+---------
+
+Las funciones pueden ser un tipo de dato en un struct.
+
+.. code-block:: go
+
+    table := []struct {
+                id               int
+                dni              string
+                mockFunc         func()
+                }
+
 Paquete fmt
 ===========
 
@@ -238,6 +256,37 @@ Hay algunos operadores de posición destacables.
 
 Puedes ver más en la `página oficial de go <https://pkg.go.dev/fmt>`_ 
 
+Paquete strings
+===============
+
+Este paquete tiene múltiples funciones para trabajar con strings, aquí dejo algunas de las más importantes
+
+* func Contains(s, substr string) bool Revisa si una cadena de texto se encuentra en otra.
+* func Count(s, substr string) int Cuenta las ocurrencias de una cadena de texto en otra.
+* func HasPrefix(s, prefix string) bool Revisa si un string empieza un string
+* func HasSuffix(s, suffix string) bool Revisa si un string termina con otro string
+* func Join(elems []string, sep string) string Une todos los elementos de una lista en un string, usando un separador entre cada par de elementos
+* func Split(s, sep string) []string Separa un string en una lista por un separador que le indiquemos
+* func Index(s, substr string) int Devuelve el indice de una cadena de texto en otra
+* func Replace(s, old, new string, n int) string Reemplaza la primera ocurrencia de una cadena de texto por otra 
+* func ReplaceAll(s, old, new string) string Reemplaza todas las ocurrencias de una cadena de texto por otra 
+* func ToLower(s string) string Convierte en minúsculas
+* func ToUpper(s string) string Convierte en mayúsculas
+* func Trim(s, cutset string) string Remueve los espacios al principio y al final
+
+Revisa las funciones completas en `la documentación de strings en go <https://pkg.go.dev/strings>`_ 
+
+Paquete strconv
+===============
+
+Permite convertir strings en otros tipos de datos
+
+* func Atoi(s string) (int, error) convierte un string en un entero
+* func Itoa(i int) string convierte un número entero en un string
+* func ParseBool(str string) (bool, error) Convierte 1, t, T, TRUE, true, True en True o 0, f, F, FALSE, false, False en False
+
+Mira el resto de funciones en `la documentación de strconv en go <https://pkg.go.dev/strconv>`_ 
+
 Funciones
 =========
 
@@ -273,12 +322,20 @@ Para retornar valores se usa la variable return
         return a + b
     }
 
-También podemos establecer un tipo de retorno después de los argumentos.
+Go requiere establecer un tipo de retorno después de los argumentos.
 
 .. code-block:: go
 
     func suma(a, b int) int{
         return a + b
+    }
+
+Para especificar dos valores como retorno usamos parentesis 
+
+.. code-block:: go
+
+    func suma(a, b int) (int, int){
+        return a, b
     }
 
 Es posible retornar dos valores con una función separándolos por comas. 
@@ -288,6 +345,22 @@ Es posible retornar dos valores con una función separándolos por comas.
     func double(a, b int){
         return a * 2, b * 2
     }
+
+Una función puede retornar una función pasándole el tipo de dato func()
+
+.. code-block:: go
+
+    func returnFunction() func() {
+        return func() {
+            fmt.Println("gola")
+        }
+    }
+
+
+    func main() {
+        returnFunction()()
+    }
+
 
 Y podemos asignar esos valores en dos variables diferentes llamando a la función
 
@@ -471,11 +544,12 @@ Si no especificamos uno de los dos, tomará la primera posición para el primer 
 Append
 ^^^^^^
 
-Los slices son mutables, por lo que es posible agregar nuevos elementos.
+Los slices son mutables, por lo que es posible agregar nuevos elementos. Esto se hace con append, y recibe cualquier número de elementos, separados por comas.
 
 .. code-block:: go
 
     list = append(list, 6)
+    list = append(list, 5, 6, 7)
 
 Podemos crear un nuevo slice a partir de la desestructuración de un slice. La desestructuración se lleva a cabo poniendo tres puntos (...) al final del slice.
 
@@ -495,6 +569,11 @@ Parecido a la sintaxis de Python, podemos recorrer un array donde asignamos cada
         for i:= range slice {
     }
 
+make
+====
+
+La función make asigna e inicializa un objeto del tipo slice, map o chan.
+
 Maps 
 ====
 
@@ -502,17 +581,26 @@ Los maps son el equivalente de los diccionarios, son una estructura de datos tip
 
 .. code-block:: go
 
-    m := make(map[string]int)
-    m["hidrogeno"] = 1
-    m["Helio"] = 2
+    diccionario := make(map[string]int)
+    diccionario["hidrogeno"] = 1
+    diccionario["Helio"] = 2
     
 Si intentamos acceder a una llave que no existe, go nos devolverá su respectivo zero value
 
 .. code-block:: go
 
-    m := make(map[string]int)
+    diccionario := make(map[string]int)
     fmt.Println(m["no_existe"])
     // 0
+
+delete
+------
+
+La función delete borra una llave del diccionarios
+
+.. code-block:: go
+
+    delete(diccionario, "Helio")
 
 Recorrer map con range
 ----------------------
@@ -554,6 +642,7 @@ Para crear un struct existen dos maneras
 También es posible primero declarando el tipo de dato y después accediendo a los campos
 
 .. code-block:: go
+
     var myVideogame videogame
     myVideogame.genre = "Horror"
 
@@ -851,11 +940,19 @@ Son un conducto que permite manejar un único tipo de dato. Los channels permite
 
     c := make(chan string, 1)
 
-cuando querramos hacer referencia al canal como argumento de otra función tenemos que pasar el tipod e dato
+cuando querramos hacer referencia al canal como argumento de otra función tenemos que pasar el tipo de dato
 
 .. code-block:: go
 
     func say(text string, c chan string) {
+    
+    }
+
+El tipo de dato de un canal también puede ser uno definido en un struct.
+
+.. code-block:: go
+
+    func say(text string, c chan MiStruct) {
     
     }
 
@@ -892,6 +989,18 @@ Y este es un canal de salida.
     func say(text string, c <-chan string) {
         
     }
+
+canal de canales
+----------------
+
+Es posible tener un canal de canales
+
+.. code-block:: go
+
+    type Worker struct {
+        WorkerPool chan chan Job
+    }
+
 
 Operaciones bloqueantes
 =======================
@@ -969,7 +1078,7 @@ Sin embargo **noexiste certeza sobre que dato recibiremos**
 Select
 ------
 
-Select nos permite definir acciones diferentes para cada canal. Por lo que es importante conocer el número de canales y de datos para poder procesarlos.
+Select nos permite definir acciones diferentes para cada canal, a esto se le llama **multiplexación**. Por lo que es importante conocer el número de canales y de datos para poder procesarlos.
 
 .. code-block:: go
 
