@@ -10,24 +10,29 @@ Django sobre ruedas
 Instalación
 -----------
 
-De preferencia usa Virtualenv para evitar problemas con versiones
+Al momento de iniciar un proyecto es una buena práctica usar entornos virtuales para evitar problemas con las dependencias de tu sistema y las del proyecto. 
 
 .. code:: bash
 
    virtualenv --python=python3 venv
 
-Instala django
+Instala django. Para proyectos muy importantes puedes usar una LTS. Si tienes más libertad puedes irte por la versión más nueva.
 
 .. code:: bash
 
    pip install django
 
-Para empezar un proyecto usa el siguiente comando (De preferencia hazlo
-fuera de la carpeta raíz del servidor)
+Para crear un proyecto usa el siguiente comando 
 
 .. code:: bash
 
    django-admin.py startproject misitio
+   
+Si quieres crear la carpeta principal dentro del directorio actual usa la ubicación en el comando anterior.
+
+.. code:: bash
+
+   django-admin.py startproject misitio .
 
 Esto creará la siguiente estructura de carpetas
 
@@ -52,7 +57,9 @@ Configuración de base de datos
 ------------------------------
 
 Para usar una base de datos edita el archivo settings.py para configurar
-la base de datos (Mysql)
+la base de datos, puedes usar mysql, postgres, etc.
+
+Asegúrate de instalar los bindings de Python para la base de dato que elijas.
 
 .. code:: bash
 

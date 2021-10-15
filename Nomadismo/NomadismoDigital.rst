@@ -1,4 +1,3 @@
-
 ====================================
 Nomadismo digital para programadores
 ====================================
@@ -6,12 +5,17 @@ Nomadismo digital para programadores
 Es muy tarde para ser nómada digital
 ====================================
 
-En algunos `foros <https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digital-nomad-at-40/4750>`_ se discute sobre si es correcto, o posible, emprender el camino del nomadismo digital en la mediana edad. Sin embargo, de acuerdo a `Forbes <https://www.forbes.com/sites/elainepofeldt/2018/08/30/digital-nomadism-goes-mainstream/>`_\ , la mayoría de las nomadas digitales empiezan cercad de los 38 años. Otros dicen que la mayoría de los nómadas digitales se centran en gente al principio de sus 20's y finales de sus 30's.
+En algunos `foros <https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digital-nomad-at-40/4750>`_ se discute sobre si es correcto, o posible, emprender el camino del nomadismo digital en la mediana edad. Sin embargo, de acuerdo a `Forbes <https://www.forbes.com/sites/elainepofeldt/2018/08/30/digital-nomadism-goes-mainstream/>`_\ , la mayoría de las nomadas digitales empiezan cercad de los 38 años. En Twitter se dice que la mayoría de los nómadas digitales se centran en gente al principio de sus 20's y finales de sus 30's.
 
 Guia sobre el trabajo remoto
 ============================
 
 Si no sabes como empezar aquí hay una `guia sobre el trabajo remoto <https://blog.stephsmith.io/the-guide-to-remote-work/>`_ que no intenta venderte nada
+
+El manifiesto remoto de Gitlab
+==============================
+
+Otro referente en cuanto al trabajo remoto es gitlab, puedes leer su `manifiesto remoto <https://about.gitlab.com/company/culture/all-remote/guide/>`_.
 
 Páginas para trabajadores remotos
 ---------------------------------
@@ -68,9 +72,6 @@ Seguros
 Rentar ticktes de avión
 -----------------------
 
-La mayoría de los paises te piden un vuelo de regreso cuando viajas. A pesar de esto, es posible `rentar un ticket <https://bestonwardticket.com/#how-it-works>`_ totalmente auténtico para presentar por unas cuentas decenas de dolares
+La mayoría de los paises te piden un vuelo de regreso cuando viajas. A pesar de esto, es posible `rentar un ticket <https://bestonwardticket.com/#how-it-works>`_ totalmente auténtico para presentar por unas cuentas decenas de dolares.
 
-El manifiesto remoto de Gitlab
-==============================
 
-`Manifiesto remoto <https://about.gitlab.com/company/culture/all-remote/guide/>`_
