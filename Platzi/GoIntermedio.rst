@@ -123,6 +123,8 @@ Visualización de resultados
 
 Para observar los resultados generador en formato de página web con colores y más detallados usamos la opción html. Esto abrirá una ventana del navegador y nos mostrará los resultados probados en verde y los no probados en rojos.
 
+.. code-block:: bash
+
     go tool cover -html=coverage.out
 
 Profiling
@@ -215,7 +217,7 @@ Asincronía en go
 Unbuffered channels y buffered channels
 ---------------------------------------
 
-Un canal sin buffer transmite un mensaje en cuanto lo recibe. Tenemos que estar seguros de que hay una función lista para recibir los datos del canal. 
+Es un canal sin una capacidad máxima definida. Un canal sin buffer transmite un mensaje en cuanto lo recibe. Tenemos que estar seguros de que hay una función lista para recibir los datos del canal. 
 
 .. code-block:: go
 
@@ -225,7 +227,7 @@ Un canal sin buffer transmite un mensaje en cuanto lo recibe. Tenemos que estar 
     c <- 1
     fmt.Println(<-c)
 
-Mientras que un canal con buffer recibe su capacidad total y no se bloquea esperando la función.
+Un buffered channel es una cola que cuenta con una cantidad fija de espacios, sirve para imitar la cantidad de GoRoutines siendo ejecutadas. Mientras que un canal con buffer recibe su capacidad total y no se bloquea esperando la función.
 
 .. code-block:: go
 
@@ -582,3 +584,115 @@ Por último, la creación de un servidor se hace con el método HandleFunc del o
         })
         log.Fatal(http.ListenAndServe(port, nil)
     }
+
+Middleware en un servidor web
+-----------------------------
+
+En Go podemos declarar un middleware como una función que reciba un http.Handler y retorne un http.Handler. Para pasar al siguiente httpHandler vamos a ejecutar el método ServeHTTP del http.Handler que el middleware recibe como argumento.
+
+.. code-block:: go
+
+    func middleware(originalHandler http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+            fmt.Println("Running before handler")
+            w.Write([]byte("Hijacking Request "))
+            originalHandler.ServeHTTP(w, r)
+            fmt.Println("Running after handler")
+    })
+    }
+
+Y ahora basta con envolver nuestra http.Handler original en el middleware. 
+
+.. code-block:: go
+
+    func main() {
+        // converting our handler function to handler 
+        // type to make use of our middleware 
+        myHandler := http.HandlerFunc(handler)
+        http.Handle("/", middleware(myHandler)) 
+        http.ListenAndServe(":8000", nil)
+    }
+
+Para evitar anidar múltiples middlewares podemos usar programación funcional.
+
+Peticiones http
+===============
+
+Go puede realizar peticiones http usando su método GET. Observa como se cierra la conexión **solo tras haber verificando que no hubo un error** con la petición, porque si la petición falla, resp será nulo y estaremos llamando a un método de un objeto nulo.
+
+.. code-block:: go
+
+    func main() {  
+        resp, err := http.Get("https://example.org")
+        if err != nil {
+            fmt.Println(err)
+            return
+        }
+
+        defer resp.Body.Close() //Es necesario cerrar la conexión.
+
+Sin embargo si hay un fallo de redirección ambas respuestas, resp y err, serán no nulas, por lo que es necesario manejar también esa situación
+
+.. code-block:: go
+
+    if resp != nil {
+        defer resp.Body.Close()
+    }
+
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+Ahora ya podemos leer la respuesta de la propiedad Body.
+
+.. code-block:: go
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
+
+Panic
+=====
+
+Podemos recuperarnos de errores tipo panic llamando a la función recover. **recover solo puede usarse dentro de una función con defer directa**, es decir no puede estar dentro de una función que llame a otra función, incluso si la función original tiene el atributo defer.
+
+.. code-block:: go
+
+    defer func() {
+            fmt.Println("recovered:",recover())
+        }()
+
+JSON
+====
+
+Para crear un json usaremos el paquete json y su método Marshal
+
+.. code-block:: go
+
+    package main
+
+    import (
+    "encoding/json"
+    "fmt"
+    )
+
+    objeto = slice | array | map
+
+    nuestroJson, _ := json.Marshal(objeto) 
+
+Podemos convertir cualquiera de los objetos slice, array o map en un json. Sin embargo, si lo creamos, será un array de números. Necesitamos convertirlo primero en un string 
+
+.. code-block:: go
+
+    [123 34 117 110 111 34 58 49 125]
+
+.. code-block:: go
+
+    jsonString := string(nuestroJson)
+    fmt.Println(jsonString)
+    //{"uno":1}

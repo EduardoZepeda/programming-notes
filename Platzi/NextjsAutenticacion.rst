@@ -243,5 +243,50 @@ JWT
 
 si no existe una base de datos, se utiliza JWT almacenando el token en una cookie. 
 
+Protegiendo rutas API
+=====================
 
+Podemos proteger las rutas de la carpeta api, que provee los resultados para el backend, simplemente obteniendo el objeto session y observando si tiene contenido.
 
+.. code-block:: javascript
+
+    const session = await getSession({ req: request })
+
+    if(session==null) {
+        response.status(401).end()
+        return
+    }
+
+Protegiendo rutas en el frontend
+================================
+
+useSession está escuchando constantemente al objeto window para actualizar las páginas escuchando los cambios en el objeto session, para validar la sesión constanemente. 
+
+.. code-block:: javascript
+
+    import { useSession } from 'next-auth/client
+
+    const [session, loading] = useSession()
+
+    if (session == null) {
+        return  <AccessDenied />
+    }
+
+Soluciones basadas en Node.js: Passport, Auth0, emails y bases de datos
+=======================================================================
+
+NextAuth ofrece soluciones para conectar con proveedores de email. 
+
+.. code-block:: javascript
+
+    Providers.Email({
+        server: 'servidor',
+        host:'host',
+        port:1111,
+        auth: {
+            name:'name',
+            password:'password'
+        }
+    })
+
+Prisma es un ORM que está ganando popularidad y puede manejar diferentes bases de datos.

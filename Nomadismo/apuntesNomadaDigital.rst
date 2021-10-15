@@ -69,3 +69,8 @@ Rentar ticktes de avión
 -----------------------
 
 La mayoría de los paises te piden un vuelo de regreso cuando viajas. A pesar de esto, es posible `rentar un ticket <https://bestonwardticket.com/#how-it-works>`_ totalmente auténtico para presentar por unas cuentas decenas de dolares
+
+El manifiesto remoto de Gitlab
+==============================
+
+`Manifiesto remoto <https://about.gitlab.com/company/culture/all-remote/guide/>`_

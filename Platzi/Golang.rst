@@ -2,7 +2,7 @@
 Golang
 ======
 
-Go es un lenguaje compilado desarrollado por google. Es un lenguaje bastante apreciado según los desarrolladores de acuerdo a las encuestas de Stackoverflow. 
+Go es un lenguaje compilado desarrollado por google. Es un lenguaje bastante apreciado según los desarrolladores de acuerdo a las últimos encuestas de Stackoverflow (2021).
 
 Go está fuertemente orientado a las buenas prácticas de código. El compilador de Go fuerza buenas prácticas en el código, impidiendo que el código compile si hay variables que no se usan, o si falta documentación en structs públicos.
 
@@ -20,7 +20,7 @@ Go se encuentra en la mayoría de los repositorios de las distribuciones de GNU/
 Archivo principal
 =================
 
-Go requiere una función main.
+Go requiere una función main y una linea que establezca el nombre del paquete. 
 
 .. code-block:: go
 
@@ -41,11 +41,21 @@ Debido a que go es un lenguaje compilado, requiere que se ejecute un compilado a
 
     go build src/main.go
 
-También es posible correr código sin compilarlo con el comando build, usando run en su lugar.
+También es posible compilar y correr el código en un solo paso usando run en lugar de go.
 
 .. code-block:: bash
 
     go run src/main.go
+
+Diferencias entre run y build
+-----------------------------
+
+Go run compila el código y lo ejecuta desde un directorio temporal, posteriormente limpia los archivos generados. Si agregamos la opción --work, podremos ver la ubicación de este directorio.
+
+.. code-block:: bash
+
+    go run --work src/main.go
+    # WORK=/tmp/go-build983014220
 
 Variables, constantes y zero values
 ===================================
@@ -59,7 +69,7 @@ Go permite definir variables especificando el tipo de dato y la keyword var.
 
     var gravedad int = 123
 
-También es posible dejar que go intuya el tipo de dato con el operador walrus
+También es posible dejar que go intuya el tipo de dato con el operador walrus. Este tipo de asignación **solo es posible dentro del scope de una función**.
 
 .. code-block:: go
 
@@ -70,6 +80,12 @@ Se puede declarar una variable y asignarle un valor más tarde.
 .. code-block:: go
 
     var gravedad int
+
+No puedes asignar una variable al valor nulo de go; nil.
+
+.. code-block:: go
+
+    var gravedad = nil // error
 
 Constantes
 ----------
@@ -256,39 +272,9 @@ Hay algunos operadores de posición destacables.
 
 Puedes ver más en la `página oficial de go <https://pkg.go.dev/fmt>`_ 
 
-Paquete strings
+
+Funciones en Go
 ===============
-
-Este paquete tiene múltiples funciones para trabajar con strings, aquí dejo algunas de las más importantes
-
-* func Contains(s, substr string) bool Revisa si una cadena de texto se encuentra en otra.
-* func Count(s, substr string) int Cuenta las ocurrencias de una cadena de texto en otra.
-* func HasPrefix(s, prefix string) bool Revisa si un string empieza un string
-* func HasSuffix(s, suffix string) bool Revisa si un string termina con otro string
-* func Join(elems []string, sep string) string Une todos los elementos de una lista en un string, usando un separador entre cada par de elementos
-* func Split(s, sep string) []string Separa un string en una lista por un separador que le indiquemos
-* func Index(s, substr string) int Devuelve el indice de una cadena de texto en otra
-* func Replace(s, old, new string, n int) string Reemplaza la primera ocurrencia de una cadena de texto por otra 
-* func ReplaceAll(s, old, new string) string Reemplaza todas las ocurrencias de una cadena de texto por otra 
-* func ToLower(s string) string Convierte en minúsculas
-* func ToUpper(s string) string Convierte en mayúsculas
-* func Trim(s, cutset string) string Remueve los espacios al principio y al final
-
-Revisa las funciones completas en `la documentación de strings en go <https://pkg.go.dev/strings>`_ 
-
-Paquete strconv
-===============
-
-Permite convertir strings en otros tipos de datos
-
-* func Atoi(s string) (int, error) convierte un string en un entero
-* func Itoa(i int) string convierte un número entero en un string
-* func ParseBool(str string) (bool, error) Convierte 1, t, T, TRUE, true, True en True o 0, f, F, FALSE, false, False en False
-
-Mira el resto de funciones en `la documentación de strconv en go <https://pkg.go.dev/strconv>`_ 
-
-Funciones
-=========
 
 Las funciones se declaran con la siguiente sintaxis
 
@@ -367,6 +353,85 @@ Y podemos asignar esos valores en dos variables diferentes llamando a la funció
 .. code-block:: go
 
     value1, value2 = double(2, 3)
+
+returns sin nombre
+------------------
+
+Una función puede implementar que retorne lo que pe pasamos como tipo por defecto. En este caso le indicamos que devolverá una variable x y una variable y de tipo int. Si go detecta que no hay nada después de la palabra return, devolverá x y y.
+
+.. code-block:: go
+
+    func split(sum int) (x, y int) {
+        x = sum * 4 / 9
+        y = sum - x
+        return
+    }
+
+Cantidad variable de argumentos
+-------------------------------
+
+Si no sabemos la cantidad de argumentos que va a recibir una función, colocamos el nombre del argumento, seguido del operador ... y a continuación el tipo de variable.
+
+.. code-block:: go
+
+    func Sum(nums ...int) int {
+        res := 0
+        for _, n := range nums {
+            res += n
+        }
+        return res
+    }
+
+Paquete strings
+===============
+
+Este paquete tiene múltiples funciones para trabajar con strings, aquí dejo algunas de las más importantes
+
+* func Contains(s, substr string) bool Revisa si una cadena de texto se encuentra en otra.
+* func Count(s, substr string) int Cuenta las ocurrencias de una cadena de texto en otra.
+* func HasPrefix(s, prefix string) bool Revisa si un string empieza un string
+* func HasSuffix(s, suffix string) bool Revisa si un string termina con otro string
+* func Join(elems []string, sep string) string Une todos los elementos de una lista en un string, usando un separador entre cada par de elementos
+* func Split(s, sep string) []string Separa un string en una lista por un separador que le indiquemos
+* func Index(s, substr string) int Devuelve el indice de una cadena de texto en otra
+* func Replace(s, old, new string, n int) string Reemplaza la primera ocurrencia de una cadena de texto por otra 
+* func ReplaceAll(s, old, new string) string Reemplaza todas las ocurrencias de una cadena de texto por otra 
+* func ToLower(s string) string Convierte en minúsculas
+* func ToUpper(s string) string Convierte en mayúsculas
+* func Trim(s, cutset string) string Remueve los espacios al principio y al final
+
+Revisa las funciones completas en `la documentación de strings en go <https://pkg.go.dev/strings>`_ 
+
+Paquete strconv
+===============
+
+Permite convertir strings en otros tipos de datos
+
+* func Atoi(s string) (int, error) convierte un string en un entero
+* func Itoa(i int) string convierte un número entero en un string
+* func ParseBool(str string) (bool, error) Convierte 1, t, T, TRUE, true, True en True o 0, f, F, FALSE, false, False en False
+
+Mira el resto de funciones en `la documentación de strconv en go <https://pkg.go.dev/strconv>`_ 
+
+
+Función len()
+=============
+
+La función len se encarga de devolver el número de elementos que tiene un string, un slice, un array, un channel. Sin embargo, en el caso de los strings, devuelve el número de bytes, para caracteres que no formen parte de utf-8, para solucionar este problema usamos el método RuneCountInString.
+
+.. code-block:: go
+
+    package main
+
+    import (  
+        "fmt"
+        "unicode/utf8"
+    )
+
+    func main() {  
+        data := "♥"
+        fmt.Println(len(data)) // Imprime 3
+        fmt.Println(utf8.RuneCountInString(data)) // imprime 1
 
 Ignorando variables 
 ===================
@@ -485,6 +550,18 @@ Se usa para romper un ciclo
         }
     }
 
+Es posible designar un nombre de un ciclo para luego usar break en ese ciclo.
+
+.. code-block:: go
+
+    loop:
+        for {
+            switch {
+                case true:
+                    break loop
+                }
+            }
+
 continue
 --------
 
@@ -593,6 +670,15 @@ Si intentamos acceder a una llave que no existe, go nos devolverá su respectivo
     fmt.Println(m["no_existe"])
     // 0
 
+Capacidad opcional
+------------------
+
+Para establecer uan capacidad máxima en un map, le pasamos la máxima capacidad como segundo argumento.
+
+.. code-block:: go
+    
+    m := make(map[string]int,99)
+
 delete
 ------
 
@@ -628,10 +714,13 @@ Los structs son colecciones de campos, se definen con el keyword type seguido de
 
 .. code-block:: go
 
-    type videogame struct {
-        genre string
-        year int
+    type Videogame struct {
+        Genre string
+        Year int
     }
+
+Creación de un struct
+---------------------
 
 Para crear un struct existen dos maneras 
 
@@ -639,12 +728,29 @@ Para crear un struct existen dos maneras
 
     myVideogame := videogame{genre: "Horror", year: 2021}
 
-También es posible primero declarando el tipo de dato y después accediendo a los campos
+También es posible primero declarando el tipo de dato y después accediendo a los campos. Si no especificamos un valor go le asignará el respectivo zero value al tipo de variable.
 
 .. code-block:: go
 
     var myVideogame videogame
     myVideogame.genre = "Horror"
+
+campos anónimos
+---------------
+
+Es posible no especificar el tipo de campo de nuestro struct y dejarlo abierto. No funciona para structs múltiples campos del mismo tipo. Los campos adoptan el nombre del tipo de dato y podemos acceder a ellos usándolos.
+
+.. code-block:: go
+
+    type Videogame struct {
+        string
+        int
+    }
+
+    myVideogame := Videogame{string: "Titulo", int: 2000}
+    fmt.Println(myVideogame)
+    // imprime {Titulo 2000}
+
 
 Privacidad en structs, funciones y variables
 ============================================
@@ -782,6 +888,9 @@ Para modificar la variable usamos el caracter de desestructuración.
 
     *b = 100
 
+Composición en Go
+=================
+
 Para acceder a instancias de structs en las  funciones necesitamos pasarle un parentesis antes del nombre de la función, que contiene el nombre que usaremos para acceder al struct seguido del nombre del struct.
 
 .. tip:: Recuerda que debes cuidar la privacidad de la función, si la declaras con minúsculas no podrás acceder a ella desde un archivo externo.
@@ -807,8 +916,41 @@ Para posteriormente llamar al método a través de una instancia del struct.
 
     videogame.IncreaseYear()
 
-Interfaces y listas de interfaces
-=================================
+Constructor en structs
+----------------------
+
+Go no tiene un mecanismo de constructores implementados. Pero puede crearse una función que devuelva un objeto ya inicializado con los parámetros que querramos aplicar.
+
+.. code-block:: go
+
+    func NewWorker(id int, workerPool chan chan Job) *Worker {
+        return &Worker{
+            Id:         id,
+            WorkerPool: workerPool, // workerPool al que pertenece
+            JobQueue:   make(chan Job),  // Crea una cola de jobs
+            Quit:       make(chan bool), // Channel para finalizar los jobs
+        }
+    }
+
+Herencia en structs
+-------------------
+
+Para que un struct en go posea todos los campos que declara otro struct, le pasamos este último como un campo anónimo.
+
+.. code-block:: go
+
+    type Persona struct {
+        Name string
+        Sexo string
+    }
+
+    type Profesor struct {
+        Persona
+    }
+
+
+Interfaces y polimorfismo
+=========================
 
 Las interfaces son un método para compartir métodos entre structs y evitar repetir códigos. Una interface se encargará de llamar al método que le especificamos correspondiente a su tipo de struct.
 
@@ -989,6 +1131,9 @@ Y este es un canal de salida.
     func say(text string, c <-chan string) {
         
     }
+
+En ocasiones es importante definir el tipo de canal pues, con los canales bidireccionales corremos el riesgo de ocasionar un bloqueo en nuestro programa.
+
 
 canal de canales
 ----------------
