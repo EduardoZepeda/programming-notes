@@ -691,6 +691,8 @@ Podemos convertir cualquiera de los objetos slice, array o map en un json. Sin e
 
     [123 34 117 110 111 34 58 49 125]
 
+Si queremos obtener la representación real de un objeto JSON usamos el método string para convertirlo.
+
 .. code-block:: go
 
     jsonString := string(nuestroJson)
