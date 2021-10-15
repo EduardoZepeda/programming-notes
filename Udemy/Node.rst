@@ -1,193 +1,208 @@
+====
 Node
 ====
 
 Mongoose
---------
+========
 
-Antes de utilizarlo debemos crear una conexión con mongoDB. Esta conexion debemos importarla al archivo que servirá como el enrutador.
+Antes de utilizarlo debemos crear una conexión con mongoDB. Esta
+conexion debemos importarla al archivo que servirá como el enrutador.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const mongoose = require('mongoose')
+   const mongoose = require('mongoose')
 
-    mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false
-    })
+   mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
+       useNewUrlParser: true,
+       useCreateIndex: true,
+       useFindAndModify: false
+   })
 
-En Mongoose un schema es únicamente la estructura que tendran los datos, la estructura así como el tipo de los datos. Mientras que un modelo es una estructura que toma un schema y que permite interactuar con los datos por medio de funciones que permiten un CRUD de los objetos.
+En Mongoose un schema es únicamente la estructura que tendran los datos,
+la estructura así como el tipo de los datos. Mientras que un modelo es
+una estructura que toma un schema y que permite interactuar con los
+datos por medio de funciones que permiten un CRUD de los objetos.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const mongoose = require('mongoose')
+   const mongoose = require('mongoose')
 
-    const Task = mongoose.model('Task', {
-        description: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        completed: {
-            type: Boolean,
-            default: false
-        }
-    })
+   const Task = mongoose.model('Task', {
+       description: {
+           type: String,
+           required: true,
+           trim: true
+       },
+       completed: {
+           type: Boolean,
+           default: false
+       }
+   })
 
-    module.exports = Task
+   module.exports = Task
 
 Podemos obtener las colecciones con el método getCollection()
 
-.. code-block:: javascript
-   
+.. code:: javascript
+
    db.getCollection(name)     
 
 Luego podemos encadenar métodos de búsqueda como find()
 
-.. code-block:: javascript
-   
+.. code:: javascript
+
    db.getCollection(name).find({owner: user._id})
-
-
 
 Podemos crear relaciones tipo Foreign Key especificando un Id
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const mongoose = require('mongoose')
+   const mongoose = require('mongoose')
 
-    const Task = mongoose.model('Task', {
-        description: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        completed: {
-            type: Boolean,
-            default: false
-        }
-        owner: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'User'
-        }
-    })
+   const Task = mongoose.model('Task', {
+       description: {
+           type: String,
+           required: true,
+           trim: true
+       },
+       completed: {
+           type: Boolean,
+           default: false
+       }
+       owner: {
+           type: mongoose.Schema.Types.ObjectId,
+           required: true,
+           ref: 'User'
+       }
+   })
 
-    module.exports = Task
+   module.exports = Task
 
-Los modelos en MongoDB tienen id en formato de hash. Normalmente buscamos un objeto usando el método findById de su modelo.
+Los modelos en MongoDB tienen id en formato de hash. Normalmente
+buscamos un objeto usando el método findById de su modelo.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const task = await Task.findById('hash')
+   const task = await Task.findById('hash')
 
-Para crear una relación inverse podemos usar la relación usando la función virtual, esta es solo una relación virtual, no está en la base de datos. La referencia es el modelo, el localField es el campo con el que está asociado, mientras que foreignField es el nombre del campo en el modelo del cual queremos obtenerlo, Task en este caso.
+Para crear una relación inverse podemos usar la relación usando la
+función virtual, esta es solo una relación virtual, no está en la base
+de datos. La referencia es el modelo, el localField es el campo con el
+que está asociado, mientras que foreignField es el nombre del campo en
+el modelo del cual queremos obtenerlo, Task en este caso.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    userSchema.virtual('tasks', {
-        ref: 'Task',
-        localField: '_id',
-        foreignField: 'owner'
-    })
+   userSchema.virtual('tasks', {
+       ref: 'Task',
+       localField: '_id',
+       foreignField: 'owner'
+   })
 
 También podemos especificar métodos de validación para cada campo.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const userSchema = new mongoose.Schema({
-        name: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        email: {
-            type: String,
-            unique: true,
-            required: true,
-            trim: true,
-            lowercase: true,
-            validate(value) {
-                if (!validator.isEmail(value)) {
-                    throw new Error('Email is invalid')
-                }
-            }
-        },
+   const userSchema = new mongoose.Schema({
+       name: {
+           type: String,
+           required: true,
+           trim: true
+       },
+       email: {
+           type: String,
+           unique: true,
+           required: true,
+           trim: true,
+           lowercase: true,
+           validate(value) {
+               if (!validator.isEmail(value)) {
+                   throw new Error('Email is invalid')
+               }
+           }
+       },
 
-Podemos especificar una longitud mínima o eliminar los espacios con minlength y trim, respectivamente.
+Podemos especificar una longitud mínima o eliminar los espacios con
+minlength y trim, respectivamente.
 
-.. code-block:: javascript
+.. code:: javascript
 
-        password: {
-            type: String,
-            required: true,
-            minlength: 7,
-            trim: true,
-            validate(value) {
-                if (value.toLowerCase().includes('password')) {
-                    throw new Error('Password cannot contain "password"')
-                }
-            }
-        },
-        age: {
-            type: Number,
-            default: 0,
-            validate(value) {
-                if (value < 0) {
-                    throw new Error('Age must be a postive number')
-                }
-            }
-        },
+   password: {
+       type: String,
+       required: true,
+       minlength: 7,
+       trim: true,
+       validate(value) {
+           if (value.toLowerCase().includes('password')) {
+               throw new Error('Password cannot contain "password"')
+           }
+       }
+   },
+   age: {
+       type: Number,
+       default: 0,
+       validate(value) {
+           if (value < 0) {
+               throw new Error('Age must be a postive number')
+           }
+       }
+   },
 
-También nos es posible tener array de valores, para casos donde tenemos varias instancias de un mismo tipo de datos.
+También nos es posible tener array de valores, para casos donde tenemos
+varias instancias de un mismo tipo de datos.
 
-.. code-block:: javascript
+.. code:: javascript
 
-        tokens: [{
-            token: {
-                type: String,
-                required: true
-            }
-        }]
-    })
+   tokens: [{
+       token: {
+           type: String,
+           required: true
+       }
+   }]
+   })
 
-Podemos especificar métodos para nuestros modelos. En este ejemplo creamos un método para generar tokens de autenticación
+Podemos especificar métodos para nuestros modelos. En este ejemplo
+creamos un método para generar tokens de autenticación
 
-.. code-block:: javascript
+.. code:: javascript
 
-    userSchema.methods.generateAuthToken = async function () {
-        const user = this
-        const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
+   userSchema.methods.generateAuthToken = async function () {
+       const user = this
+       const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
 
-        user.tokens = user.tokens.concat({ token })
-        await user.save()
+       user.tokens = user.tokens.concat({ token })
+       await user.save()
 
-        return token
-    }
+       return token
+   }
 
-En este ejemplo creamos un método para encontrar credenciales. El método findOne nos lo provee mongoose para manipular nuestros modelos, le pasamos un objeto con propiedades y nos encontrará un usuario que contenga ese objeto
+En este ejemplo creamos un método para encontrar credenciales. El método
+findOne nos lo provee mongoose para manipular nuestros modelos, le
+pasamos un objeto con propiedades y nos encontrará un usuario que
+contenga ese objeto
 
-.. code-block:: javascript
+.. code:: javascript
 
-    userSchema.statics.findByCredentials = async (email, password) => {
-        const user = await User.findOne({ email })
+   userSchema.statics.findByCredentials = async (email, password) => {
+       const user = await User.findOne({ email })
 
-        if (!user) {
-            throw new Error('Unable to login')
-        }
+       if (!user) {
+           throw new Error('Unable to login')
+       }
 
-        const isMatch = await bcrypt.compare(password, user.password)
+       const isMatch = await bcrypt.compare(password, user.password)
 
-        if (!isMatch) {
-            throw new Error('Unable to login')
-        }
+       if (!isMatch) {
+           throw new Error('Unable to login')
+       }
 
-        return user
-    }
+       return user
+   }
 
-Podemos especificar acciones previas a ejecutar cuando un método se ejecuta.
+Podemos especificar acciones previas a ejecutar cuando un método se
+ejecuta.
 
-.. code-block:: javascript
+.. code:: javascript
 
    userSchema.pre('remove', async function(next){
    const user = this
@@ -195,107 +210,121 @@ Podemos especificar acciones previas a ejecutar cuando un método se ejecuta.
    next()
    })
 
-El método pre ejecutará, antes de cualquier remove, la función que borra cualquier Task cuyo usuario tenga el _id del useEl método pre ejecutará, antes de cualquier remove, la función que borra cualquier Task cuyo usuario tenga el _id del user
+El método pre ejecutará, antes de cualquier remove, la función que borra
+cualquier Task cuyo usuario tenga el \_id del useEl método pre
+ejecutará, antes de cualquier remove, la función que borra cualquier
+Task cuyo usuario tenga el \_id del user
 
 Middleware
-----------
+==========
 
-Node permite el uso de middleware. El middleware puede regresar una respuesta http o una llamada a next(), este último le indicará que debe la petición debe continuar con su flujo normal. Esta pieza de middleware se encargará de validar un JWT Token, y asignará el usuario recibido al objeto requests.
+Node permite el uso de middleware. El middleware puede regresar una
+respuesta http o una llamada a next(), este último le indicará que debe
+la petición debe continuar con su flujo normal. Esta pieza de middleware
+se encargará de validar un JWT Token, y asignará el usuario recibido al
+objeto requests.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const jwt = require('jsonwebtoken')
-    const User = require('../models/user')
+   const jwt = require('jsonwebtoken')
+   const User = require('../models/user')
 
-    const auth = async (req, res, next) => {
-        try {
-            const token = req.header('Authorization').replace('Bearer ', '')
-            const decoded = jwt.verify(token, 'thisismynewcourse')
-            const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
+   const auth = async (req, res, next) => {
+       try {
+           const token = req.header('Authorization').replace('Bearer ', '')
+           const decoded = jwt.verify(token, 'thisismynewcourse')
+           const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
 
-            if (!user) {
-                throw new Error()
-            }
+           if (!user) {
+               throw new Error()
+           }
 
-            req.user = user
-            next()
-        } catch (e) {
-            res.status(401).send({ error: 'Please authenticate.' })
-        }
-    }
+           req.user = user
+           next()
+       } catch (e) {
+           res.status(401).send({ error: 'Please authenticate.' })
+       }
+   }
 
-    module.exports = auth
+   module.exports = auth
 
-Para hacer uso de este middleware lo agregamos como un segundo parámetro al objeto router, para que se ejecute cuando la dirección 'users/me' sea solicitada.
+Para hacer uso de este middleware lo agregamos como un segundo parámetro
+al objeto router, para que se ejecute cuando la dirección 'users/me' sea
+solicitada.
 
+.. code:: javascript
 
-.. code-block:: javascript
+   const express = require('express')
+   const User = require('../models/user')
+   const auth = require('../middleware/auth')
+   const router = new express.Router()
 
-    const express = require('express')
-    const User = require('../models/user')
-    const auth = require('../middleware/auth')
-    const router = new express.Router()
-
-    router.get('/users/me', auth, async (req, res) => {
-        res.send(req.user)
-    })
+   router.get('/users/me', auth, async (req, res) => {
+       res.send(req.user)
+   })
 
 Logging out
------------
+===========
 
-Para hacer un cambio en el estado de loggeo debemos seleccionar el token que usaremos para cerrar sesión. Recuerda que al tener varios tokens que representan diferentes sesiones, no queremos cerrar todas las sesiones.
+Para hacer un cambio en el estado de loggeo debemos seleccionar el token
+que usaremos para cerrar sesión. Recuerda que al tener varios tokens que
+representan diferentes sesiones, no queremos cerrar todas las sesiones.
 
-.. code-block:: javascript
+.. code:: javascript
 
-        router.post('/users/logout', auth, async (req, res) => {
-            try {
-                res.user.tokens = req.user.tokens.filter((token)=>{
-        return token.token !== req.token 
+   router.post('/users/logout', auth, async (req, res) => {
+       try {
+           res.user.tokens = req.user.tokens.filter((token)=>{
+   return token.token !== req.token 
 
-        })
-        await req.user.save()
-        res.send()
+   })
+   await req.user.save()
+   res.send()
 
-    } catch (e) {
-         res.status(500).send()
-    }
+   } catch (e) {
+    res.status(500).send()
+   }
+
 })
 
 Hide private data
------------------
+=================
 
-Solo debemos mostrarle información necesaria para el usuario. Esto excluye el password hash, los tokens innecesarios. 
+Solo debemos mostrarle información necesaria para el usuario. Esto
+excluye el password hash, los tokens innecesarios.
 
-.. code-block:: javascript
+.. code:: javascript
 
-        router.post('/users/login', async (req, res) => {
-            try {
-                const user = await User.findByCredentials(req.body.email, req.body.password)
-                const token = await user.generateAuthToken()
-                res.send({user, token})
-            } catch (e) {
-                res.status(400).send()
-            }
-        })
+   router.post('/users/login', async (req, res) => {
+       try {
+           const user = await User.findByCredentials(req.body.email, req.body.password)
+           const token = await user.generateAuthToken()
+           res.send({user, token})
+       } catch (e) {
+           res.status(400).send()
+       }
+   })
 
-En el esquema de MongoDB podemos reemplazar el método toJSON() para que elimine el atributo password y tokens. El método toJSON() se llama de manera automática al hacer el send del objeto respuesta.
+En el esquema de MongoDB podemos reemplazar el método toJSON() para que
+elimine el atributo password y tokens. El método toJSON() se llama de
+manera automática al hacer el send del objeto respuesta.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    # Desde el schema de MongoDB
-    userSchema.methods.toJSON = function () {
-        const user = this
-        const userObject = user.toObject()
+   # Desde el schema de MongoDB
+   userSchema.methods.toJSON = function () {
+       const user = this
+       const userObject = user.toObject()
 
-        delete userObject.password
-        delete userObject.tokens
-        
-        return userObject
-    }
+       delete userObject.password
+       delete userObject.tokens
 
-Podemos filtrar los datos usando el 
+       return userObject
+   }
 
-.. code-block:: javascript
+Podemos filtrar los datos usando el
+
+.. code:: javascript
 
    router.get('/tasks', auth, async (req, res)=> {
 
@@ -313,11 +342,13 @@ Podemos filtrar los datos usando el
    })
 
 Pagination
-----------
+==========
 
-Para fijar una paginación especificamos la propiedad limit dentro de options. parseInt se encarga de transformar un string de número en un valor de tipo int.
+Para fijar una paginación especificamos la propiedad limit dentro de
+options. parseInt se encarga de transformar un string de número en un
+valor de tipo int.
 
-.. code-block:: javascript
+.. code:: javascript
 
    router.get('/tasks', auth, async (req, res)=> {
 
@@ -337,9 +368,10 @@ Para fijar una paginación especificamos la propiedad limit dentro de options. p
         res.status(500).send()
    })
 
-Mientras que para especificar un punto de partida y brincar todos los valores anteriores usamos skip.
+Mientras que para especificar un punto de partida y brincar todos los
+valores anteriores usamos skip.
 
-.. code-block:: javascript
+.. code:: javascript
 
    router.get('/tasks', auth, async (req, res)=> {
 
@@ -361,13 +393,15 @@ Mientras que para especificar un punto de partida y brincar todos los valores an
    })
 
 Ordenando
----------
+=========
 
-Para ordenarr valores vamos a usar la propiedad sort, que aceptará como valor un campo. Como parámetro GET usaremos sortBy. 
+Para ordenarr valores vamos a usar la propiedad sort, que aceptará como
+valor un campo. Como parámetro GET usaremos sortBy.
 
-Para especificar el orden podemos colocar un caracter especial para más tarde hacerles split y obtener el valor asc o desc.
+Para especificar el orden podemos colocar un caracter especial para más
+tarde hacerles split y obtener el valor asc o desc.
 
-.. code-block:: javascript
+.. code:: javascript
 
    router.get('/tasks', auth, async (req, res)=> {
      const match = {}
@@ -398,105 +432,114 @@ Para especificar el orden podemos colocar un caracter especial para más tarde h
         res.status(500).send()
    })
 
-
 File Upload
------------
+===========
 
-Para llevar a cabo un upload de un archivo usamos la libreria multer. Esta libreria es un middleware para manejar multipart/form-data.
+Para llevar a cabo un upload de un archivo usamos la libreria multer.
+Esta libreria es un middleware para manejar multipart/form-data.
 
-Para usarlo debemos configurarlo pasándole un objeto con el valor de la carpeta de destino
+Para usarlo debemos configurarlo pasándole un objeto con el valor de la
+carpeta de destino
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const multer = require('multer')
-    
-    const upload = multer({
-      dest: 'images'
-    })
+   const multer = require('multer')
 
-En la ruta usaremos en middleware de multer, upload.single() buscará el archivo que se encuentre asociado al key llamado upload en el form-data del request.
-    
-    app.post('/upload', upload.single('upload'), (req, res)=>{
+   const upload = multer({
+     dest: 'images'
+   })
+
+En la ruta usaremos en middleware de multer, upload.single() buscará el
+archivo que se encuentre asociado al key llamado upload en el form-data
+del request.
+
+   app.post('/upload', upload.single('upload'), (req, res)=>{
       res.send()
-    })
+
+   })
 
 Validación
-^^^^^^^^^^
+----------
 
-Al recibir archivos debemos validarlos, podemos reestringir el tamaño y el tipo de archivo. Estos valores podemos especificarlos en el objeto de configuración al momento de instanciar multer.
+Al recibir archivos debemos validarlos, podemos reestringir el tamaño y
+el tipo de archivo. Estos valores podemos especificarlos en el objeto de
+configuración al momento de instanciar multer.
 
 Limits fijará el valor en bytes.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const upload = multer({
-      dest: 'images',
-      limits: {
-        fileSize: 1000000
-      }
-    })
+   const upload = multer({
+     dest: 'images',
+     limits: {
+       fileSize: 1000000
+     }
+   })
 
-Para validar el tipo de archivo usaremos la propiedad fileFilter, que recibe los parámetros req, file y cb, que son request, file y callback, respectivamente.
+Para validar el tipo de archivo usaremos la propiedad fileFilter, que
+recibe los parámetros req, file y cb, que son request, file y callback,
+respectivamente.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const upload = multer({
-      dest: 'images',
-      limits: {
-        fileSize: 1000000
-      },
-      fileFilter(req, file, cb) {
+   const upload = multer({
+     dest: 'images',
+     limits: {
+       fileSize: 1000000
+     },
+     fileFilter(req, file, cb) {
 
-      }
-    })
+     }
+   })
 
 Podemos especificar el error pasándoselo al callback.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const upload = multer({
-      dest: 'images',
-      limits: {
-        fileSize: 1000000
-      },
-      fileFilter(req, file, cb) {
-        cb(new Error('El archivo debe ser un -inserta aqui- '))
-        cb(undefined, true)
-        cb(undefined, false)
-      }
-    })
+   const upload = multer({
+     dest: 'images',
+     limits: {
+       fileSize: 1000000
+     },
+     fileFilter(req, file, cb) {
+       cb(new Error('El archivo debe ser un -inserta aqui- '))
+       cb(undefined, true)
+       cb(undefined, false)
+     }
+   })
 
-Todos las propiedades del objeto file están disponibles en la [documentación](https://www.npmjs.com/package/multer#api)
+Todos las propiedades del objeto file están disponibles en la
+[documentación](https://www.npmjs.com/package/multer#api)
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const upload = multer({
-      dest: 'images',
-      limits: {
-        fileSize: 1000000
-      },
-      fileFilter(req, file, cb) {
-        if(!file.originalname.endsWith('.pdf')){
-          return cb(new Error('Please upload a PDF'))
-        }
-        cb(undefined, true)
-      }
-    })
+   const upload = multer({
+     dest: 'images',
+     limits: {
+       fileSize: 1000000
+     },
+     fileFilter(req, file, cb) {
+       if(!file.originalname.endsWith('.pdf')){
+         return cb(new Error('Please upload a PDF'))
+       }
+       cb(undefined, true)
+     }
+   })
 
 Para múltiples tipos de archivo podemos usar expresiones regulares.
 
-.. code-block:: javascript
+.. code:: javascript
 
-    const upload = multer({
-      dest: 'images',
-      limits: {
-        fileSize: 1000000
-      },
-      fileFilter(req, file, cb) {
-        if(!file.originalname.(/\.(doc|docx)$/)){
-          return cb(new Error('Please upload a PDF'))
-        }
-        cb(undefined, true)
-        cb(undefined, false)
-      }
-    })
+   const upload = multer({
+     dest: 'images',
+     limits: {
+       fileSize: 1000000
+     },
+     fileFilter(req, file, cb) {
+       if(!file.originalname.(/\.(doc|docx)$/)){
+         return cb(new Error('Please upload a PDF'))
+       }
+       cb(undefined, true)
+       cb(undefined, false)
+     }
+   })
