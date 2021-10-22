@@ -289,15 +289,15 @@ En este ejemplo primero creamos clases para cuadrado y circulo, cada clase tendr
 	        def make_object(self): #do something
 	          return Square()
 	
-	        def draw_function(factory):
-	          drawable = factory.make_object()
-	          drawable.draw()
+	    def draw_function(factory):
+	        drawable = factory.make_object()
+	        drawable.draw()
 	
-	        def prepare_client():
-	          squareFactory = SquareFactory()
-	          draw_function(squareFactory)        
-	          circleFactory = CircleFactory()
-	          draw_function(circleFactory)
+	    def prepare_client():
+	        squareFactory = SquareFactory()
+	        draw_function(squareFactory)        
+	        circleFactory = CircleFactory()
+	        draw_function(circleFactory)
 	
 	
 	

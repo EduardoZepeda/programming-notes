@@ -17,10 +17,73 @@ Go se encuentra en la mayoría de los repositorios de las distribuciones de GNU/
 
     sudo apt install golang
 
-Archivo principal
-=================
 
-Go requiere una función main y una linea que establezca el nombre del paquete. 
+Estructura de un archivo de go
+==============================
+
+Los archivos de go se estructuran de la siguiente manera y en este orden:
+
+Nombre del paquete
+------------------
+
+Una sección donde se declara el nombre del paquete después de la palabra *package*
+
+.. code-block:: go
+
+    package main
+
+Importaciones
+-------------
+
+Una sección donde se importan todos los paquetes que se usarán. Para ello usamos la palabra *import*. 
+
+.. code-block:: go
+
+    import "fmt"
+
+múltiples importaciones pueden colocarse dentro de parentesis, sin comas.
+
+.. code-block:: go
+
+    import (
+        "strconv"
+        "fmt"
+    )
+
+Contenido
+---------
+
+El contenido del archivo, es decir declaraciones de variables, types, funciones, constantes, etc.
+
+
+El paquete principal
+====================
+
+Go requiere de un paquete principal llamado main, que se especificará colocando *package main* al principio de nuestro código fuente.
+
+.. code-block:: go
+
+    package main
+
+La función main
+---------------
+    
+La función main es el punto de partida de un archivo de go y no retorna nada. 
+
+.. code-block:: go
+
+    package main
+    
+    import "fmt"
+
+    func main() {
+        fmt.Println("Hello world")
+    }
+
+Función de Inicialización
+-------------------------
+
+Antes del punto de entrada del programa se ejecuta una función init, esta puede contener todas las inicializaciones necesarias para la ejecución del programa.
 
 .. code-block:: go
 
@@ -28,14 +91,18 @@ Go requiere una función main y una linea que establezca el nombre del paquete.
 
     import "fmt"
 
+    func init() {
+        fmt.Println("Inicializando el programa principal")
+    }
+
     func main() {
-        fmt.Println("Hello world")
+        fmt.Println("Ejecutando el programa")
     }
 
 Ejecutar un archivo de go
 =========================
 
-Debido a que go es un lenguaje compilado, requiere que se ejecute un compilado antes de poder ejecutar el código. El compilado se realiza con el comando build.
+Dado que go es un lenguaje compilado, requiere que se ejecute un compilado antes de poder ejecutar el código. El compilado se realiza con el comando build.
 
 .. code-block:: bash
 
@@ -670,6 +737,12 @@ Si intentamos acceder a una llave que no existe, go nos devolverá su respectivo
     fmt.Println(m["no_existe"])
     // 0
 
+Para distinguir entre un zero value, go nos provee de un segundo valor de retorno, que nos indica si existe una llave
+
+.. code-block:: go
+
+    value, exist := diccionario["Helio"]
+
 Capacidad opcional
 ------------------
 
@@ -761,7 +834,7 @@ Para marcar un struct, función o variable como privada o pública, igual que su
 * minúsculas, privado
 
 
-Si queremos declarar un struct como público necesitaremos agregar un comentario en su parte superior o el compilador marcará error.
+Si queremos declarar un struct como público es buena práctica agregar un comentario en su parte superior.
 
 .. code-block:: go
 
@@ -795,69 +868,80 @@ Go maneja dos variables de entorno:
 Importacion de paquetes con go mod
 ==================================
 
-En go no existen las importaciones relativas. Se debe usar la ruta absoluta considerando la variable de entorno GOPATH o usar go mod 
+En go no existen las importaciones relativas. Se debe usar la ruta absoluta considerando la variable de entorno GOPATH o usar go mod.
 
-go mod 
-------
+Creación de un archivo go.mod 
+-----------------------------
 
-Go mod permite establecer un directorio afuera de GOPATH para tomar los paquetes. Esto creará un archivo go.mod en donde lo ejecutemos. El nombre mypackage será la base de la ruta desde la que importaremos nuestros paquetes.
+Un archivo de go.mod nos permite establecer un directorio afuera de GOPATH para tomar los paquetes. El comando go mod init, seguido del nombre que tomará como la ruta base para nuestro paquete, creará un archivo *go.mod* en el directorio donde lo ejecutemos. 
 
+Por ejemplo, si le pasamos como nombre mypackage, todas las carpetas que estén al mismo nivel que el archivo y que declaren un package al inicio de su archivo, se considerarán modulos.
 
 .. code-block:: go
 
     go mod init mypackage 
 
-Es buena práctica colocar el path completo de la dirección de github
+Es buena práctica colocar el path completo en caso de que se trate de una dirección de github
 
 .. code-block:: go
 
     go mod init github.com/usuario/paquete
 
-Nos quedará una ruta con la siguiente estructura. D
+Si creamos un archivo *go.mod* en la raiz de nuestro proyecto, terminaremos con la siguiente estructura. Aprecia que los archivos *go.mod* y *main.go* están dentro del mismo nivel; la raiz del proyecto.
 
 .. code-block:: go
 
+    .
     ├── go.mod
-    └── src
-        ├── main.go
-        └── mymodel
-            └── mymodel.go
-    
+    ├── main.go
+    └── videogame
+        └── videogame.go
 
-Dentro de go.mod se especificará el nombre del modulo, a partir del cual crearemos la ruta de importación, así como la versión de go.
+    1 directory, 3 files
+
+Contenido del archivo go.mod
+----------------------------
+
+Dentro del archivo go.mod que creo go se encuentra el nombre del modulo a partir del cual crearemos la ruta de importación, así como la versión de go.
 
 .. code-block:: go
 
-    module demoproject
+    module mypackage
 
     go 1.15
 
-Ahora podemos crear un modelo en model.go 
+Definir nombre de los modulos
+-----------------------------
+
+El nombre de cada modulo se establecerá al principio de cada archivo, colocándolo después de la palabra package. En este ejemplo será *videogame*. Una vez definido el nombre del modulo, podemos crear un modelo o struct en *videogame.go*. Considera las reglas de privacidad de los structs.
 
 .. code-block:: go
 
-    package mymodel
+    package videogame
 
     type Videogame struct {
         Id          int32
         Title       string
     }
 
-Para referirnos a ese modelo hacemos referencia a la ruta mypackage/src/model, observa como la ruta empieza con el nombre que aparece en el archivo *go.mod*
+Importando el contenido de un paquete
+-------------------------------------
+
+Para importar el contenido de un paquete hacemos referencia a su ruta, <nombre_del_modulo_como_aparece_en_go_mod>/<nombre_del_package>, es decir mypackage/videogame. Observa como la ruta empieza con el nombre que aparece en el archivo *go.mod*
 
 .. code-block:: go
 
     package main
 
     import (
-        "mypackage/src/mymodel"
+        "mypackage/videogame"
         "fmt"
     )
 
     func main() {
         var videojuego = model.Videogame{
             Id:          1,
-            Title:       "Life is strange"
+            Title:       "Life is strange",
         }
         fmt.Println(videojuego.Title)
     }
@@ -891,13 +975,13 @@ Para modificar la variable usamos el caracter de desestructuración.
 Composición en Go
 =================
 
-Para acceder a instancias de structs en las  funciones necesitamos pasarle un parentesis antes del nombre de la función, que contiene el nombre que usaremos para acceder al struct seguido del nombre del struct.
+Para acceder a instancias de structs en las funciones necesitamos pasarle un parentesis antes del nombre de la función, que contiene el nombre que usaremos para acceder al struct seguido del nombre del struct.
 
 .. tip:: Recuerda que debes cuidar la privacidad de la función, si la declaras con minúsculas no podrás acceder a ella desde un archivo externo.
 
 .. code-block:: go
 
-    func (myStructVariable Videogame) Ping{
+    func (myStructVariable *Videogame) Ping(){
         fmt.Println(myStructVariable.Title)
     }
 
@@ -906,7 +990,7 @@ Podemos acceder a sus valores mediante punteros lo pasamos dentro del parentesis
 
 .. code-block:: go
 
-    func (myStructVariable *Videogame) IncreaseYear{
+    func (myStructVariable *Videogame) IncreaseYear(){
         myStructVariable.year = myStructVariable.year + 1
     }
 
@@ -952,7 +1036,7 @@ Para que un struct en go posea todos los campos que declara otro struct, le pasa
 Interfaces y polimorfismo
 =========================
 
-Las interfaces son un método para compartir métodos entre structs y evitar repetir códigos. Una interface se encargará de llamar al método que le especificamos correspondiente a su tipo de struct.
+Las interfaces son un método para especificar el comportamiento de un objeto. Una interface se encargará de llamar al método que le especificamos correspondiente a su tipo de struct. Un type puede implementar múltiples interfaces.
 
 .. code-block:: go
 
@@ -960,7 +1044,7 @@ Las interfaces son un método para compartir métodos entre structs y evitar rep
         area() float64
     }
 
-Teniendo múltiples structs, llamará al método area de cada uno.
+Teniendo múltiples structs, llamará al método area respectivo de cada uno.
 
 
 .. code-block:: go
@@ -1019,44 +1103,46 @@ Existen los slice de interfaces, que nos permiten guardar diferentes tipos de da
 Concurrencia
 ============
 
-Uno de las mejores características del lenguaje. A las corrutinas de go se les conoce como goroutines. La función main se ejecuta dentro de una goroutine.
+Go es un lenguaje diseñado para ser concurrente, no paralelo. A las corrutinas de go se les conoce como goroutines. La función main se ejecuta dentro de una goroutine.
 
-Ejecutar una goroutine basta con agregar el keyword go antes de una función.
+La manera de ejecutar una goroutine es agregando el keyword *go* antes de una función.
 
 .. code-block:: go
 
     fmt.Println("hey")
     go write("hey again")
 
+Aunque si nada más hacemos esto,  el programa finalizará sin que se ejecute nuestra goroutine. Para detener la ejecución del programa hasta que se termine de ejecutar nuestra goroutine necesitamos un *WaitGroup*.
+
 sync
 ----
 
-Creamos un WaitGroup, que acumula un conjunto de goroutines y las va liberando paulatinamente. El método Wait, esperará a que se ejecuten todas las gorotuines. 
+Un WaitGroup acumula un conjunto de goroutines y las va liberando paulatinamente. Un WaitGroup funciona con un contador que incrementaremos por medio de su método add, y esperará al término de las goroutines mientras ese contador sea mayor a cero. 
+
+El método Add incrementa el contador del WaitGroup.
 
 .. code-block:: go
 
     var wg sync.WaitGroup
-    wg.add(1)
+    wg.Add(1)
     wg.Wait()
 
-El método add dice cuantas goroutinas queremos añadirle al gestor al WaitGroup.
-
-Para indicarle cuando se ha finalizado llamaremos al método done.
+Para indicarle cuando se ha finalizado una goroutine, usaremos el método Done; que se encarga de disminuir una unidad del contador del WaitGroup.
 
 .. code-block:: go
 
     go say("hey again", &wg)
 
-Dentro de esa función usamos defer sobre el método done para garantizar que sea lo último que se ejecute.
+Podemos usar defer sobre el método Done para garantizar que sea lo último que se ejecute.
 
 .. code-block:: go
 
     say(text string, wg *sync.WaitGroup) {
-        defer wg.done()
+        defer wg.Done()
         fmt.Println(text)
     }
 
-funciones anónimas en gorotuines
+Funciones anónimas en goroutines
 --------------------------------
 
 Se usan frecuentemente en goroutines.
@@ -1066,7 +1152,7 @@ Se usan frecuentemente en goroutines.
     go func() {
     }()
 
-Los parentesis del final reciben los argumentos.
+Los parentesis del final ejecutan la función anónima que declaramos y reciben sus argumentos.
 
 .. code-block:: go
 
@@ -1076,7 +1162,7 @@ Los parentesis del final reciben los argumentos.
 Channels
 ========
 
-Son un conducto que permite manejar un único tipo de dato. Los channels permiten a las goroutines comunicarse entre ellas. Podemos pasarle como un argmento extra la cantidad límite de datos simultaneos que manejará ese canal.
+Son un conducto que permite manejar un único tipo de dato. Los channels permiten a las goroutines comunicarse entre ellas. Podemos pasarle como un argumento extra la cantidad límite de datos simultaneos que manejará ese canal.
 
 .. code-block:: go
 
@@ -1147,6 +1233,15 @@ Es posible tener un canal de canales
     }
 
 
+Conocer el número de CPU's con GO
+---------------------------------
+
+El método runtime nos permite devolver el número de procesadores de nuestro sistema.
+
+.. code-block:: go
+
+    var numCPU = runtime.NumCPU()
+
 Operaciones bloqueantes
 =======================
 
@@ -1183,6 +1278,20 @@ Las operaciones que mandan o reciben valores de canales son bloqueantes dentro d
 
 La función que imprime el canal bloqueará la ejecución del código hasta que reciba la información del canal out.
 
+Usando structs vacios para bloquear
+-----------------------------------
+
+Entre algunos programadores se suelen usar structs vacios para el bloqueo de un programa
+
+.. code-block:: go
+
+    // Creamos el canal
+    done := make(chan struct{})
+    // Le pasamos un struct vacio
+    done <- struct{}{}
+    // El programa se bloquea hasta que leamos ese valor
+    <-done
+
 Range, close y select en channels
 =================================
 
@@ -1218,7 +1327,7 @@ Range es ideal para iterar sobre los datos de los canales.
     
     }
 
-Sin embargo **noexiste certeza sobre que dato recibiremos**
+Sin embargo **no existe certeza sobre que dato recibiremos**
 
 Select
 ------

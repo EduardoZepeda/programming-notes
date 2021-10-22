@@ -10,7 +10,8 @@ En algunos `foros <https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digi
 Guia sobre el trabajo remoto
 ============================
 
-Si no sabes como empezar aquí hay una `guia sobre el trabajo remoto <https://blog.stephsmith.io/the-guide-to-remote-work/>`_ que no intenta venderte nada
+Si no sabes como empezar aquí hay una `guia sobre el trabajo remoto <https://blog.stephsmith.io/the-guide-to-remote-work/>`_ que no intenta venderte nada.
+Aquí hay otra `guia <https://www.guiatrabajoremoto.cl/>`_ 
 
 El manifiesto remoto de Gitlab
 ==============================
@@ -18,7 +19,7 @@ El manifiesto remoto de Gitlab
 Otro referente en cuanto al trabajo remoto es gitlab, puedes leer su `manifiesto remoto <https://about.gitlab.com/company/culture/all-remote/guide/>`_.
 
 Páginas para trabajadores remotos
----------------------------------
+=================================
 
 * `Meerkad <https://meerkad.com/>`_
 * `Remoto list <https://remotolist.com/>`_
@@ -47,6 +48,8 @@ Páginas para trabajadores remotos
 * `Remote first <https://remotefirst.digital>`_
 * `Arc dev <https://arc.dev>`_
 * `Working nomads <https://workingnomads.co>`_
+* `Career Vault <https://careervault.io>`_
+* `Trymeli <https://trymeli.com>`_ 
 
 Voluntariados pagados con hospedaje, comida y a veces dinero 
 ------------------------------------------------------------
@@ -58,10 +61,6 @@ Empresas amigables con trabajo remoto
 
 * `Sngular <https://www.sngular.com>`_
 
-Recursos para mejorar entrevistas
----------------------------------
-
-* `Tech interview handbook <https://yangshun.github.io/tech-interview-handbook/introduction>`_
 
 Seguros
 -------
@@ -74,4 +73,16 @@ Rentar ticktes de avión
 
 La mayoría de los paises te piden un vuelo de regreso cuando viajas. A pesar de esto, es posible `rentar un ticket <https://bestonwardticket.com/#how-it-works>`_ totalmente auténtico para presentar por unas cuentas decenas de dolares.
 
+Trabajo y entrevistas
+=====================
 
+Preguntas para filtrar empresas que no valen la pena
+----------------------------------------------------
+
+* If I were to ask your employees how they feel about their job, what do you think they would say?
+* How did your company/organization respond to COVID-19?
+
+Recursos para mejorar entrevistas
+---------------------------------
+
+* `Tech interview handbook <https://yangshun.github.io/tech-interview-handbook/introduction>`_

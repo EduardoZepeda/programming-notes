@@ -698,3 +698,29 @@ Si queremos obtener la representación real de un objeto JSON usamos el método 
     jsonString := string(nuestroJson)
     fmt.Println(jsonString)
     //{"uno":1}
+
+Argumentos en Go
+================
+
+Go provee un objeto llamado flag para recibir argumentos 
+
+.. code-block:: go
+
+    import "flag"
+
+    var (
+        port = flag.Int("p", 3090, "port")
+        host = flag.String("h", "localhost", "host")
+    )
+
+El método que llama depende del tipo de dato que queremos capturar y cada método toma 3 argumentos: 
+1. El nombre del flag
+2. El valor por defecto
+3. La descripción
+
+Ahora ya podemos llamar a los flags de nuestro programa 
+
+.. code-block:: go
+
+    go run main.go --port 80 --host example.org
+
