@@ -64,7 +64,7 @@ Abordados y administrados a lo largo de un proyecto
 La organización y los diferente roles de SCRUM
 ----------------------------------------------
 
-.. figure:: ./img/Scrum/scrum_team.png
+.. figure:: img/Scrum/scrum_team.png
    :alt: image
 
    image
@@ -154,7 +154,7 @@ divididos en 5 fases.
 Flujo de SCRUM
 ==============
 
-.. figure:: ./img/Scrum/scrum_process.png
+.. figure:: img/Scrum/scrum_process.png
    :alt: image
 
    image

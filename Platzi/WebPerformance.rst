@@ -96,7 +96,7 @@ Javascript y CSS son recursos que bloquean el renderizado del HTML en el
 navegador. Podemos modificar este comportamiento con los atributos defer
 y async.
 
-.. figure:: ./img/optimizacionWeb/defecto.png
+.. figure:: img/optimizacionWeb/defecto.png
    :alt: image
 
    image
@@ -117,7 +117,7 @@ lo ejecute.
 
    <script defer src="ruta-del-script/script.js">
 
-.. figure:: ./img/optimizacionWeb/defer.png
+.. figure:: img/optimizacionWeb/defer.png
    :alt: image
 
    image
@@ -128,7 +128,7 @@ Async
 El atributo async descarga el script en paralelo, pero en cuanto se
 acaba de descargar lo ejecuta, bloqueando el parsing.
 
-.. figure:: ./img/optimizacionWeb/async.png
+.. figure:: img/optimizacionWeb/async.png
    :alt: image
 
    image
@@ -536,7 +536,7 @@ reducir. **Hay que reemplazar aquellas librerías de las que solo usamos
 una o dos funciones por otras más pequeñas**. Es muy común agregar
 librerías completas para solo usar una o dos funciones.
 
-.. figure:: ./img/optimizacionWeb/bundleAnalyzerPlugin.jpg
+.. figure:: img/optimizacionWeb/bundleAnalyzerPlugin.jpg
    :alt: image
 
    image

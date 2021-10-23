@@ -1220,6 +1220,69 @@ Y este es un canal de salida.
 
 En ocasiones es importante definir el tipo de canal pues, con los canales bidireccionales corremos el riesgo de ocasionar un bloqueo en nuestro programa.
 
+Deadlocks o bloqueos
+--------------------
+
+La capacidad por defecto de un canal es de 0, esto provoca que no podamos almacenar datos en los canales predeterminadamente. Si intentamos almacenar un dato en un canal, obtendremos un error por parte del compilador.
+
+.. code-block:: go
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        var channel = make(chan int)
+        channel <- 42
+        fmt.Println(<-channel)
+        fmt.Println("Finished")
+    }
+
+Esto devolverá un error
+
+.. code-block:: bash
+
+    fatal error: all goroutines are asleep - deadlock!
+
+Previniendo deadlocks 
+---------------------
+
+Podemos usar inmediatamente el dato del canal usando una goroutine. Observa el uso de la palabra *go* y como esta función recibe el canal como argumento.
+
+.. code-block:: go
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        var channel = make(chan int)
+        go func(channel chan int) {
+            channel <- 42
+        }(channel)
+        fmt.Println(<-channel)
+        fmt.Println("Finished")
+    }
+
+Otra manera de evitar el error es usar canales con buffer (buffered channels).
+
+Canales con buffer
+------------------
+
+Un canal con buffer es solo un canal que cuenta con una capacidad. Para establecer cuantos datos soporta un canal, se lo pasamos como argumento al método make.
+
+.. code-block:: go
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        var channel = make(chan int, 1)
+        channel <- 42
+        fmt.Println(<-channel)
+        fmt.Println("Finished")
+    }
 
 canal de canales
 ----------------

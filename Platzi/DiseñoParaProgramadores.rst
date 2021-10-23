@@ -102,7 +102,7 @@ arrojaron los diagramas de flujo anteriores.
 Estos pueden ser de baja fidelidad, donde sean más bien bocetos en
 papel.
 
-.. figure:: ./img/DisenoParaProgramadores/wireframesDeBajaFidelidad.png
+.. figure:: img/DisenoParaProgramadores/wireframesDeBajaFidelidad.png
    :alt: image
 
    image
@@ -111,7 +111,7 @@ O de alta fidelidad, creados con programas de diseño, donde esté más
 detallado cada elemento y la forma final. No especifican capas de color,
 ni fuentes, solo elementos, espaciado.
 
-.. figure:: ./img/DisenoParaProgramadores/wireframesDeAltaFidelidad.png
+.. figure:: img/DisenoParaProgramadores/wireframesDeAltaFidelidad.png
    :alt: image
 
    image
@@ -137,7 +137,9 @@ colores y los asocia a emociones y sentimientos.
 
 Hay colores:
 
-   primarios secundarios terciarios
+* primarios 
+* secundarios 
+* terciarios
 
 Color para web
 --------------

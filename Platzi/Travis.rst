@@ -18,7 +18,7 @@ También conocido como despliegue continuo. Es la extensión de la
 integración continua. Su objetivo es poder entregar o desplegar nuevos
 cambios a los clientes.
 
-.. figure:: ./img/Travis/CIyCD.png
+.. figure:: img/Travis/CIyCD.png
    :alt: image
 
    image

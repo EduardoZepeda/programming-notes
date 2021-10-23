@@ -23,7 +23,7 @@ La primera contiene la información, las réplicas es un backup en caso de
 que falle la primaria. Asegurándose que cada nodo tenga la información
 del resto respaldada para poder restaurar la información completamente.
 
-.. figure:: ./img/elasticSearch/elasticSearchCluster.png
+.. figure:: img/elasticSearch/elasticSearchCluster.png
    :alt: image
 
    image

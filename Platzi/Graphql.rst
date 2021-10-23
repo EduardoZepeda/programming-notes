@@ -681,7 +681,7 @@ Omite su contenido si el argumento es true.
         }
 
 @deprecated
-----------
+-----------
 
 Para marcar propiedades que caducarán
 

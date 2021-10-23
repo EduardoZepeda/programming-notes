@@ -201,7 +201,7 @@ Cuando un grafo se vuelve muy complejo es recomendable usar una matriz
 de adyacencia. En esta se estableceran las conexiones que tiene cada
 nodo en forma de tabla.
 
-.. figure:: ./img/MatematicasDiscretas/matriz_adyacencia_a.png
+.. figure:: img/MatematicasDiscretas/matriz_adyacencia_a.png
    :alt: image
 
    image
@@ -239,7 +239,7 @@ filas.
 Colocaremos un 1 en las celdas donde una conexión incida en un nodo, si
 no incide en el nodo entonces colocaremos un 0.
 
-.. figure:: ./img/MatematicasDiscretas/matriz_adyacencia_b.png
+.. figure:: img/MatematicasDiscretas/matriz_adyacencia_b.png
    :alt: image
 
    image
@@ -316,7 +316,7 @@ pueda conectar todos los vértices buscando los caminos de menor costo.
 Para sacar el costo mínimo del árbol solo basta con ir sumando el valor
 que tiene cada conexión nivel por nivel, luego sumar todos los niveles.
 
-.. figure:: ./img/MatematicasDiscretas/arbol_expansion_minima.png
+.. figure:: img/MatematicasDiscretas/arbol_expansion_minima.png
    :alt: image
 
    image
@@ -324,7 +324,7 @@ que tiene cada conexión nivel por nivel, luego sumar todos los niveles.
 Hecho el árbol podriamos utilizar el vértice del costo mínimo como la
 raiz del árbol.
 
-.. figure:: ./img/MatematicasDiscretas/arbol_expansion_minima_raiz_g.png
+.. figure:: img/MatematicasDiscretas/arbol_expansion_minima_raiz_g.png
    :alt: image
 
    image
@@ -348,7 +348,7 @@ vértices tiene sus dos ramas bien definidas o no tiene ninguna. El árbol
 binario lleno es aquel donde todos los nodos llegan a un mismo punto y
 al final todas sus ramas son terminales.
 
-.. figure:: ./img/MatematicasDiscretas/arbol_binario_tipos.png
+.. figure:: img/MatematicasDiscretas/arbol_binario_tipos.png
    :alt: image
 
    image
@@ -356,7 +356,7 @@ al final todas sus ramas son terminales.
 El árbol degenerado es donde la mayoría de sus nodos tienen solo un
 hijo.
 
-.. figure:: ./img/MatematicasDiscretas/arbol_binario_degenerado.png
+.. figure:: img/MatematicasDiscretas/arbol_binario_degenerado.png
    :alt: image
 
    image
@@ -367,7 +367,7 @@ Recursividad
 Un árbol binario es una estructura recursiva pues puede llamarse a si
 misma, puedes descomponerlo en partes más pequeñas.
 
-.. figure:: ./img/MatematicasDiscretas/arbol_binario_recursivo.png
+.. figure:: img/MatematicasDiscretas/arbol_binario_recursivo.png
    :alt: image
 
    image
@@ -413,7 +413,7 @@ escriben izquierda y derecha, siempre en ese orden.**
 -  In fijo: izquierda-raíz-derecha
 -  Pos fijo: izquierda-derecha-raíz
 
-.. figure:: ./img/MatematicasDiscretas/arbol_operaciones_aritmeticas.jpg
+.. figure:: img/MatematicasDiscretas/arbol_operaciones_aritmeticas.jpg
    :alt: image
 
    image

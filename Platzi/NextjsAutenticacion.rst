@@ -129,7 +129,7 @@ Nextjs se encargará de crear automáticamente la página.
 
 La configuración anterior creará una pantalla de loggeo de manera automática en la ruta */api/auth/signin*
 
-.. image:: ./img/NextjsAuth/NextjsAuthSignin.png
+.. image:: img/NextjsAuth/NextjsAuthSignin.png
 
 Función authorize
 -----------------
