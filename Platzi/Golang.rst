@@ -134,6 +134,12 @@ Go permite definir variables especificando el tipo de dato y la keyword var.
 
 .. code-block:: go
 
+    var gravedad int
+
+La asignación de variables puede realizarse en un solo paso. 
+
+.. code-block:: go
+
     var gravedad int = 123
 
 También es posible dejar que go intuya el tipo de dato con el operador walrus. Este tipo de asignación **solo es posible dentro del scope de una función**.
@@ -142,13 +148,7 @@ También es posible dejar que go intuya el tipo de dato con el operador walrus. 
 
     gravedad := 123
 
-Se puede declarar una variable y asignarle un valor más tarde.
-
-.. code-block:: go
-
-    var gravedad int
-
-No puedes asignar una variable al valor nulo de go; nil.
+En Go no puedes asignar una variable al valor nulo de go; nil.
 
 .. code-block:: go
 
@@ -157,7 +157,7 @@ No puedes asignar una variable al valor nulo de go; nil.
 Constantes
 ----------
 
-Con las constantes funciona de manera similar, pero se caracterizan porque no pueden modificarse. Se usa la keyword const.
+Con las constantes funciona de manera similar, pero se caracterizan porque no pueden modificarse. Se usa la keyword const. **Es necesario asignar un valor a una constante al momento de declararla**.
 
 .. code-block:: go
 
@@ -939,7 +939,7 @@ Para importar el contenido de un paquete hacemos referencia a su ruta, <nombre_d
     )
 
     func main() {
-        var videojuego = model.Videogame{
+        var videojuego = videogame.Videogame{
             Id:          1,
             Title:       "Life is strange",
         }
@@ -1024,7 +1024,7 @@ Para que un struct en go posea todos los campos que declara otro struct, le pasa
 .. code-block:: go
 
     type Persona struct {
-        Name string
+        Nombre string
         Sexo string
     }
 
@@ -1432,8 +1432,14 @@ Para obtener paquetes se obtienen corriendo el comando go get en consola. **Recu
 
 Si quieres más nivel de verbosidad agrega la opción -v.
 
+Para especificar una versión necesitamos agregarla como parte de la ruta
+
+.. code-block:: go
+
+    go get rsc.io/quote/v3
+
 Librerías 
----------
+=========
 
 Hay un directorio de frameworks, librerías y utilidades en `Awesome go <http://awesome-go.com/>`_ 
 

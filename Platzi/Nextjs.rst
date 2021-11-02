@@ -71,6 +71,22 @@ Cambiar scripts
        "start": "next start"
    }
 
+Create-next-app
+===============
+
+Con el mismo espíritu de create-react-app, Nextjs implementó un comando para crear aplicaciones de nextjs llamado *create-next-app*.
+
+.. code-block:: javascript
+
+   npx create-next-app@latest
+
+Y si queremos usar typescript:
+
+.. code-block:: javascript
+
+   npx create-next-app@latest --typescript
+
+
 Rutas básicas
 =============
 
@@ -84,7 +100,7 @@ renderizarán el archivo about.js. Mientras que las que dirijan a
    pages
    |-- about.js
    |-- index.js
-   //`-- product
+   /-- product
 
 Páginas dinámicas
 =================
@@ -154,6 +170,30 @@ href se encuentra dentro de la etiqueta Link.
 
 Nextjs hace un prefetch al hacer hover en un enlace y descarga la
 información, de esta manera mejora la optimización.
+
+Etiqueta Head 
+=============
+
+Nextjs implementa un componente Head que se encarga de añadir información en la etiqueta head de una página
+
+.. code-block:: javascript
+
+   import Head from 'next/head'
+
+   function IndexPage() {
+   return (
+      <div>
+         <Head>
+         <title>My page title</title>
+         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+         </Head>
+         <p>Hello world!</p>
+      </div>
+   )
+   }
+
+   export default IndexPage
+
 
 Link y Proxy
 ============
@@ -225,6 +265,43 @@ limpia.
 
    response.status(200).json({data: entry})
 
+Middleware 
+==========
+
+Nextjs permite el uso de middleware usando un objeto middleware que se encuentre dentro de un archivo llamado *_middleware*
+
+.. code-block:: javascript
+
+   import type { NextRequest, NextFetchEvent } from 'next/server'
+
+   export type Middleware = (
+   request: NextRequest,
+   event: NextFetchEvent
+   ) => Promise<Response | undefined> | Response | undefined
+
+El objeto NextRequest
+---------------------
+
+Es una extensión del objeto response con varios métodos y propiedades añadidas
+
+* cookies
+* nextUrl, que incluye pathname, basePath, trailingSlash y i18n
+* geo, con country, region, city, latitude y longitude
+* ip, con la dirección IP
+* ua, useragent
+
+El objeto NextResponse
+----------------------
+
+Una extensión del objeto Response con los siguientes métodos y propiedades añadidos
+
+* cookies
+* redirect()
+* rewrite()
+* next(), para continuar la cadena de middlewares
+
+
+
 Personalización de NextJS
 =========================
 
@@ -239,9 +316,7 @@ pages/, llamado \_document.tsx o \_document.js , ya sea que estemos
 trabajando con typescript o javascript, respectivamente. Cualquier
 cambio que se haga va a aplicar a todos los documentos
 
-En su documentación, Nextjs nos da una [plantilla
-base](https://nextjs.org/docs/advanced-features/custom-document) para
-poder personalizar lo que necesitamos.
+En su documentación, Nextjs nos da una `plantilla base <https://nextjs.org/docs/advanced-features/custom-document>`_para poder personalizar lo que necesitamos.
 
 Este archivo es ideal para colocar elemento adicionales en la etiqueta
 Head, tales como favicons, webfonts o estilos personalizados
@@ -436,11 +511,11 @@ hashes para evitar colisiones de nombres.
 .. code:: javascript
 
    <div className="container"></div>
-   <style jsx>{`
+   <style jsx>{``
      .container {
        background: salmon;
      }
-   `}
+     ``}
    </style>
 
 Usando SASS
@@ -454,8 +529,8 @@ next.config.js\* el siguiente código
 .. code:: javascript
 
    const withSass = require('@zeit/next-sass')
-   module.exports = withSass({
-     cssModules: true
+      module.exports = withSass({
+      cssModules: true
    })
 
 Esto funciona para estilos globales y modulares.
@@ -519,12 +594,13 @@ servidor implica una petición web, por lo que siempre recibirá el
 contenido actualizado, este método es ideal para contenido que se
 actualiza constantemente.
 
-getServerSideProps
-------------------
+SSR con getServerSideProps
+--------------------------
 
 Su función es comunicar los props de nuestro componente con código que
-ejecutamos antes de que Next.js responda al cliente. Esta función se
-exporta desde una página, es imposible usarla desde cualquier otro
+ejecutamos antes de que Next.js responda al cliente. 
+
+Esta función se exporta desde una página, es imposible usarla desde cualquier otro
 componente. La función debe ser async y debe retornar los props. Este
 método no se ejecutará en modo desarrollo, para verla en acción
 deberemos hacer un build y correrlo con npm run build y npm run start.
@@ -539,15 +615,15 @@ deberemos hacer un build y correrlo con npm run build y npm run start.
        }
    }
 
-Para esto debemos pasarle los props que retornará getServerSideProps
+Para utilizar los props que nos provee *getServerSideProps* en nuestro componente, necesitamos pasarselos como props.
 
 .. code:: javascript
 
    const Component = ({ourProps}) => {...}
 
-Dado que el servidor no tiene el objeto window podemos usar la librería
+Dado que **el objeto window no existe en un entorno de servidor**, podemos usar la librería
 isomorphic-fetch para reemplazar todas las llamadas a windows.fetch por
-fetch. *Fetch solamente aceptará url absolutas*
+fetch. Considera que **Fetch solamente aceptará url absolutas**
 
 .. code:: javascript
 
@@ -555,11 +631,11 @@ fetch. *Fetch solamente aceptará url absolutas*
 
       export const getServerSideProps = async (params) => {
           const response = await fetch('url-absoluta')
-          const data = await response.json()
+          const ourData = await response.json()
 
           return {
               props: {
-                  data
+                  ourData
               }
           }
       }
@@ -598,13 +674,14 @@ Las 3 primeras deben incluirse en los repositorios. *.env.local* debería añadi
 SSG
 ===
 
-Este método creará páginas estáticas para servir por medio de Nextjs. En
-este caso se hará una única petición y se generará un contenido
-estático. Este método es ideal para contenido que no cambia con
-frecuencia.
+El método de SSG creará páginas estáticas para servir contenido por medio de Nextjs. La implementación consiste en 
+hacer una única petición y, posteriormente generar el contenido
+estático. 
 
-getStaticProps
---------------
+El SSG es ideal para contenido que no cambia con frecuencia.
+
+SSG con getStaticProps
+----------------------
 
 Esta función se exporta desde una página, es imposible usarla desde
 cualquier otro componente. Este método no se ejecutará en modo
@@ -623,19 +700,24 @@ npm run build y npm run start.
        }
    }
 
-Así mismo debemos cambiar todos los métodos que no existen en el
-servidor, como en la el SSR
+Para que nuestro componente puede usar los props tenemos que pasárselos como argumento.
 
-.. _páginas-dinámicas-1:
+.. code:: javascript
 
-Páginas dinámicas
------------------
+   const Component = ({ourProps}) => {...}
+
+Así mismo debemos cambiar todos los métodos que no existen en un contexto de 
+servidor, como fetch.
+
+SSG Páginas dinámicas
+---------------------
 
 Estas páginas cambiarán
 
 .. code:: javascript
 
    import { getStaticProps } from 'next'
+   import fetch from 'isomorphic-fetch'
 
    export const getStaticProps = async ({ params }) => {
        const id = params?.id as string
@@ -649,17 +731,32 @@ Estas páginas cambiarán
            }
        }
    }
+   
+Static Dynamic Static Generation
+================================
 
-getStaticPaths
---------------
+Con Static dynamic static generation podemos generar sitios estáticos para una gran cantidad de páginas dinámicas, para eso necesitaremos dos funciones:
 
-NextJs requiere que le digamos de antemano todas las páginas que
-necesitará renderizar. Esta función debe retornar un objeto con la
-propiedad paths, con los id de las páginas que se van a generar. El
-objeto path, debe ser una lista de objetos con los id o valor dinámico
-de las páginas a generar. La diferencia entre getStaticProps y
-getStaticPaths radica en que el primero obtiene la información del
-componente (props), y el segundo, le dice a Next.js cuántas y qué
+* getStaticProps, que indica los props respectivos para cada página dinámica.
+* getStaticPaths, que retornará la lista de páginas dinámicas a crear.
+
+SDSG con getStaticPaths
+-----------------------
+
+NextJs requiere que le digamos de antemano todas las páginas dinámicas, aquellas que usan corchetes en su sintaxis, por ejemplo *[id].js*, que
+necesitará renderizar. 
+
+El método *getStaticProps* funciona para **solo una página**, por lo que necesitamos otro método
+
+Esta función debe retornar un objeto con la
+propiedad paths, con los id de las páginas que se van a generar. 
+
+El objeto path, debe ser una lista de objetos con los id o valor dinámico
+de las páginas a generar. 
+
+La diferencia entre getStaticProps y
+getStaticPaths radica en que el primero obtiene la información o props para
+ser usados en el componente, mientras que el segundo le dice a Next.js cuántas y qué
 páginas se producirán.
 
 .. code:: javascript
@@ -688,6 +785,7 @@ dinámica a partir de una petición a una api.
        const response = await fetch('https://tu-ruta-dinamica.com/api')
        const {data: ourProps} = await response.json
 
+       // paths es una lista
        const paths = ourProps.map((data)=>({
            params: {
                id: data.id
@@ -701,8 +799,8 @@ dinámica a partir de una petición a una api.
    }
 
 Hay un segunda propiedad a indicar en el return. La propiedad se llama
-fallback. Lo que hace es que cualquier página que no se especifique en
-paths nos llevará a un error 404.
+fallback. Lo que hace es que cualquier página que no se incluya en los
+paths nos retornará un error 404.
 
 .. code:: javascript
 
@@ -715,15 +813,34 @@ paths nos llevará a un error 404.
        const paths = ourProps.map((data)=>({
            params: {
                id: data.id,
-               fallback: false
            }
        }))
 
        return {
            paths: paths, // o paths usando el shortcut,
+           fallback: false 
        }
 
    }
+
+Ahora con getStaticProps vamos a obtener cada uno de los id con su respectivo parámetro para que los procese y obtenga los props que van a ser usados para renderizar las páginas dinámicas.
+
+.. code:: javascript
+
+   export const getStaticProps: GetStaticProps = async ({ params }) => {
+      const id = params?.id
+      const response = await fetch(
+      `https://sitio/api/product/${id}`
+      )
+      const { product } = await response.json()
+   
+      return {
+         props: {
+            product,
+         },
+      }
+   }
+ 
 
 Deploy
 ======

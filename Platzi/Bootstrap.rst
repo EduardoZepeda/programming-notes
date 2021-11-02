@@ -9,14 +9,14 @@ La grilla de Bootstrap
 
 Debemos partir de una etiqueta div con clase "container":
 
-::
+.. code-block:: html
 
    <div class="container">
    </div>
 
 Cada clase container tendrá sus filas dentro de un div con clase "row":
 
-::
+.. code-block:: html
 
    <div class="container">
      <div class="row"></div>
@@ -29,7 +29,7 @@ tamaño mediano de 6 y en un tamaño grande de 1. Una clase "col" sin
 numeros tomará todo el ancho disponible. Si ponemos varias "col" el
 ancho se dividirá equitativamente:
 
-::
+.. code-block:: html
 
    <div class="container">
      <div class="row">
@@ -60,14 +60,14 @@ para implementación:
 https://getbootstrap.com/docs/4.1/components/scrollspy/ Asignarle al
 body los atributos de:
 
-::
+.. code-block:: html
 
    data-spy="scroll" data-target="#navbar"
 
 Asignarle al div que contiene las etiquetas <a> de nagevacion la id de
 “navbar”:
 
-::
+.. code-block:: html
 
    <div class="collapse navbar-collapse" id="navbar">
 

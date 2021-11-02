@@ -225,12 +225,13 @@ Para crear un estilo usaremos la siguiente sintaxis
 
    import styled from 'styled-components'
 
-   export const Anchor = styled.a`
+   export const Anchor = styled.a``
        display: flex;
        text-align: center;
        text-decoration: none;
        flex-direction: column;
        width: 75px;
+   ``
 
 Estos estilos pueden usarse directamente en los archivos o exportarse
 como componentes para usar en nuestros archivos
@@ -246,8 +247,8 @@ Styled componentes también acepta componentes como argumento.
    import styled from 'styled-components'
    import { Link } from '@reach/router'
 
-   export const Anchor = styled(Link)`
-   `
+   export const Anchor = styled(Link)``
+   ``
 
 Estilos globales
 ----------------
@@ -258,13 +259,12 @@ Creamos un archivo globalStyles
 
    import { createGlobalStyle } from 'styled-components'
 
-   export const GlobalStyle = createGlobalStyle`
+   export const GlobalStyle = createGlobalStyle````
        html {
                box-sizing: border-box;
                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
        }
-
-   `
+   ````
 
 Después importamos ese archivo y lo colocamos en el nivel superior de la
 app, en el componente APP en este ejemplo.
@@ -290,11 +290,11 @@ la librería de styled-components.
 
    import {keyframes, css} from 'styled-components'
 
-   export const fadeIn = ({time = '1s', type='ease'} = {}) => css`
+   export const fadeIn = ({time = '1s', type='ease'} = {}) => css``
        animation: ${time} ${fadeInKeyframes} ${type};
-   `
+   ``
 
-   const fadeInKeyframes = keyframes`
+   const fadeInKeyframes = keyframes``
        from {
            filter: blur(5px);
            opacity:0;
@@ -304,16 +304,16 @@ la librería de styled-components.
            opacity:1;
        }
 
-   `
+   ``
 
 Una vez creadas podemos usarlas en los estilos de nuestros componentes
 
 .. code:: javascript
 
-   export const Img = styled.img`
+   export const Img = styled.img``
        ${fadeIn()}
        box-shadow: 0 10px 14px rgba(0,0,0,0.2);
-   `
+   ``
 
 Hooks
 =====
@@ -506,7 +506,7 @@ y creamos las consultas
 
    import { useQuery, gql } from "@apollo/client"
 
-   const withPhotos = gql`
+   const withPhotos = gql``
      query getPhotos {
        photos {
          id
@@ -517,7 +517,7 @@ y creamos las consultas
          liked
        }
      }
-   `
+   ``
 
 Ahora podemos usar la functión useQuery para obtener los datos
 
@@ -532,7 +532,7 @@ Las queries tambien pueden recibir parámetros
 
 .. code:: javascript
 
-   const withPhotos = gql`
+   const withPhotos = gql``
      query getPhotos($categoryId:ID) {
        photos(categoryId: $categoryId) {
          id
@@ -543,7 +543,7 @@ Las queries tambien pueden recibir parámetros
          liked
        }
      }
-   `
+   ``
 
 Para que detecte los queries deberemos pasárselos dentro de la propiedad
 variables del objeto que le pasaremos a la función useQuery como segundo
@@ -564,11 +564,11 @@ devuelve el estado de error o carga de nuestra petición
 
    import { gql, useMutation } from '@apollo/client'
 
-   const REGISTER = gql`
+   const REGISTER = gql``
        mutation signup($input: UserCredentials!){
            signup(input: $input)
        }
-   `
+   ``
    export const useRegisterMutation = (email,password) => {
      const [registerMutation, { loading: mutationLoading, error: mutationError }] = useMutation(REGISTER, {variables: {input:{email, password}}})
      return { registerMutation, mutationLoading, mutationError }
@@ -880,11 +880,11 @@ con nuestra propia descripción
      likes: function (props, propName, componentName) {
        const propValue = props[propName]
        if (propValue == undefined){
-         return new Error(`${propName} value must be defined`)
+         return new Error(``${propName} value must be defined``)
        }
 
        if (propValue<0){
-         return new Error(`${propName} value must be greater than zero`)
+         return new Error(``${propName} value must be greater than zero``)
        }
      }
    }

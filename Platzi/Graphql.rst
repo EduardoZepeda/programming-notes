@@ -522,8 +522,6 @@ Ahora podemos ejecutar varias consultas al mismo tiempo
     nombreDelAlias: tipoDeDato(argumento: tipo){
     datos }
 
-
-
 Además de los Alias, podemos agrupar campos para ser reutilizados en distintas peticiones gracias a los Fragments.
 
 .. code-block:: javascript
@@ -718,8 +716,8 @@ Al momento de realizar una query que retorna una union podemos identificar el ti
 
     getCourse{
         __typename
-    }
-
+    } 
+        
 Y nos devolverá el __typename. 
 
 .. code-block:: javascript
@@ -738,7 +736,7 @@ Y nos devolverá el __typename.
 
 Ahora con ese __typename podemos manipular la query para que se comporte diferente dependiendo del type.
 
-.. code-block:: graphql
+.. code-block:: javascript
 
     {
         searchItems(keyword: "searchTerm"){
@@ -767,7 +765,9 @@ Para efectuar una búsqueda en múltiples collections, primero necesitamos crear
 * query, el término de búsqueda
 * path, campos donde buscará, por defecto es una wildcard 
 
-.. code-block:: graphql
+De esta manera:
+
+.. code-block:: javascript
 
     courses = await db.collection('courses').aggregate([
             {
@@ -782,8 +782,9 @@ Para efectuar una búsqueda en múltiples collections, primero necesitamos crear
             }
             }
         ]).toArray()
-    totalItems = [...courses, ...
-    
+    totalItems = [...courses, ...]
+
+
 Preparar para producción
 ========================
 

@@ -9,11 +9,11 @@ En este tema debemos ser serios y responsables. Debemos tener claro el
 pago y las condiciones que estamos solicitando. También debemos ser
 empáticos con el cliente que espera recibir garantías.
 
-   -  Plan de trabajo. El cliente se va a seguir más tranquilo si le
+-  Plan de trabajo. El cliente se va a seguir más tranquilo si le
       muestras esta proyección de actividades y resultados.
-   -  Cronogramas. Puedes enseñarle que harás en los próximos días.
-   -  Documentación.
-   -  Alcances.
+-  Cronogramas. Puedes enseñarle que harás en los próximos días.
+-  Documentación.
+-  Alcances.
 
 Nunca ejecutes un proyecto sin un contrato
 

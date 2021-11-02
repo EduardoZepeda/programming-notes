@@ -2,19 +2,20 @@
 Fundamentos de Javascript
 =========================
 
+
 Variables
 =========
 
 El objeto global es accesible a través de:
 
-::
+.. code-block:: javascript
 
    window.nombre
 
 Las variables constantes no pueden cambiarse y se escriben en mayúsculas
 como convención:
 
-::
+.. code-block:: javascript
 
    const PI = 3.14159
 
@@ -27,7 +28,7 @@ lo tanto, se modifican.
 Para prevenir eso podemos devolver un objeto diferente, para esto se
 usará la siguiente sintaxis:
 
-::
+.. code-block:: javascript
 
    function cumpleanos(persona){
        return
@@ -41,7 +42,7 @@ Debugger
 Se detendrá la ejecución del programa cada que se encuentre la palabra
 debbuger:
 
-::
+.. code-block:: javascript
 
    while(sacha.peso > META){
        debugger
@@ -64,7 +65,7 @@ haya terminado la pila del programa principal. Por esta razón hay que
 tener cuidado de programas muy pesados, pues los callbacks se ejecutarán
 después del cuello de botella:
 
-::
+.. code-block:: javascript
 
    setTimeout(()=>console.log("Ejecutado"), 2000)
    for(var i=0; i<10000000; i++){    
@@ -78,7 +79,7 @@ Promesas
 
 Hay una funcion que ejecuta un array de promesas:
 
-::
+.. code-block:: javascript
 
    Promise
        .all(promesas)
@@ -99,7 +100,7 @@ poder utilizarlos más tarde sin volver a incurrir en el costo de
 procesamiento. El valor de cache se guarda en la memoria de la función.
 incluso después de haber sido ejecutada una vez:
 
-::
+.. code-block:: javascript
 
    function factorial(n){
       if (n < 0){
@@ -130,7 +131,7 @@ variables al momento de ser invocada, y conserva este estado a través de
 reiteradas ejecuciones. Un aspecto fundamental de los closures es que
 son funciones que retornan otras funciones:
 
-::
+.. code-block:: javascript
 
    function crear_saludo (final_de_frase) {
        return function (nombre) {

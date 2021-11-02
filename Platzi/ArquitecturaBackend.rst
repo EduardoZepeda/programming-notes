@@ -15,13 +15,15 @@ Múltiples piezas que se comunican por red
 Elementos que podemos encontrar en un Sistema Distribuido
 ---------------------------------------------------------
 
-   -  Load Balancers
-   -  Máquinas Virtuales
-   -  Bases de datos Relacionales o No Relacionales
-   -  Servicios de Colas (Ejemplo: SQS)
-   -  Servicios de Storage (Ejemplo: S3)
-   -  Servicios Publisher-Suscriber (Ejemplo: SNS)
-   -  Pipelines
+Existen
+
+-  Load Balancers
+-  Máquinas Virtuales
+-  Bases de datos Relacionales o No Relacionales
+-  Servicios de Colas (Ejemplo: SQS)
+-  Servicios de Storage (Ejemplo: S3)
+-  Servicios Publisher-Suscriber (Ejemplo: SNS)
+-  Pipelines
 
 Conexión en el backend
 ======================
@@ -29,11 +31,11 @@ Conexión en el backend
 Una API o Interfaz de programación de aplicaciones entrega una series de
 servicios llamados endpoints.
 
-   -  POST -> Create
-   -  GET -> Read
-   -  PUT -> Update
-   -  PATCH -> Partial Update
-   -  DELETE -> Eliminacion
+-  POST -> Create
+-  GET -> Read
+-  PUT -> Update
+-  PATCH -> Partial Update
+-  DELETE -> Eliminacion
 
 Documento de diseño
 ===================

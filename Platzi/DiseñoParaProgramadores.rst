@@ -210,22 +210,22 @@ Hay que elegir correctamente las imágenes para el sitio web. Hay varios
 aspectos a tomar en cuenta para imágenes
 
 Imágenes para Web
-   -  JPG: Imágenes con degradados, suelen ser de baja calidad
-   -  PNG: Para fondo transparente
-   -  SVG: Vectores, se pueden editar en css
-   -  GIF: No se recomienda si son muy pesados
+-  JPG: Imágenes con degradados, suelen ser de baja calidad
+-  PNG: Para fondo transparente
+-  SVG: Vectores, se pueden editar en css
+-  GIF: No se recomienda si son muy pesados
 
 Como elegir
-   -  Aporten al contenido
-   -  Dirigido al cliente
-   -  Consistente con la paleta de colores
-   -  Licencias
+-  Aporten al contenido
+-  Dirigido al cliente
+-  Consistente con la paleta de colores
+-  Licencias
 
 Rendimiento y accesibilidad
-   -  Evitar imágenes con texto
-   -  Exportar al tamaño del contenedor final
-   -  Considera usar lazy loading: Cargando dinámico
-   -  Asegurate de usar el atributo *alt text*
+-  Evitar imágenes con texto
+-  Exportar al tamaño del contenedor final
+-  Considera usar lazy loading: Cargando dinámico
+-  Asegurate de usar el atributo *alt text*
 
 Gráficos en movimiento para web
 ===============================

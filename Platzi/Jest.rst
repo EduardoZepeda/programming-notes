@@ -46,10 +46,10 @@ Dentro de la carpeta src colocaremos una carpeta en su interior llamada
 .. code:: javascript
 
    |-- package.json
-   `-- src
+   ``-- src
        |-- index.js
-       `-- __test__
-           `-- global.test.js
+       ``-- __test__
+           ``-- global.test.js
 
    2 directories, 3 files
 

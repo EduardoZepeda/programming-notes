@@ -162,7 +162,7 @@ Funcion Lambda
 Para ejecutar una función lambda debemo tener una función llamada
 *lambda_handler* con un evento y un contexto como parámetros:
 
-::
+.. code-block:: python
 
    import os
 
