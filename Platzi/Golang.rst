@@ -449,10 +449,98 @@ Si no sabemos la cantidad de argumentos que va a recibir una función, colocamos
         return res
     }
 
+Strings, runes y bytes
+======================
+
+Bytes
+-----
+
+Un byte en go es sinónimo de un *uint8*. Es decir, 8 bits que podemos asignar de manera directa a diferentes notaciones. El hecho de que sea un uint8 nos permite usar cualquier número entre 0 y 255
+
+.. code-block:: go
+
+    var ch byte = 90 // decimal
+	var ch1 byte = 0b01011010 // Binaria
+	var ch2 byte = 0o132      // Octadecimal
+	var ch3 byte = 0x5a       // hexadecimal
+
+Array de bytes
+^^^^^^^^^^^^^^
+
+Así como tenemos el tipo de dato byte, también podemos crear un array de bytes.
+
+.. code-block:: go
+
+    // Instanciado directamente de un string
+    t1 := []byte("ABCDE")
+    // Como si fuera un array de caracteres
+    t2 := []byte{'A', 'B', 'C', 'D', 'E'}
+    // como si fuera un array de números ord()
+    t3 := []byte{65, 66, 67, 68, 69}
+    // Con la función copy
+    var t4 = make([]byte, 5)
+    copy(t4, "ABCDE")
+
+Runes
+-----
+
+Las runes son sinónimo de un tipo *int32*. Es el tipo de **variable por defecto cuando defines un caracter**. Si no especificas byte u otro, Go dará por sentado que se trata de una rune.
+
+.. code-block:: go
+
+    runa := 'A'
+    fmt.Printf("type:%T, value:%v\n", runa, runa)
+    // type:int32, value:65
+
+Array de Runes
+^^^^^^^^^^^^^^
+
+Go permite, de la misma manera manejar un array de runes que es totalmente modificable
+
+.. code-block:: go
+
+    arrayRunas := []rune("Jello, World")
+    arrayRunas[0] = 'H'
+	arrayRunas = append(arrayRunas, '!', '?')
+
+
+Strings
+-------
+
+Un string es un slice de bytes de solo lectura, se declara usando comillas dobles.
+
+Cada índice del slice de un array se refiere a un byte, por lo que si, iteramos sobre un string, vamos a obtener muchos más bytes de caracteres o runas.
+
+.. code-block:: go
+
+    s := "ID彼氏彼女の事情"
+
+    for i := 0; i < len(s); i++ {
+        fmt.Printf("%x ", s[i])   
+    }
+    // 49 44 e5 bd bc e6 b0 8f e5 bd bc e5 a5 b3 e3 81 ae e4 ba 8b e6 83 85
+
+Por otro lado, la función range se encarga de iterar runa por runa, decodificando el caracter.
+
+.. code-block:: go
+
+    for index, runeValue := range s {
+        fmt.Printf("%#U empieza en el byte de posición %d\n", runeValue, index)
+    }
+    //U+0049 'I' starts at byte position 0
+    //U+0044 'D' starts at byte position 1
+    //U+5F7C '彼' starts at byte position 2
+    //U+6C0F '氏' starts at byte position 5
+    //U+5F7C '彼' starts at byte position 8
+    //U+5973 '女' starts at byte position 11
+    //U+306E 'の' starts at byte position 14
+    //U+4E8B '事' starts at byte position 17
+    //U+60C5 '情' starts at byte position 20    
+
 Paquete strings
 ===============
 
-Este paquete tiene múltiples funciones para trabajar con strings, aquí dejo algunas de las más importantes
+Go cuenta con un paquete para manejar strings, con múltiples métodos. Aquí dejo algunos de los más importantes:
 
 * func Contains(s, substr string) bool Revisa si una cadena de texto se encuentra en otra.
 * func Count(s, substr string) int Cuenta las ocurrencias de una cadena de texto en otra.
@@ -472,7 +560,7 @@ Revisa las funciones completas en `la documentación de strings en go <https://p
 Paquete strconv
 ===============
 
-Permite convertir strings en otros tipos de datos
+Permite convertir strings en otros tipos de datos:
 
 * func Atoi(s string) (int, error) convierte un string en un entero
 * func Itoa(i int) string convierte un número entero en un string
@@ -481,8 +569,8 @@ Permite convertir strings en otros tipos de datos
 Mira el resto de funciones en `la documentación de strconv en go <https://pkg.go.dev/strconv>`_ 
 
 
-Función len()
-=============
+Función len
+===========
 
 La función len se encarga de devolver el número de elementos que tiene un string, un slice, un array, un channel. Sin embargo, en el caso de los strings, devuelve el número de bytes, para caracteres que no formen parte de utf-8, para solucionar este problema usamos el método RuneCountInString.
 
@@ -596,7 +684,7 @@ defer, break y continue
 defer
 -----
 
-Se usa para retrasar la ejecución de código hasta el final de la operación. Ideal para cerrar base de datos u operaciones que necesitas que se ejecuten siempre.
+Se usa para retrasar la ejecución de código hasta el final de la operación. Defer es perfecta para cerrar base de datos u operaciones que necesitas que se ejecuten siempre. 
 
 .. code-block:: go
 
