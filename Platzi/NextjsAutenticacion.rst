@@ -26,7 +26,7 @@ Tiene la ventaja de que se ahorra espacio, pues no se necesita guardar los token
 Oauth
 =====
 
-Estandar abierto para la delegación de acceso.
+Estandar abierto para la delegación de acceso que evita el usar las contraseñas de los usuarios.
 
 Patrones de autenticación
 =========================
@@ -246,7 +246,7 @@ si no existe una base de datos, se utiliza JWT almacenando el token en una cooki
 Protegiendo rutas API
 =====================
 
-Podemos proteger las rutas de la carpeta api, que provee los resultados para el backend, simplemente obteniendo el objeto session y observando si tiene contenido.
+Podemos proteger las rutas de la carpeta api, que provee los resultados para el backend, simplemente obteniendo el objeto session y observando si tiene contenido. getSession Puede usarse tanto del lado del cliente como del servidor.
 
 .. code-block:: javascript
 
@@ -260,7 +260,7 @@ Podemos proteger las rutas de la carpeta api, que provee los resultados para el 
 Protegiendo rutas en el frontend
 ================================
 
-useSession está escuchando constantemente al objeto window para actualizar las páginas escuchando los cambios en el objeto session, para validar la sesión constanemente. 
+useSession está escuchando constantemente al objeto window para actualizar las páginas escuchando los cambios en el objeto session, para validar la sesión constanemente. **useSession solo puede usarse del lado del cliente y dentro de un componente de React**
 
 .. code-block:: javascript
 
