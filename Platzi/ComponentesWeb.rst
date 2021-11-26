@@ -81,7 +81,7 @@ El ciclo de vida de un componente consiste en:
 
 
 Crear custom Elements
-===================== 
+=====================
 
 Algunos métodos útiles para recordar
 
@@ -105,7 +105,7 @@ Y dentro de este archivo crearemos una clase que herede de HTMLElement.
 
 .. code-block:: javascript
 
-    class myEtiqueta extends HTMLElement {
+    class MiEtiqueta extends HTMLElement {
         constructor () {
             super()
         }
@@ -118,7 +118,7 @@ Para crearlo especificaremos el nombre de la etiqueta y posteriormente la clase 
 
 .. code-block:: javascript
 
-    customElements.define('mi-etiqueta', myEtiqueta)
+    customElements.define('mi-etiqueta', MiEtiqueta)
 
 Una vez hecho esto ya podemos añadirla a nuestro archivo HTML
 
@@ -133,7 +133,7 @@ Podemos crear propiedades para usar en nuestro componente usando la palabra this
 
 .. code-block:: javascript
 
-    class myEtiqueta extends HTMLElement {
+    class MiEtiqueta extends HTMLElement {
         constructor () {
             super()
             this.p = document.createElement('p')
@@ -156,7 +156,7 @@ También es posible agregar estilos directamente.
         <p>Hola mundo con innerHTML</p>
         <style></style>
     `
-    class myEtiqueta extends HTMLElement {
+    class MiEtiqueta extends HTMLElement {
     // ...
         connectedCallback() {
             //...
@@ -178,25 +178,27 @@ Para simplificar la creación de elementos y volverlo más escalable y repetible
 
 Si solo la usamos así, sin renderizar, obtendremos un #document-fragment. Para renderizarlo necesitamos Javascript.
 
-Agregando contenido con clonedNode
-----------------------------------
+Agregando contenido con cloneNode
+---------------------------------
 
-Es posible clonar el contenido y añadirlo usando appendChild, seguido del método clonedNode del contenido de la etiqueta <template>.
+Es posible clonar el contenido y añadirlo usando appendChild, seguido del método cloneNode del contenido de la etiqueta <template>.
 
 .. code-block:: javascript
 
-    class myEtiqueta extends HTMLElement {
+    class MiEtiqueta extends HTMLElement {
         constructor () {
             super()
+            this.attachShadow({ mode: "open" })
         }
 
         getTemplate() {
             const template = document.createElement('template')
             template.innerHTML = `<h2>Subtitulo</h2>`
+            return template
         }
 
         render() {
-            this.appendChild(this.getTemplate().content.clonedNode(true))
+            this.appendChild(this.getTemplate().content.cloneNode(true))
         }
 
         connectedCallback() {
@@ -212,7 +214,7 @@ Puede entenderse como un DOM independiente del DOM global, por lo que se evitan 
 
 .. code-block:: javascript
 
-    class myEtiqueta extends HTMLElement {
+    class MiEtiqueta extends HTMLElement {
         constructor () {
             super()
             this.attachShadow({ mode: "open" })
@@ -221,14 +223,307 @@ Puede entenderse como un DOM independiente del DOM global, por lo que se evitan 
 
 Esto retornará un #shadow-root (open) dentro del código HTML, creará una capa extra, por lo que para acceder a este shadowRoot necesitamos acceder directamente a la propiedad del mismo nombre de nuestro componente.
 
-Al usar un shadowDOM se crea un DOM independiente, por lo que cualquier cambio al DOM principal quedará anulado y evitaremos errores por reescrituras de estilos y otros problemas similares.
+Al usar un shadowDOM se crea un DOM independiente, por lo que cualquier cambio al DOM principal quedará anulado y evitaremos errores por conflictos en estilos y otros problemas similares.
 
 .. code-block:: javascript
 
     this.appendChild(...) //Ya no hace nada
     this.shadowRoot.appendChild(...) // Esto sí
 
+
+Content Slot
+============
+
+Es una etiqueta que nos permite darle interactividad al componente, para pasarle información de manera dinámica.
+
+.. code-block:: html
+
+    <my-etiqueta>Contenido a pasar</my-etiqueta>
+
+Para usarlo pasamos la etiqueta <slot> al contenido de nuestro template en el shadowRoot.
+
+.. code-block:: javascript
+
+    template.innerHTML(`
+        <h2>
+            <slot></slot>
+        </h2>
+    `)
+    
+Multi content slots
+===================
+
+Para agregar múltiples slots podemos asignarles un nombre 
+
+.. code-block:: javascript
+
+    // código javascript
+    <h2><slot name="newTitle"></slot></h2>
+    <p><slot name="content"></slot></p>
+
+Y ahora en nuestro HTML hacemos referencia a esos nombres
+
+.. code-block:: html
+
+    <!-- Código HTML-->
+    <mi-etiqueta>
+        <span slot="newTitle">Titulo</span>
+        <span slot="content">Contenido</span>
+    </mi-etiqueta>
+
+
+Atributos a las etiquetas
+=========================
+
+Es posible usar los atributos en nuestras etiquetas personalizadas y acceder a ellas con Javascript. Es un concepto parecido a los props.
+
+.. code-block:: javascript
+
+    class MiEtiqueta extends HTMLElement {
+        constructor() {
+            // ...
+            this.newTitle = this.getAttribute("newTitle")
+            this.content = this.getAttribute("content")
+            this.img = this.getAttribute("img")
+        }
+        getTemplate(){
+            const template = document.createElement("template")
+            template.innerHTML = `
+                <section>
+                    <h2>${this.newTitle}</h2>
+                    <p>${this.content}</p>
+                    <img src=${this.img}/>
+                </section>
+            `
+            return template
+        }
+    }
+
+En el código HTML le pasamos esos atributos a la etiqueta personalizada.
+
+.. code-block:: html
+
+    <mi-elmento newTitle="titulo" content="contenido" img="https://example.org/example.jpg"></mi-elemento>
+
+
+attributeChangedCallback
+========================
+
+Para vigilar cuando cambien los atributos necesitamos crear un observador llamado *observedAttributes*, que retorne la lista de atributos a observar. 
+
+.. code-block:: javascript
+
+    class MiEtiqueta extends HTMLElement {
+        // ...
+        static get observedAttributes() {
+            return ['newTitle', 'content', 'img']
+        }
+    }
+
+Ahora ya podemos reemplazar el método *attributeChangedCallback*. Recibe tres parámetros:
+
+* valor actual
+* valor antiguo
+* nuevo valor
+
+.. code-block:: javascript
+
+    class MiEtiqueta extends HTMLElement {
+        // ...
+        static get observedAttributes() {
+            return ['newTitle', 'content', 'img']
+        }
+        attributeChangedCallback(attribute, currentValue, newValue) {
+            // ...
+        }
+    }
+
+Es importante **No usar atributos que ya forman parte de HTML (como title) o se generará un error Maximum call stack size exceeded.** 
+
+connectedCallback
+=================
+
+Ocurre cuando el elemento se agrega al DOM. 
+
+.. code-block:: javascript
+
+    class MiEtiqueta extends HTMLElement {
+        // ...
+        connectedCallback() {
+            console.log("El componente se carga en el DOM")
+        }
+    }
+
+disconnectedCallback
+====================
+
+Es el último paso del ciclo de vida de un componente. **Es importante desvincular *eventListeners* antes de que un componente se desmonte** del DOM.
+
+.. code-block:: javascript
+
+    class MiEtiqueta extends HTMLElement {
+        // ...
+        disconnectedCallback() {
+            console.log("El componente se separa del DOM")
+        }
+    }
+
+:host
+=====
+
+Es una pseudoclase que sirve para darle estilos al componente web. Adentro de host colocamos todos los estilos querramos. Sirve como el :root de un componente. La pseudoclase requiere **de manera forzosa** la presencia del shadowRoot.
+
+
+.. code-block:: javascript
+
+    constructor() {
+        // ...
+        this.attachShadow({ mode: "open" })
+    }
+
+    getTemplate() {
+        return `
+        
+            ${this.getStyles()}
+        `
+    }
+
+    getStyles() {
+        return `
+            <style>
+                :host {
+                    width: 100%;
+                }
+            </style>
+        `
+    
+    }
+
+    render() {
+        this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
+    }
+
+Clases en :host
+---------------
+
+Podemos pasarle clases a nuestro web component
+
+.. code-block:: html
+
+    <mi-etiqueta class="blue"></mi-etiqueta>
+
+Para posteriormente verificar si le fue pasada  y personalizar el estilo de manera condicional
+
+.. code-block:: javascript
+
+    :host(.blue) {
+        background: blue;
+    }
+
+Atributos en :host
+------------------
+
+Si queremos usar atributos 
+
+.. code-block:: html
+
+    <mi-etiqueta green></mi-etiqueta>
+
+Para posteriormente verificar si le fue pasada  y personalizar el estilo de manera condicional
+
+.. code-block:: javascript
+
+    :host([green]) {
+        background: green;
+    }
+
+Contexto en :host
+-----------------
+
+Este contexto se refiere al padre del web component
+
+.. code-block:: html
+
+    <article class="card">
+        <mi-etiqueta>
+    </article>
+
+
+.. code-block:: javascript
+
+    :host-context(article.card) {
+        display: flex;
+    }
+
+Es importante recordar que **no todos los navegadores dan soporte para :host-context**. A la última fecha de revisión de este apunte, ni Firefox ni Safari ofrecen compatibilidad para esta función.
+
+Custom properties
+-----------------
+
+Es posible generar variables dentro de :host para evitar repetir valores, estas variables se comportarán similar a :root en CSS.
+
+.. code-block:: javascript
+
+    getStyles {
+        return `
+            <style>
+                :host {
+                    --primary-color: salmon;
+                    --secondary-color: Seashell;
+                }
+                section {
+                    background: var(--primary-color);
+                }
+                section div {
+                    background: var(--secondary-color);
+                }
+            </style>
+        `
+    }
+
+Para reescribir los estilos externamente basta con reescribir los estilos en CSS o la etiqueta style referenciando al nombre de la etiqueta, como si se tratara de cualquier otra.
+
+.. code-block:: css
+
+    mi-etiqueta {
+        --primary-color: green;
+        --secondary-color: black;    
+    }
+
+
+::slotted
+=========
+
+Pseudoelemento que sirve para poder agregar estilos específicos al contenido dinámico que provenga de fuera del componente y se vaya a inyectar en las etiquetas slot.
+
+No puede usarse de forma dinámica solo con el shadow DOM.
+
+.. code-block:: javascript
+
+    getStyles {
+        return `
+            <style>
+                ::slotted(span) {
+                    font-size: 1.5rem;
+                }
+                ::slotted(.text) {
+                    color:red;
+                }
+            </style>
+        `
+    }
+
+Esto dotará de estilos a las clases anidadas en nuestro web component
+
+.. code-block:: html
+
+    <mi-etiqueta>
+        <span>Texto grande</span>
+        <span class="text">Texto rojo</span>
+    </mi-etiqueta>
+
+
 ¿Dónde encontrar web components?
 ================================
 
-Es posible encontrar múltiples web components escritos por la comunidad o incluso por empresas como Google en el `Sitio web oficial de web components <https://www.webcomponents.org/>`_ 
+El `Sitio web oficial de web components <https://www.webcomponents.org/>`_ ofrece múltiples web components escritos por la comunidad o incluso por empresas como Google.
