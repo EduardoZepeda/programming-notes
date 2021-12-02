@@ -121,6 +121,7 @@ colocarse en minúsculas
 -  Undefined
 -  Never
 -  Object
+-  Awaited
 
 Number
 ~~~~~~
@@ -287,6 +288,13 @@ siguiente la variable aceptará valores tanto number como string.
 .. code:: javascript
 
    let idUser: number | string
+
+Promesas
+~~~~~~~~
+
+.. code-block:: javascript
+
+   type A = Awaited<Promise<string>>
 
 Alias de tipos
 ==============

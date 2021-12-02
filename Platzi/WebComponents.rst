@@ -95,13 +95,13 @@ Algunos métodos útiles para recordar
 Importación
 -----------
 
-Primero importemos el archivo que contendrá nuestros módulos de web components
+Primero importemos el archivo que contendrá nuestros módulos de web components. **Recuerda que la importación debe ocurrir debajo del web component.** También es importante que uses un servidor durante el desarrollo, de otra manera al acceder a elementos externos tendremos un error de cors. Por ejemplo: `http-server <https://www.npmjs.com/package/http-server>`_  
 
 .. code-block:: html
 
     <script type="module" src="./elements.js">
 
-Y dentro de este archivo crearemos una clase que herede de HTMLElement.
+Dentro de este archivo crearemos una clase que herede de HTMLElement.
 
 .. code-block:: javascript
 
@@ -225,6 +225,8 @@ Esto retornará un #shadow-root (open) dentro del código HTML, creará una capa
 
 Al usar un shadowDOM se crea un DOM independiente, por lo que cualquier cambio al DOM principal quedará anulado y evitaremos errores por conflictos en estilos y otros problemas similares.
 
+Y, cualquier referencia al anterior deberá hacerse por medio del objeto **shadowRoot** en lugar de **document**.
+
 .. code-block:: javascript
 
     this.appendChild(...) //Ya no hace nada
@@ -309,14 +311,14 @@ En el código HTML le pasamos esos atributos a la etiqueta personalizada.
 attributeChangedCallback
 ========================
 
-Para vigilar cuando cambien los atributos necesitamos crear un observador llamado *observedAttributes*, que retorne la lista de atributos a observar. 
+Para vigilar cuando cambien los atributos necesitamos crear un observador llamado *observedAttributes*, que retorne la lista de atributos a observar, el resto de atributos se ignorarán. **Recuerda observarlos en minúsculas, recuerda que los atributos que recibe el componente HTML se pasan a minúsculas.**
 
 .. code-block:: javascript
 
     class MiEtiqueta extends HTMLElement {
         // ...
         static get observedAttributes() {
-            return ['newTitle', 'content', 'img']
+            return ['newtitle', 'content', 'img']
         }
     }
 
@@ -331,9 +333,10 @@ Ahora ya podemos reemplazar el método *attributeChangedCallback*. Recibe tres p
     class MiEtiqueta extends HTMLElement {
         // ...
         static get observedAttributes() {
-            return ['newTitle', 'content', 'img']
+            return ['newtitle', 'content', 'img']
         }
         attributeChangedCallback(attribute, currentValue, newValue) {
+            this[attr] = newValue
             // ...
         }
     }
@@ -440,7 +443,7 @@ Para posteriormente verificar si le fue pasada  y personalizar el estilo de mane
 Contexto en :host
 -----------------
 
-Este contexto se refiere al padre del web component
+Este contexto se refiere al padre del web component.
 
 .. code-block:: html
 
@@ -455,7 +458,9 @@ Este contexto se refiere al padre del web component
         display: flex;
     }
 
-Es importante recordar que **no todos los navegadores dan soporte para :host-context**. A la última fecha de revisión de este apunte, ni Firefox ni Safari ofrecen compatibilidad para esta función.
+
+Es decir, los estilos se aplicarán a cualquier componente que se encuentre dentro de una etiqueta article con una clase card.
+Verifica si tu navegador es compatible primero ya que **no todos los navegadores dan soporte para :host-context**. A la última fecha de revisión de este apunte, ni Firefox ni Safari ofrecen compatibilidad para esta función.
 
 Custom properties
 -----------------
@@ -494,7 +499,7 @@ Para reescribir los estilos externamente basta con reescribir los estilos en CSS
 ::slotted
 =========
 
-Pseudoelemento que sirve para poder agregar estilos específicos al contenido dinámico que provenga de fuera del componente y se vaya a inyectar en las etiquetas slot.
+Pseudoelemento que sirve para poder agregar estilos específicos al contenido dinámico, es decir dentro de etiquetas slot, que provenga de fuera del componente y se vaya a inyectar en las etiquetas slot.
 
 No puede usarse de forma dinámica solo con el shadow DOM.
 

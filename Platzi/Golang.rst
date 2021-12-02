@@ -321,7 +321,7 @@ No imprime en la terminal, sino que genera un string con los operadores de posic
 
 .. code-block:: go
 
-    var message string = fmt.printf("Hello %s %d", texto, numero)
+    var message string = fmt.Sprintf("Hello %s %d", texto, numero)
 
 Operadores de posición
 ----------------------
@@ -336,6 +336,7 @@ Hay algunos operadores de posición destacables.
 * %e, notación científica
 * %9.2f, flotante con ancho de 9 y precisión de 2
 * %.2f, flotante con ancho predeterminado y precisión de 2
+* % q, un string escapado
 
 Puedes ver más en la `página oficial de go <https://pkg.go.dev/fmt>`_ 
 
@@ -424,7 +425,7 @@ Y podemos asignar esos valores en dos variables diferentes llamando a la funció
 returns sin nombre
 ------------------
 
-Una función puede implementar que retorne lo que pe pasamos como tipo por defecto. En este caso le indicamos que devolverá una variable x y una variable y de tipo int. Si go detecta que no hay nada después de la palabra return, devolverá x y y.
+Una función puede implementar que retorne lo que le pasamos como tipo por defecto. En este caso le indicamos que devolverá una variable x y una variable y de tipo int. Si go detecta que no hay nada después de la palabra return, devolverá x y y.
 
 .. code-block:: go
 
@@ -607,8 +608,8 @@ Ciclos
 
 En go solamente existen los ciclos for, hay varios tipos de ciclos for. 
 
-Con condicional
----------------
+Con contador
+------------
 
 Es el clásico ciclo en el que existe un contador y el código se ejecuta mientras se cumpla un contador
 
