@@ -510,7 +510,7 @@ Strings
 
 Un string es un slice de bytes de solo lectura, se declara usando comillas dobles.
 
-Cada índice del slice de un array se refiere a un byte, por lo que si, iteramos sobre un string, vamos a obtener muchos más bytes de caracteres o runas.
+Cada índice del slice de un array se refiere a un byte, por lo que si, iteramos sobre un string, vamos a obtener muchos más bytes que los caracteres que conforman nuestro string.
 
 .. code-block:: go
 
@@ -734,6 +734,11 @@ Se usa para interrumpir una iteración de un ciclo y continuar con la siguiente 
         // lo siguiente no se ejecutará si counter es igual a 2
     }
 
+make
+====
+
+La función make asigna e inicializa un objeto del tipo slice, map o chan y lo retorna.
+
 Array y slices 
 ==============
 
@@ -758,21 +763,42 @@ Podemos asignar valores haciendo referencia a la posición del array.
 slices
 ------
 
-Los slices son colecciones mutables de tipos de datos. No tenemos que especificar una longitud.
+Los slices son colecciones mutables de tipos de datos. 
+
+La creación puede hacerse de forma dinámica dentro del scope de una función. No tenemos que especificar una longitud.
 
 .. code-block:: go
 
-    list := []int{0,1,2,3,4,5}
+    list := []int{0,1,2,3,4}
 
-Los slices pueden partirse en un estilo similar al de Python, especificando una posición incluyente para el primer digito y excluyente para el segundo. 
-
-Si no especificamos uno de los dos, tomará la primera posición para el primer digito y la última para el segundo digito.
+Para declarar y posteriormente modificar un slice es necesario hacerlo con la función make, especificando la cantidad máxima del slice.
 
 .. code-block:: go
 
-    list[3:] 
-    list[:4]
-    list[2:3]
+    var slice = make([]int, 4)
+    slice[0] = 1
+    fmt.Println(slice)
+    // [1,0,0,0]
+
+Si intentamos asignar un elemento más allá del tamaño del slice obtendremos un error
+
+.. code-block:: go
+
+    slice[4] = 4
+    // panic: runtime error: index out of range [4] with length 4
+
+Particionado de slices
+^^^^^^^^^^^^^^^^^^^^^^
+
+Los slices pueden partirse en un estilo similar al de Python, especificando una posición incluyente para el primer dígito y excluyente para el segundo. 
+
+Si no especificamos uno de los dos, tomará la primera posición para el primer dígito y la última para el segundo dígito.
+
+.. code-block:: go
+
+    list[2:] // {2, 3, 4}
+    list[:2] // {0, 1}
+    list[2:3]// { 2 }
 
 Append
 ^^^^^^
@@ -781,8 +807,8 @@ Los slices son mutables, por lo que es posible agregar nuevos elementos. Esto se
 
 .. code-block:: go
 
-    list = append(list, 6)
-    list = append(list, 5, 6, 7)
+    list := append(list, 6)
+    list := append(list, 5, 6, 7)
 
 Podemos crear un nuevo slice a partir de la desestructuración de un slice. La desestructuración se lleva a cabo poniendo tres puntos (...) al final del slice.
 
@@ -799,24 +825,35 @@ Parecido a la sintaxis de Python, podemos recorrer un array donde asignamos cada
 .. code-block:: go
 
     slice := []string = ["aldo", "javier", "marti"]
-        for i:= range slice {
+        for index, nombre := range slice {
     }
-
-make
-====
-
-La función make asigna e inicializa un objeto del tipo slice, map o chan.
 
 Maps 
 ====
 
-Los maps son el equivalente de los diccionarios, son una estructura de datos tipo llave, valor. Se crean usando la función make y definiendo el tipo de llave y el tipo de valor que tendrá el map.
+Los maps o hash tables son el equivalente de los diccionarios. Poseen un valor, encerrado e corchetes, que sirve como llave o key, seguido de otro valor que es el valor o value. 
+
+También podemos crear un map con llaves y valores predeterminados directamente colocándolo después del tipo del value en el diccionario. Este diccionario es extendible y modificable.
+
+.. code-block:: go
+
+    cuenta := map[string]int{
+            "Paloma": 100,
+            "Renee": 200,
+            "Kakuro": 300,
+            "Manuela": 400,
+    }
+    cuenta["Paloma"] = 500
+    cuenta["Colombe"] = 900
+
+Para crear un map vacio e irlo modificando posteriormente necesitamos usar make y especificar el tipo de map.
 
 .. code-block:: go
 
     diccionario := make(map[string]int)
     diccionario["hidrogeno"] = 1
     diccionario["Helio"] = 2
+
     
 Si intentamos acceder a una llave que no existe, go nos devolverá su respectivo zero value
 
@@ -826,7 +863,7 @@ Si intentamos acceder a una llave que no existe, go nos devolverá su respectivo
     fmt.Println(m["no_existe"])
     // 0
 
-Para distinguir entre un zero value, go nos provee de un segundo valor de retorno, que nos indica si existe una llave
+Para distinguir entre un zero value, go nos provee de un segundo valor de retorno, que nos indica si existe una llave. Este segundo valor es de tipo booleano.
 
 .. code-block:: go
 
@@ -840,6 +877,8 @@ Para establecer uan capacidad máxima en un map, le pasamos la máxima capacidad
 .. code-block:: go
     
     m := make(map[string]int,99)
+
+Esta capacidad es solo indicativa para que el compilador asigne un mínimo de memoria, si agregamos más llaves del valor máximo se seguirán añadiendo, aunque no tan eficientemente.
 
 delete
 ------
