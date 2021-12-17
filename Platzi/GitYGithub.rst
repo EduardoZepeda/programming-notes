@@ -44,10 +44,10 @@ Estos comandos nos muestran las ramas locales y las remotas
 
 .. code:: bash
 
-   git branch -r = se muestran todas las ramas remotas
-   git branch -a = se muestran todas las ramas tanto locales como remotas
+   git branch -r # se muestran todas las ramas remotas
+   git branch -a # se muestran todas las ramas tanto locales como remotas
 
-Para mandar una rama al repositorio remoto
+Para mandar una rama al repositorio remoto hacemos un push con el nombre de la rama.
 
 .. code:: bash
 
@@ -56,8 +56,7 @@ Para mandar una rama al repositorio remoto
 merge
 =====
 
-El comando git merge crea un nuevo commit con la combinación de dos
-ramas. Unirá la rama donde nos encontramos con la que especifiquemos
+El comando git merge crea un nuevo commit con la combinación de dos ramas. Unirá la rama donde nos encontramos con la que especifiquemos
 después de merge. Al hacer merge se *creará un nuevo commit*
 
 .. code:: bash
@@ -147,9 +146,9 @@ alguien se usa el comando git blame, seguido del nombre del archivo
 
 .. code:: bash
 
-   git blame ARCHIVO 
+   git blame RUTA_AL_ARCHIVO 
 
-   git blame ARCHIVO -Llinea_inicial,linea_final
+   git blame RUTA_AL_ARCHIVO -Llinea_inicial,linea_final
 
 help
 ====
@@ -250,6 +249,24 @@ Podemos ver estadisticas de los cambios hechos con
 
    git log --stat
 
+Podemos ver los cambios de manera gráfica con el flag --graph
+
+.. code-block:: bash
+
+   git log --all --graph --decorate --oneline
+
+Debido a que el comando es muy largo es recomendable crear un alias.
+
+alias
+=====
+
+Para crear un alias de un comando lo hacemos a través de *git config*. pasándole el nombre del comando después de la sentencia "alias."
+
+.. code-block:: bash
+
+   git config --global alias.stats "shortlog -sn -all --no-merges"
+   git stats
+
 reflog
 ======
 
@@ -288,10 +305,10 @@ directorio.
 Este comando no se propagará con git tiene que ejecutarse por cada
 usuario de manera individual.
 
-Git Ignore
-==========
+gitignore
+=========
 
-Git ignore permite que git deje fuera del seguimiento a los archivos que
+Gitignore permite que git deje fuera del seguimiento a los archivos que
 le especifiquemos, funciona con expresiones regulares y basta con tener
 un archivo llamado *.gitignore* en la misma carpeta del proyecto.
 
@@ -312,33 +329,110 @@ y tecnologías. Para evitar esto podemos hacer uso de la página
 *https://gitignore.io* donde vienen varias plantillas de archivos
 *.gitignore* para diferentes desarrollos.
 
+Versión gui de git
+==================
+
+Existen diferentes versiones de gui para git, entre las que se encuentran gitk, gitkraken entre otras.
+
 Github
 ======
+
+Tags y versiones
+----------------
+
+Los tags son útiles en github como referencia interna en github, generalmente fuera de github no son tan usados.
+
+Para crear un tag necesitamos declarar el nombre y el mensaje
+
+.. code-block:: bash
+
+   git tag -a v0.1 -m "Mensaje del tag" hash_del_commit
+
+Mostramos la lista de todos los tags con
+
+.. code-block:: bash
+
+   git tag
+
+Para consultar que commit está conectado un tag usamos 
+
+.. code-block:: bash
+
+   git show-ref --tags
+
+El push de los tags creados se crea con el comando:
+
+.. code-block:: bash
+
+   git push origin --tags
+
+Si queremos borrar un tag. El tag se borrará del repositorio local, pero se mantendrá en github.
+
+.. code-block:: bash
+
+   git tag -d nombre_del_tag
+
+Para borrar la referencia al tag en github usamos el siguiente comando.
+
+.. code-block:: bash
+
+   git push origin :refs/tags/nombre_del_tag
+
+branches en github
+------------------
+
+Para mostrar todas las ramas 
+
+.. code-block:: bash
+
+   git show-branch -all
+
+Flujo de trabajo en github
+==========================
+
+Para modificar un repositorio **no se deben realizar commits directos a master**. El flujo correcto es crear un branch** que contenga los cambios. 
+
+Para colaboradores
+------------------
+
+Si la persona que hizo los cambios es un colaborador podremos obtener los cambios de su rama y realizar un merge.
+
+.. code-block:: bash
+
+   git checkout master
+   git merge nombre_de_rama
+   git push origin master
+
+
+Para no colaboradores 
+---------------------
+
+Si la persona que realiza cambios no es un colaborador se necesitará realizar un *pull request* directo desde la plataforma de github en el botón que dice *Compare & pull request* que aparecerá tras haber subido los cambios o en el botón *new pull request*.
+
+Review changes 
+--------------
+
+En el botón review changes podemos comentar, aceptar o pedir una modificación a los cambios. 
 
 Pull Request
 ------------
 
 Es el estado intermedio antes de enviar el merge, sirve para que los
-demás colaboradores del proyecto observen y aprueben los cambios antes
-de la función, son la base de colaboracion de proyectos, es exclusivo de
-repositorios de código.
-
-Los pull requests se hacen directo de la plataforma de github.
+demás colaboradores del proyecto observen y aprueben los cambios antes de la función, son la base de colaboracion de proyectos, es exclusivo de repositorios de código y pueden nombrarse de diferente manera entre los otros repositorios de código como gitlab, bitbucket, etc.
 
 Traer datos del fork original
 -----------------------------
 
-Podemos especificar una fuente desde donde traer datos a master.
+Podemos especificar una fuente desde donde traer datos a master. Upstream es la convención pero puede nombrarse de forma libre.
 
 .. code:: bash
 
    git remote add upstream https://github.com/usuario/proyecto
 
-Después actualizamos nuestra rama master con
+Para actualizar el proyecto de upstream usamos pull pasándole el nombre que definimos en el paso anterior.
 
 .. code:: bash
 
    git pull upstream master
 
-Una vez hecho esto podemos hacer un commit y push a origin master para
-actualizar el repositorio.
+Una vez hecho esto podemos hacer un commit y push a origin master para actualizar el repositorio.
