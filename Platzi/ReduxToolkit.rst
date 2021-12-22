@@ -128,7 +128,7 @@ Cuando necesitemos usar una action simplemente importamos el hook de react-redux
 Acceder al store
 ================
 
-Para acceder a los valores del store usamos el hook useSelector, que recibe una función que recibe el estado como parámetro y nos devuelve el valor al que queremos acceder. Ya podemos usar ese valor para lo que querramos.
+Para acceder a los valores del store usamos el hook useSelector, que recibe una función con el estado como parámetro y nos devuelve el valor al que queremos acceder. 
 
 .. code-block:: javascript
 
@@ -200,14 +200,14 @@ Genera types para el ciclo de vida basado en el prefijo del action type que le p
     // Estamos manejando el estado de un reducer creado fuera de createSlice
     extraReducers: {
         [getWaifu.pending]: (state) => {
-        state.loading = true
+            state.loading = true
         },
         [getWaifu.fulfilled]: (state, { payload }) => {
-        state.loading = false
-        state.entities = payload
+            state.loading = false
+            state.entities = payload
         },
         [getWaifu.rejected]: (state) => {
-        state.loading = false
+            state.loading = false
         },
     },
     })
