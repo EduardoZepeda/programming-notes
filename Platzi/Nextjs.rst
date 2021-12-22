@@ -563,6 +563,9 @@ subcarpetas también
    <img src="/tu-imagen-en-public.jpg" alt=""/>
    <img src="/subcarpeta/tu-imagen.jpg" alt=""/>
 
+Imágenes con el componente Image
+--------------------------------
+
 A partir de NextJS se incorpora un componente de imagen que se encarga
 de optimizar la carga de las imágenes de manera perezosa, además de
 crear diferentes tamaños para reducir la carga de transferencia.
@@ -861,6 +864,9 @@ Tras correr el comando nos generará una carpeta llamada out. Esta
 carpeta contiene páginas estáticas en html completamente planas. Estás
 páginas podemos usarlas con cualquier servidor que sirva html plano.
 
+Middleware
+==========
+
 
 Diferencia entre next build y next export
 =========================================
@@ -880,4 +886,17 @@ mostrarlas o procesarlas de la manera en la que nosotros querramos.
    export function reportWebVitals(metric){
        console.log(metric)
        process(metric)
+   }
+
+Optimización de imagenes AVIF
+=============================
+
+A partir de la versión Nextjs 12, cuenta con soporte de optimización para imágenes formato AVIF. Se activa modificando la propiedad *images.format* en el archivo *next.config.js*
+
+.. code-block:: javascript
+
+   module.exports = {
+      images: {
+         formats: ['image/avif', 'image/webp']
+      }
    }
