@@ -679,6 +679,142 @@ Atributos estáticos
 A través de la palabra reservada **static** se puede definir un miembro
 visible únicamente a nivel de clase
 
+Generics
+========
+
+Los generics son marcadores de posición para tipos. La forma más simple de un generic es esta:
+
+.. code-block:: javascript
+
+   function identity<Type>(a: Type): Type {
+      return a;
+   }
+
+La cual simplemente acepta un argumento de un tipo y retorna un valor del mismo tipo.
+
+.. code-block:: javascript
+
+   const variableString = identity<string>("I'm a string")
+   const variableBoolean = identity<boolean>("string") //  Error porque "string" no es un booleano
+
+Lo que nos permite crear genéricos que acepten cualquier tipo de valores.
+
+.. code-block:: javascript
+
+   type GenericProps<GenericValue> = {
+      list: GenericValue[];
+      onChange: (element: GenericValue) => void;
+   };
+
+Pero ahora tendremos que si en el código accedemos a una propiedad de nuestro genericValue, typescript nos dará un error porque no estamos especificando que nuestro *GenericValue* cuente con esa propiedad
+
+.. code-block:: javascript
+
+   <Componente>{props.algo.id}</Componente>
+
+Podemos crear una base que extienda de nuestro valor genérico y usarla.
+
+.. code-block:: javascript
+
+   type Base = {
+      id: string;
+      title?: string;
+   }
+
+   export const GenericComponent = <GenericValue extends Base>(props: GenericProps<GenericValue>) => {}
+
+keyof
+=====
+
+La palabra keyof devuelve la unión de los diferentes tipos que tiene un type.
+
+.. code-block:: javascript
+
+   type Videojuego = {
+      id: string;
+      titulo: string;
+      descripcion: string;
+   }
+
+   type VideojuegoKeys = keyof Videojuego;
+
+*VideojuegoKeys* será igual a la unión *"id" | "titulo" | "descripcion"*
+
+Type Guard
+==========
+
+Es una condicional en la que nos aseguramos de que el tipo de un valor sea uno en especifico, para poder devolver el tipo correcto.
+
+.. code-block:: javascript
+
+   const getStringFromValueOrId = <GenericValue extends Base>(value: TVaGenericValuelue) => {
+   if (typeof value === 'string') {
+      return value;
+   }
+   return value.id;
+   };
+
+const assertion
+===============
+
+Un const assertion se refiere a tratar un elemento como si fuera una constante. Es decir, no podrán modificarse, ni ampliarse y serán de solo lectura, para declararlo pasamos las palabras *as const*.
+
+.. code-block:: javascript
+
+   let arrayConstante = ["Videojuego", "Film"] as const;
+
+Además, cualquier comprobación de un elemento que no se encuentre en la declaración de este tipo hará que typescript nos devuelva un error.
+
+.. code-block:: javascript
+
+   // El bloque de abajo devolverá un error
+   arrayConstante.forEach(element => {
+      if (element === 'Libro') console.log(element)
+   })
+
+Exceptuando archivos *.tsx* la notación con brackets está permitida
+
+.. code-block:: javascript
+
+   let arrayConstante = <const>["Videojuego", "Film"];
+
+typeof
+======
+
+El operador *typeof* funciona igual que el de javascript, pero con types, en lugar de con valores.
+
+.. code-block:: javascript
+
+   const opciones = ['Videojuegos', 'Peliculas', 'Libros'];
+   type Opciones = typeof opciones; // Opciones será un array de strings: string[];
+
+   const opciones = ['Videojuegos', 'Peliculas', 'Libros'] as const;
+   type Opciones = typeof opciones; // Opciones será ['Videojuegos' | 'Peliculas' | 'Libros'];
+
+Indexed access type
+===================
+
+Lo usamos cuando queremos declarar un type usando el subtype de un type en particular.
+
+.. code-block:: javascript
+
+   type Videojuego = { lanzamiento: number; titulo: string; disponible: boolean };
+   type Lanzamiento = Videojuego["lanzamiento"];
+
+En el ejemplo de abajo Lanzamiento será de tipo *number*
+
+Si tenemos un array y le pasamos la palabra *number* nos devolverá el tipo correespondiente al elemento del array.
+
+.. code-block:: javascript
+
+   const MyArray = [
+      { title: "Nier", lanzamiento: 2018 },
+      { title: "Twister Metal", lanzamiento: 1991 },
+      { title: "Subahibi", lanzamiento: 2007 },
+   ];
+
+   type OtroVideojuego = typeof MyArray[number];
+
 Buenas prácticas
 ================
 
@@ -744,7 +880,7 @@ Webpack
 Para usar webpack debemos inicializar un archivo de configuración de
 node
 
-.. code:: javascript
+.. code:: bash
 
    npm init
 
@@ -752,7 +888,7 @@ Así mismo debemos instalar webpack, webpackcli, ts-loader y typescript.
 La opción --save-dev permitirá agregar las dependencias al archivo
 *package.json*
 
-.. code:: javascript
+.. code:: bash
 
    npm install webpack webpack-cli typescript ts-loader --save-dev
 
@@ -792,3 +928,4 @@ Podemos agregar un script en el archivo *package.json*
    "scripts": {
      "build": "webpack"
    }
+
