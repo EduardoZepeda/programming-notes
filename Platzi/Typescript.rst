@@ -726,7 +726,7 @@ Podemos crear una base que extienda de nuestro valor genérico y usarla.
 keyof
 =====
 
-La palabra keyof devuelve la unión de los diferentes tipos que tiene un type.
+La palabra keyof toma un objeto y devuelve un *union* de sus keys
 
 .. code-block:: javascript
 
@@ -747,7 +747,7 @@ Es una condicional en la que nos aseguramos de que el tipo de un valor sea uno e
 
 .. code-block:: javascript
 
-   const getStringFromValueOrId = <GenericValue extends Base>(value: TVaGenericValuelue) => {
+   const getStringFromValueOrId = <GenericValue extends Base>(value: GenericValue) => {
    if (typeof value === 'string') {
       return value;
    }
@@ -798,7 +798,11 @@ Lo usamos cuando queremos declarar un type usando el subtype de un type en parti
 
 .. code-block:: javascript
 
-   type Videojuego = { lanzamiento: number; titulo: string; disponible: boolean };
+   type Videojuego = { 
+      lanzamiento: number; 
+      titulo: string; 
+      disponible: boolean 
+   };
    type Lanzamiento = Videojuego["lanzamiento"];
 
 En el ejemplo de abajo Lanzamiento será de tipo *number*
