@@ -927,19 +927,19 @@ Para crear un struct existen dos maneras
 
 .. code-block:: go
 
-    myVideogame := videogame{genre: "Horror", year: 2021}
+    myVideogame := Videogame{Genre: "Horror", Year: 2021}
 
 También es posible primero declarando el tipo de dato y después accediendo a los campos. Si no especificamos un valor go le asignará el respectivo zero value al tipo de variable.
 
 .. code-block:: go
 
-    var myVideogame videogame
-    myVideogame.genre = "Horror"
+    var myVideogame Videogame
+    myVideogame.Genre = "Horror"
 
-campos anónimos
----------------
+campos anónimos en structs
+--------------------------
 
-Es posible no especificar el tipo de campo de nuestro struct y dejarlo abierto. No funciona para structs múltiples campos del mismo tipo. Los campos adoptan el nombre del tipo de dato y podemos acceder a ellos usándolos.
+En go, es posible no especificar el nombre del campo de nuestro struct y colocar únicamente el tipo de dato.  Hecho así, los campos adoptarán el nombre del tipo de dato y podemos acceder a ellos usándolos.
 
 .. code-block:: go
 
@@ -956,7 +956,7 @@ Es posible no especificar el tipo de campo de nuestro struct y dejarlo abierto. 
 Privacidad en structs, funciones y variables
 ============================================
 
-Para marcar un struct, función o variable como privada o pública, igual que sus respectivos campos para el struct. Basta con especificar los campos con mayúsculas o minúsculas, para público y privado, respectivamente. **Al intentar acceder a una entidad privada desde otro módulo el compilador la procesará como si no existiera, devolviéndo un error**.
+Para marcar un struct, función o variable como privada o pública, igual que sus respectivos campos para el struct, basta con declarar la primera letra del campo con mayúsculas o minúsculas, para público y privado, respectivamente. 
 
 * mayúsculas, público
 * minúsculas, privado
@@ -1103,14 +1103,14 @@ Para modificar la variable usamos el caracter de desestructuración.
 Composición en Go
 =================
 
-Para acceder a instancias de structs en las funciones necesitamos pasarle un parentesis antes del nombre de la función, que contiene el nombre que usaremos para acceder al struct seguido del nombre del struct.
+Para acceder a instancias de structs en las funciones necesitamos colocar un parentesis entre la keyword func y el nombre de la función. Este paréntesis contiene el nombre que usaremos para acceder al struct seguido del caracter asterisco y el nombre del struct.
 
 .. tip:: Recuerda que debes cuidar la privacidad de la función, si la declaras con minúsculas no podrás acceder a ella desde un archivo externo.
 
 .. code-block:: go
 
-    func (myStructVariable *Videogame) Ping(){
-        fmt.Println(myStructVariable.Title)
+    func (myStructVariable *Videogame) PrintYear(){
+        fmt.Println(myStructVariable.Year)
     }
 
 
@@ -1119,7 +1119,7 @@ Podemos acceder a sus valores mediante punteros lo pasamos dentro del parentesis
 .. code-block:: go
 
     func (myStructVariable *Videogame) IncreaseYear(){
-        myStructVariable.year = myStructVariable.year + 1
+        myStructVariable.Year = myStructVariable.Year + 1
     }
 
 Para posteriormente llamar al método a través de una instancia del struct.
@@ -1135,12 +1135,10 @@ Go no tiene un mecanismo de constructores implementados. Pero puede crearse una 
 
 .. code-block:: go
 
-    func NewWorker(id int, workerPool chan chan Job) *Worker {
-        return &Worker{
-            Id:         id,
-            WorkerPool: workerPool, // workerPool al que pertenece
-            JobQueue:   make(chan Job),  // Crea una cola de jobs
-            Quit:       make(chan bool), // Channel para finalizar los jobs
+    func NewVideogame(year int, genre string) *Videogame {
+        return &Videogame{
+            Genre: genre,
+            Year: year,     
         }
     }
 
@@ -1161,10 +1159,10 @@ Para que un struct en go posea todos los campos que declara otro struct, le pasa
     }
 
 
-Interfaces y polimorfismo
-=========================
+Polimorfismo usando interfaces
+==============================
 
-Las interfaces son un método para especificar el comportamiento de un objeto. Una interface se encargará de llamar al método que le especificamos correspondiente a su tipo de struct. Un type puede implementar múltiples interfaces.
+Las interfaces son un método para especificar el comportamiento de diferentes objetos. Una interface se encargará de llamar al método que le especificamos correspondiente a su tipo de struct. Un type puede implementar múltiples interfaces.
 
 .. code-block:: go
 
@@ -1172,8 +1170,7 @@ Las interfaces son un método para especificar el comportamiento de un objeto. U
         area() float64
     }
 
-Teniendo múltiples structs, llamará al método area respectivo de cada uno.
-
+Teniendo dos structs, y un método area diferente para cada uno: uno para el cuadrado y otro para el rectángulo.
 
 .. code-block:: go
 
@@ -1192,10 +1189,10 @@ Teniendo múltiples structs, llamará al método area respectivo de cada uno.
     }
 
     func (r rectangulo) area() float64 {
-        return r.base * r.base 
+        return r.base * r.altura 
     }
 
-La función que crearemos recibirá cualquiera de nuestros structs, ejecutará su respectivo método area.
+La función que crearemos recibirá cualquiera de nuestros structs que cuente con un método llamado area y, posteriormente, lo ejecutará.
 
 .. code-block:: go
 
@@ -1208,15 +1205,22 @@ Para llamar al método respectivo solo llamamos la función pasándole una insta
 .. code-block:: go
 
     miCuadrado := cuadrado{base: 2}
-    calcular(cuadrado)
+    calcular(miCuadrado)
     miRectangulo := rectangulo{base:2, altura: 4}
     calcular(miRectangulo)
+    // Area 4
+    // Area 8
     
 String en structs
 =================
 
-La función para personalizar el output en consola en los structs debe llamarse String()    
+La función para personalizar el output en consola en los structs debe llamarse String(). Nota la ausencia del operador de desestructuración.
 
+.. code-block:: go
+
+    func (myStructVariable Videogame) String() string { 
+        return fmt.Sprintf("Titulo: %s, Año: %d", myStructVariable.Title, myStructVariable.Year) 
+    }
 
 slice de interfaces
 -------------------
