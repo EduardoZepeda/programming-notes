@@ -14,5 +14,5 @@ ol.toc li { list-style-type: none; margin: 0; padding: 0; }
 a.footnoteRef { vertical-align: super; }
 em, em em em, em em em em em { font-style: italic;}
 em em, em em em em { font-style: normal; }
-.sourceCode{ font-size: 0.85em; white-space:pre-wrap; word-wrap:break-word; overflow:auto}
+.sourceCode{ font-size: 0.85em; white-space:pre-wrap; word-wrap:break-word; overflow:hidden}
 
