@@ -79,8 +79,9 @@ Trabajo y entrevistas
 Preguntas para filtrar empresas que no valen la pena
 ----------------------------------------------------
 
+* Am I replacing someone's position? If that's the case, tell me what happened to that person?
 * If I were to ask your employees how they feel about their job, what do you think they would say?
-* How did your company/organization respond to COVID-19?
+* How did your company/organization respond to COVID-19 pandemic?
 
 Recursos para mejorar entrevistas
 ---------------------------------

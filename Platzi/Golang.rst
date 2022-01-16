@@ -956,10 +956,12 @@ En go, es posible no especificar el nombre del campo de nuestro struct y colocar
 Privacidad en structs, funciones y variables
 ============================================
 
-Para marcar un struct, función o variable como privada o pública, igual que sus respectivos campos para el struct, basta con declarar la primera letra del campo con mayúsculas o minúsculas, para público y privado, respectivamente. 
+Para marcar un struct, función o variable como privada o pública, igual que sus respectivos campos para el struct, basta con declarar la primera letra del campo con mayúsculas o minúsculas, para público y privado, respectivamente.
 
-* mayúsculas, público
-* minúsculas, privado
+Acceder a una entidad privada desde otro módulo, ajeno a donde se declara, será imposible. Mientras que las entidades públicas son accesibles desde cualquier modulo, incluso si el struct no se declaró ahí
+
+* mayúsculas, público, accesible dentro y fuera del paquete donde se declara.
+* minúsculas, privado, solo accesible dentro del paquete donde se declara.
 
 
 Si queremos declarar un struct como público es buena práctica agregar un comentario en su parte superior.
@@ -1294,7 +1296,7 @@ Los parentesis del final ejecutan la función anónima que declaramos y reciben 
 Channels
 ========
 
-Son un conducto que permite manejar un único tipo de dato. Los channels permiten a las goroutines comunicarse entre ellas. Podemos pasarle como un argumento extra la cantidad límite de datos simultaneos que manejará ese canal.
+Los channels o canales son conductos, que aceptan un único tipo de dato, a através de los cuales introducimos información, que posteriormente podremos sacar en otras goroutines.
 
 .. code-block:: go
 
@@ -1330,8 +1332,10 @@ Para obtener la respuesta del canal invertimos el orden de <-
 
     fmt.Println(<-c)
 
-También podemos definir un canal como entrada o salida únicamente.
+Canales de entrada y de salida
+------------------------------
 
+Hay canales que reciben información y canales que sacan información, de manera predeterminada un canal es bidireccional, pero podemos declarar canales de entrada y de salida.
 Para identificarlos, observa el flujo de la flecha alrededor de la palabra chan; una entra a chan y la otra sale de chan. 
 
 Este de entrada.
@@ -1398,6 +1402,19 @@ Podemos usar inmediatamente el dato del canal usando una goroutine. Observa el u
 
 Otra manera de evitar el error es usar canales con buffer (buffered channels).
 
+.. code-block:: go
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        var channel = make(chan int, 1)
+        channel <- 42
+        fmt.Println(<-channel)
+        fmt.Println("Finished")
+    }
+
 Canales con buffer
 ------------------
 
@@ -1453,6 +1470,13 @@ Las operaciones que mandan o reciben valores de canales son bloqueantes dentro d
         "fmt"
     )
 
+    func multiplyByTwo(num int, out chan<- int) {
+        result := num * 2
+
+        // redirige el resultado al canal out
+        out <- result
+    }
+
     func main() {
         n := 2
 
@@ -1464,12 +1488,6 @@ Las operaciones que mandan o reciben valores de canales son bloqueantes dentro d
         // Una vez que se reciba el resultado del canal out, se puede proceder
         fmt.Println(<-out)
     }
-
-    func multiplyByTwo(num int, out chan<- int) {
-        result := num * 2
-
-        // redirige el resultado al canal out
-        out <- result
 
 La función que imprime el canal bloqueará la ejecución del código hasta que reciba la información del canal out.
 
@@ -1490,7 +1508,7 @@ Entre algunos programadores se suelen usar structs vacios para el bloqueo de un 
 Range, close y select en channels
 =================================
 
-La función len nos dice cuantas goroutines hay en un channel y cap nos devuelve la capacidad máxima, respectivamente.
+La función len nos dice cuantos datos hay en un channel y cap nos devuelve la capacidad máxima, respectivamente.
 
 .. code-block:: go
 
@@ -1506,7 +1524,7 @@ close cierra el canal, incluso aunque tenga capacidad
 
 .. code-block:: go
 
-    c :=make(chan string, 2)
+    c :=make(chan string, 3)
     c <- "dato1"
     c <- "dato2"
     close(c)

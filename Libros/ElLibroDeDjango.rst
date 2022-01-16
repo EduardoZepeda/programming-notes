@@ -2812,3 +2812,27 @@ instancia de Vista Protegida, tendrá protección de login.
        @method_decorator(login_required)
        def dispatch(self, *args, **kwargs):
            return super(Vista Protegida, self).dispatch(*args, **kwargs)
+
+
+Comandos útiles
+===============
+
+A veces cuando iniciamos un desarrollo desde cero, hay muchos cambios en la base de datos y no es problema empezar desde cero la base de decorators. 
+
+Si queremos borrar toda la información de la base de datos pero dejar las tablas intactas usamos.
+
+.. code-block:: bash
+
+   manage.py flush
+
+Para una aproximación más manual podemos obtener las sentencias SQL que se ejecutarían del comando anterior con:
+
+.. code-block:: bash
+
+   manage.py sqlflush
+
+En cambio, si queremos desaparecer todas las tablas y empezar desde cero, y estamos usando postgres ejecutamos.
+
+.. code-block:: bash
+
+   manage.py reset_schema
