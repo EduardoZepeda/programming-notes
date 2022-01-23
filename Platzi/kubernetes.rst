@@ -2,6 +2,18 @@
 Kubernetes
 ==========
 
+
+¿Qué es kubernetes?
+===================
+
+Es una herramienta open source de orquestación de containers desarrollada por google.
+
+¿Qué problema resuelve?
+=======================
+
+Cuando las aplicaciones crecen demasiado es muy complicado la administración de decenas o cientos de conetendores.
+
+
 Contenedores
 ============
 
@@ -17,7 +29,7 @@ Los contenedores no son un first class citizen del kernel de Linux. Es un concep
 ¿Qué hace kubernetes?
 =====================
 
-* K8s permite correr varias réplicas y asegurarse * que todas se encuentren funcionando.
+* K8s permite correr varias réplicas y asegurarse de que todas se encuentren funcionando.
 * Provee un balanceador de carga interno o externo automáticamente para nuestros servicios.
 * Definir diferentes mecanismos para hacer roll-outs de código.
 * Políticas de scaling automáticas.
@@ -30,10 +42,9 @@ Todos los contenedores que viven dentro de un mismo Pod comparten el mismo segme
 Pod
 ===
 
-Es un **grupo de contenedores que comparten un mismo namespace de red**, es decir, comparten la misma dirección IP. 
+Un pod es el más pequeño y más básico objeto que puede ser desplegado en kubernetes. Representa una instancia de un proceso que corre en el cluster. Un pod puede contener uno o más contenedores. Cuando un pod ejecuta múltiples contenedores, los contenedores se manejan como una entidad única y **comparten el mismo namespace de red (dirección IP)** y recursos del pod.
 
-Cuando se escala un pod en kubernetes se crean nuevas copias del pod y que son irrecuperables una vez se han eliminado.
-
+Cuando se escala un pod en kubernetes se crean nuevas copias del pod, estas copias son irrecuperables una vez se han eliminado.
 
 Arquitectura de kubernetes
 ==========================
@@ -71,7 +82,7 @@ Todos los nodos y masters están conectados a una red física para poder comunic
 Declarativo vs imperativo
 =========================
 
-Kubernetes hace enfasis en ser un ssitema declarativo.
+Kubernetes hace enfasis en ser un sistema declarativo.
 
 Diferencias entre sistemas imperativos y declarativos
 -----------------------------------------------------
@@ -79,3 +90,29 @@ Diferencias entre sistemas imperativos y declarativos
 Un sistema es imperativo cuando ejecuta una serie de pasos a seguir. Si algún paso se interrumpe, la secuencia inicia desde el primer paso.
     
 Un sistema es declarativo cuando trata de converger a un estado meta, a partir de un estado actual.
+
+
+¿Como desplegar un cluster de kubernetes?
+=========================================
+
+Minikube
+--------
+
+Minikube usa opciones de hypervisor como virtualbox, hyperkit o KVM2 para despleguar un cluster mínimo. 
+
+Para instalarlo puedes hacerlo desde la url oficial de `minikube <https://minikube.sigs.k8s.io/docs/start/>`_ 
+
+Minikube utiliza kubeadm internamente.
+
+Kubeadm
+-------
+
+EKS
+---
+
+EKS es el servicio de kubernetes de AWS. Con un cloud cluster nos brincamos la parte de la configuración desde cero y la actualización de los clusters de manera manual.
+
+Es necesario crear roles para utilizar un cluster en AWS. Por lo que es buena idea revisar la documentación vigente que ofrece Amazon.
+
+
+
