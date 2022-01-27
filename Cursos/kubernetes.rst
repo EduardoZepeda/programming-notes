@@ -68,7 +68,7 @@ Estableciendo la versión de la API, el tipo de recurso, la metada para identifi
 Arquitectura de kubernetes
 ==========================
 
-.. image:: img/Kubernetes/arquitectura-kubernetes.png
+.. image:: img/Kubernetes/arquitectura-kubernetes.jpg
 
 
 Nodo Master
