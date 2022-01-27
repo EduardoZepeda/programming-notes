@@ -43,7 +43,7 @@ Los contenedores no son un first class citizen del kernel de Linux. Es un concep
 Pod
 ===
 
-Un pod es el más pequeño y más básico objeto que puede ser desplegado en kubernetes. Representa una instancia de un proceso que corre en el cluster. Un pod puede contener uno o más contenedores. Cuando un pod ejecuta múltiples contenedores, los contenedores se manejan como una entidad única y **comparten el mismo namespace de red (dirección IP) y el almacenamiento.**
+Un pod es el más pequeño y más básico objeto que puede ser desplegado en kubernetes. Representa una instancia de un proceso que corre en el cluster. Un pod puede contener uno o más contenedores y **vive en un nodo**. Cuando un pod ejecuta múltiples contenedores, los contenedores se manejan como una entidad única y **comparten el mismo namespace de red (dirección IP) y el almacenamiento.**
 
 Cuando se escala un pod en kubernetes se crean nuevas copias del pod, estas copias son irrecuperables una vez se han eliminado. Si queremos desarrollar aplicaciones con data persistente necesitamos volúmenes.
 
@@ -128,7 +128,7 @@ Kubeadm
 
 .. code-block:: bash
 
-    kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
+    kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr <ip>
 
 Al finalizar la inicialización del admin tendremos una dirección para unir nodos a nuestro cluster.
 
@@ -136,7 +136,7 @@ Y ahora en cada nodo que querramos unir corremos el comando que aparece al final
 
 .. code-block:: bash
 
-    kubeadm join 192.168.0.13:6443 --token 5voz75.m4j2flv4n1n4nk4g --discovery-token-ca-cert-hash sha256:1637235428de2ac9fc624d8175ededde5f572b41cdb28d4f3ced56b9bf9cf4e0
+    kubeadm join <ip:port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
 
 Y ahora vemos los nodos
 
@@ -182,9 +182,9 @@ En este caso el puerto 30070.
 .. code-block:: bash
 
     kubectl get nodes -o wide
-NAME    STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION      CONTAINER-RUNTIME
-node1   Ready    control-plane,master   15m     v1.20.1   192.168.0.13   <none>        CentOS Linux 7 (Core)   4.4.0-101-generic   docker://20.10.1
-node2   Ready    <none>                 7m45s   v1.20.1   192.168.0.12   <none>        CentOS Linux 7 (Core)   4.4.0-101-generic   docker://20.10.1
+    NAME    STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION      CONTAINER-RUNTIME
+    node1   Ready    control-plane,master   15m     v1.20.1   192.168.0.13   <none>        CentOS Linux 7 (Core)   4.4.0-101-generic   docker://20.10.1
+    node2   Ready    <none>                 7m45s   v1.20.1   192.168.0.12   <none>        CentOS Linux 7 (Core)   4.4.0-101-generic   docker://20.10.1
 
 
 EKS
@@ -194,6 +194,13 @@ EKS es el servicio de kubernetes de AWS. Con un cloud cluster nos brincamos la p
 
 Es necesario crear roles para utilizar un cluster en AWS. Por lo que es buena idea revisar la documentación vigente que ofrece Amazon.
 
+
+Localmente con kind
+-------------------
+
+Kind nos permite desplegar un cluster de manera local. Para ver las instrucciones accede a esta `guia para usar kind <https://jamesdefabia.github.io/docs/getting-started-guides/docker/>`_ 
+
+Una vez instalado kind es muy sencillo crear un cluster
 
 Kubectl
 =======
@@ -334,7 +341,7 @@ Para hacer replicas de nuestro pod corremos el comando scale y le indicamos el n
 
 .. code-block:: bash
 
-    kubectl scale deployments/pingpong --replicas <numero>
+    kubectl scale deployments/<name> --replicas <numero>
 
 Esto nos dará esa cantidad de pods que podremos ver con el comando *kubectl get pods*.
 
@@ -346,8 +353,159 @@ Si queremos ver el manifest file que establece las directivas del pod usamos
 
     kubectl run --dry-run -o yaml <nombre> --image <image> <comando>
 
+Y para ver los logs de los pods usamos el comando *describe pods*
+
+.. code-block:: bash
+
+    kubectl describe pods
+
+Accediendo a pods
+=================
+
+* ClusterIP: Una IP virtual por servicio
+* NodePort: Un puerto para el servicio en todos los nodos
+* LoadBalancer 
+* ExternalName: Entrada de DNS por CoreDNS
+
+Para este ejemplo creamos primero un deployment de una imagen
+
+.. code-block:: bash
+
+    kubectl create deployment httpenv --image jpetazzo/httpenv
+
+A continuación escalamos una aplicación para crear múltiples pods con scale, esto nos dejará con 10 pods.
+
+.. code-block:: bash
+
+    kubectl scale deployment httpenv --replicas=10
+
+Ahora exponemos nuestro deployment y sus pods como un servicio
+
+.. code-block:: bash
+
+    kubectl expose deployment <httpenv> --port=8888
+
+Estará disponible como servicio y podremos verlo con el comando get svc (servicios)
+
+.. code-block:: bash
+
+    kubectl get svc
+    NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+    httpenv      ClusterIP   10.96.204.73   <none>        8888/TCP   100s
+    kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP    44m
+
+Ahora si hacemos un curl, múltiples veces a esta dirección, podremos recuperar las variables de entorno y apreciaremos un HOSTNAME diferente cada vez, lo que indica que el balanceador de carga está funcionando. 
+
+.. code-block:: bash
+
+    curl http://10.96.204.73:8888 | jq ""
+    {
+        "HOME": "/root",
+        "HOSTNAME": "httpenv-57b8868f99-dqx52",
+    }
+
+Podemos obtener las reglas de enrutado para el OUTPUT
+
+.. code-block:: bash
+
+    sudo iptables -t nat -L OUTPUT
+    sudo iptables -t nat -nL KUBE-SERVICES
+
+
+El administrador de todas las reglas es *kube-proxy*. Podemos buscar la IP de nuestro servicio
+
+Y eso nos dará la lista de servicios. Si, ahora obtenemos las reglas de ese servicio 
+
+.. code-block:: bash
+
+    sudo iptables -t nat -nL KUBE-SVC-<ID>
+
+Por defecto maneja una probabilidad azaroza (random probability), de 0 a 1, con una diferente ponderación para cada pod.
+
+Del output anterior buscamos el que querramos conocer y lo usamos para ver a donde se dirige el tráfico, es decir a la **ip interna privada** de nuestro nodo.
+
+.. code-block:: bash
+
+    sudo iptables -t nat -nL KUBE-SEP-<ID>
+
+endpoints en kubernetes
+=======================
+
+Se refiere a las direcciones ip a las que tendriamos que acceder si quisieramos acceder a ese servicio.
+
+Los endpoints lo podemos ver con
+
+.. code-block:: bash
+
+    kubectl describe endpoints httpenv
+
+    Name:         httpenv
+    Namespace:    default
+    Labels:       app=httpenv
+    Annotations:  endpoints.kubernetes.io/last-change-trigger-time: 2022-01-26T21:10:56Z
+    Subsets:
+    Addresses:          10.5.1.12,10.5.1.13,10.5.1.14,10.5.1.15,10.5.1.16,10.5.1.17,10.5.1.18,10.5.1.19,10.5.1.20,10.5.1.21
+    NotReadyAddresses:  <none>
+    Ports:
+        Name     Port  Protocol
+        ----     ----  --------
+        <unset>  8888  TCP
+
+    Events:  <none>
+
+Es el único recurso que se nombra en plural, puesto que pertenecen a uno o más pods.
+
+
+Despliegue de una app en k8s
+============================
+
+Recuerda que para que nuestra app funcione correctamente necesitamos exponer los puertos correctos de nuestros deployments.
+
+.. code-block:: bash
+
+    kubectl expose deployment <name> --port <port>
+
+Para exponer un puerto público en nuestra ip, usamos el comando expose con el tipo --type=NodePort
+
+.. code-block:: bash
+
+    kubectl expose deploy/webui --type=NodePort --port=80
+
+Para conocer el puerto público examinamos los servicios.
+
+.. code-block:: bash
+
+    kubectl get svc
+    webui  NodePort 10.96.240.45  <none>  80:30986/TCP  12m
+
+
+Si estamos trabajando de manera local, es necesario saber que el puerto no mapea desde el localhost o 127.0.0.1, kind hace un bind con una direccion local. Para acceder a la dirección local, podemos hacerlo con docker, examinando las configuraciones de red del contenedor.
+
+.. code-block:: bash
+
+    docker inspect -f "{{ .NetworkSettings.Networks.kind.IPAddress }}" $(docker ps --filter"name=kind-control-plane" -q)
+
+Ahora, ya con el puerto y la dirección podemos acceder a nuestra aplicación.
+
+Kubernetes dashboard
+====================
+
+El dashboard es una interfaz web que permite manejar el cluster y obtener información de este de una manera visual. El dashboard no está activo por defecto. Para deployarlo corre el siguiente comando.
+
+.. code-block:: bash
+
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
+
+
+Este componente necesita acceder a los componentes del sistema, por lo que se crea en otro namespace.
+
+Al final de estos apuntes hay recursos para implementar el dashboard y asegurarlo.
+
 
 Recursos útiles
 ===============
 
 *  `Kubernetes y pods <https://www.josedomingo.org/pledin/2018/06/recursos-de-kubernetes-pods/>`_ 
+* `Seguridad del dashboard de k8skubectl apply -f kubernetes-dashboard.yaml <http://link>`_
+* `Implementar kubernetes-dashboard <https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/>`_ 
+
