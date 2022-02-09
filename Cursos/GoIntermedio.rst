@@ -2,130 +2,197 @@
 Go intermedio
 =============
 
-testing
-=======
+Testing en go
+=============
 
-Go puede usar el modulo testing de su librería estandar para realizar el testeo.  
+Go ya cuenta con un modulo de testing en su librería estándar que está
+lista para nuestro uso, solo hace falta importarla y usarla.
 
-.. code-block:: go
+Preparación del testing en go
+-----------------------------
 
-    package main
+Para que se lleven a cabo los tests necesitamos:
 
-    import "testing"
+-  Un archivo que termine en \__test.go\_
+-  Correr el comando *go test*
 
-    func TestSum(t *testing.T) {
-        total := Sum(5, 5)
-        if total != 10 {
-            t.Errorf("Sum was incorrect, got %d expected %d", total, 10)
-        }
-    }
-
-Requisitos
-----------
-
-Para que se lleven a cabo los tests necesitamos: 
-
-* Un modulo de testing
-* Un archivo que termina en _test.go
-* Correr el comando go test
-
-Recuerda inicializar el modulo con go mod init nombre_de_tus_tests dentro de la carpeta testing. 
-
-No uses el nombre testing porque go fusionará su propio modulo testing con el tuyo, devolviéndote resultados de ambos módulos.
+Si vas a asignarle un nombre a tu módulo **, nunca uses el nombre testing**. ¿Por qué? si lo haces, go revisará
+primero su propio modulo *testing* con el tuyo, devolviéndote esos
+resultados en lugar de los tuyos.
 
 .. code-block:: go
 
-    .
-    ├── go.mod
-    ├── main.go
-    └── testing
-        ├── go.mod
-        ├── main.go
-        └── main_test.go
+   .├── go.mod
+   ├── main.go
+   └── testing
+       ├── main.go
+       └── main_test.go
 
-    1 directory, 5 files
+   1 directory, 5 files
 
+Dentro del archivo *testing/main_test.go* vamos a crear nuestros tests;
+una función que reciba de argumento nuestro paquete de testing con el
+carácter de desestructuración.
+
+.. code-block:: go
+
+   package main
+
+   import "testing"
+
+   func TestDivision(t *testing.T) {
+       total := Division(10, 2)
+       if total != 5 {
+           t.Errorf("División incorrecta, obtuvimos %d pero se esperaba %d", total, 5)
+       }
+   }
+
+Dentro de *testing/main.go* colocamos nuestra función a probar.
+
+.. code-block:: go
+
+   package main
+
+   func Division(a int, b int) int {
+       return a / b
+   }
 
 Ejecutar los tests
 ------------------
 
-Una vez que tengamos los tests escritos, el modulo testing y archivos terminando en *_test.go* los tests basta con correr el comando go test.
+Para ejecutar los tests necesitamos estar en el directorio donde se
+encuentran nuestros archivos terminados en \__test.go\_ y correr el
+comando *go test*. Si el test aprueba obtendremos este resultado:
 
 .. code-block:: go
 
-    go test
+   cd testing/
+   go test
 
-Estructura de los tests
------------------------
+   PASS
+   ok      main/testing    0.001s
 
-Para realizar diferentes casos podemos usar structs y luego un bucle que maneje cada caso con sus inputs y ouputs
+Si modificamos la función para que falle, obtendremos:
 
 .. code-block:: go
 
-    package main
+   --- FAIL: TestDivision (0.00s)
+       main_test.go:14: División incorrecta, obtuvimos 12 pero se esperaba 5
+   FAIL
+   exit status 1
+   FAIL    main/testing    0.001s
 
-    import "testing"
+Manejo de casos con tablas
+--------------------------
 
-    func TestSum(t *testing.T) {
-        tables := []struct {
-            x int
-            y int
-            r int
-        }{
-            {1, 2, 3},
-            {2, 2, 4},
-            {3, 2, 5},
-            {25, 26, 51},
-        }
+En el ejemplo anterior necesitariamos una función por cada test, pero
+eso se puede volver tedioso si los casos a manejar son demasiados. Para
+ello podemos usar un array compuesto de structs, donde cada struct
+representa un caso a probar.
 
-        for _, table := range tables {
-            total := Sum(table.x, table.y)
-            if total != table.r {
-                t.Errorf("Sum(%d, %d) was incorrect, got: %d, want: %d.", table.x, table.y, total, table.r)
-            }
-        }
-    }
+En el código siguiente, observa como cada struct de nuestra lista son
+solo tres números; los primeros dos representan los argumentos, y el
+último el resultado.
+
+.. code-block:: go
+
+       tables := []struct {
+           x int
+           y int
+           r int
+       }{
+           {100, 10, 10}, // 100 / 10 = 10
+           {200, 20, 10}, // 200 / 20 = 10
+           {300, 30, 10},
+           {1000, 100, 10},
+       }
+
+De seguro ya notaste que no estamos cubriendo la división entre cero,
+pero déjalo así por ahora.
+
+Ya que contamos con nuestro array de structs, iteraremos sobre cada uno de sus elementos usando range 
+
+.. code-block:: go
+
+   for _, table := range tables {
+           total := Division(table.x, table.y)
+           if total != table.r {
+               t.Errorf("División de %d entre %d incorrecta, obtuvimos: %d, pero el resultado es: %d.", table.x, table.y, total, table.r)
+           }
+       }
+
+Si todo salió bien, pasaremos todas las pruebas.
 
 Coverage
 --------
 
-Si queremos calcular el coverage de nuestros tests 
+Coverage ya forma parte del código en go, por lo que no necesitamos
+librerías externas. Si no sabes que es Coverage, piensa en él como el
+porcentaje de tu código que pasa por pruebas.
 
-Tenemos que cambiarnos al modulo de testing
-
-.. code-block:: bash
-
-    cd testing/ 
-
-Ahora basta con agregar la opción -cover al comando *go test*
+Para calcular el coverage basta con agregar el flag *-cover* al comando
+*go test*
 
 .. code-block:: bash
 
-    go test -cover
+   go test -cover
 
-Exportar resultados
--------------------
+   PASS
+   coverage: 100.0% of statements
+   ok      _/home/eduardo/Programacion/goTesting/testing   0.002s
 
-Podemos mandar el toda la información en bruto a un archivo externo. 
+Como nuestra función es muy corta, obtenemos un resultado de 100%, sin
+desglosar, de coverage
 
-.. code-block:: bash
+Exportar resultados de coverage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    go test -coverprofile=coverage.out
-
-Para resumir de una manera más legible la información podemos usar la opción -func y especificar un archivo de salida
-
-.. code-block:: bash
-
-    go tool cover -func=coverage.out
-
-Visualización de resultados
----------------------------
-
-Para observar los resultados generador en formato de página web con colores y más detallados usamos la opción html. Esto abrirá una ventana del navegador y nos mostrará los resultados probados en verde y los no probados en rojos.
+Podemos mandar el toda la información en bruto de nuestro test de
+coverage a un archivo externo con el flag *-coverprofile*.
 
 .. code-block:: bash
 
-    go tool cover -html=coverage.out
+   go test -coverprofile=coverage.out
+
+   mode: set
+   /home/eduardo/Programacion/goTesting/testing/main.go:3.33,5.2 1 1
+
+Este archivo, de nombre *coverage.out* , que fue generado, es un archivo
+que contiene información en bruto y que **será necesario para visualizar
+los resultados** de una manera más detallada.
+
+Visualización de resultados con go tool
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Para resumir de una manera más legible la información del archivo que
+contiene nuestro test de coverage, usaremos el comando tool, acompañado
+del flag *-func* , seguido del nombre del archivo. Lo que nos devolverá
+un resultado de coverage desglosado.
+
+.. code-block:: bash
+
+   go tool cover -func=coverage.out
+
+   /home/eduardo/Programacion/goTesting/testing/main.go:3: Division        100.0%
+   total:                                                  (statements)    100.0%
+
+Go también nos permite visualizar el coverage en formato HTML, con
+colores, directo en nuestro navegador. Para ello usamos la opción -html,
+seguido del archivo con los datos de coverage.
+
+Al ejecutar el comando, se abrirá una pestaña de nuestro navegador y nos
+mostrará los resultados testeados en verde y los no testeados en rojos.
+
+.. code-block:: bash
+
+   go tool cover -html=coverage.out
+
+Si decidimos modificar nuestra función para que maneje los casos de la
+división por cero, y corremos los tests de coverage de nuevo,
+obtendremos un esquema diferente al anterior. Ahora sí aparece una
+sección de código no cubierto por los tests en colo rojo y nuestro
+coverage bajó a 50%.
+
 
 Profiling
 ---------
