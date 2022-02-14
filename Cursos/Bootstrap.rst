@@ -2,7 +2,7 @@
 Bootstrap
 =========
 
-Bootstrap es un framework Frontend
+Bootstrap es un Framework CSS Frontend para agilizar el desarrollo de las UI.
 
 La grilla de Bootstrap
 ======================
