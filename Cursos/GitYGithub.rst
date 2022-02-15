@@ -41,8 +41,74 @@ Generalmente no se trabaja con los objetos de manera directa, sino con comandos 
 2. Pasar los cambios al staging area
 3. Guardar los cambios en el sistema de archivos de git
 
-add
-===
+Traer código de repositorios
+============================
+
+Podemos traer códigos a un proyecto usando el comando clone
+
+Clone funciona tanto con directorios, repositorios externos o ssh.
+
+.. code-block:: bash
+
+   git clone <ruta>
+
+Actualizar código
+
+Establecer los origines del código
+==================================
+
+Podemos registrar un origen para el código usando el comando remote, seguido de add
+
+.. code-block:: bash
+
+   git remote add <nombre> <url>
+
+Para listar nuestros origenes usamos simplemente
+
+.. code-block:: bash
+
+   git remote
+
+Y para eliminar un origen usamos el comando rm
+
+.. code-block:: bash
+
+   git remote rm <nombre>
+
+Actualizar el código
+====================
+
+Hay dos comandos para actualizar el código, fetch y pull
+
+
+fetch
+-----
+
+Fetch obtiene los cambios a nuestro directorio de trabajo, pero sin realizar un merge.
+
+.. code-block:: bash
+
+   git fetch <origen>
+
+Podemos especificar una rama o recuperarlas todas
+
+.. code-block:: bash
+
+   git fetch <origen> <rama>
+   git fetch <origen> --all
+
+
+pull
+----
+
+Mientras que pull obtiene los cambios y realiza un merge con la actual.
+
+.. code-block:: bash
+
+   git pull <origen>
+
+Agregar cambios
+===============
 
 El comando add nos permite agregar los cambios realizados en nuestro proyecto al staging area, desde donde podremos guardarlos en el control de versiones de git. Git add puede recibir un nombre de archivo, una ruta o múltiples archivos por medio wildcards y patrones.
 
@@ -50,8 +116,8 @@ El comando add nos permite agregar los cambios realizados en nuestro proyecto al
 
    git add <patron>
 
-commit
-======
+Guardar cambios
+===============
 
 Un commit es una fotografía o snapshot que guarda el estado de un proyecto en un momento determinado.
 
@@ -64,7 +130,22 @@ Abreviación para agregar archivos y hacer un commit
 
    git commit -a -m <mensaje>
 
-branches o ramas
+Moverse a estados anteriores u otras ramas
+==========================================
+
+Con git checkout cambiamos a un commit pasado u otra rama, lo que cambiará los archivos en nuestro directorio de trabajo.
+
+.. code:: bash
+
+   git checkout <hash_del_commit>
+
+Si usamos git checkout con un archivo, cambiará únicamente el archivo que le indiquemos
+
+.. code:: bash
+
+   git checkout <hash_del_commit> <archivo>
+
+Branches o ramas
 ================
 
 Una rama es una bifurcación del código desde el punto en que se creo,
@@ -78,7 +159,7 @@ la rama main.
 
    git branch <nombre_de_rama_nueva>
 
-También podemos hacerla a partir de un checkout
+También podemos hacerla a partir de un checkout, con el flag -b
 
 .. code:: bash
 
@@ -104,10 +185,10 @@ Para mandar una rama al repositorio remoto hacemos un push con el nombre de la r
 
 .. code:: bash
 
-   git push origin <nombre_de_la_rama>
+   git push <origen> <nombre_de_la_rama>
 
-merge
-=====
+Mezclar cambios
+===============
 
 El comando git merge crea un nuevo commit con la combinación de dos ramas. Unirá la rama donde nos encontramos con la que especifiquemos
 después de merge. Al hacer merge se *creará un nuevo commit*
@@ -118,13 +199,13 @@ después de merge. Al hacer merge se *creará un nuevo commit*
    git merge <nombre_de_la_rama>
 
 
-borrar con rm
-=============
+Borrar archivos
+===============
 
 El comando git rm elimina archivos de git **sin eliminar su historial del sistema de versiones**.
 
 Debemos usar uno de los flags para indicarle a Git cómo eliminar los
-archivos:
+archivos
 
 Mantener archivos en disco duro
 -------------------------------
@@ -145,8 +226,8 @@ La opción --force Elimina los archivos de Git y del disco duro. Git siempre gua
 
    git rm --force <archivo_o_archivos>
 
-Reset
-=====
+Deshacer o resetear cambios
+===========================
 
 Con git reset volvemos al pasado **sin la posibilidad de volver al
 futuro. Es permanente**
@@ -173,11 +254,10 @@ La opción --hard **borra los archivos tanto del staging como de los registros.*
    git reset --hard: <archivo_o_archivos>
 
 
-git amend
-=========
+Editar el último commit
+=======================
 
-Nos permitirá agregar cambios al commit anterior, esto es usado cuando
-olvidamos agregar algún cambio al último commit.
+El comando git commit, con la opción --amend, nos permitirá agregar cambios al commit anterior.
 
 .. code:: bash
 
@@ -186,13 +266,24 @@ olvidamos agregar algún cambio al último commit.
 cherry pick
 ===========
 
-El siguiente comando trae un commit del pasado y lo agrega al HEAD de
-una rama, modificando la historia. Se considera que usar este comando es
-una mala práctica
+El comando cherry-pick trae un commit del pasado y lo agrega al HEAD de
+una rama, modificando la historia. El uso de este comando *se considera una mala práctica por algunos desarrolladores, debido a que modifica la historia*
 
 .. code:: bash
 
    git cherry-pick <hash_de_la_rama>
+
+Esto modifica un repositorio agregando el commit elegido al final de la rama.
+
+.. code-block:: bash
+
+    a - b - c - d   Main
+         \
+           e - f - g Feature
+
+    a - b - c - d - f   Main
+         \
+           e - f - g Feature
 
 rebase
 ======
@@ -206,6 +297,32 @@ Para usarlo, nos posicionamos sobre la rama a la que queremos agregar los cambio
 
    git checkout <rama_a_aplicar_rebase>
    git rebase <rama_con_los_cambios>
+
+Visualmente se ve de la siguiente manera
+
+.. code-block:: bash
+
+    a - b    Main
+         \
+           c - d - e - f Feature
+
+    a - b - c - d - e - f  Main
+         \
+           c - d - e - f Feature
+
+Además, si ocurren cambios en la rama main que son más recientes se agregarán antes de los de la rama donde hacemos rebase.
+
+.. code-block:: bash
+
+    a - b - - - - - x   Main
+         \
+           c - d - Feature
+
+    a - b - c - d - x  Main
+         \
+           c - d  Feature
+
+Considera que la rama que estamos agregando no desaparece.
 
 shortlog
 ========
@@ -266,8 +383,8 @@ Muestra a profundidad los detalles del comando de git que especifiquemos
 
    git <comando> --help
 
-clean
-=====
+Borrar los archivos no seguidos
+===============================
 
 git clean borra los archivos que no están siendo rastreados por git. Recuerda que todos aquellos archivos duplicados y que correspondan con algún patrón en el archivo *.gitignore* quedan excluidos del alcance de este comando.
 
@@ -286,8 +403,8 @@ Mientras que la opción -f borra los archivos de manera directa.
 
    git clean -f
 
-stash
-=====
+Guardar cambios temporalmente
+=============================
 
 Git stash guarda todos aquellos cambios en el staging area de manera temporal en memoria para su posterior recuperación.
 
@@ -341,16 +458,15 @@ Por otro lado, si queremos perder los cambios que tenemos en stash usamos *drop*
 
    git stash drop
 
-grep y log
-==========
+Información sobre los commits
+=============================
 
-Git tiene un comando derivado de grep para buscar información en los
-repositorios.
+Git tiene un comando derivado de grep para buscar información en los repositorios, llamado git grep.
 
 Encontrar un patrón
 -------------------
 
-El comando grep -n nos devuelve el patrón buscando y la linea donde se encuentra. Cuenta con múltiples opciones que es mejor revisar en la `documentación de git <https://git-scm.com/docs/git-grep>`_ 
+El comando grep -n nos devuelve el patrón buscando y la linea donde se encuentra. Al igual que el grep original, cuenta con múltiples opciones que son un tema en si mismo, es mejor revisar en la `documentación de git <https://git-scm.com/docs/git-grep>`_ 
 
 .. code:: bash
 
@@ -372,8 +488,10 @@ Búsqueda en los mensajes de commits
 Git tambien permite buscar información en los mensajes de los commits
 con el siguiente commando
 
-log
-===
+Ver los logs
+============
+
+En git, el comando log nos muestra información relativa a los commits
 
 .. code:: bash
 
@@ -403,11 +521,11 @@ Para crear un alias de un comando lo hacemos a través del comando *git config*,
    git config --global alias.stats <comando_entre_comillas>
    git stats
 
-reflog
-======
+Recuperar cambios borrados
+==========================
 
-Este comando nos permite recuperar todos los cambios hechos en el repositorio, incluso
-aquellos que fueron desechos con *git reset --hard*
+El comando git reflog nos permite recuperar todos los cambios hechos en el repositorio, incluso
+aquellos que fueron desechos con *git reset --hard*.
 
 .. code:: bash
 
@@ -416,16 +534,17 @@ aquellos que fueron desechos con *git reset --hard*
 Excluir archivos del indice de git
 ==================================
 
-Mantendrá el archivo pero borrará
+El comando rm seguido de la opción --cached, mantendrá el archivo en el directorio de trabajo pero lo borrará del índice de git, por lo que ya no se le hará seguimiento.
 
 .. code:: bash
 
-   git rm --cached <file_name> or git rm -r --cached <folder_name>
+   git rm --cached <nombre_de_archivo>
+   git rm -r --cached <nombre_del_directorio>
 
-Este método es para optimización. Para manejar una carpeta o una serie
-de archivos que no cambiarán. Este comando le dice a git que deje de
-revisar este folder cada vez que algo cambia. El contenido se
-reescribira si existe un pull al archivo o directorio.
+Prevenir que git vigile carpetas grandes
+========================================
+
+El método *update-index* es para optimización. Para manejar una carpeta o una serie de archivos que no cambiarán. Este comando le dice a git que deje de revisar este folder cada vez que algo cambia. El contenido se reescribirá si existe un pull al archivo o directorio.
 
 .. code:: bash
 
@@ -438,11 +557,10 @@ directorio.
 
    git update-index --skip-worktree <path_name>
 
-Este comando no se propagará con git tiene que ejecutarse por cada
-usuario de manera individual.
+Este comando no se propagará con git tiene que ejecutarse por cada usuario de manera individual.
 
-Archivo .gitignore
-==================
+Ignorar archivos con .gitignore
+===============================
 
 La presencia de un archivo *.gitignore* en la misma carpeta .git, encontrada en la raiz del proyecto, le indica a git deje fuera del seguimiento a los archivos que le indiquemos. El archivo *.gitignore* funciona con expresiones regulares separadas por saltos de linea.
 
@@ -454,8 +572,8 @@ Un archivo *.gitignore* se vería así
    node_modules/
    *.pyc
 
-gitignore.io
-------------
+Plantillas de gitignore.io
+--------------------------
 
 A veces es buena idea partir de una plantilla *.gitignore*
 sobre todo en entornos de desarrollo muy complejos con varios frameworks
@@ -463,8 +581,8 @@ y tecnologías. A la fecha de estas notas existe una página web localizada en
 *https://gitignore.io* donde es posible acceder varias plantillas de archivos
 *.gitignore* para diferentes tecnologías de desarrollo.
 
-Versión gui de git
-==================
+Interfaz gráfica o GUI de git
+=============================
 
 Existen diferentes versiones de GUI para git, entre las que se encuentran gitk, gitkraken entre otras. Sin embargo generalmente no son usadas por la comunidad de desarrolladores.
 
@@ -498,7 +616,7 @@ El push de los tags creados se crea con el comando:
 
 .. code-block:: bash
 
-   git push origin --tags
+   git push <origen> --tags
 
 Si queremos borrar un tag. El tag se borrará del repositorio local, pero se mantendrá en github.
 
@@ -510,7 +628,7 @@ Para borrar la referencia al tag en github usamos el siguiente comando.
 
 .. code-block:: bash
 
-   git push origin :refs/tags/nombre_del_tag
+   git push <origen> :refs/tags/nombre_del_tag
 
 branches en github
 ------------------
@@ -569,3 +687,4 @@ Para actualizar el proyecto de upstream usamos pull pasándole el nombre que def
    git pull <nombre_personalizado_o_upstream> <main>
 
 Una vez hecho esto podemos hacer un commit y push a origin main para actualizar el repositorio.
+
