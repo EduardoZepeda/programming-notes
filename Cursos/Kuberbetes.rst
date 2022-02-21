@@ -53,7 +53,7 @@ Kubernetes consiste en un nodo master, que conecta con una cantidad de nodos o m
 
 El nodo master recibe instrucciones de una API a la que se accede con una UI o un CLI.
 
-.. image:: img/Kubernetes/arquitectura-kubernetes.png
+.. image:: img/Kubernetes/arquitectura-kubernetes.jpg
 
 
 Estructura del nodo master

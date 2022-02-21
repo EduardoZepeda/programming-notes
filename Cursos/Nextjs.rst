@@ -867,6 +867,21 @@ páginas podemos usarlas con cualquier servidor que sirva html plano.
 Middleware
 ==========
 
+El middleware necesita ser una función middleware y estar dentro un archivo llamado _middleware, con extensión tsx o js, que se encuentre dentro de pages.
+Los middleware se ejecutaran en orden de acuerdo a su nivel de anidación. El nombre no es necesariamente middleware pero se considera una convención.
+
+
+.. code-block:: javascript
+
+   import type { NextFetchEvent } from 'next/server'
+   import type { NextRequest } from 'next/server'
+
+   export type Middleware = (
+      request: NextRequest,
+      event: NextFetchEvent
+   ) => Promise<Response | undefined> | Response | undefined
+
+Si manejas código asíncrono puedes agregarle el prefijo async.
 
 Diferencia entre next build y next export
 =========================================
@@ -899,4 +914,15 @@ A partir de la versión Nextjs 12, cuenta con soporte de optimización para imá
       images: {
          formats: ['image/avif', 'image/webp']
       }
+   }
+
+Troubleshooting
+===============
+
+A veces los layouts no salen como queremos, hay que recordar que toda la aplicación se encuentra dentro de un div con id igual a *__next*, este id puede recibir sus propios estilos CSS
+
+.. code-block:: css
+
+   #__next {
+      height: 100%;   
    }
