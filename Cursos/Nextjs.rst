@@ -919,10 +919,11 @@ A partir de la versión Nextjs 12, cuenta con soporte de optimización para imá
 Troubleshooting
 ===============
 
-A veces los layouts no salen como queremos, hay que recordar que toda la aplicación se encuentra dentro de un div con id igual a *__next*, este id puede recibir sus propios estilos CSS
+A veces los layouts no salen como queremos, sobre todo cuando usamos un grid como estructura para el root de la aplicación. Si es el caso, hay que recordar que la aplicación de nextjs se encuentra como hijo directo de un div con un id igual a *__next*, este id puede recibir sus propios estilos CSS.
 
 .. code-block:: css
 
    #__next {
       height: 100%;   
    }
+

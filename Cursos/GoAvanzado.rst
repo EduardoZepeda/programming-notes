@@ -142,4 +142,3 @@ Ahora podemos llamar a los métodos de Lectura:
     lock.RUnlock()
 
 El contenido dentro del candado de lectura puede ser leído múltiples veces.
-

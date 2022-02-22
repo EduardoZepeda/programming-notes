@@ -299,3 +299,4 @@ También existen hooks para especificar nuestras propias opciones de cifrado
         async encode({secret, token, maxAge}) {},
         async decode({secret, token, maxAge}) {},
     }
+

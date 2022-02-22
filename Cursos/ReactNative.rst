@@ -31,7 +31,7 @@ Native Watchman Este es opcional pero te recomiendo que lo instales
 tambien
 https://facebook.github.io/watchman/docs/install.html#buildinstall:
 
-::
+.. code-block:: bash
 
    npm install -g react-native-cli
 
@@ -84,6 +84,6 @@ Creacion de una App
 
 Para hacerlo usamos el comando:
 
-::
+.. code-block:: bash
 
    react-native init nombreDelProyecto

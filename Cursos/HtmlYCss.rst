@@ -99,7 +99,7 @@ Y podemos usarla posteriormente en otro lugar usando la función var():
 
     }
     
-¿Cómo generar diferentes vistas de diferentes disposivitos?
+¿Cómo generar diferentes vistas de diferentes dispositivos?
 ===========================================================
 
 Podemos generar vistas de como se ve una página HTML en diferentes resoluciones y dispositivos en estas páginas
@@ -107,3 +107,4 @@ Podemos generar vistas de como se ve una página HTML en diferentes resoluciones
 * `Device shoots <https://deviceshots.com/>`_ 
 * `Mockuphone <https://mockuphone.com/>`_
 * `Mockerup <https://mockerup.net>`_  
+

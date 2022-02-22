@@ -933,3 +933,37 @@ Podemos agregar un script en el archivo *package.json*
      "build": "webpack"
    }
 
+Typescript para React
+=====================
+
+En React existen casos donde necesitamos especificar children como parte de los props.
+
+.. code-block:: javascript
+
+   interface propsWithChildren {
+      children: React.ReactNode
+   }
+
+   const funcion = ({children}: propsWithChildren) => {}
+
+Existe también otra opción, que agrega un tipo implícito a React, llamada React.FunctionComponent, o su abreviación llamada React.FC. Sin embargo estos dos tipos no están bien vistos por parte de los desarrolladores pues, al manejar datos implicitos, se consideran una mala práctica que empeora la legibilidad del código.
+
+.. code-block:: javascript
+
+   // Incluso si no colocamos children, estará accesible para el código
+   const funcion: React.FC = ({children}) => {}
+
+Para marcar el retorno de un elemento de JSX usamos el atributo Element de JSX.
+
+.. code-block:: javascript
+
+   const funcion = ({children}: propsWithChildren): JSX.Element => {}
+
+Los cambios en los input requieren el método ChangeEvent de react y pasarle como parámetro un HTMLInputElement.
+
+.. code-block:: javascript
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setEmail(event.target.value as string)
+        setValidEmail(validateEmail(event.target.value as string))
+    }

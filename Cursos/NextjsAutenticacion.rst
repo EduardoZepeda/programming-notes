@@ -290,3 +290,4 @@ NextAuth ofrece soluciones para conectar con proveedores de email.
     })
 
 Prisma es un ORM que está ganando popularidad y puede manejar diferentes bases de datos.
+

@@ -1455,3 +1455,4 @@ Recursos útiles
 * `Implementar kubernetes-dashboard <https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/>`_ 
 * `Configurar tests healtcheckhttps://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ <http://link>`_ 
 * `Repositorio de Flux https://github.com/weaveworks/flux`_ 
+

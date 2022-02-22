@@ -79,3 +79,4 @@ item de navegación de inicio. Debemos asignar una clase adicional la
 etiqueta de body, la cual es “.data-offset=[numero]” y como número,
 debemos asignarle el alto de la barra de navegación. De esta manera
 optimizamos el Scrollspy.
+

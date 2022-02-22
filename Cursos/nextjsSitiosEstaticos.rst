@@ -237,5 +237,4 @@ Nextjs Export
 =============
 
 Nextjs exporta un renderizado HTML, CSS y Javascript, por lo que el contenido puede servirse con un servidor de archivos estáticos.
-
-sin embargo se pierden las funcionalidades de SSR como ISG, SSR, rutas, i18n, optimización de imágenes, revalidación, etc.
+Sin embargo se pierden las funcionalidades de SSR como ISG, SSR, rutas, i18n, optimización de imágenes, revalidación, etc.

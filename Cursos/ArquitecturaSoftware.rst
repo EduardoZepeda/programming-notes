@@ -313,3 +313,4 @@ Curva de aprendizaje más elevada
 Cada servicio se versionea de manera diferente, lo que complica su modificación
 Su modularización es sencilla.
 Adaptabilidad más fácil por la diferencia de contextos en cada despliegue.
+

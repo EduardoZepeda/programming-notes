@@ -224,3 +224,4 @@ Tips para el momento de testear tu prototipo:
 5. Documenta el feedback
 6. Ten una buena muestra de usuarios
 7. Detecta la necesidad en el feedback
+

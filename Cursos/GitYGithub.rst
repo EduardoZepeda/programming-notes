@@ -687,4 +687,3 @@ Para actualizar el proyecto de upstream usamos pull pasándole el nombre que def
    git pull <nombre_personalizado_o_upstream> <main>
 
 Una vez hecho esto podemos hacer un commit y push a origin main para actualizar el repositorio.
-

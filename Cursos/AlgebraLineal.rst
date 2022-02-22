@@ -89,3 +89,4 @@ Propiedades de la suma
 * Asociativa, (a + b) + c = a + (b + c)
 * La suma de 0 no afecta el vector, a + 0 = a = 0 + a = a
 * Sumar un vector con su inverso es cero, a - a = 0
+
