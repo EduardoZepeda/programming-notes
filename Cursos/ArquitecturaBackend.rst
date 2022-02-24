@@ -119,8 +119,7 @@ leer con una base de datos relacional. La base de datos NoSQL puede
 transferirse a la base de datos SQL posteriormente, quizás una vez por
 día. Implementar cache en diversos puntos del sistema.
 
-Para elaborar la arquitectura podemos usar
-(diagramas)[https://www.diagrams.net/]
+Para elaborar la arquitectura podemos usar `diagramas <https://www.diagrams.net/>`_ 
 
 Diseños de bajo nivel, planes de prueba e integración continua
 
