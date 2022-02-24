@@ -1,8 +1,6 @@
-===================
-Django sobre ruedas
-===================
-
-.. _django-sobre-ruedas-1:
+==================
+El libro de Django
+==================
 
 Django sobre ruedas
 ===================
@@ -36,7 +34,7 @@ Si quieres crear la carpeta principal dentro del directorio actual usa la ubicac
 
 Esto creará la siguiente estructura de carpetas
 
-.. code:: python
+.. code:: bash
 
    misitio/ (Carpeta Contenedora)
        manage.py (Utilidad linea de comandos. Usa manage.py help para ver uso)
@@ -112,11 +110,6 @@ Puedes correr el servidor de desarrollo con los siguientes comandos
 URLS
 ====
 
-.. _urls-1:
-
-URLS
-----
-
 El servidor recibe una petición de página web. Django revisará el
 archivo al que apunte la variable ROOT_URLCONF dentro de settings.py
 para ver en que patrón de expresiones regulares encaja y ejecutar la
@@ -187,7 +180,7 @@ de acuerdo a un contexto que especificaremos.
 Como puede verse las variables se encierran dentro de dobles llaves {{
 variable }} y pueden ser alterados mediante filtros, estos ultimos van
 despues de la variable, seguidos del símbolo pipe ' filtro:
-“parametros,”} Mientras que los condicionales, bucles, etc. dentro de un
+"parametros,"} Mientras que los condicionales, bucles, etc. dentro de un
 juego de llave y el símbolo de porcentaje {% Realiza_esto %}
 
 Las variables también pueden usar metodos para devolver False, True o
@@ -202,10 +195,10 @@ El contexto siempre se encontrará en forma de diccionario
 
 .. code:: python
 
-   variable_de_contexto = “Sandra”
+   variable_de_contexto = "Sandra"
    contexto = {'variable_en_html': variable_de_contexto }
 
-Esto reemplazará todas las {{ variable_en_html }} por “Sandra”. Si no
+Esto reemplazará todas las {{ variable_en_html }} por "Sandra". Si no
 existe una variable especificada en el contexto la variable se
 reemplazará por una cadena vacia. La variable de contexto también puede
 ser un diccionario con lo cual podemos especificar variables tipo
@@ -217,7 +210,7 @@ Key:value en la plantillas, incluido listas.
    contexto = {'variable_en_html': persona}
 
 Dentro de la plantilla se reemplazarán las {{variable_en_html.nombre}}
-por “Sandra” y las {{variable_en_html.apellido.2}} por “Azanza”. Los
+por "Sandra" y las {{variable_en_html.apellido.2}} por "Azanza". Los
 siguientes objetos pueden usarse como contexto:
 
 1. Diccionario (por ej. foo["bar"])
@@ -237,13 +230,13 @@ La etiqueta If no permite el uso de diferentes operadores diferentes AND
 u OR. Pero si pueden mezclarse solo AND o solo OR en una sola sentencia.
 El uso de parentesis no está permitido
 
-.. code:: python
+.. code:: html
 
    {% if lista_atletas or lista_entrenadores or lista_padres or lista_maestros %}
 
 La etiqueta {% else %} es opcional.
 
-.. code:: python
+.. code:: html
 
    {% if es_fin_de_semana %}
        <p>¡Bienvenido fin de semana!</p>
@@ -251,7 +244,7 @@ La etiqueta {% else %} es opcional.
 
 La etiqueta {% else %} es opcional
 
-.. code:: python
+.. code:: html
 
    {% if es_fin_de_semana %}
        <p>¡Bienvenido fin de semana!</p>
@@ -263,10 +256,10 @@ Etiqueta {% for %}
 ~~~~~~~~~~~~~~~~~~
 
 La etiqueta {% for %} permite usar reversed para invertir el orden de
-iteración. No se permite romper un bucle mediante “break” ni el uso de
-la sentencia “continue”.
+iteración. No se permite romper un bucle mediante "break" ni el uso de
+la sentencia "continue".
 
-.. code:: {.python
+.. code:: html
 
    {% for atleta in lista_atletas reversed %}
    ...
@@ -275,7 +268,7 @@ la sentencia “continue”.
 La etiqueta {% empty %} permite especificar que se hará si la lista de
 la etiqueta {% for %} está vacia
 
-.. code:: python
+.. code:: html
 
    {% for atleta in lista_atletas %}
        <p>{{ athlete.nombre }}</p>
@@ -287,7 +280,7 @@ Dentro de cada bucle, la etiqueta {% for %} permite acceder a una
 variable llamada forloop, dentro de la plantilla. forloop.counter:
 Numero de iteraciones sobre el bucle (Empieza a contar en 1).
 
-.. code:: python
+.. code:: html
 
    {% for objeto in lista %}
             <p>{{ forloop.counter }}: {{ objeto }}</p>
@@ -304,7 +297,7 @@ Numero de iteraciones sobre el bucle (Empieza a contar en 1).
 -  forloop.parentloop: Usada para referirse al bucle padre en bucles
    anidados
 
-.. code:: python
+.. code:: html
 
    {{ forloop.parentloop.counter }}
 
@@ -315,7 +308,7 @@ Ideal para comparar valores bajo el siguiente formato. Pueden usarse
 variables o cadenas de texto. La etiqueta {% else %} es opcional. Solo
 permite comparar cadenas de texto, números y decimales
 
-.. code:: python
+.. code:: html
 
    {% ifequal seccion 'noticias' %}
        <h1>Noticias</h1>
@@ -328,7 +321,7 @@ Comentarios
 
 Los comentarios siguen el siguiente formato
 
-.. code:: python
+.. code:: html
 
    {# Esto si es un comentario #}
    {% comment %}
@@ -342,13 +335,13 @@ Filtros
 Los filtros son usados para alterar las variables. Pueden ser sencillos
 o concatenarse con otros filtros
 
-.. code:: python
+.. code:: html
 
    {{ mi_lista|first|upper }}
 
 Algunos filtros reciben parametros que deben ir entre dobles comillas
 
-.. code:: python
+.. code:: html
 
    {{ bio|truncatewords:"30" }}
 
@@ -398,12 +391,12 @@ función **render()**.
    import datetime
    from django.shortcuts import render
 
-   #Función de vista que se usará desde urls.py
+   # Función de vista que se usará desde urls.py
    def fecha_actual(request): #El primer parametro siempre es request
        ahora = datetime.datetime.now()
-       …#Más código a utilizar
-       …#Contexto a crear
-       …#La función render() SIEMPRE requiere como primer parámetro el objeto request
+       # Más código a utilizar
+       # Contexto a crear
+       # La función render() SIEMPRE requiere como primer parámetro el objeto request
        return render(request, 'fecha_actual.html', {'fecha_actual': ahora}) #Puedes usar subdirectorios bajo el formato '/subdirectorio/otra_plantilla.html'
 
 Etiqueta {% Include %}
@@ -412,7 +405,7 @@ Etiqueta {% Include %}
 La etiqueta colocará el contenido del archivo html especificado en el
 lugar de la etiqueta.
 
-.. code:: python
+.. code:: html
 
    {% include 'includes/nav.html' %} {# Pueden usarse comillas sencillas o dobles #}
 
@@ -448,7 +441,7 @@ especifican los bloques a reemplazar en esta ultima. Las etiquetas que
 no se cambien utlizarán el valor por defecto definido en la plantilla
 base.
 
-.. code:: python
+.. code:: html
 
    {% extends "base.html" %}
 
@@ -474,10 +467,10 @@ Interactuando con una base de datos: Modelos
 El patrón de diseño MTV
 -----------------------
 
--  M significa ‘’Model’’ (Modelo): la capa de acceso a la base de datos.
--  T significa ‘’Template’’ (Plantilla): la capa de presentación que
+-  M significa ‘'Model'' (Modelo): la capa de acceso a la base de datos.
+-  T significa ‘'Template'' (Plantilla): la capa de presentación que
    muestra los datos
--  V significa ‘’View’’ (Vista): la lógica que accede al modelo y la
+-  V significa ‘'View'' (Vista): la lógica que accede al modelo y la
    delega a la plantilla apropiada
 
 Tu primera aplicación
@@ -490,13 +483,13 @@ archivo models.py). Si estás usando la capa de base de datos de Django
 (modelos), debes crear una aplicación de Django. Los modelos deben vivir
 dentro de aplicaciones. Crea una app con el siguiente codigo
 
-.. code:: python
+.. code:: bash
 
    python3 manage.py startapp biblioteca # o el nombre de tu app
 
 Esto creará la siguiente estructura
 
-.. code:: python
+.. code:: bash
 
    biblioteca/
        __init__.py
@@ -562,7 +555,7 @@ Recuerda agregar la app a tu archivo settings.py
 
 Recuerda installar pillow para validar imagenes
 
-.. code:: python
+.. code:: bash
 
    pip install pillow
 
@@ -580,27 +573,27 @@ Así como la URL que servirá para servir esas imagenes
 
 Revisa que los modelos estén correctamente escritos usando el comando
 
-.. code:: python
+.. code:: bash
 
    python3 manage.py validate
 
 Ejecuta el siguiente comando para que Django compruebe la sintaxis de
 tus modelos
 
-.. code:: python
+.. code:: bash
 
    python3 manage.py check biblioteca #Verifica que todo esté en orden, no toca la base de datos
 
 Esto hace que Django guarde las migraciones en un archivo de control
 
-.. code:: python
+.. code:: bash
 
    python3 manage.py makemigrations
    python3 manage.py sqlmigrate biblioteca 0001 #Muestra el código SQL que se ejecutará
 
 Ahora modifica las tablas usando el comando siguiente
 
-.. code:: python
+.. code:: bash
 
    python3 manage.py migrate #Sincroniza los cambios hechos a los modelos
 
@@ -697,7 +690,7 @@ argumentos, traducidos a SQL AND. La parte *\__contains* puede ser
 expresada como una sentencia SQL LIKE. Los resultados se tratan como una
 lista.
 
-.. code:: python
+.. code:: bash
 
    >>>Editor.objects.filter(ciudad="Berkeley", estado="CA")
    >>>Editor.objects.filter(nombre__contains="press")
@@ -708,7 +701,7 @@ Obtener objetos individuales
 Para obtener un unico resultado se usa el metodo get() Si retorna más de
 uno o no retorna nada levantará una excepción
 
-.. code:: python
+.. code:: bash
 
    >>>Editor.objects.get(nombre="Apress Publishing")
 
@@ -729,18 +722,18 @@ Mediante la clase Meta
 .. code:: python
 
    class Editor(models.Model):
-       nombre = models.CharField(max_length=30)
-       domicilio = models.CharField(max_length=50)
-       ciudad = models.CharField(max_length=60)
-       estado = models.CharField(max_length=30)
-       pais = models.CharField(max_length=50)
-       website = models.URLField()
+      nombre = models.CharField(max_length=30)
+      domicilio = models.CharField(max_length=50)
+      ciudad = models.CharField(max_length=60)
+      estado = models.CharField(max_length=30)
+      pais = models.CharField(max_length=50)
+      website = models.URLField()
 
       class Meta:
-           ordering = ["nombre"]
+         ordering = ["nombre"]
 
-       def __str__(self):
-           return self.nombre
+      def __str__(self):
+         return self.nombre
 
 Encadenar búsqueda
 ~~~~~~~~~~~~~~~~~~
@@ -791,7 +784,7 @@ El sitio de administración
 
 La interfaz de administración es solo parte de django.contrib. El cual
 contiene muchas herramientas más. Esta esta activida por defecto si el
-proyecto se inicio con “startproject”. La interfaz puede activarse o
+proyecto se inicio con "startproject". La interfaz puede activarse o
 desactivarse de acuerdo a las necesidades del proyecto. Agrega
 'django.contrib.admin' a la variable INSTALLED_APPS. Si quieres que
 django cargue tus plantillas debes ponerlas antes de
@@ -1009,7 +1002,7 @@ inclinada.
 request.get_host()
 ^^^^^^^^^^^^^^^^^^
 
-El host (ejemplo: tu ‘’dominio,’’ en lenguaje común). "127.0.0.1:8000" o
+El host (ejemplo: tu ‘'dominio,'' en lenguaje común). "127.0.0.1:8000" o
 "www.example.com" "/hola/?print=true"
 
 request.get_full_path()
@@ -1076,7 +1069,7 @@ CONFIGURAR UN SERVIDOR DE CORREO EN DJANGO
 
 Django puede enviar correos fácilmente mediante la función send_mail()
 
-.. code:: python
+.. code:: bash
 
    >>>from django.core.mail import send_mail
    >>>send_mail('Este es el argumento', 'Aquí va el mensaje.', 'administrador@example.com',    ['para@example.com'], fail_silently=False)
@@ -1230,7 +1223,7 @@ Puedes importar directamente usando una cadena de texto
 
    from misitio.views import hola, fecha_actual, horas_adelante #Usar función hola
    from misitio import views # Usar views.hola
-   #Nada #Usar directamente ’misitio.views.hola’ CON LAS COMILLAS
+   #Nada #Usar directamente 'misitio.views.hola' CON LAS COMILLAS
 
 Casos especiales de URLs en modo Debug
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1240,9 +1233,9 @@ En urls.py
 .. code:: python
 
    if settings.DEBUG:
-   urlpatterns += [
-       url (r’^debuginfo/$’, views.debug),
-   ]
+      urlpatterns += [
+         url (r'^debuginfo/$', views.debug),
+      ]
 
 Django se encarga de servir los archivos estáticos de forma automática,
 para servir los archivos media de forma local, es necesario habilitar
@@ -1251,11 +1244,11 @@ una vista opcional y enlazarla a una URLconf en modo DEBUG.
 .. code:: python
 
    if settings.DEBUG:
-   urlpatterns += [
-       url(r’^media/(?P<path>.*)$’, serve,
-           {’document_root’: settings.MEDIA_ROOT,
-   }),
-   ]
+      urlpatterns += [
+         url(r'^media/(?P<path>.*)$', serve,
+            {'document_root': settings.MEDIA_ROOT,
+      }),
+      ]
 
 De esta forma la URL /media/ sólo estará disponible si la configuración
 DEBUG tiene asignado el valor True. El ejemplo anterior jamás debe
@@ -1276,10 +1269,11 @@ lugar de posicionales. Pasarle opciones extra a las funciones vista
 
 .. code:: python
 
-   url(r’^libros/favoritos/$’, views.libros_dia, {’mes’: ’enero’, ’dia’: ’06’}),
-   …
+   url(r'^libros/favoritos/$', views.libros_dia, {'mes': 'enero', 'dia': '06'})
+   
    def libros_dia(request, mes, dia):
         # Código
+        pass
 
 De esta manera puedes hacer modificable las funciones vista, incluso
 usando nombres de plantilla para que el usuario coloque las suyas
@@ -1298,7 +1292,8 @@ Los especificamos en la función que usemos
 
 .. code:: python
 
-   def una_vista(request, plantilla=’biblioteca/mi_vista.html’):
+   def una_vista(request, plantilla='biblioteca/mi_vista.html'):
+      pass
 
 Capturando texto en URLs
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1328,14 +1323,14 @@ ejecutará la vista correspondiente
    from credito import views as vista_credito
 
    patrones_extra = [
-       url(r’^reportes/(?P<id>[0-9]+)/$’, vista_credito.reportes),
-       url(r’^cargos/$’, vista_credito.cargos),
+       url(r'^reportes/(?P<id>[0-9]+)/$', vista_credito.reportes),
+       url(r'^cargos/$', vista_credito.cargos),
    ]
 
    urlpatterns = [
-       url(r’^$’, vista_principal.indice),
-       url(r’^ayuda/’, include(’apps.ayuda.urls’)),
-       url(r’^credito/’, include(patrones_extra)),
+       url(r'^$', vista_principal.indice),
+       url(r'^ayuda/', include('apps.ayuda.urls')),
+       url(r'^credito/', include(patrones_extra)),
    ]
 
 También puede usarse para remover código repetitivo. En el ejemplo
@@ -1347,11 +1342,11 @@ anterior se remueve código de expresiones regulares
    from . import views
 
    urlpatterns = [
-       url(r’^(?P<pagina_slug>\w+)-(?P<pagina_id>\w+)/’, include([
-           url(r’^historia/$’, views.historia),
-           url(r’^editar/$’, views.editar),
-           url(r’^discusiones/$’, views.discusiones),
-           url(r’^permisos/$’, views.permisos),
+       url(r'^(?P<pagina_slug>\w+)-(?P<pagina_id>\w+)/', include([
+           url(r'^historia/$', views.historia),
+           url(r'^editar/$', views.editar),
+           url(r'^discusiones/$', views.discusiones),
+           url(r'^permisos/$', views.permisos),
        ])),
    ]
 
@@ -1364,7 +1359,7 @@ variable.
 
 .. code:: python
 
-   url(r’^(?P<username>\w+)/blog/’, include(’misitio.urls.blog’)),
+   url(r'^(?P<username>\w+)/blog/', include('misitio.urls.blog')),
 
 Cómo funcionan las opciones extra de URLconf con include()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1375,7 +1370,7 @@ variable.
 
 .. code:: python
 
-   url(r’^blog/’, include(’url-interna’), {’blogid’: 3}),
+   url(r'^blog/', include('url-interna'), {'blogid': 3}),
 
 Resolución inversa de URLs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1398,16 +1393,24 @@ A la hora de usarlo quedaría de la siguiente manera
 
 .. code:: python
 
-   url(r’^libros/([0-9]{4})/$’, views.libros_anuales, name=’libros-anuales’),
-   … #En plantilla
-   <a href="{% url ’libros-anuales’ 2014 %}">Libros del 2014</a>
+   url(r'^libros/([0-9]{4})/$', views.libros_anuales, name='libros-anuales')
+
+En plantilla
+
+.. code-block:: html
+
+   <a href="{% url 'libros-anuales' 2014 %}">Libros del 2014</a>
       {# o sin el año en el contexto de la variable de la plantilla: #}
    <ul>
        {% for año in lista_anual %}
-          <li><a href="{% url ’libros-anuales’ año %}">{{ año }} Libros</a></li>
+          <li><a href="{% url 'libros-anuales' año %}">{{ año }} Libros</a></li>
        {% endfor %}
    </ul>
-   #En código
+
+En el código:
+
+.. code-block:: python
+
    from django.urls import reverse
    from django.http import HttpResponseRedirect
 
@@ -1431,17 +1434,17 @@ RequestContext
 .. code:: python
 
    def custom_proc(request):
-   "Un procesador de contexto que provee ’aplicacion’, ’usuario’ y’direcccion_ip’."
-   return {
-       ’aplicacion: ’Biblioteca’,
-       ’usuario’: request.user,
-       ’direccion_ip’: request.META[’REMOTE_ADDR’],
-   }
+      """Un procesador de contexto que provee 'aplicacion', 'usuario' y'direcccion_ip'."""
+      return {
+         'aplicacion': 'Biblioteca',
+         'usuario': request.user,
+         'direccion_ip': request.META['REMOTE_ADDR'],
+      }
 
    def vista_1(request):
      # ...
-     t = loader.get_template(’plantilla1.html’)
-     c = RequestContext(request, {’mensaje’: ’Soy la vista 1.’}, #Aun puede agregarse variables de contexto si se desea
+     t = loader.get_template('plantilla1.html')
+     c = RequestContext(request, {'mensaje': 'Soy la vista 1.'}, #Aun puede agregarse variables de contexto si se desea
          processors=[custom_proc])
      return t.render(c)
 
@@ -1454,10 +1457,10 @@ como contexto de plantilla
 .. code:: python
 
    TEMPLATE_CONTEXT_PROCESSORS = (
-       ’django.core.context_processors.auth’,
-       ’django.core.context_processors.debug’,
-       ’django.core.context_processors.i18n’,
-       ’django.core.context_processors.media’,
+       'django.core.context_processors.auth',
+       'django.core.context_processors.debug',
+       'django.core.context_processors.i18n',
+       'django.core.context_processors.media',
    )
 
 django.core.context_processors.auth
@@ -1532,7 +1535,7 @@ Para bloques de plantillas
 
 Puedes escapar bloques de plantillas, esto incluye a include y extends
 
-.. code:: python
+.. code:: html
 
    {% autoescape off %}
        Texto {{ variable }}
@@ -1544,13 +1547,13 @@ Escape automático de cadenas literales en argumentos de filtros
 Todas las cadenas literales son insertadas sin escape automático en la
 plantilla. Pero al decidir los autores que se muestra Escribirías
 
-.. code:: python
+.. code:: html
 
    {{ datos default:"0 &lt; 1" }}
 
 En lugar de
 
-.. code:: python
+.. code:: html
 
    {{ datos default:"0 < 1" }}
 
@@ -1595,7 +1598,7 @@ paquete de aplicación Django apropiado. Debe encontrarse en el mismo
 nivel que models.py, views.py, etc. Agrega un archivo \__init__.py para
 que python lo trate como modulo.
 
-.. code:: python
+.. code:: bash
 
    biblioteca/
        __init__.py
@@ -1626,15 +1629,13 @@ Los filtros son funciones python con uno o dos argumentos, la variable y
 el valor del argumento, que puede tener un valor por omisión. Las
 funciones filtro deben siempre retornar algo. No deben arrojar
 excepciones, y deben fallar silenciosamente. {{ var|foo:"bar" }} #Var es
-la variable, “bar” el argumento y foo la función
+la variable, "bar" el argumento y foo la función
 
 .. code:: python
 
    def cortar(value, arg):
-        "Remueva todos los valores que concuerdan con los
-        Argumentos de la cadena dada"
-
-     return value.replace(arg, '')
+      """Remueva todos los valores que concuerdan con los Argumentos de la cadena dada"""
+      return value.replace(arg, '')
 
 Una vez creada la función debe registrarse en una instancia de Library.
 El primer argumento es el nombre del filtro y el segundo la función a
@@ -1642,7 +1643,7 @@ utilizar.
 
 .. code:: python
 
-   register.filter(’cortar’, cortar)
+   register.filter('cortar', cortar)
 
 Escribir etiquetas de plantilla personalizadas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1671,7 +1672,7 @@ método render necesario.
            # El metodo split_contents() sabe como dividir cadenas entre comillas.
            tag_nombre, formato_cadena = token.split_contents()
        except ValueError:
-           msg = ’%r la etiqueta requiere un simple argumento’ % token.split_contents()[0] #Siempre tendrá el nombre de la etiqueta
+           msg = '%r la etiqueta requiere un simple argumento' % token.split_contents()[0] #Siempre tendrá el nombre de la etiqueta
            raise template.TemplateSyntaxError(msg)
        return NodoFechaActual(formato_cadena[1:-1]) #Siempre deben devolver una subclase de Node
 
@@ -1718,16 +1719,20 @@ un diccionario se tratase
        def render(self, context):
            ahora = datetime.datetime.now()
            context['fecha_actual'] = ahora.strftime(self.formato_cadena)
-           return ‘’ #Siempre debe devolver una cadena, en este caso una cadena vacia
+           return "" # Siempre debe devolver una cadena, en este caso una cadena vacia
 
 Una solución más limpia sería usarla así, para hacerlo es necesario
 modificar el código. El código es algo complejo y utiliza expresiones
 regulares para identificar el modelo {{% funcion as variable %}}
 
-.. code:: python
+.. code:: html
 
    {% traer_fecha_actual "%Y-%M-%d %I:%M %p" as mi_fecha_actual %}
    <p>Fecha: {{ mi_fecha_actual }}.</p>
+
+en el código
+
+.. code-block:: python
 
    import datetime
    import re
@@ -1743,7 +1748,7 @@ regulares para identificar el modelo {{% funcion as variable %}}
        def render(self, context):
            ahora = datetime.datetime.now()
            context[self.var_nombre] = ahora.strftime(self.formato_cadena)
-           return ’’
+           return ''
 
    @register.tag(name="traer_fecha_actual")
    def traer_hora_actual(parser, token):
@@ -1752,18 +1757,18 @@ regulares para identificar el modelo {{% funcion as variable %}}
            # Dividir por None == dividir por espacios.
            tag_nombre, arg = token.contents.split(None, 1)
        except ValueError:
-          msg = ’%r La etiqueta requiere un simple argumento’ % token.contents[0]
+          msg = '%r La etiqueta requiere un simple argumento' % token.contents[0]
           raise template.TemplateSyntaxError(msg)
 
-       m = re.search(r’(.*?) as (\w+)’, arg)
+       m = re.search(r'(.*?) as (\w+)', arg)
        if m:
            fmt, var_nombre = m.groups()
        else:
-          msg = ’%r Argumentos no validos para la etiqueta’ % tag_nombre
+          msg = '%r Argumentos no validos para la etiqueta' % tag_nombre
           raise template.TemplateSyntaxError(msg)
-        if not (fmt[0] == fmt[-1] and fmt[0] in (’"’, "’")):
-           msg = "%r Los argumentos deben de ir entre comillas" % tag_nombre
-           raise template.TemplateSyntaxError(msg)
+       if not (fmt[0] == fmt[-1] and fmt[0] in ('"', "'")):
+          msg = "%r Los argumentos deben de ir entre comillas" % tag_nombre
+          raise template.TemplateSyntaxError(msg)
 
        return NodoFechaActual3(fmt[1:-1], var_nombre)
 
@@ -1781,13 +1786,13 @@ ignora.
 .. code:: python
 
    def do_comment(parser, token):
-       nodelist = parser.parse((’endcomment’,))
+       nodelist = parser.parse(('endcomment',))
        parser.delete_first_token()
        return CommentNode()
 
    class CommentNode(template.Node):
        def render(self, context):
-           return ’’
+           return ''
 
 Evaluar hasta otra etiqueta de bloque y guardar el contenido
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1800,7 +1805,7 @@ devolverá el metodo upper para cada nodo.
 .. code:: python
 
    def do_upper(parser, token):
-       nodelist = parser.parse((’endupper’,))
+       nodelist = parser.parse(('endupper',))
        parser.delete_first_token()
        return UpperNode(nodelist)
 
@@ -1836,17 +1841,17 @@ Visualiza ciertos datos renderizando otra plantilla
 
    def libros_por_autor(autor):
        libros = Libro.objects.filter(autores__id=autor.id)
-       return {’libros’: libros}
+       return {'libros': libros}
 
 Luego creamos la plantilla usada para renderizar la salida de la
 etiqueta
 
-.. code:: python
+.. code:: html
 
    <ul>
-   {% for libro in libros %}
-       <li>{{ libro.titulo }}</li>
-   {% endfor %}
+      {% for libro in libros %}
+         <li>{{ libro.titulo }}</li>
+      {% endfor %}
    </ul>
 
 Y finalmente suponiendo que la plantilla se llama libros_por_autor.html
@@ -1858,7 +1863,7 @@ la registramos
 
 El resultado será lo siguiente
 
-.. code:: python
+.. code:: html
 
    {% libros_por_autor autor %}
 
@@ -2057,8 +2062,7 @@ para cambiar el nombre se modifica el modelo así
    from django.db import models
 
    class Persona(models.Model):
-   ...#
-       gente = models.Manager() #Esto te permitira llamar Persona.gente.all() en lugar de Persona.objects.all()
+      gente = models.Manager() #Esto te permitira llamar Persona.gente.all() en lugar de Persona.objects.all()
 
 Managers Personalizados
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -2074,14 +2078,14 @@ devuelve el Manager.
    class ManejadorLibros(models.Manager):
        def contar_titulos(self, keyword):
            return self.filter(titulo__icontains=keyword).count()
-    #self se refiere al manager en sí mismo
+           #self se refiere al manager en sí mismo
+
    class Libro(models.Model):
-     …
        objects = ManejadorLibros() #Renombra al manager por defecto aquí se usa objects para ser consistente
 
 Lo que te permitirá hacer esto
 
-.. code:: python
+.. code:: bash
 
    >>> Libro.objects.contar_titulos('django')
    4
@@ -2131,8 +2135,8 @@ pero esten basados en los datos de tabla
    class Persona(models.Model):
        #...
        def es_del_medio_oeste(self):
-       "Retorna True si la persona nacio en el medio-oeste."
-       return self.estado in ('IL', 'WI', 'MI', 'IN', 'OH', 'IA', 'MO')
+         "Retorna True si la persona nacio en el medio-oeste."
+         return self.estado in ('IL', 'WI', 'MI', 'IN', 'OH', 'IA', 'MO')
 
 get_absolute_url
 ~~~~~~~~~~~~~~~~
@@ -2140,7 +2144,7 @@ get_absolute_url
 Define un método get_absolute_url() para decirle a Django cómo calcular
 la URL de un objeto, por ejemplo. Si un objeto define
 get_absolute_url(), la página de edición del objeto tendrá un enlace
-‘’View on site’’, que te llevará directamente a la vista pública del
+‘'View on site'', que te llevará directamente a la vista pública del
 objeto
 
 .. code:: python
@@ -2151,9 +2155,9 @@ objeto
 
 Y asi poder usar
 
-.. code:: python
+.. code:: html
 
-   <a href=”{{ object.get_absolute_url }}”>{{ object.nombre }}</a>
+   <a href="{{ object.get_absolute_url }}">{{ object.nombre }}</a>
 
 Sobrescribir métodos predefinidos de un modelo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2189,7 +2193,7 @@ código SQL personalizado
                SELECT DISTINCT apellido
                FROM persona
                WHERE apellido = %s""", [apellido])
-          return [row[0] for row in cursor.fetchone()]
+           return [row[0] for row in cursor.fetchone()]
 
    class Persona(models.Model):
         #...
@@ -2204,7 +2208,7 @@ Vista Base
 Todas las vistas heredan de la clase-base View. Hay 3 principales: View,
 TemplateView y RedirectView Organizan el código relacionado en métodos
 específicos HTTP (GET, POST, etc) Usan la técnica de orientación a
-objetos para crear ‘’mixins’’ (herencia múltiple) para factorizar el
+objetos para crear ‘'mixins'' (herencia múltiple) para factorizar el
 código en componentes comunes y reutilizables.
 
 View
@@ -2269,9 +2273,9 @@ cargar la plantilla del mismo nombre.
    class PaginaInicio(TemplateView):
        template_name = "bienvenidos.html" #Nombre la plantilla a usar. La variable es fija.
        def get_context_data(self, **kwargs):
-       context = super(PaginaInicio,self).get_context_data(**kwargs)#Obtiene los datos de contexto de la clase padre
-       context['ultimos_libros'] = Libro.objects.all()[:5] #Agrega un dato de contexto extra
-       return context #Retorna el contexto a la plantilla a usar
+         context = super(PaginaInicio,self).get_context_data(**kwargs)#Obtiene los datos de contexto de la clase padre
+         context['ultimos_libros'] = Libro.objects.all()[:5] #Agrega un dato de contexto extra
+         return context #Retorna el contexto a la plantilla a usar
 
    # urls.py:
 
@@ -2422,7 +2426,7 @@ refiere a la Primary Key del objeto.
 Extender las vistas genéricas
 -----------------------------
 
-Crear contextos de plantilla “amistosos”
+Crear contextos de plantilla "amistosos"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Para cambiar el nombre del objeto que se usará en plantilla solo se
@@ -2583,7 +2587,7 @@ objetos se mostrarán por página
 En la siguiente plantilla, llamada detalles_editores.html, page_obj se
 crea si la clase tiene el atributo paginator
 
-.. code:: python
+.. code:: html
 
    {% extends "base.html" %}
 
@@ -2630,6 +2634,7 @@ un mixin que envuelva el método as_view ()
 
    class MiVista(RequiereLogin,  ...):
        # Esta es la vista genérica
+       pass
 
 Manejando formularios con vistas basadas en clases genéricas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2771,11 +2776,6 @@ Decorando vistas de una clase-base
 La extensión de vistas basadas en clases no se limita a usar solamente
 mixins. También puedes utilizar decoradores
 
-.. _decorando-vistas-de-una-clase-base-1:
-
-Decorando vistas de una clase-base
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 La forma más simple de decorar una vista basada en una clase, es decorar
 el resultado de el método as_view()
 
@@ -2806,12 +2806,12 @@ instancia de Vista Protegida, tendrá protección de login.
 
    from django.views.generic import TemplateView
 
-   class Vista Protegida(TemplateView):
-       template_name = 'pagina-secreta.html'
+   class VistaProtegida(TemplateView):
+      template_name = "pagina-secreta.html"
 
-       @method_decorator(login_required)
-       def dispatch(self, *args, **kwargs):
-           return super(Vista Protegida, self).dispatch(*args, **kwargs)
+      @method_decorator(login_required)
+      def dispatch(self, *args, **kwargs):
+         return super(VistaProtegida, self).dispatch(*args, **kwargs)
 
 
 Comandos útiles
