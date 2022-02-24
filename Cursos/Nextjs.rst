@@ -268,7 +268,8 @@ limpia.
 Middleware 
 ==========
 
-Nextjs permite el uso de middleware usando un objeto middleware que se encuentre dentro de un archivo llamado *_middleware*
+El middleware necesita ser una función middleware y estar dentro un archivo llamado _middleware, con extensión tsx o js, que se encuentre dentro de pages.
+Los middleware se ejecutaran en orden de acuerdo a su nivel de anidación. El nombre no es necesariamente middleware pero se considera una convención.
 
 .. code-block:: javascript
 
@@ -278,6 +279,8 @@ Nextjs permite el uso de middleware usando un objeto middleware que se encuentre
    request: NextRequest,
    event: NextFetchEvent
    ) => Promise<Response | undefined> | Response | undefined
+
+Si manejas código asíncrono, es necesario agregar el prefijo async.
 
 El objeto NextRequest
 ---------------------
@@ -316,7 +319,7 @@ pages/, llamado \_document.tsx o \_document.js , ya sea que estemos
 trabajando con typescript o javascript, respectivamente. Cualquier
 cambio que se haga va a aplicar a todos los documentos
 
-En su documentación, Nextjs nos da una `plantilla base <https://nextjs.org/docs/advanced-features/custom-document>`_para poder personalizar lo que necesitamos.
+En su documentación, Nextjs nos da una `plantilla base <https://nextjs.org/docs/advanced-features/custom-document>`_  para poder personalizar lo que necesitamos.
 
 Este archivo es ideal para colocar elemento adicionales en la etiqueta
 Head, tales como favicons, webfonts o estilos personalizados
@@ -354,9 +357,7 @@ Head, tales como favicons, webfonts o estilos personalizados
 Extendiendo App
 ---------------
 
-Igual que document, Nextjs proporciona una
-[plantilla](https://nextjs.org/docs/advanced-features/custom-app) que
-podemos usar para personalizar la App
+Igual que en el ejemplo de document, Nextjs proporciona una `plantilla <https://nextjs.org/docs/advanced-features/custom-app>`_  que podemos usar para personalizar la App
 
 Para hacer uso de esta personalización debemos colocar un archivo
 \_app.tsx o \_app.js, si trabajamos con typescript o javascript,
@@ -863,25 +864,6 @@ archivos planos de HTML, CSS y JavaScript desde Next.js
 Tras correr el comando nos generará una carpeta llamada out. Esta
 carpeta contiene páginas estáticas en html completamente planas. Estás
 páginas podemos usarlas con cualquier servidor que sirva html plano.
-
-Middleware
-==========
-
-El middleware necesita ser una función middleware y estar dentro un archivo llamado _middleware, con extensión tsx o js, que se encuentre dentro de pages.
-Los middleware se ejecutaran en orden de acuerdo a su nivel de anidación. El nombre no es necesariamente middleware pero se considera una convención.
-
-
-.. code-block:: javascript
-
-   import type { NextFetchEvent } from 'next/server'
-   import type { NextRequest } from 'next/server'
-
-   export type Middleware = (
-      request: NextRequest,
-      event: NextFetchEvent
-   ) => Promise<Response | undefined> | Response | undefined
-
-Si manejas código asíncrono puedes agregarle el prefijo async.
 
 Diferencia entre next build y next export
 =========================================

@@ -2,7 +2,12 @@
 Graphql
 =======
 
-Instalacion de graphql
+GraphQL es un lenguaje de consulta y manipulación de datos para APIs, y un entorno de ejecución para realizar consultas con datos existentes.​ GraphQL fue desarrollado internamente por Facebook en 2012 antes de ser liberado públicamente en 2015.​ Su función principal es crear un endpoint para manejar complejas consultas REST. 
+
+Instalación
+===========
+
+Se instala directamente desde npm o yarn.
 
 .. code-block:: bash
 
@@ -271,7 +276,7 @@ Para crear una cuenta y tener disponible mongodb en la nube, directo de la pági
 1. Crear una cuenta en `Mongo Atlas <https://cloud.mongodb.com/>`_  y generar un nuevo cluster
 2. En el nuevo cluster, hacer click en Connect
 3. Colocar nuestra IP en la lista blanca de direcciones IP
-5. Crear un usuario y una contraseña para la Base de datos
+4. Crear un usuario y una contraseña para la Base de datos
 5. Seleccionar la opcion "connect your application"
 6. Copiar la cadena de conexión
 7. En la pestaña de la base de datos ir a collections y agregar una base de datos

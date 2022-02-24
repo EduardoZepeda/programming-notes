@@ -197,10 +197,9 @@ puede acceder a las propiedades del objeto.
 
    console.log(state.id) // Error del compilador.
 
-.. _object-1:
 
-Object
-~~~~~~
+Object (Con mayúscula inicial)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Object, con mayúscula inicial. Es una instancia de la clase Object de
 Javascript

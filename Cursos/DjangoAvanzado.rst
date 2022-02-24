@@ -96,11 +96,11 @@ AbstractUser
    class User(CRideModel, AbstractUser):
        email = models.EmailField(
            'email_adress',
-           unique=True
+           unique=True,
            error_messages={
                'unique': 'A user with that email already exist.'
-   }
-   )
+           }
+       )
        USERNAME_FIELD = 'email'
        REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
@@ -150,30 +150,30 @@ decodificar el token que recibimos
 .. code:: python
 
    class AccountVerificationSerializer(serializers.Serializer):
-   """Account verification serializer."""
+        """Account verification serializer."""
 
-   token = serializers.CharField()
+        token = serializers.CharField()
 
-   def validate_token(self, data):
-      """Verify token is valid."""
-      try:
-          payload = jwt.decode(data, settings.SECRET_KEY, algorithms=['HS256'])
-      except jwt.ExpiredSignatureError:
-          raise serializers.ValidationError('Verification link has expired.')
-      except jwt.PyJWTError:
-          raise serializers.ValidationError('Invalid token')
-      if payload['type'] != 'email_confirmation':
-          raise serializers.ValidationError('Invalid token')
+        def validate_token(self, data):
+            """Verify token is valid."""
+            try:
+                payload = jwt.decode(data, settings.SECRET_KEY, algorithms=['HS256'])
+            except jwt.ExpiredSignatureError:
+                raise serializers.ValidationError('Verification link has expired.')
+            except jwt.PyJWTError:
+                raise serializers.ValidationError('Invalid token')
+            if payload['type'] != 'email_confirmation':
+                raise serializers.ValidationError('Invalid token')
 
-      self.context['payload'] = payload
-      return data
+            self.context['payload'] = payload
+            return data
 
-   def save(self):
-      """Update user's verified status."""
-      payload = self.context['payload']
-      user = User.objects.get(username=payload['user'])
-      user.is_verified = True
-      user.save()
+        def save(self):
+            """Update user's verified status."""
+            payload = self.context['payload']
+            user = User.objects.get(username=payload['user'])
+            user.is_verified = True
+            user.save()
 
 Permisos
 ========

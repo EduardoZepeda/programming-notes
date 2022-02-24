@@ -242,7 +242,7 @@ la aplicación.
 
 Hay que modificar el archivo *package.json* para que llegue así
 
-.. code:: json
+.. code:: javascript
 
    "dependencies": {
      "compression": "^1.7.4",
@@ -495,7 +495,7 @@ Para transformar la aplicación en una PWA creamos un archivo llamado
 
 Después modificamos el archivo webpack.config.js
 
-.. code:: json
+.. code:: javascript
 
    serviceworker: {
      entry: config.serviceworker.entry(),

@@ -109,7 +109,7 @@ Minikube
 
 Minikube usa opciones de hypervisor como virtualbox, hyperkit o KVM2 para despleguar un cluster mínimo. 
 
-Para instalarlo puedes hacerlo desde la url oficial de `minikube <https://minikube.sigs.k8s.io/docs/start/>`_ 
+Para instalarlo puedes hacerlo desde la url oficial de `la documentación de minikube <https://minikube.sigs.k8s.io/docs/start/>`_ 
 
 Minikube utiliza kubeadm internamente.
 
@@ -513,6 +513,8 @@ Para actualizar un deployment podemos editar la imagen con el comando edit
     kubectl edit deployment <name>
 
 O cambiando la imagen directamente 
+
+.. code-block:: bash
 
     kubectl set image deployment <name> <nginx>=<nginx>:version --all
 
@@ -1414,7 +1416,7 @@ En Gitops el se cambia el flujo de trabajo que incorpora un operador. El operado
 Flux
 ----
 
-`Flux <https://fluxcd.io/docs/>`_  es un sync operator que permite crear un flujo de trabajo. Obtenemos el código con *git clone* Y modificaremos el archivo *flux/deploy/flux-deployment.yml* para decirle que repositorio y rama de monitorear.
+El `sync operator flux <https://fluxcd.io/docs/>`_  permite crear un flujo de trabajo. Obtenemos el código con *git clone* Y modificaremos el archivo *flux/deploy/flux-deployment.yml* para decirle que repositorio y rama de monitorear.
 
 .. code-block:: bash
 
@@ -1454,5 +1456,7 @@ Recursos útiles
 * `Seguridad del dashboard de k8skubectl apply -f kubernetes-dashboard.yml <http://link>`_
 * `Implementar kubernetes-dashboard <https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/>`_ 
 * `Configurar tests healtcheckhttps://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ <http://link>`_ 
-* `Repositorio de Flux https://github.com/weaveworks/flux`_ 
+* `Repositorio de Flux https://github.com/weaveworks/flux`
+
+
 

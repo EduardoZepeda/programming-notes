@@ -11,8 +11,8 @@ lego que al ser unidos forman aplicaciones de React. Estos componentes
 pueden tener estilos, ser enlazados a eventos y sus estados pueden ser
 modificados.
 
-ReactDOM
-========
+ReactDOM y React
+================
 
 React y ReactDOM trabajarán en conjunto.
 
@@ -59,7 +59,6 @@ Finalmente para correr la aplicación se usa el comando
 
    npm run start
 
-.. _reactdom-1:
 
 ReactDOM
 ========

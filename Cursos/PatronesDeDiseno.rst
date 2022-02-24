@@ -95,17 +95,17 @@ de su propio constructor
 
    class FormDirector(Director):   
 
-       def__init__(self):
+       def __init__(self):
            Director.__init__(self)
 
        def construct(self, field_list): 
            for field in field_list:
-               if field["field_type"] == "text_field":
-               self._builder.add_text_field(field)
-           elif field["field_type"] == "checkbox":
-               self._builder.add_checkbox(field)
-           elif field["field_type"] == "button":
-               self._builder.add_button(field)
+            if field["field_type"] == "text_field":
+                self._builder.add_text_field(field)
+            elif field["field_type"] == "checkbox":
+                self._builder.add_checkbox(field)
+            elif field["field_type"] == "button":
+                self._builder.add_button(field)
 
    if __name__ == "__main__":
        director = FormDirector() 
@@ -251,13 +251,13 @@ fabrica de objetos que le pongamos.
 
        def move(self, direction):
            if direction == 'up':
-           self.y -= 4
+            self.y -= 4
            elif direction == 'down':
-           self.y += 4
+            self.y += 4
            elif direction == 'left':
-           self.x -= 4
+            self.x -= 4
            elif direction == 'right':
-           self.x += 4
+            self.x += 4
 
 
    class Square(Shape):
@@ -281,11 +281,11 @@ fabrica de objetos que le pongamos.
          )
 
    class AbstractFactory(object):
-     __metaclass__ = abc.ABCMeta
+    __metaclass__ = abc.ABCMeta
 
-       @abc.abstractmethod
-       def make_object(self):
-         return
+    @abc.abstractmethod
+    def make_object(self):
+        return
 
    class CircleFactory(AbstractFactory):
 
@@ -501,44 +501,39 @@ su misma simplicidad, pues siempre será inferior al código.
 
 .. code:: python
 
-   class Boiler: 
-
-       def __init__(self): 
+    class Boiler:
+       def __init__(self):
            self.temperature =  83 # in  celsius
 
        def __str__(self): 
            return 'boiler temperature: {}'.format(self.temperature)  
 
        def increase_temperature(self, amount): 
-           print("increasing the boiler's temperature by {}
-                     degrees".format(amount)) 
+           print("increasing the boiler's temperature by {} degrees".format(amount)) 
            self.temperature += amount 
 
        def decrease_temperature(self, amount): 
-           print("decreasing the boiler's temperature by {}  
-                     degrees".format(amount)) 
+           print("decreasing the boiler's temperature by {} degrees".format(amount)) 
            self.temperature -= amount
 
-   word = Word(alphanums) 
-       command = Group(OneOrMore(word)) 
-       token = Suppress("->") 
-       device = Group(OneOrMore(word)) 
-       argument = Group(OneOrMore(word)) 
-       event = command + token + device + Optional(token + argument) 
+    word = Word(alphanums) 
+    command = Group(OneOrMore(word))
+    token = Suppress("->") 
+    device = Group(OneOrMore(word)) 
+    argument = Group(OneOrMore(word)) 
+    event = command + token + device + Optional(token + argument) 
+    boiler = Boiler() 
+    print(boiler)
 
-       boiler = Boiler() 
-       print(boiler)
+    # increase -> boiler temperature -> 3 degrees
 
-   # increase -> boiler temperature -> 3 degrees
+    [['increase'], ['boiler', 'temperature'], ['3', 'degrees']]
 
-   [['increase'], ['boiler', 'temperature'], ['3', 'degrees']]
-
-   cmd, dev, arg = event.parseString('increase -> boiler temperature -> 3 degrees')
-       if 'increase' in ' '.join(cmd): 
-           if 'boiler' in ' '.join(dev): 
-               boiler.increase_temperature(int(arg[0])) 
-
-       print(boiler)
+    cmd, dev, arg = event.parseString('increase -> boiler temperature -> 3 degrees')
+    if 'increase' in ' '.join(cmd): 
+        if 'boiler' in ' '.join(dev): 
+            boiler.increase_temperature(int(arg[0])) 
+    print(boiler)
 
 Command
 =======
@@ -667,21 +662,21 @@ Podemos agregar variables a los decoradores anidándolos nuevamente.
    import time
    from functools import wraps
 
-       def profiling_decorator_with_unit(unit):
-           def profiling_decorator(f):
-               @wraps(f)
-                   def wrap_f(n):
-                       start_time = time.time()
-                       result = f(n)
-                       end_time = time.time()
-                       if unit == "seconds":
-                           elapsed_time = (end_time - start_time) / 1000
-                       else:
-                           elapsed_time = (end_time - start_time)
-                           print("[Time elapsed for n = {}] {}".format(n, elapsed_time))
-                       return result
-               return wrap_f
-           return profiling_decorator
+   def profiling_decorator_with_unit(unit):
+       def profiling_decorator(f):
+           @wraps(f)
+           def wrap_f(n):
+               start_time = time.time()
+               result = f(n)
+               end_time = time.time()
+               if unit == "seconds":
+                   elapsed_time = (end_time - start_time) / 1000
+               else:
+                   elapsed_time = (end_time - start_time)
+                   print("[Time elapsed for n = {}] {}".format(n, elapsed_time))
+               return result
+           return wrap_f
+       return profiling_decorator
 
    @profiling_decorator_with_unit("seconds")
    def fib(n):
@@ -776,10 +771,9 @@ resultado para un resultado más rápido.
        start_time = time.time()
        fib_sequence = [calculator.fib(x) for x in range(0, 80)]
        end_time = time.time()
-       print("Calculating the list of {} Fibonacci numbers took {}
-           seconds".format(
-               len(fib_sequence),
-               end_time - start_time
+       print("Calculating the list of {} Fibonacci numbers took {} seconds".format(
+           len(fib_sequence),
+           end_time - start_time
            )
        )
 

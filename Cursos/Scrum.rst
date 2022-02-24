@@ -18,10 +18,8 @@ prototipos y validaciones en 5 dias. Muy bueno. Si analizas, no son
 compatibles entre ellos como tal. Cada uno tiene su propósito. Si
 entiendes esos propósitos no necesitarás combinarlos.
 
-.. _scrum-1:
-
-SCRUM
-=====
+Definción
+=========
 
 SCRUM es un marco de trabajo que nos proporciona una serie de
 herramientas y roles para, de una forma iterativa, poder ver el progreso
@@ -117,39 +115,39 @@ Fases y Procesos de SCRUM Las fases de SCRUM son:
 Cada fase incluye un número de procesos. SCRUM tiene 19 procesos
 divididos en 5 fases.
 
-1. Fase de Inicio:
+#. Fase de Inicio:
 
--  Crear la visión del proyecto
--  Identificar al SCRUM Master y stakeholders
--  Formar equipos SCRUM
--  Desarrollar épicas
--  Crear el backlog priorizado del producto
--  Planificar el lanzamiento
+*  Crear la visión del proyecto
+*  Identificar al SCRUM Master y stakeholders
+*  Formar equipos SCRUM
+*  Desarrollar épicas
+*  Crear el backlog priorizado del producto
+*  Planificar el lanzamiento
 
-2. Fase de Planificación y estimación
+#. Fase de Planificación y estimación
 
--  Crear historias de usuario
--  Estimar historias de usuario
--  Comprometer historias de usuario
--  Identificar tareas
--  Estimar tareas
--  Crear el sprint backlog
+*  Crear historias de usuario
+*  Estimar historias de usuario
+*  Comprometer historias de usuario
+*  Identificar tareas
+*  Estimar tareas
+*  Crear el sprint backlog
 
-3. Fase de implementación
+#. Fase de implementación
 
--  Crear entregables
--  Realizar daily standup
--  Refinar el backlog priorizado del producto
+*  Crear entregables
+*  Realizar daily standup
+*  Refinar el backlog priorizado del producto
 
-4. Fase de revisión y retrospectiva
+#. Fase de revisión y retrospectiva
 
--  Demostrar y validar el sprint
--  Retrospectiva del sprint
+*  Demostrar y validar el sprint
+*  Retrospectiva del sprint
 
-5. Fase de lanzamiento
+#. Fase de lanzamiento
 
--  Enviar entregables
--  Retrospectiva del proyecto
+*  Enviar entregables
+*  Retrospectiva del proyecto
 
 Flujo de SCRUM
 ==============

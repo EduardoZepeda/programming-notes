@@ -150,7 +150,7 @@ Creación múltiple
 Para crear varios documentos crearemos un archivo *usuarios.json* Este
 archivo debe terminan con una linea vacia.
 
-.. code:: json
+.. code:: javascript
 
    {"index": {"_id": "3"}}
    {"nombre": "Beth", "apellido": "Smith"}
@@ -159,7 +159,7 @@ archivo debe terminan con una linea vacia.
 
 Mandaremos este archivo con método POST a la dirección
 
-.. code:: json
+.. code:: bash
 
    localhost:9200/usuarios/_bulk
 
@@ -307,7 +307,7 @@ manera
        "nombre": "",
        "descripcion": "",
        "estado": "",
-       "pedidosUltimaHora": ,
+       "pedidosUltimaHora": "",
        "ultimaModificacion": {
            "usuario": "",
            "fecha": ""
@@ -639,11 +639,10 @@ función a aplicar y el campo sobre el cual queremos que se aplique.
    {
 
        "aggs": {
-           "calificacionPromedio": {"avg": {"field": "calificacon"}},
-           "calificacionMaxima": {"max": {"field": calificación}},
-           "calificacionMinima": {"min": {"field": calificación}},
-
-       }
+           "calificacionPromedio": {"avg": {"field": "calificacion"}},
+           "calificacionMaxima": {"max": {"field": "calificacion"}},
+           "calificacionMinima": {"min": {"field": "calificacion"}}
+        }
    }
 
 Esto lo enviaremos por medio del método GET, a la dirección
@@ -654,14 +653,10 @@ Esto lo enviaremos por medio del método GET, a la dirección
 
 Podemos colocar un valor por defecto usando la palabra *missing*
 
-.. code:: json
-
-   {
+.. code:: javascript
 
        "aggs": {
            "calificacionPromedio": {"avg": {"field": "calificacon", "missing": 3.0}},
            "calificacionMaxima": {"max": {"field": calificación}},
-           "calificacionMinima": {"min": {"field": calificación}},
-
+           "calificacionMinima": {"min": {"field": calificación}}
        }
-   }

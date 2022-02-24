@@ -138,9 +138,10 @@ Nextjs detecta automáticamente el idioma usando el header de preferencia "Accep
 
 .. code:: javascript
 
-module.exports = {
-    i18n: {
-        localeDetection: false,
+    module.exports = {
+        i18n: {
+            localeDetection: false,
+        }
     }
     
 El componente Link que provee nextjs redirige automáticamente a la url con el locale activo.

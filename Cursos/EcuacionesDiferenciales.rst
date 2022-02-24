@@ -7,7 +7,7 @@ cosas que existen en la realidad que dependen de alguna variable como el
 tiempo, un ejemplo de esto sería saber la variación en la temperatura de
 un objeto a lo largo de diferentes rangos de tiempo.
 
-:math:`A_\text{c} = (\pi/4) d^2`.
+:math:`A_\text{c} = (\pi/4) d^2`
 
 Que es una ecuación diferencial
 ===============================
@@ -166,10 +166,7 @@ Ecuaciones diferenciales exactas
 
 Estas ecuaciones cumplen dos condiciones:
 
-1. Puedan ser representadas de la forma
-
-:math:`M(x, y)dx + N(x, y)dy = 0`.
-
+1. Puedan ser representadas de la forma :math:`M(x, y)dx + N(x, y)dy = 0`.
 2. La derivada de M con respecto a la derivada de y sea igual a la
    derivada de N con la derivada de x
 

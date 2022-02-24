@@ -24,15 +24,20 @@ Dificultades en el desarrollo de software
 
 Cuando estamos identificando los problemas que queremos resolver, podemos dividir los problemas en 2
 
-Esenciales: Los podemos dividir en 4.
+Esenciales
+----------
+
+Los podemos dividir en: 
 
 * La complejidad: Cuando el problema es complejo en si mismo, por ejemplo del problema del vendedor viajero aplicado. Manejo del problema de complejidad: Usar un sistema existente o aprovechar código Open Source.
 * La conformidad: en qué contexto se usa el software y cómo se adapta al entorno. Manejo del problema: Prototipado rápido, feedback e iteraciones rápidas para soluciones pequeñas, generalmente usando metodologías ágiles.
 * Tolerancia al cambio: Cambio de el mismo software y el contexto donde se usa. Manejo del problema: Desarrollo Evolutivo, desarrollos pequeños. Paso a paso pero de manera firme e ir haciendo crecer el software.
 * Invisibilidad: Problemas de tangibilidad nula.
-Manejo del problema: Grandes diseñadores, Arquitectos que saben abtraer el problema y que realiza soluciones elegantes, de manera eficiente.
+* Manejo del problema: Grandes diseñadores, Arquitectos que saben abstraer el problema y que realiza soluciones elegantes, de manera eficiente.
 
-Accidentales:
+
+Accidentales
+------------
 
 Está relacionado con la plataforma que vamos a implementar, tecnología, lenguajes, frameworks, integraciones, entornos, etc.
 
@@ -183,12 +188,9 @@ Es necesario identificar los riesgos para poder **priorizarlos** y atacarlos en 
 
 Podemos usar un framework para identificar los riesgos:
 
-* Toma de Requerimientos (Requerimientos funcionales)
-Se calificará de acuerdo a su dificultad o complejidad.
-* Atributos de calidad (Requerimientos NO funcionales):
-Se calificará de acuerdo a la incertidumbre que genere, a mayot incertidumbre mayor riesgo.
-* Conocimiento del dominio:
-Riesgo prototípico, son aquellos que podemos atacar de forma estándar.
+* Toma de Requerimientos (Requerimientos funcionales): Se calificará de acuerdo a su dificultad o complejidad.
+* Atributos de calidad (Requerimientos NO funcionales): Se calificará de acuerdo a la incertidumbre que genere, a mayot incertidumbre mayor riesgo.
+* Conocimiento del dominio: Riesgo prototípico, son aquellos que podemos atacar de forma estándar.
 
 Una vez identificados debemos priorizarlos para resolver aquellos riesgos que ponen en riesgo el éxito de la solución.No todos los riesgos podrán cubrirse en un inicio.
 

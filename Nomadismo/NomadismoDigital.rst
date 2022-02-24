@@ -10,7 +10,7 @@ En algunos `foros <https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digi
 Guia sobre el trabajo remoto
 ============================
 
-Si no sabes como empezar aquí hay una `guia sobre el trabajo remoto <https://blog.stephsmith.io/the-guide-to-remote-work/>`_ que no intenta venderte nada.
+Si no sabes como empezar aquí hay una `guia sobre el trabajo remoto que no intenta venderte nada. <https://blog.stephsmith.io/the-guide-to-remote-work/>`_ 
 Aquí hay otra `guia <https://www.guiatrabajoremoto.cl/>`_ 
 
 El manifiesto remoto de Gitlab

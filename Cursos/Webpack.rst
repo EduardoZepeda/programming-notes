@@ -92,7 +92,7 @@ por defecto *webpack.config.js*
 Para ahorrarnos tiempo y/o poder especificar diferentes modos agregarse
 al archivo *package.json*
 
-.. code:: json
+.. code:: javascript
 
    "scripts": {
       "build": "webpack --mode production",
@@ -557,13 +557,13 @@ Dynamic imports
 Esto sirve para poder hacer import de librerias dinamicamente, como
 resultado de cambios en el código, ya sea interacción de usuario.
 
-1. Instalar @babel/plugin-syntax-dynamic-import
+#. Instalar @babel/plugin-syntax-dynamic-import
 
 .. code:: bash
 
    npm install --save-dev --save-exact @babel/plugin-syntax-dynamic-import
 
-2. En .babelrc agregar el plugin
+#. En .babelrc agregar el plugin
 
 .. code:: javascript
 
@@ -571,7 +571,7 @@ resultado de cambios en el código, ya sea interacción de usuario.
        "@babel/plugin-syntax-dynamic-import"
    ]
 
-3. En el atributo output de webpack.config.js agregar lo siguiente
+#. En el atributo output de webpack.config.js agregar lo siguiente
 
 .. code:: javascript
 

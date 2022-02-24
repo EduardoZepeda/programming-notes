@@ -403,10 +403,8 @@ soporte.
 Web Fonts, imágenes o SVG
 =========================
 
-.. _webfonts-1:
-
-webfonts
---------
+web fonts
+---------
 
 Son prácticos, fáciles de usar y distribuir, sin embargo requieren una
 conexión extra HTTP, son bloqueantes.

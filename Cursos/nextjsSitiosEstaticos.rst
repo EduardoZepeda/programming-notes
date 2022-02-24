@@ -169,6 +169,7 @@ En lugar de recibir la información de una API, podemos recibirla desde el siste
         const plantEntries = plantEntriesToGenerate.split('\n')
         // ...
     }
+
 Fallback
 ========
 

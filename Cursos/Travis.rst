@@ -283,10 +283,8 @@ canales, cifrado, token, el nombre del usuario que publica.
    notifications:
      slack: workspace:token
 
-.. _deploy-1:
-
-Deploy
-======
+Deploy en Heroku
+================
 
 Heroku permite activar hooks para hacer deploy de un proyecto
 automáticamente cuando se hace push al repositorio. Para activarlo

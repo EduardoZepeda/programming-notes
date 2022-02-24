@@ -152,7 +152,7 @@ Para usarlo con React hay que envolver nuestra aplicación en un componente que 
     </Provider>,
 
     document.getElementById('root')
-)
+    )
 
 Extra reducers
 ==============

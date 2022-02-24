@@ -54,9 +54,11 @@ podemos incorporar un build desde los scripts en *package.json*
 
 .. code:: json
 
-   "scripts": {
-     "build": "postcss css/tailwind.css -o public/css/style.css"
-   },
+   {
+      "scripts": {
+      "build": "postcss css/tailwind.css -o public/css/style.css"
+      }
+   }
 
 Postcss en Nextjs
 -----------------
