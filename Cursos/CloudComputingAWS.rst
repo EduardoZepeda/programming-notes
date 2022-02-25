@@ -464,7 +464,7 @@ contraseña
    aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name kops
    aws iam add-user-to-group --user-name kops --group-name kops
    aws s3api create-bucket --bucket s3kopstudominiocom --region us-west-2
-   Antes de ejecutar el próximo comando, anexen lo siguiente a su archivo ~/.bashrc (al final):
+   Antes de ejecutar el próximo comando, anexen lo siguiente a su archivo ~/.bashrc al final:
    export AWS_ACCESS_KEY_ID=tuaccesskey
    export AWS_SECRET_ACCESS_KEY=tusecret
    export KOPS_STATE_STORE=s3://s3kopstudominiocom
