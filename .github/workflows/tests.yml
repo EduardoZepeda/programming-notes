@@ -1,4 +1,4 @@
-name: Run RST tests
+name: Run rst tests
 
 on:
   push:
@@ -9,29 +9,18 @@ on:
       - "main"
 
 jobs:
-  test:
+  install-test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-        # Install dependencies using pipenv
-      - name: Install pipenv
-        run: apt install pipenv
-      - name: Install pipenv dependencies
-        run: |
-          pipenv install
-          pipenv shell
-        # Run the tests using pytest
-      - name: Run tests
-        run: pytest tests/*
+    - uses: actions/checkout@v2 # Checking out the repo
+
+    - name: Install dependecies
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: install -d # Install all dependencies, including development ones
+    
+    - name: Test
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: run test # Run custom `test` command defined in the `[scripts]` block of Pipfile
