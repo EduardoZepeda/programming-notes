@@ -20,6 +20,8 @@ def get_first_line_with_error(directories):
     for rst_file in get_file_names(directories):
         with open(rst_file, "r") as f:
             line = list(
+                # If you monitor bash language errors,
+                # somehow, local tests pass but github tests fail
                 rstcheck.check(f.read(), ignore={"languages": ["bash", "html"]})
             )
             if line != []:
