@@ -323,7 +323,7 @@ Para ver los hooks principales revisa los apuntes de React básico.
 useRef
 ------
 
-useRef nos permite capturar la referencia al elemento en el DOM.
+useRef nos permite capturar la referencia al elemento en el DOM. Ref no hace referencia al elemento en el cual se crea, sino a aquel que se lo colocamos como un prop.
 
 .. code:: javascript
 
@@ -333,7 +333,7 @@ useRef nos permite capturar la referencia al elemento en el DOM.
        const ref = useRef(null)
    }
 
-Ahora lo pasamos como un prop al elemento al cual queremos referenciar
+Por ejemplo, la variable ref contendrá una referencia a la etiqueta article.
 
 .. code:: javascript
 
@@ -343,6 +343,12 @@ Ahora lo pasamos como un prop al elemento al cual queremos referenciar
        const ref = useRef(null)
        return (<article ref={ref}>...<article/>)
    }
+
+Y para acceder directamente a la etiqueta necesitamos llamar a la propiedad current de la referencia.
+
+.. code-block:: javascript
+
+   haz_algo(ref.current)
 
 Context
 -------

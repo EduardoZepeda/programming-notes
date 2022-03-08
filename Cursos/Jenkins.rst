@@ -276,3 +276,81 @@ Puedes pensar en un pipeline como el equivalente a un Dockerfile en Docker.
 La separación en stages permite monitorear su tiempo, errores y poder optimizarlo.
 
 Existe una herramienta que vuelve más visual el manejo de los pipelines llamado `Blue Ocean <https://www.jenkins.io/projects/blueocean/>`_ 
+
+Al crear un job que ya tiene un pipeline aasociado vamos a Pipeline syntax, desde donde tenemos una herramienta llamada sample Step, que genera un script de Pipeline.
+
+.. image:: img/Jenkins/PipelineSyntax.png
+
+
+Desde aquí Jenkins nos generará la sintaxis automáticamente cuando presionemos el botón.
+
+.. image:: img/Jenkins/PipelineSyntaxCreator.png
+
+Replay
+======
+
+Nos permite volver a ejecutar un job que ya ocurrió, **sin necesidad de un nuevo commit**, con la diferencia de que podemos modificarlo.
+
+Slaves
+======
+
+Los slaves nos permiten correr jobs de manera distribuida, usando el Jenkins Master como un orquestador que le delegará jobs. Por lo que permiten el escalamiento horizontal.
+
+Configuración de un slave
+-------------------------
+
+Para esto entramos al jenkins master.
+
+Añadimos una llave ssh-rsa
+
+Añadimos un usuario llamado jenkins
+
+.. code-block:: bash
+
+    adduser jenkins
+
+Instalamos la versión de Java adecuada (la última compatible hasta la fecha es 8)
+
+.. code-block:: bash
+
+    sudo apt install 
+
+
+Creamos un directorio para jenkins
+
+.. code-block:: bash
+
+    mkdir /var/jenkins
+
+Lo asignamos como el propietario
+
+.. code-block:: bash
+
+    chown jenkins:jenkins /var/jenkins
+
+Cambiamos al usuario jenkins
+
+.. code-block:: bash
+
+    sudo su jenkins
+
+Ahora creamos un directorio ssh que nos permitirá agregar la llave.
+
+.. code-block:: bash
+
+    echo "llave" > .ssh/authorized_keys
+
+Ahora, deberemos ir a la terminal de Jenkins, dentro de manage Jenkins. Luego manage nodes.
+
+Una vez ahí crearemos un slave.
+
+.. image:: img/Jenkins/CreateNewNodeJenkins.png
+
+Y llenamos el formulario con las opciones.
+
+El número de ejecutores es recomendable establecerlo en el número de procesadores.
+
+.. image:: img/Jenkins/NewNodeOptionsJenkins.png
+
+Tras agregar el nuevo nodo, nos aparecerá entre los nodos.
+

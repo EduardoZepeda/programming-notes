@@ -1387,8 +1387,8 @@ Stacks deployments
 * GitOps (infraestructure as code)
 * Heml, Spinnaker o Brigade
 
-Git ops
-=======
+GitOps
+======
 
 GitOps es una práctica que gestiona toda la configuración de nuestra infraestructura y las aplicaciones en producción a través de Git, es decir que Git se considerará la fuente de verdad. Por lo que que todo proceso de infraestructura conlleva code reviews, comentarios en los archivos de configuración y enlaces a issues y PR. **Gitops es diferente de CI.**
 
@@ -1411,7 +1411,7 @@ En Gitops el se cambia el flujo de trabajo que incorpora un operador. El operado
 
 .. image:: path
 
-.. image:: img/Kubernetes/gitops.png
+.. image:: img/Kubernetes/gitops.jpg
 
 Flux
 ----
