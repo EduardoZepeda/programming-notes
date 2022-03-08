@@ -1,7 +1,6 @@
-# Exclude images and output folder
+# Exclude output folder
 
 output/
-img/
 
 # Exclude swp files
 
