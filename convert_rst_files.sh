@@ -11,21 +11,6 @@ if [ "$1" == "" ]; then
     exit 0
 fi
 
-if ! [[ -d "img" ]]
-then
-    echo "Checking if img/ directory exist at the root of the notes."
-    echo "img folder wasn't found, creating it"
-    echo "Using wget to download images from dropbox";
-    wget "https://www.dropbox.com/s/j0jdt3htbj30jho/img.zip" -O temp.zip;
-    echo "Finished downloading images"
-    unzip temp.zip;
-    echo "Trying to unzip img.zip file"
-    rm temp.zip;
-    printf "Deleting temporary zip file"
-else
-    printf "img/ directory already exist\n"
-fi
-
 if [ "$1" == "S" ]; then
     echo "Using styles/pandoc_styles.css pandoc as stylesheet and Cursos/metadata.xml as metadata source"
     for folder in Cursos Udemy Nomadismo Libros; 
