@@ -766,6 +766,19 @@ Si queremos obtener la representación real de un objeto JSON usamos el método 
     fmt.Println(jsonString)
     //{"uno":1}
 
+Serialización
+-------------
+
+Cuando go requiere establecer como se llamará un campo tras serializarlo, lo especificamos con una cadena de texto usando backticks de la siguiente manera:
+
+.. code-block:: go
+
+    type HomeResponse struct {
+	Message string `json:"mesage"`
+	Status  bool   `json:"status"`
+}
+
+
 Argumentos en Go
 ================
 

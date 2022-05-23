@@ -378,7 +378,7 @@ Interfaces
 ==========
 
 Las interfaces son una forma de definir la estructura de un objeto en
-POO.
+POO. Anteriormente los types eran mucho más limitados que las interfaces, pero actualmente son bastante equivalentes en su mayoría.
 
 .. code:: javascript
 
@@ -393,6 +393,9 @@ Ahora podemos usarlo en una función o donde queramos
 .. code:: javascript
 
    function(sale: Sale){...}
+   
+Extendibilidad
+--------------
 
 Difieren con los tipos en que pueden extenderse, además puedes
 duplicarlas y el compilador mezclará sus propiedades. Las interfaces
@@ -413,12 +416,16 @@ o tipos complejos.
      artistName: "Freddie",
      songName: "The Chain"
    };
+   
+Recomendaciones de interfaces
+-----------------------------
 
 Siempre usa las interfaces para la definición de API's públicas, le
 permitará a los consumidores extenderlas si faltan algunas definiciones.
 
 Considera usar types para los props de tus componentes de react y el
 estado, por consistencia.
+
 
 Atributos opcionales
 --------------------
@@ -966,3 +973,30 @@ Los cambios en los input requieren el método ChangeEvent de react y pasarle com
         setEmail(event.target.value as string)
         setValidEmail(validateEmail(event.target.value as string))
     }
+    
+Distribución de paquetes
+========================
+
+Si queremos incluir declaraciones de tipos en nuestros paquetes podemos agregar la configuración del archivo en forma de *ts.config.json*, además de uno o varios archivos de definiciones en el mismo nivel que nuestros archivos.
+
+Por ejemplo:
+
+.. code-block:: bash
+
+    <archivo>.js
+    <archivo>.d.ts
+
+Estos archivos se pueden generar automáticamente por el compilador cuando el flag "definitions" o "declaration", en *ts.config.json* es igual a true.
+
+El contenido del archivo con terminación d.ts serán las definiciones de nuestros elementos
+
+.. code-block:: bash
+
+    export declare function <funcion>(argumento: type): type
+    
+
+    
+    
+    
+    
+    

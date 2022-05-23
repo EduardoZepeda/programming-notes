@@ -6,12 +6,29 @@ Kubernetes
 ¿Qué es kubernetes?
 ===================
 
-Es una herramienta open source de orquestación de containers desarrollada por google.
+La tarea de automatizar y administrar una gran cantidad de contenedores (y de interactuar con ellos) se conoce como orquestación. Esta herramienta open Source, también conocida como k8s, de administración de contenedores y desarrollada por Google se encarga de esto.
+
+Kubernetes combina la automatización de contenedores con una extensa API para crear una entidad de administración.
+
+Relación entre Docker y Kubernetes
+----------------------------------
 
 Docker se encarga del ciclo de vida de los contendores y Kuberentes de asignar el nodo en el que nodo deben correr.
 
-También se le conoce como k8s.
+Si no existiera kubernetes tendriamos que encargarnos de los siguientes aspectos de manera manual.
 
+* Logearnos en diferentes computadoras, crear contenedores
+* Escalarlos de acuerdo a cambios en la demanda
+* Mantener un almacenamiento consistente con las instancias
+* Distribuir la carga entre los contenedores
+* Lanzar nuevos contenedores si alguno falla
+
+Los contenedores se usan normalmente para crear soluciones mediante una arquitectura de microservicios.
+
+¿Qué es un microservicio?
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Los Microservicios es un servicio web que es pequeño, bien definido y desacoplado del resto de servicios, además de ser individualmente desplegable. No requieren usar el mismo lenguaje o framework.
 
 ¿Qué problema resuelve?
 =======================
@@ -49,9 +66,12 @@ Los contenedores no son un first class citizen del kernel de Linux. Es un concep
 Arquitectura de kubernetes
 ==========================
 
-Kubernetes consiste en un nodo master, que conecta con una cantidad de nodos o minions registrados en el cluster. Y un registro de imágenes.
+Kubernetes consiste en:
 
-El nodo master recibe instrucciones de una API a la que se accede con una UI o un CLI.
+* Un nodo master llamado master o nodo maestro
+* Worker nodes: llamados minions o simplemente nodos
+
+Generalmente solo se necesita interaccionar con el nodo master, este recibe instrucciones de una API a la que se accede con una UI o un CLI.
 
 .. image:: img/Kubernetes/arquitectura-kubernetes.jpg
 
@@ -66,27 +86,26 @@ El nodo master consiste en los siguientes elementos:
 Este primer elemento se comunicará con los otros tres:
 
 * Scheduler: Cuando es necesario crear un job, un pod en máquinas específicas, el scheduler se encarga de asignar los pods a los nodos, revisando siempre las restricciones y los recursos disponibles.
-* Controller Manager: Es un proceso que está en un ciclo de reconciliación constante buscando llegar al estado deseado con base al modelo declarativo con el que se le dan instrucciones a K8s.
+* Controller Manager: Es un proceso que está en un ciclo de reconciliación constante buscando llegar al estado deseado con base al modelo declarativo con el que se le dan instrucciones a K8s. Lo realiza a través del control de los controllers, tales como:
+
+  * Replica manager
+  * Deployment manager
+  * Service manager
+  * Etcd: Key value store que permite que el cluster este altamente disponible.
+
 * etcd, es un key-value store que guarda la configuración del cluster de kubernetes.
-
-Tipos de controller manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* Replica manager
-* Deployment manager
-* Service manager
-* Etcd: Key value store que permite que el cluster este altamente disponible.
-
-Componentes muy importantes que viven en los nodos
---------------------------------------------------
-
-* Kubelet: Agente de kubernetes, se conecta con el control play y le pregunta que recursos (pods, contenedores) debo correr al scheduler via API Server. **Monitorea los pods constantemente** para saber si están activos, los recursos disponibles, etc. y se comunica constantemente con scheduler por medio del API Server.
-* Kube-proxy: Se encarga de balancear el tráfico que corre a través de nuestros contenedores/servicios. Una vez llega una request este se encarga de decidir a que pod y contenedor debe de ir.
 
 Nodos
 -----
 
 Anteriormente **se les conocia como minions**. Todos los nodos y masters están conectados a una red física para poder comunicarse entre sí. 
+
+Componentes muy importantes que viven en los nodos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Kubelet: Agente de kubernetes, se conecta con el control play y le pregunta que recursos (pods, contenedores) debo correr al scheduler via API Server. **Monitorea los pods constantemente** para saber si están activos, los recursos disponibles, etc. y se comunica constantemente con scheduler por medio del API Server.
+* Kube-proxy: Se encarga de balancear el tráfico que corre a través de nuestros contenedores/servicios. Una vez llega una request este se encarga de decidir a que pod y contenedor debe de ir.
+* Container-runtime: El contenedor local, que contiene las aplicaciones corriendo.
 
 Declarativo vs imperativo
 =========================
@@ -100,6 +119,41 @@ Un sistema es imperativo cuando ejecuta una serie de pasos a seguir. Si algún p
     
 Un sistema es declarativo cuando trata de converger a un estado meta, a partir de un estado actual.
 
+Flujo de trabajo
+================
+
+El trabajo lo realizamos con una cli, como kubectl
+
+1. El kubectl traduce el comando a una o más llamadas REST a la API del kube-apiserver
+2. Tras validar las llamadas, kube-apiserver llama al kube-scheduler para selecionar un nodo disponible y ejecutar el trabajo
+3. El kube-scheduler retorna el nodo objetivo y el kube-apiserver despachará las tareas
+4. El proceso de kubelet en el nodo objetivo recibe la tarea y habla con el motor de contenedores para crear un contenedor con todos los parámetros indicados
+5. Este job y su especificación serán guardados en una la base de datos etcd. 
+
+Objetos de kubernetes
+=====================
+
+Los objetos de kubernetes representan:
+
+   * Aplicaciones en contenedores y cargas de trabajo
+   * Redes asociadas y recursos de discos
+   * Otra información de los procesos del cluster 
+
+Los objetos más frecuentes son:
+
+    * Pod
+    * Servicio
+    * Volumen
+    * Namespace
+
+Los objetos de algo nivel son:
+
+    * ReplicationController
+    * ReplicaSet
+    * Deployment
+    * StatefulSet
+    * DaemonSet
+    * Job
 
 ¿Como desplegar un cluster de kubernetes?
 =========================================
@@ -1457,6 +1511,4 @@ Recursos útiles
 * `Implementar kubernetes-dashboard <https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/>`_ 
 * `Configurar tests healtcheckhttps://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ <http://link>`_ 
 * `Repositorio de Flux https://github.com/weaveworks/flux`
-
-
-
+* `Juniper <https://www.juniper.net/documentation/en_US/day-one-books/topics/topic-map/kubernetes-basics.html>`_

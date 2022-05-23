@@ -21,7 +21,7 @@ if [ "$1" == "S" ]; then
                     rstFiles=(${rstFiles[*]} "$file")
                 done;
             echo "Converting Cursos folder into a single epub"
-            pandoc -f rst -t epub3 -o output/epub/Cursos/ApuntesCursos.epub --metadata title="Apuntes Cursos" --epub-metadata=Cursos/metadata.xml --toc --toc-depth=1 --css=styles/pandoc_styles.css ${rstFiles[@]};   
+            pandoc -f rst -t epub3 -o output/epub/Cursos/ApuntesCursos.epub --metadata title="Apuntes Cursos" --epub-metadata=Cursos/metadata.xml --toc -s --toc-depth=1 --css=styles/pandoc_styles.css ${rstFiles[@]};   
         else
             for file in $folder/*.rst; 
                 do echo "Converting $file to epub"; 

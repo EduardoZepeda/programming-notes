@@ -323,6 +323,11 @@ Para ver los hooks principales revisa los apuntes de React básico.
 useRef
 ------
 
+El hook useRef nos permite guardar una referencia, esta referencia puede ser a cualquier elemento.
+
+useRef al componente
+^^^^^^^^^^^^^^^^^^^^
+
 useRef nos permite capturar la referencia al elemento en el DOM. Ref no hace referencia al elemento en el cual se crea, sino a aquel que se lo colocamos como un prop.
 
 .. code:: javascript
@@ -349,6 +354,49 @@ Y para acceder directamente a la etiqueta necesitamos llamar a la propiedad curr
 .. code-block:: javascript
 
    haz_algo(ref.current)
+
+UseRef al estado
+^^^^^^^^^^^^^^^^
+
+También podemos referenciar un estado de React. Esto es bastante útil al mezclarlo con useEffect en ocasiones donde queremos asignar un callback, pero el estado (state) aún se encuentrará vacio.
+
+Por ejemplo:
+
+.. code-block:: javascript
+
+   useEffect(()=> {
+    // fetch data and set state
+    socket.onmessage = (event) => {
+         const messageJson = JSON.parse(event.data)
+         // si realizamos esto dentro de un useEffect
+         setState([messageJson.payload, ...state])
+         }
+      }
+   })
+
+El estado (state) va a estar vacio y el callback se creará con el estado vacio, dejándonos con un estado vacio.
+
+En cambio, si guardamos una referencia usando un doble useEffect, podemos guardar el nuevo estado en nuestra referencia usando un useEffect que solo se ejecutará cuando cambie nuestra información (en este caso data).
+
+.. code-block:: javascript
+
+  useEffect(()=>{
+    // this sets a reference to posts and saves it in current
+    stateRef.current = data
+  }, [data])
+  
+  useEffect(()=>{
+      // fetch data
+      socket.onmessage = (event) => {
+            const messageJson = JSON.parse(event.data)
+            // si realizamos esto dentro de un useEffect
+            setState([messageJson.payload, ...stateRef.current])
+         }
+      }
+   }
+
+Usando este acomodo podemos crear un callback que funcionará de manera correcta usando la referencia que hemos creado hacia el estado.
+
 
 Context
 -------

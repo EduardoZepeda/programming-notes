@@ -64,11 +64,15 @@ de una página
 CRP
 ===
 
-Critical rendering Path. Comprende varias etapas
+Critical rendering Path. Comprende varias etapas:
 
--  Pasos 1,2 son de Object Model
--  Paso 3 es Render Tree
--  Pasos 4 y 5 de Layout/Paint
+1. DOM
+2. CSSOM
+3. Render
+4. Layout
+5. Paint
+
+Los pasos 1,2 corresponden al Object Model El paso 3 es Render Tree. Mientras que los pasos 4 y 5 se refieren al Layout/Paint, siendo Paint el paso más pesado de todos
 
 Object Model
 ------------
@@ -374,6 +378,11 @@ Donde font-display puede tomar los siguientes valores:
    personalizada esté disponible para su uso. Sin embargo deja libre
    elección al navegador sobre si usa o no la fuente personalizada,
    dependiendo de la conexión a internet.
+
+Esquema del funcionamiento de font-display
+
+.. figure:: img/optimizacionWeb/FontDisplay.jpg
+   :alt: image
 
 Imágenes, formato y compresión
 ==============================

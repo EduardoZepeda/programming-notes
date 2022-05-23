@@ -441,6 +441,20 @@ se ejecutará al montarse o desmontarse nuestro componente.
          })
      }, [name]) 
 
+Múltiples useEffect por componente
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Se pueden declarar múltiples useEffects dentro de un componente. Todos se ejecutarán de acuerdo a sus parámetro opcional, después de la renderización.
+
+
+.. code-block:: javascript
+
+  useEffect(()=>{
+  }, [variable])
+  
+  useEffect(()=>{
+    }, [])
+
 useContext
 ----------
 
@@ -450,7 +464,7 @@ parecido a lo que hace redux.
 
 .. code:: javascript
 
-   const UserContext = React.createContext();
+   const UserContext = React.createContext(valor);
    // Creamos un contexto
 
    function App() {

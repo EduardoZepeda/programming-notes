@@ -141,3 +141,4 @@ repartido en los principales empleados. Las acciones tienen dos valores
 fundamentales: El poder de voto y el poder financiero. Los eventos de
 liquidez son momentos como cuando se levanta capital o se sale a la
 bolsa en los cuales pueden existir transacciones comerciales.
+

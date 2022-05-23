@@ -143,7 +143,7 @@ Si usamos git checkout con un archivo, cambiará únicamente el archivo que le i
 
 .. code:: bash
 
-   git checkout <hash_del_commit> <archivo>
+   git checkout <hash_del_commit> [<archivo>]
 
 Branches o ramas
 ================
@@ -687,3 +687,41 @@ Para actualizar el proyecto de upstream usamos pull pasándole el nombre que def
    git pull <nombre_personalizado_o_upstream> <main>
 
 Una vez hecho esto podemos hacer un commit y push a origin main para actualizar el repositorio.
+
+
+Submodulos
+==========
+
+Los submodulos son como otras instancias de git dentro de un proyecto, tienen su propia carpeta .git y se manejan de manera independiente. Puedes incluso meterte a la carpeta del submodulo, realizar cambios y crear push desde ahí.
+
+Para agregar un submodulo usamos el comando git submodule
+
+.. code:: bash
+
+    git submodule add <url> <destino>
+    
+Esto creará el submodulo en la ubicación especificada y creará un vinculo desde tu proyecto por medio de un archivo .gitmodules
+
+
+.. code:: bash
+
+    [submodule <destino>]
+	    path = <destino>
+	    url = <url>
+	    branch = main
+
+Este contenido tiene la ubicación del submodulo, que le indica a git como debe tratar el submodulo.
+
+Cuando queremos actualizar los submodulos hasta el commit más reciente en nuestro proyecto usamos el comando
+
+.. code:: bash
+
+    git submodule update --recursive --remote
+    
+Y si estamos haciendo un checkout a la repo por primera vez necesitamos inicializarlos.
+
+.. code:: bash
+
+    git submodule update --init --recursive
+    
+
