@@ -1,22 +1,24 @@
-==================================
-Go: Web sockets y REST con Gorilla
-==================================
+=================================
+Go Web sockets y REST con Gorilla
+=================================
 
 Creación de un handler para manejo de URL
 =========================================
 
-Un handler es una función que retorna una función *http.Handler* y recibe un argumento de tipo *server.Server*.
+Es más sencillo modificar el comportamiento de nuestras vistas si envolvemos a la función handler dentro de otra, de manera que retorne una función *http.Handler* y reciba un argumento de tipo *server.Server*.
 
-.. code-block:: golang
+.. code-block:: go
 
 
     func HomeHandler(s server.Server) http.HandlerFunc {
         // ...
     }
 
-La función http.Handler que retorna debe recibir un objeto *http.ResponseWriter*, y como segundo argumento un *http.Request* pasado por referencia.
+La función http.Handler que retorna debe recibir un objeto *http.ResponseWriter*, y como segundo argumento un *http.Request* pasado por referencia, desde su interior podemos modificar los Headers o escribir en el body la respuesta. Para escribir headers de estado personalizados usamos *WriteHeader* y como argumento el estado *http.<CodigoDeEstado>*.
 
-.. code-block:: golang
+Podemos escribir headers personalizados con la función *w.Header*
+
+.. code-block:: go
 
     func HomeHandler(s server.Server) http.HandlerFunc {
         return func(w http.ResponseWriter, r *http.Request) {
@@ -29,18 +31,28 @@ La función http.Handler que retorna debe recibir un objeto *http.ResponseWriter
         }
     }
 
-Podemos escribir headers personalizados con la función *w.Header*
+Método Encode
+-------------
 
-Mientras que podemos escribir headers de estado con *WriteHeader* y como argumento el estado *http.<CodigoDeEstado>*.
+El método Encode recibe un struct que se transformará en un objeto JSON para retornar en la respuesta.
 
-Agregamos contenido con el objeto json, pasándole el objeto *http.ResponseWriter* y luego realizando un Encode de nuestro objeto o struct de respuesta.
+.. code-block:: go
+
+            json.NewEncoder(w).Encode(HomeResponse{
+                Message: "Welcome to homepage",
+                Status:  true,
+            })
+
+
+Agregamos contenido con el objeto json, pasándole el objeto *http.ResponseWriter*. 
+
 
 Manejo de handlers en las URL
 =============================
 
 Estos handlers que creemos necesitamos asignarlos a una URL para que una petición a esa URL active el handler y devuelva la respuesta. Para esto crearemos un objeto intermediario lleno de rutas y su manejo con el Router de mux.
 
-.. code-block:: golang
+.. code-block:: go
 
     func BindRoutes(s server.Server, r *mux.Router) {
         // Resto de handlers
@@ -54,7 +66,7 @@ Rutas con parámetros
 
 Para manejar rutas con parámetros necesitamos envolver el nombre del parámetro dentro de llaves en la ruta
 
-.. code-block:: golang
+.. code-block:: go
 
     func BindRoutes(s server.Server, r *mux.Router) {
         // Resto de handlers
@@ -63,7 +75,7 @@ Para manejar rutas con parámetros necesitamos envolver el nombre del parámetro
 
 Para obtener los parámetros de las rutas los obtenemos con el método Vars de mux.
 
-.. code-block:: golang
+.. code-block:: go
 
 		params := mux.Vars(r)
         fmt.Println(params["id"])
@@ -73,21 +85,23 @@ Rutas con parámetros URL
 
 Para manejar rutas con parámetros opcionales simplemente llamamos al método Query de la URL del objeto request y accedemos al parámetro como si se tratara de un diccionario.
 
-.. code-block:: golang
+.. code-block:: go
 
     func ListPostHandler(s server.Server) http.HandlerFunc {
         return func(w http.ResponseWriter, r *http.Request) {
             pageStr := r.URL.Query().Get("page")
-            // ...
+            // Caputurará page=n
         }
     }
 
 Recibir parámetros POST en JSON
 -------------------------------
 
-Para obtener los parámetros de una petición POST necesitamos decodificarlos usando el método NewDecoder en el cuerpo de la petición, tras eso necesitamos decodificarlos.
+Para obtener los parámetros de una petición POST necesitamos decodificarlos usando el método NewDecoder en el cuerpo de la petición. El método NewDecoder, recibirá el cuerpo de la petición y, posteriormente el método Decode recibirá un struct, que se instanciará con la información que recibimos desde el cuerpo.
 
-.. code-block:: golang
+Si la información en el body no coincide con la respuesta se nos devolverá un error.
+
+.. code-block:: go
 
 		var RequestStruct = <RequestStruct>{}
 		err := json.NewDecoder(r.Body).Decode(&RequestStruct)
@@ -96,9 +110,9 @@ Para obtener los parámetros de una petición POST necesitamos decodificarlos us
 			return
 		}
 
-Donde RequestStruct es la plantilla que usaremos para validar 
+El struct puede especificar el nombre de los campos que está recibiendo, seguido del string *json:* y el atributo del struct de go al que debe asignarlos.
 
-.. code-block:: golang
+.. code-block:: go
 
     type <RequestStruct> struct {
         Field    string `json:"email"`
@@ -153,13 +167,16 @@ Para agregar un middleware a una vista necesitamos crear un *Subrouter*, al que 
 Estructura del middleware
 -------------------------
 
-Un middleware es una función que retorna una función que, a su vez, toma y retorna un *http.Handler* como su argumento y valor de retorno. Este *http.Handler* necesita recibir una función con un objeto response, http.ResponseWriter y otro request, *http.Request.
+Un middleware es una función que retorna toma y retorna un *http.Handler* como su argumento y valor de retorno. Este *http.Handler* necesita recibir una función con un objeto response, http.ResponseWriter y otro request, *http.Request.
 
-Si queremos interrumpir el middleware usamos un return, si queremos procesar nuestra petición usando el siguiente middleware llamamos al método next.ServeHTTP, pasándole el writter y
+Si queremos interrumpir el middleware usamos un return, si queremos procesar nuestra petición usando el siguiente middleware llamamos al ServeHTTP, pasándole el writter y el objeto request.
+
+Para este ejemplo, donde necesitamos manejar un objeto server, el middleware está dentro de un wrapper.
 
 .. code-block:: go
 
     func CheckAuthMiddleware(s server.Server) func(h http.Handler) http.Handler {
+        // El middleware comienza aquí
         return func(next http.Handler) http.Handler {
             return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
                 if something(r.URL.Path) {
@@ -467,3 +484,4 @@ Paquetes de terceros útiles
 * ksuid, para manejar identificadores únicos.
 * bcrypt, para obtención de hashes.
 
+Fin

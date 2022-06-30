@@ -1671,3 +1671,4 @@ Enlaces útiles
 * `Comunidad go slack <http://gophers.slack.com/>`_ 
 * `Podcast de go <https://open.spotify.com/show/2cKdcxETn7jDp7uJCwqmSE?si=q88UkEYQTxS0t1QVws22tw&amp;nd=1>`_ 
 
+Fin

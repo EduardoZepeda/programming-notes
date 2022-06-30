@@ -156,7 +156,7 @@ que termine en .svelte*, lo anterior nos crea la siguiente estructura:
    src/
    ├── App.svelte
    ├── components
-   │   └── About.svelte
+   │   └── About.svelte
    └── main.js
 
 Cada componente va a contar con una parte de lógica, una parte de
@@ -472,7 +472,7 @@ más importantes son *onMount, onDestroy, beforeUpdate, afterUpdate*.
 .. code:: html
 
    <script>
-       import {onMount} from 'svelte';
+       import { onMount } from 'svelte';
        let photos = []
 
        onMount(async ()=> {

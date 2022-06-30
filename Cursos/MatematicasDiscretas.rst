@@ -173,10 +173,10 @@ vértices y conexiones donde el nodo de inicio es igual al nodo final.
 
 Pues un Camino Euleriano es aquel camino que recorre todo el grafo sin
 repetir una conexión, esto se cumplirá siempre y cuando **un grafo no
-tenga más de dos vértices con grado impar.**
+tenga más de dos vértices o conexiones con grado impar.**
 
 Un Ciclo Euleriano es aquel ciclo que recorre todo el grafo sin repetir
-una conexión, este se cumplirá solo cuando **todos los vértices del
+una conexión, este se cumplirá solo cuando **todos los vértices o conexiones del
 grafo son grado par.**
 
 Caminos y ciclos hamiltonianos
@@ -474,8 +474,13 @@ punto, pasando por todas las aristas una sola vez.
 1. Verificar grado del grafo para que sea un ciclo. (Todos los vértices
    deben ser pares)
 2. Realizar un circuito cerrado
-3. En cada nueva iteración realizar un nuevo camino cerrado visitando
-   aristas que no han sido visitadas
+3. En cada nueva iteración realizar un nuevo camino cerrado o ciclo visitando
+   aristas que no han sido visitadas. Por ejemplo: 
+   Ciclo 1: afgba
+   Ciclo 2: gecg
+   Reemplazamos g con el ciclo 2: af(gecg)ba
+   Y así sucesivamente con el resto de los ciclos.
+
 4. Reemplazar cada nuevo circuito en el inicial hasta visitar todas las
    aristas.
 

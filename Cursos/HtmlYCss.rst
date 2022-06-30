@@ -23,64 +23,97 @@ elementos al redimensionar.
         flex-shrink: 0; */ 0 significa que no se pueden redimensionar los elementos, 1 que sí/*
     }
 
-Aquí hay un excelente repaso de varias cosas de CSS:
+CSS compuesto
+=============
+
+CSS nos permite componer varios elementos de CSS para lograr diferentes comportamientos.
+
+Selecciona cada elemento "a" que le siga a un "div".
 
 .. code-block:: css
 
-    https://flukeout.github.io/
-
     div + a 
     {
-
-    */ selecciona cada a que le siga a un div/*
+    */ /*
     }
+
+Selecciona todos y cada unode los elementos "b" que le sigan a un div.
+
+.. code-block:: css
+
 
     div ~ b 
     {
-
-    */ selecciona TODOS los b que le siga a un div/*
+    */ /*
     }
+
+
+Selecciona todos los B que sean hijos directos de A.
+
+.. code-block:: css
 
     A > B
     {
-
-    */ selecciona todos los B que sean hijos directos de A/*
+    */ /*
     }
 
+Selecciona todo lo que tenga o no tenga el atributo especificado.
+
+.. code-block:: css
 
     A[attribute]{
-
-    */ Todo lo que tenga o no tenga el atributo /*
-
+    */  /*
     }
+
+Los atributos pueden soportar algunas expresiones regulares.
+
+.. code-block:: css
 
     A[attribute="valor"]
     {
-
-    */ A[attribute^="val"] Que empieza con /*
-    */ A[attribute$="val"] Que termina con /*
-    */ A[attribute*="val"] en cualquier momento /*
+    */ A[attribute^="val"] Que empieza con val /*
+    */ A[attribute$="val"] Que termina con val /*
+    */ A[attribute*="val"] Contenga val /*
     }
 
-    :empty 
 
-    {
+Selecciona cada elemento vacio.
 
-    */ selecciona cada elemento vacio/*
+.. code-block:: css
+
+    :empty{
+    */ /*
     }
+
+
+Negación, puede usarse con clases, ids, y combinaciones div:not(:first-child).
+
+.. code-block:: css
 
     :not(X){
-
-    */ Negación, puede usarse con clases, ids, y combinaciones div:not(:first-child)/*
+    */ /*
     }
+
+La posición en el orden de cada etiqueta de cada tipo.
+
+.. code-block:: css
 
     :first-child, only-child, last-child, nth-child(A), nth-last-child(A), first-of-type, nth-of-type(A), last-of-type
 
-    only-of-type */ Solo si el elemento es unico dentro de su padre/*
-    nth-of-type(6n+2) */ Cada 6 elementos, contando e incluyendo desde el segundo/*
+Cada ""n" elementos, contando e incluyendo desde el segundo.
 
-CSS
-===
+.. code-block:: css
+
+    nth-of-type(6n+2) */ /*
+
+Solo si el elemento es unico dentro de su padre
+
+.. code-block:: css
+
+    only-of-type */ /*
+
+Root en CSS
+===========
 
 Hay una nueva notación de CSS para especificar variables:
 
@@ -96,7 +129,6 @@ Y podemos usarla posteriormente en otro lugar usando la función var():
 
     .clase{
         color: var(--nombre_variable)
-
     }
     
 ¿Cómo generar diferentes vistas de diferentes dispositivos?
@@ -108,3 +140,22 @@ Podemos generar vistas de como se ve una página HTML en diferentes resoluciones
 * `Mockuphone <https://mockuphone.com/>`_
 * `Mockerup <https://mockerup.net>`_  
 
+Validación
+==========
+
+Podemos validar usando HTML colocando el atributo pattern y especificando un patrón REGEX.
+
+.. code-block:: html
+    
+    <input pattern="regex">
+
+Escalado de imágenes
+====================
+
+Para escalar imágenes usamos la propiedad CSS llamada image-rendering.
+
+.. code-block:: html
+
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
