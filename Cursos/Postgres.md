@@ -169,10 +169,12 @@ Las tablas tienen los siguientes comandos:
 
 ## Particiones
 
-Cuando se tiene mucha información en una tabla podemos particionarla,
+Cuando se tiene mucha información que queremos conservar en una tabla podemos particionarla,
 para que las consultas NO SEAN sobre la totalidad de los datos de la
 tabla. Lo anterior acelera la velocidad de las consultas enormemente. No
-se pueden usar llaves primarias en tablas de particiones
+se pueden usar llaves primarias en tablas de particiones.
+
+Sin embargo, no es necesario usar llaves primarias, ya que las tablas particionadas es para información historica y la información hará referencia a las tablas que sí cuentan con las llaves primarias.
 
 ``` sql
 CREATE TABLE public.bitacora
@@ -352,11 +354,11 @@ SELECT * FROM public.trem WHERE modelo IS NOT NULL;
 
 ## Funciones avanzadas
 
--   COALESCE
--   NULLIF
--   GREATEST
--   LEAST
--   BLOQUES ANONIMOS
+-   COALESCE: Compara una serie de valores y retorna el que no es nulo
+-   NULLIF: Compara dos valores y retorna NULL si son iguales
+-   GREATEST: Compara un arreglo de valores y retorna el mayor
+-   LEAST: Compara un arreglo de valores y retorna el mayor
+-   BLOQUES ANONIMOS: Ingresa condicionales dentro de una consulta de base de datos.
 
 ### COALESCE
 
@@ -661,15 +663,17 @@ La estrategia es tener una base de datos maestra donde se hacen
 modificaciones y otras donde se hacen las lecturas, que serían las
 replicas de la base de datos maestra.
 
+Esta configuración necesita por lo menos 2 bases de datos: una maestra y una réplica.
+
 Es posible crear replicas de prueba en Cloudjiffy.
 
 ### Configuración
 
-En el archivo postgres.conf de la base de datos maestra deberemos
+En el archivo *postgres.conf* de la base de datos maestra deberemos
 modificar lo siguiente para especificar su función como base de datos
-maestra
+maestra.
 
-``` sql
+``` bash
 wal_level = hot_standby # Mantiene los archivos hasta que las replicas se lleven los datos y las ejecuten
 max_wal_senders = 1 # La cantidad de replicas, de preferencia 2 o 3. En el ejemplo es 1.
 archive_mode = on # Como guardar los archivos para que las replicas los añadan
@@ -682,16 +686,24 @@ También debemos agregar la \*\* base de datos de replica \*\* en la
 lista de servicios permitidos desde el archivo pg_hba.conf de la base de
 datos maestra con la dirección Ip local
 
-``` sql
+Con esta configuración le estamos diciendo que confie en la dirección interna, con propósitos de replicación, sin pedir passwowrd, para evitar ingresos desde fuera de la red.
+
+``` bash
 host replication all 192.168.x.x/32 trust
 ```
 
 Tras esto reiniciamos master.
 
-Necesitamos hacer más modificaciones por lo que deberemos detener el
-servicio. Borramos todo lo que existe en el archivo de configuración
 
-``` sql
+Necesitamos hacer más modificaciones por lo que deberemos detener el servicio. 
+
+``` bash
+sudo service postgresql stop
+```
+
+Borramos todos los datos locales.
+
+``` bash
 rm -rf /var/lib/pgsql/data/*
 ```
 
@@ -699,15 +711,23 @@ Podemos hacer un backup que trae todo lo de master y lo incializa en
 nuestra base de datos de replica. Aquí la Ip local es la de la \*\* base
 de datos de master\*\*
 
-``` sql
-pg_basebackup -U usuario -R -D /var/lib/pgsql/data/ --host=192.168.x.x --port=5432
+``` bash
+pg_basebackup -U <usuario> -R -D /var/lib/pgsql/data/ --host=192.168.x.x --port=5432
 ```
 
-En el archivo de postgresql.conf modificamos
+En el archivo de *postgresql.conf* modificamos para decirle que su funcionamiento es como base de datos de réplica.
 
-``` sql
+``` bash
 hot_standby = on # Aquí le especificamos que funcionará como una base de datos de replica.
 ```
+
+Tras esto iniciamos nuevamente el servicio
+
+``` bash
+sudo service postgresql start
+```
+
+Ahora la contraseña de la réplica será la misma que la de master, la base de datos réplica no efectuará ningún cambio que se haga sobre ella, y se sincronizará con los datos de master.
 
 ## Otras buenas prácticas
 
@@ -789,4 +809,31 @@ Y una vez que ha sido creada la base de datos
 
 ``` bash
 psql -U username dbname < dbexport.pgsql
+```
+
+Criptografía
+============
+
+Postgres soporta funciones criptográficas para manejar passwords para usarlas necesitamos instalarlas
+
+``` bash
+sudo apt-get install postgresql-contrib libpq-dev
+```
+
+Dentro de la consola de Postgres podemos crear la extensión directamente:
+
+``` sql
+CREATE EXTENSION pgcrypto;
+```
+
+Comparar un password con su respectivo hash.
+
+``` sql
+crypt(<password>, <password_hash>);
+```
+
+Para crear un hash
+
+``` sql
+crypt(<password>, gen_salt('bf', <n>));
 ```

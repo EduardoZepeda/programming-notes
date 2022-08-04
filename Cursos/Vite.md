@@ -1,14 +1,14 @@
 
 # Vite
 
-Vite es un blunder de tercera generación para el desarrololo Frontend.
+Vite es un blunder de tercera generación para el desarrollo Frontend.
 
 Vite.js se caracteriza por su velocidad, ya que el tiempo para compilar, transpilar es muy rápido.
 
 ## Características
 
 * Pre-bundling, en el que Vite adapta módulos al formato estándar de ECMAScript, los ES Modules.
-* Usa un servidor estático para exponer los archivos vía URL
+* Usa un servidor de archivos estático para exponer los archivos vía URL y posteriormente los importa.
 * Reemplaza los imports por imports URL.
 * Sirve los archivos con caché.
 * Realiza la recarga de la página sin perder el estado de la aplicación.
@@ -17,8 +17,11 @@ Vite.js se caracteriza por su velocidad, ya que el tiempo para compilar, transpi
 * Manejo de archivos multimedias sin plugins de terceros.
 * Soporte a web works y web assembly
 * Vite se encarga aplicar hashes a los bundles de nuestros archivos de manera automática.
+* Vite se encarga de actualizar cambios en el código por medio del HMR (Hot module Replacement)
 
 ## Importar CSS con Vite
+
+Vite incluye soporte con PostCSS para optimizar la producción y dar soporte a preprocesadores de CSS.
 
 Vite usa caché para reducir los tiempos de espera. Cada cambio genera un nuevo archivo que se cachea.
 
@@ -27,15 +30,15 @@ Vite une automáticamente los archivos pequeños para usarlos como uno solo y si
 Cada archivo que vite importa es un archivo estático y es servido a través de una URL.
 Import dentro de un archivo javascript
 
-Para importar dentro de un archivo javascript
+Para importar dentro de un archivo javascript usamos import, como si se tratara de cualquier modulo de javascript.
 
 ``` javascript
 import './<archivo>.css'
 ```
 
-Import dentro de un archivo CSS
+### Import dentro de un archivo CSS
 
-Dentro de un archivo CSS podemos usar la sintaxis siguiente
+Dentro de un archivo CSS podemos usar la sintaxis de import anteponiendo un arroba a la ubicación del archivo.
 
 ``` javascript
 @import './<archivo>.css'
@@ -112,7 +115,7 @@ for (const path in modules){
 
 ## Soporte para typescript
 
-Vite ya cuenta con soporte para Typescript de manera predeterminada, basta con importarlo para usarlo.
+Vite ya cuenta con soporte para Typescript de manera predeterminada, por lo que no necesita de ningún plugin externo, basta con importarlo para usarlo.
 
 ``` javascript
 import <function> from './<archivo>.ts'
@@ -123,11 +126,22 @@ import <function> from './<archivo>.ts'
 Si queremos usar una configuración diferente basta con agregar un archivo tsconfig.json a la raiz del directorio.
 
 Cada vez que realicemos un cambio a este archivo necesitamos borrar el caché del navegador.
-Configuración de Vite
+
+## Configuración de Vite
 
 Para modificar las configuraciones por defecto de Vite es necesario crear un arcivo vite.config.js.
 
-Todas las directrices se encuentran en la documentación de Vite
+Vite viene configurado por defecto para cumplir la mayoría de las necesidades, sin embargo es posible personalizar por completo y tomar el control de lo siguiente:
+
+* La carpeta raíz del proyecto.
+* La url base
+* El modo ( desarrollo o producción)
+* Uso de pluggins.
+* El servidor en modo desarrollo
+* El build
+
+
+Todas las directrices se encuentran en la documentación de Vite.
 
 Esta configuración se requiere en formato JSON.
 
@@ -173,8 +187,8 @@ export default defineConfig(() => {
 
 La función defineConfig puede recibir desestructurar algunos parámetros opcionales:
 
-    command, el nombre del comando que ejecuta npm. Por ejemplo: En "npm run build" command tomaría el valor de "build".
-    mode, el modo de ejecución de Vite, puede ser development o production.
+* command, el nombre del comando que ejecuta npm. Por ejemplo: En "npm run build" command tomaría el valor de "build".
+* mode, el modo de ejecución de Vite, puede ser development o production, para desarrollo o producción, respectivamente.
 
 ``` javascript
 import { defineConfig } from 'vite'
@@ -262,6 +276,8 @@ export default defineConfig(({command, mode}) => {
 Format se refiere a los formatos como es2017, modulos umd. Vite generará una salida para cada tipo de formato.
 
 ## Vite para React y Vue
+
+Vite brinda soporte completo para React y Vue.
 
 Este comando nos pedirá contestar una serie de preguntas, entre ellas la elección de un framework. Basta con elegir uno de ellos y su variante, javascript o typescript, en caso de que aplique.
 

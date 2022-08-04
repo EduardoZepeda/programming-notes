@@ -23,32 +23,219 @@ para ser configurado:
     key y por defecto tiene una longitud de 6 caracteres.
 -   children: es lo que estará dentro de nuestro BrowserRouter.
 
-Podemos importarlo de
+Podemos importarlo de react-router-dom y necesitamos envolver nuestra App para poder usarlo.
 
 ``` javascript
-import { BrowserRouter } from 'react-router-dom' 
+import { BrowserRouter } from 'react-router-dom'
+
+function App() {
+  return (
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>
+  );
+}
+
+export default App;
 ```
 
-## Tipos de Enrutadores
+## Route
 
-React Router es una librería más que añadimos a nuestro stack, lo más
-básico que debemos aprender de React Router son sus distintos
-enrutadores:
+Aun no estas cambiando nada dentro de la interfaz, solamente se esta
+cambiando la url. Para poder cambiar la interfaz acorde a la url
+usaremos Route, algunas propiedades son:
 
--   BrowserRouter: Es el enrutador que quizá más tiempo utilices como
-    frontend, usa el HTML5 history API lo que quiere decir que es el
-    enrutador que nos da la posibilidad de cambiar las rutas en el
-    navegador.
--   HashRouter: Funciona similar al BrowserRouter, pero usa un hash (#)
-    al inicio de cada url.
--   MemoryRouter: Mantiene el historial de búsqueda en memoria y te
-    sirve para realizar pruebas sin navegador. En este curso no haremos
-    pruebas unitarias por lo tanto no veremos este enrutador.
--   StaticRouter: Nunca cambia de dirección, es perfecto para realizar
-    Server Side Render.
--   NativeRouter: Es el router que nos servirá si queremos usar React
-    Native, NO lo veremos en este curso. Es recomendable usar en su
-    lugar React Navigation.
+-   element: que componente quieres renderizar, antes se llamaba component.
+-   path: indica la ruta en la cual va a renderizar el componente que le
+    pases.
+-   render: es una alternativa a componente, puedes hacer un renderizado
+    en forma de función como en los componentes de React.
+-   children: son los hijos o componentes que tenga anidado.
+-   exact: recibe un booleano, si le indicas que es verdadero solo hará
+    match si la ruta coincide exactamente con la ubicación, no hará caso
+    a ninguna sub-ruta.
+-   strict: recibe un booleano, si le indicas que es verdadero solo hará
+    match si la ruta a la que te diriges es idéntica a la ruta del
+    Route.
+-   sensitive: recibe un booleano, si le indicas que es verdadero
+    activara el case sensitive para la ruta.
+
+Para usar el BrowserRouter necesitamos envolver nuestras rutas en un componente routes. Cuando la ruta coincida, se renderizará el elemento que le especifiquemos.
+
+
+``` javascript
+import { Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/otro-componente" element={<OtroComponente />} />
+        </Routes>
+  );
+}
+```
+
+### Parámetros
+
+Para manejar parámetros usamos dos puntos seguido del nombre del parámetro. 
+
+``` javascript
+import { Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+        <Routes>
+          <Route path=":<parametro>" element={<ComponenteConParametros />} />
+        </Routes>
+  );
+}
+```
+
+Cualquier parámetro que definamos estará disponible mediante el hook useParams.
+
+``` javascript
+import { useParams } from 'react-router-dom'
+
+function App() {
+    let { <parametro> } = useParams()
+```
+
+React router se encarga de priorizar las rutas con parámetros estáticos, en lugar de dinámicos. Por lo que no es importante cuidar el orden de los parámetros.
+
+En este ejemplo, si intentamos acceder a */ruta/estatico*, se renderizará ComponenteSinParametros, incluso aunque la ruta coincide con */ruta/:<parametro>*.
+
+``` javascript
+import { Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+        <Routes>
+          <Route path="/ruta/:<parametro>" element={<ComponenteConParametros />} />
+          <Route path="/ruta/estatico" element={<ComponenteSinParametros />} />
+        </Routes>
+  );
+}
+```
+
+### Anidación de rutas
+
+Las rutas pueden anidarse y usar el atributo index para establecer el índice de esa ruta
+
+``` javascript
+import { Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+        <Routes>
+          <Route path="/ruta">
+                <Route index element={<ComponenteIndiceDeRuta />} />
+                <Route path=":<parametro>" element={<ComponenteConParametros />} />
+          </Route>
+        </Routes>
+  );
+}
+```
+
+### Página 404
+
+PAra establecer una página con error de 404 usamos el wildcard asterisco, para que capture cualquier otra ruta que no fue capturada.
+
+``` javascript
+import { Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+  );
+}
+```
+
+### Contexto con useOutletContext
+
+Existe un hook que nos permite pasarle contexto a nuestras rutas, este contexto puede ser cualquier tipo de dato, incluso un componente JSX.
+
+``` javascript
+import { Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+        <Routes>
+          <Route path="*" context={<contexto>} element={<NotFound />} />
+        </Routes>
+  );
+}
+```
+
+Para recuperar el contexto usamos el hook useOutletContext.
+
+``` javascript
+import { useOutletContext } from "react-router-dom"
+
+function App() {
+  const object = useOutletContext() 
+  return (
+        <Routes>
+
+        </Routes>
+  );
+}
+```
+
+## useRoutes
+
+useRoutes nos permite reemplazar la lógica de rutas usando componentes y usar javascript.
+
+``` javascript
+function App(){
+    let element = useRoutes([
+    {
+        path: "/",
+        element: <Element/>,
+        children: [
+            {
+                index:true,
+                element: <Home />
+            },
+            {
+                path: "about",
+                element: <About/>
+            }
+        ]
+    }
+])
+    return (
+        {element}
+        )
+}
+```
+
+
+## Parámetros de búsqueda
+
+useSearchParams funciona de manera similar a useState de react, pero este se encargará de darle formato de un parámetro de búsqueda. Transformando objetos de javascript a la forma ?<parametro>=<valor> y colocándolos en la url.
+
+``` javascript
+import { useSearchParams } from 'react-router-dom'
+
+const SearchParams = () => {
+    const [<searchParams>, <setSearchParams>] = useSearchParams({<atributo>: '<valor>'})
+    const valor = searchParams.get('<atributo>')
+
+    // Link imprimirá /ruta/<valor>
+    return (
+        <>
+        <Link to="/ruta/${valor}">Enlace</Link>
+        
+        <input onChange={e => setSearchParams({<atributo>: '<nuevo_valor>'})}/>
+        </>
+        )
+}
+
+export default searchParams
+```
 
 ## Link y NavLink
 
@@ -90,26 +277,38 @@ características más poderosas como, por ejemplo:
 <NavLink exact to="/" activeClassName="is-selected">Enlace</NavLink>
 ```
 
-## Route
+## Navigate
 
-Aun no estas cambiando nada dentro de la interfaz, solamente se esta
-cambiando la url. Para poder cambiar la interfaz acorde a la url
-usaremos Route, algunas propiedades son:
+Navigate se encarga de dirigir a nuestro usuario a cierta ubicación
 
--   component: que componente quieres renderizar.
--   path: indica la ruta en la cual va a renderizar el componente que le
-    pases.
--   render: es una alternativa a componente, puedes hacer un renderizado
-    en forma de función como en los componentes de React.
--   children: son los hijos o componentes que tenga anidado.
--   exact: recibe un booleano, si le indicas que es verdadero solo hará
-    match si la ruta coincide exactamente con la ubicación, no hará caso
-    a ninguna sub-ruta.
--   strict: recibe un booleano, si le indicas que es verdadero solo hará
-    match si la ruta a la que te diriges es idéntica a la ruta del
-    Route.
--   sensitive: recibe un booleano, si le indicas que es verdadero
-    activara el case sensitive para la ruta.
+``` javascript
+import { useNavigate } from "react-router-dom"
+
+const NotFound = () => {
+    const navigate = useNavigate()
+    useeffect(()=>{
+        setTimeout(() => {
+            navigate("/<ruta>")
+        }, 1000)
+    })
+}
+```
+
+useNavigate también recibe un número que indique la cantidad de rutas a avanzar o decrecer, con respecto a la actual.
+
+``` javascript
+import { useNavigate } from "react-router-dom"
+
+const NotFound = () => {
+    const navigate = useNavigate()
+
+    useeffect(()=>{
+        setTimeout(() => {
+            navigate(-1)
+        }, 1000)
+    })
+}
+```
 
 ## Redirect-Switch
 
@@ -181,10 +380,31 @@ Existe un High Order Component llamado withRouter que te permite añadir
 estas propiedades. Este componente funciona como un decorador en Python
 
 ``` javascript
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 ...
 export default withRouter(componente)
 ```
+
+## Otros tipos de Enrutadores
+
+React Router es una librería más que añadimos a nuestro stack, lo más
+básico que debemos aprender de React Router son sus distintos
+enrutadores:
+
+-   BrowserRouter: Es el enrutador que quizá más tiempo utilices como
+    frontend, usa el HTML5 history API lo que quiere decir que es el
+    enrutador que nos da la posibilidad de cambiar las rutas en el
+    navegador.
+-   HashRouter: Funciona similar al BrowserRouter, pero usa un hash (#)
+    al inicio de cada url. Por ejemplo: http://localhost/#/ruta
+-   MemoryRouter: Mantiene el historial de búsqueda en memoria y te
+    sirve para realizar pruebas sin navegador. En este curso no haremos
+    pruebas unitarias por lo tanto no veremos este enrutador. La url no cambia al navegar.
+-   StaticRouter: Nunca cambia de dirección, es perfecto para realizar
+    Server Side Render. Es ideal para usarse en el server. 
+-   NativeRouter: Es el router que nos servirá si queremos usar React
+    Native, NO lo veremos en este curso. Es recomendable usar en su
+    lugar React Navigation.
 
 ## Configurando Webpack para server render
 
@@ -309,3 +529,4 @@ app.get('*', (req, res)=>{
 
 app.listen(3000)
 ```
+

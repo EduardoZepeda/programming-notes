@@ -1,5 +1,95 @@
 # Go intermedio
 
+## Servidor básico de Go
+
+Go puede crear un servidor básico usando la librería estándar.
+
+Para crear un servidor basta usar el método ListenAndServe, pasándole el puerto sobre el que se servirá el contenido.
+
+``` go
+func main() {
+
+	port := ":8080"
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+### Handler para cada ruta
+
+La configuración anterior no hace prácticamente nada, necesitamos asignar una URI con una función de go.
+
+Para esto necesitamos crear una función que servirá como handler, esta debe recibir un objeto de respuesta (w) y un objeto de petición (r)
+
+``` go
+func MyHandler(w http.ResponseWriter, r *http.Request) {}
+```
+
+Mediante el objeto de respuesta podemos establecer headers e incluso devolver JSON. Colocamos los headers accediendo al método Header y luego con Set estableciendo la llave valor.
+
+Mientras que para devolver JSON, creamos un nuevo codificador que recibe el objeto de respuesta (w) como parámetro. 
+
+``` go
+type HomeResponse struct {
+	Message string
+	Status  bool
+}
+
+func MyHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(HomeResponse{
+		Message: "Welcome to homepage",
+		Status:  true,
+	})
+}
+```
+
+Una vez creado el handler, necesitamos asignarlo a una ruta que se colocará antes del método ListenAndServe.
+
+``` go
+func main() {
+     
+	http.HandleFunc("/", MyHandler)
+	port := ":8080"
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+### Manejo de sesiones
+
+Para el manejo de sesiones podemos usar gorilla
+
+``` bash
+go get github.com/gorilla/sessions
+```
+
+Primero necesitamos crear un objeto store, este objeto recibirá una llave secreta, que probablemente deberías almacenar como una variable de entorno en tu sistema.
+
+``` bash
+var store = sessions.NewCookieStore([]byte("ThisIsMysecretKey"))
+```
+
+El objeto go nos permite establecer una cookie para asignarla a una sesión y realizar cambios en el objeto session, que se comporta parecido a un map. 
+
+Todos los cambios en la sesión deben guardarse para persistir.
+
+``` go
+func MySessionHandler(w http.ResponseWriter, r *http.Request) {
+	session, _ := store.Get(r, "<nombre_cookie>")
+	session.Values["foo"] = "bar"
+	session.Values[42] = 43
+	err := session.Save(r, w)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+```
+
 ## Testing en go
 
 Go ya cuenta con un modulo de testing en su librería estándar que está
@@ -661,8 +751,6 @@ Jobs.
 http.HandleFunc("/fib", func (w http.ResponseWriter, r*http.Request){
     RequestHandler(w, r, jobQueue)
 })
-log.Fatal(http.ListenAndServe(port, nil)
-}
 ```
 
 ### Middleware en un servidor web

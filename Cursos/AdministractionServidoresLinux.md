@@ -28,7 +28,7 @@ ps -ft tty0
 
 El comando sort nos permite ordenar un output por una llave específica.
 
-El flag n compara según el número, el flag, r los invierte y el flag -k
+El flag -n compara según el número, el flag -r los invierte y el flag -k
 sirve para indicar la llave.
 
 Siendo las keys la columna respectiva
@@ -206,7 +206,7 @@ Es el equivalente de yum en red hat.
 Además, podemos usar apt para manejar los paquetes
 
 ``` bash
-apt install nombre-del-paquete
+apt install <nombre-del-paquete>
 ```
 
 #### apt update
@@ -398,7 +398,7 @@ para el manejo de la sintaxis.
 La sintaxis es:
 
 ``` bash
-services;ttys;users;times
+<srvices>;<ttys>;<users>;<times>
 ```
 
 Por ejemplo:
@@ -805,11 +805,17 @@ sudo find /etc/ -mtime <minutos> 2
 
 ## awk
 
-awk es un comando que recibe patrones, muy usado para visualizar los de
-una manera atractiva. Nos permite imprimir por número de columna.
+awk es un comando que recibe patrones y nos permite condicionales y flujos de información, como si fuera un lenguaje de programación. 
+Awk muy usado para visualizar los de una manera atractiva. 
+
+Nos permite hacer referencia a las columnas con el simbolo "$", seguido del número de columna: $<numero_de_columna>.
+
+### print con awk
+
+Por ejemplo:
 
 ``` bash
-awk '{print $num_columna}'
+awk '{print $num_columna} <file>'
 ```
 
 También podemos usar otro delimitador en lugar de los espacios
@@ -842,6 +848,17 @@ O solo determinadas lineas
 
 ``` bash
 awk 'NR==2, NR==4 {print $0}'
+```
+
+### condicionales con awk
+
+También podemos usar condicionales.
+
+``` bash
+awk '{if ($1=="<patron>") {
+    print $2
+} else { print $1 }
+}' <file>
 ```
 
 ### Mirando los logs de ngnix con awk
@@ -996,6 +1013,7 @@ Generalmente para web se dejan abiertos únicamente los puertos 80, 443 y
 
 #### Uso de ufw
 
+El nombre del comando ufw viene de Uncomplicated Firewall. 
 Muestra el estado (activo/inactivo) y las reglas del firewall.
 
 ``` bash

@@ -66,6 +66,8 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 
 ### Seguros
 
+-   [Intermundial](https://www.intermundial.es)
+-   [Mondo](https://heymondo.com)
 -   [Bupa](https://www.bupaglobal.com/es)
 -   [Iati](https://iatiseguros.com)
 -   [Allianz](https://allianzcare.com)
