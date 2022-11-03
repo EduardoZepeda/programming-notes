@@ -2,10 +2,12 @@
 
 ## Creación de un handler para manejo de URL
 
-Es más sencillo modificar el comportamiento de nuestras vistas si
-envolvemos a la función handler dentro de otra, de manera que retorne
-una función *http.Handler* y reciba un argumento de tipo
-*server.Server*.
+Es más sencillo modificar el comportamiento de nuestras vistas si envolvemos a
+la función handler dentro de otra, de manera que retorne una función
+*http.Handler* y reciba un argumento de tipo *server.Server*, también puede
+llamarse App, o como quieras, esto con la finalidad de tener un objeto de
+aplicación que englobe todas las variables de configuración, base de datos y
+demás parámetros útiles para configurar las librerías que manejemos.
 
 ``` go
 func HomeHandler(s server.Server) http.HandlerFunc {
@@ -14,11 +16,10 @@ func HomeHandler(s server.Server) http.HandlerFunc {
 ```
 
 La función http.Handler que retorna debe recibir un objeto
-*http.ResponseWriter*, y como segundo argumento un *http.Request* pasado
-por referencia, desde su interior podemos modificar los Headers o
-escribir en el body la respuesta. Para escribir headers de estado
-personalizados usamos *WriteHeader* y como argumento el estado
-*http.\<CodigoDeEstado\>*.
+*http.ResponseWriter*, y como segundo argumento un *http.Request* pasado por
+referencia, desde su interior podemos modificar los Headers o escribir en el
+body la respuesta. Para escribir headers de estado personalizados usamos
+*WriteHeader* y como argumento el estado *http.\<CodigoDeEstado\>*.
 
 Podemos escribir headers personalizados con la función *w.Header*
 
@@ -37,8 +38,8 @@ func HomeHandler(s server.Server) http.HandlerFunc {
 
 ### Método Encode
 
-El método Encode recibe un struct que se transformará en un objeto JSON
-para retornar en la respuesta.
+El método Encode recibe un struct que se transformará en un objeto JSON para
+retornar en la respuesta.
 
 ``` go
 json.NewEncoder(w).Encode(HomeResponse{
@@ -54,8 +55,8 @@ Agregamos contenido con el objeto json, pasándole el objeto
 
 Estos handlers que creemos necesitamos asignarlos a una URL para que una
 petición a esa URL active el handler y devuelva la respuesta. Para esto
-crearemos un objeto intermediario lleno de rutas y su manejo con el
-Router de mux.
+crearemos un objeto intermediario lleno de rutas y su manejo con el Router de
+mux.
 
 ``` go
 func BindRoutes(s server.Server, r *mux.Router) {
@@ -64,14 +65,14 @@ func BindRoutes(s server.Server, r *mux.Router) {
 }
 ```
 
-Tras ejecutar la función Handlefunc del Router de gorilla, podemos
-declarar los tipos de petición que acepta nuestra ruta. En este caso
-solo usará los métodos GET.
+Tras ejecutar la función Handlefunc del Router de gorilla, podemos declarar los
+tipos de petición que acepta nuestra ruta. En este caso solo usará los métodos
+GET.
 
-### Rutas con parámetros
+### Enrutador
 
-Para manejar rutas con parámetros necesitamos envolver el nombre del
-parámetro dentro de llaves en la ruta
+Para manejar rutas con parámetros necesitamos envolver el nombre del parámetro
+dentro de llaves en la ruta
 
 ``` go
 func BindRoutes(s server.Server, r *mux.Router) {
@@ -80,19 +81,23 @@ func BindRoutes(s server.Server, r *mux.Router) {
 }
 ```
 
-Para obtener los parámetros de las rutas los obtenemos con el método
-Vars de mux.
+#### Rutas con parámetros
+
+Para obtener los parámetros de las rutas los obtenemos con el método Vars de
+mux. 
 
 ``` go
 params := mux.Vars(r)
 fmt.Println(params["id"])
 ```
 
+La ruta anterior capturará el valor id en una url de tipo */ruta/<id>*
+
 ### Rutas con parámetros URL
 
-Para manejar rutas con parámetros opcionales simplemente llamamos al
-método Query de la URL del objeto request y accedemos al parámetro como
-si se tratara de un diccionario.
+Para manejar rutas con parámetros opcionales simplemente llamamos al método
+Query de la URL del objeto request y accedemos al parámetro como si se tratara
+de un diccionario.
 
 ``` go
 func ListPostHandler(s server.Server) http.HandlerFunc {
@@ -103,16 +108,17 @@ func ListPostHandler(s server.Server) http.HandlerFunc {
 }
 ```
 
+La ruta anterior capturará los parámetros */ruta?<parametro>=<valor>&...*
+
 ### Recibir parámetros POST en JSON
 
-Para obtener los parámetros de una petición POST necesitamos
-decodificarlos usando el método NewDecoder en el cuerpo de la petición.
-El método NewDecoder, recibirá el cuerpo de la petición y,
-posteriormente el método Decode recibirá un struct, que se instanciará
-con la información que recibimos desde el cuerpo.
+Para obtener los parámetros de una petición POST necesitamos decodificarlos
+usando el método NewDecoder en el cuerpo de la petición. El método NewDecoder,
+recibirá el cuerpo de la petición y, posteriormente el método Decode recibirá un
+struct, que se instanciará con la información que recibimos desde el cuerpo.
 
-Si la información en el body no coincide con la respuesta se nos
-devolverá un error.
+Si la información en el body no coincide con la respuesta se nos devolverá un
+error.
 
 ``` go
 var RequestStruct = <RequestStruct>{}
@@ -123,9 +129,8 @@ if err != nil {
 }
 ```
 
-El struct puede especificar el nombre de los campos que está recibiendo,
-seguido del string *json:* y el atributo del struct de go al que debe
-asignarlos.
+El struct puede especificar el nombre de los campos que está recibiendo, seguido
+del string *json:* y el atributo del struct de go al que debe asignarlos.
 
 ``` go
 type <RequestStruct> struct {
@@ -138,10 +143,9 @@ type <RequestStruct> struct {
 
 ### Configurando ListenAndServe
 
-Para crear un servidor necesitamos crear un nuevo router usando *mux* y
-luego pasándole un número de puerto y un router, este router se unirá
-con el recien creado. Al final le pasamos como argumentos el puerto y
-las rutas.
+Para crear un servidor necesitamos crear un nuevo router usando *mux* y luego
+pasándole un número de puerto y un router, este router se unirá con el recien
+creado. Al final le pasamos como argumentos el puerto y las rutas.
 
 ``` go
 func (b *Broker) Start(binder func(s Server, r *mux.Router)) {
@@ -166,14 +170,14 @@ type Broker struct {
 
 ## Uso de middleware
 
-El middleware nos permite someter a un handler a una serie de funciones,
-a manera de capas a atravesar que deciden internamente si procesarla de
-alguna manera o pasarla al siguiente middleware.
+El middleware nos permite someter a un handler a una serie de funciones, a
+manera de capas a atravesar que deciden internamente si procesarla de alguna
+manera o pasarla al siguiente middleware.
 
-Para agregar un middleware a una vista necesitamos crear un *Subrouter*,
-al que podemos especificarle un prefijo en la ruta. Y luego agregar un
-middleware con la función *Use*. A continuación, en lugar de usar la
-función *Handlefunc* del router normal, usamos la del *Subrouter*
+Para agregar un middleware a una vista necesitamos crear un *Subrouter*, al que
+podemos especificarle un prefijo en la ruta. Y luego agregar un middleware con
+la función *Use*. A continuación, en lugar de usar la función *Handlefunc* del
+router normal, usamos la del *Subrouter*
 
 ``` go
 func BindRoutes(s server.Server, r *mux.Router) {
@@ -187,17 +191,17 @@ func BindRoutes(s server.Server, r *mux.Router) {
 
 ### Estructura del middleware
 
-Un middleware es una función que retorna toma y retorna un
-*http.Handler* como su argumento y valor de retorno. Este *http.Handler*
-necesita recibir una función con un objeto response, http.ResponseWriter
-y otro request, \*http.Request.
+Un middleware es una función que retorna toma y retorna un *http.Handler* como
+su argumento y valor de retorno. Este *http.Handler* necesita recibir una
+función con un objeto response, http.ResponseWriter y otro request,
+\*http.Request.
 
-Si queremos interrumpir el middleware usamos un return, si queremos
-procesar nuestra petición usando el siguiente middleware llamamos al
-ServeHTTP, pasándole el writter y el objeto request.
+Si queremos interrumpir el middleware usamos un return, si queremos procesar
+nuestra petición usando el siguiente middleware llamamos al ServeHTTP, pasándole
+el writter y el objeto request.
 
-Para este ejemplo, donde necesitamos manejar un objeto server, el
-middleware está dentro de un wrapper.
+Para este ejemplo, donde necesitamos manejar un objeto server, el middleware
+está dentro de un wrapper.
 
 ``` go
 func CheckAuthMiddleware(s server.Server) func(h http.Handler) http.Handler {
@@ -215,23 +219,52 @@ func CheckAuthMiddleware(s server.Server) func(h http.Handler) http.Handler {
 }
 ```
 
+#### Añadir varios middleware
+
+Podemos añadir una serie de middlewares pasándoselos de manera secuencial al router que hemos creado.
+
+``` go
+router := mux.NewRouter()
+router.Use(middleware1, middleware2, middleware3...)
+```
+
+#### Especificar middleware a ciertas rutas
+
+Si queremos usar middleware para solo ciertas rutas necesitamos crear un subrouter. 
+
+``` go
+router := mux.NewRouter()
+api := router.PathPrefix("/api/v1").Subrouter()
+api.Use(middleware1)
+```
+
+En el caso anterior, el middleware solo aplicará para aquellas url derivadas del Subrouter. Podemos tener tantos subrouters como querramos, al final solo hace falta servir el contenido usando el método ServeHTTP del router principal.
+
+``` go
+router.ServeHTTP(w, r)
+```
+
 ## Tokens JWT
 
 Los Token JWT pueden leerse con el método *ParseWithClaims*.
 
 ``` go
+claims := jwt.MapClaims{}
+token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	return []byte(os.Getenv("JWT_SECRET")), nil
+})
+if err != nil || !token.Valid {
+	return nil, err
+}
 ```
-
-jwt.ParseWithClaims(tokenString, &models.AppClaims{}, func(token \*jwt.Token) (interface{}, error) {  
-return \[\]byte(s.Config().JWTSecret), nil })
 
 ### Devolver un Token
 
 Para crear y devolver un token JWT firmado necesitamos usar el método
-*NewWithClaims*, pasándole primero el método de firmado. Algunos métodos
-de firmado requieren bytes y otros objetos más complejos, uno de los más
-sencillos es SigningMethodHS256. Como segundo parámetro le pasamos el
-objeto claims a cifrar.
+*NewWithClaims*, pasándole primero el método de firmado. Algunos métodos de
+firmado requieren bytes y otros objetos más complejos, uno de los más sencillos
+es SigningMethodHS256. Como segundo parámetro le pasamos el objeto claims a
+cifrar.
 
 ``` go
 //SigningMethodES256 is different than SigningMethodHS256, the later doesn't require a RSA Priv Key as a Signed String
@@ -242,9 +275,9 @@ if err != nil {
 }
 ```
 
-Donde claims es un struct con los campos personalizados que queremos, en
-este caso solo el UserID, y además las aseveraciones estándar de JWT,
-como el tiempo de expiración del Token.
+Donde claims es un struct con los campos personalizados que queremos, en este
+caso solo el UserID, y además las aseveraciones estándar de JWT, como el tiempo
+de expiración del Token.
 
 ``` go
 claims := models.AppClaims{
@@ -266,22 +299,25 @@ type AppClaims struct {
 
 ### Verificar un token
 
-Un token puede ser verificado con el método *ParseWithClaims*, le
-pasamos el tokenString, nuestro modelo de *AppClaims* y una función que
-retorne el JWTSecret usado para firmar el token como un array de bytes.
+Un token puede ser verificado con el método *ParseWithClaims*, le pasamos el
+tokenString, nuestro modelo de *AppClaims* y una función que retorne el
+JWTSecret usado para firmar el token como un array de bytes.
 
 ``` go
 tokenString := strings.TrimSpace(r.Header.Get("Authorization"))
 _, err := jwt.ParseWithClaims(tokenString, &models.AppClaims{}, func(token *jwt.Token) (interface{}, error) {
     return []byte(s.Config().JWTSecret), nil
 })
+if err != nil {
+    // devolver invalid request
+}
 ```
 
 ### Obtener los claims del token
 
-Para obtener los tokens necesitamos realizar un Parse del token y
-comprarlo con nuestra estructura de los claims, y pasarle como argumento
-la clave secreta usada.
+Para obtener los tokens necesitamos realizar un Parse del token y comprarlo con
+nuestra estructura de los claims, y pasarle como argumento la clave secreta
+usada.
 
 ``` go
 tokenString := strings.TrimSpace(r.Header.Get("Authorization"))
@@ -290,8 +326,8 @@ token, err := jwt.ParseWithClaims(tokenString, &models.AppClaims{}, func(token *
 })
 ```
 
-Y ahora para obtener los claims a partir del token obtenemos su
-propiedad Claims y revisamos que todo haya estado bien.
+Y ahora para obtener los claims a partir del token obtenemos su propiedad Claims
+y revisamos que todo haya estado bien.
 
 ``` go
 claims, ok := token.Claims.(*models.AppClaims)
@@ -301,10 +337,9 @@ claims, ok := token.Claims.(*models.AppClaims)
 
 ### Obtener password hasheados
 
-Para obtener un password hasheados usamos el paquete bcrypt. Debemos
-recordar que GenerateFromPassword, requiere un array de bytes, no un
-string, y el HASH_COST es un valor número para indicar el tiempo de
-procesamiento.
+Para obtener un password hasheados usamos el paquete bcrypt. Debemos recordar
+que GenerateFromPassword, requiere un array de bytes, no un string, y el
+HASH_COST es un valor número para indicar el tiempo de procesamiento.
 
 ``` go
 hashedPassword, err := bcrypt.GenerateFromPassword([]byte(request.Password), HASH_COST)
@@ -321,9 +356,8 @@ string(hashedPassword)
 
 ### Comparar passwords hasheados
 
-si queremos comparar un password junto con un hash, le pasamos el hash
-como primer argumento y nuestro password e ntexto plano como el segundo
-argumento.
+si queremos comparar un password junto con un hash, le pasamos el hash como
+primer argumento y nuestro password e ntexto plano como el segundo argumento.
 
 ``` go
 if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Password)); err != nil {
@@ -336,8 +370,7 @@ if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Pa
 
 ### Generador de id únicos
 
-Para crear un identificador único usamos el método NewRandom del paquete
-ksuid.
+Para crear un identificador único usamos el método NewRandom del paquete ksuid.
 
 ``` go
 id, err := ksuid.NewRandom()
@@ -347,9 +380,8 @@ if err != nil {
 }
 ```
 
-Igual que en el ejemplo anterior, necesitamos volverlo un string, pero
-esta vez podemos usar el método string del valor de retorno del método
-NewRandom
+Igual que en el ejemplo anterior, necesitamos volverlo un string, pero esta vez
+podemos usar el método string del valor de retorno del método NewRandom
 
 ``` go
 id.String()
@@ -358,8 +390,8 @@ id.String()
 ## CORS
 
 Para usar cors podemos usar el paquete de terceros cors, ya sea con la
-configuración por defecto o una personalizada. Tras realizar el binding
-de las rutas, se lo pasamos como segundo argumento a *ListenAndServe*.
+configuración por defecto o una personalizada. Tras realizar el binding de las
+rutas, se lo pasamos como segundo argumento a *ListenAndServe*.
 
 ``` go
 func (b *Broker) Start(binder func(s Server, r *mux.Router)) {
@@ -372,6 +404,21 @@ func (b *Broker) Start(binder func(s Server, r *mux.Router)) {
     }
 }
 ```
+
+O crear nuestro propio middleware que añada la cabecera adecuada que querramos.
+
+``` go
+func CorsAllowAll(app *application.App) func(http http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			next.ServeHTTP(w, r)
+		})
+	}
+}
+```
+
+En este caso permitimos cualquier tipo de origen
 
 ## Websocket con gorilla
 
@@ -388,8 +435,8 @@ type Hub struct {
 }
 ```
 
-Cada cliente tendrá asignado un hub, una identificación y una conexión a
-un websocket.
+Cada cliente tendrá asignado un hub, una identificación y una conexión a un
+websocket.
 
 ``` go
 type Client struct {
@@ -402,8 +449,8 @@ type Client struct {
 
 #### Manejo de conexiones
 
-Y para arrancar el servicio escuchando conexiones y desconexiones
-manejamos un bucle infinito
+Y para arrancar el servicio escuchando conexiones y desconexiones manejamos un
+bucle infinito
 
 ``` go
 func (hub *Hub) Run() {
@@ -419,10 +466,10 @@ func (hub *Hub) Run() {
 }
 ```
 
-Y con la función del hub podemos manejar conexiones y desconexiones,
-recuerda que los clientes conectados se manejan en el struct Hub, por lo
-que, para evitar condiciones de carrera, debe bloquearse con un mutex
-antes de realizar una modificación.
+Y con la función del hub podemos manejar conexiones y desconexiones, recuerda
+que los clientes conectados se manejan en el struct Hub, por lo que, para evitar
+condiciones de carrera, debe bloquearse con un mutex antes de realizar una
+modificación.
 
 ``` go
 func (hub *Hub) onConnect(client *Client) {
@@ -439,8 +486,8 @@ func (hub *Hub) onDisconnect(client *Client) {
 
 #### Inicializar la escucha de conexiones
 
-Ya con nuestra función Run definida, podemos correrla en la
-inicialización de cualquier Server.
+Ya con nuestra función Run definida, podemos correrla en la inicialización de
+cualquier Server.
 
 ``` go
 go b.hub.Run()
@@ -449,8 +496,8 @@ go b.hub.Run()
 ### Upgrade de la conexión
 
 Una conexión puede realizar un upgrade a una conexión de websocket, para
-realizar un upgrade de la conexión modificamos la función *CheckOrigin*
-de la propiedad *Upgrader*, que recibe el objeto *http.Request*.
+realizar un upgrade de la conexión modificamos la función *CheckOrigin* de la
+propiedad *Upgrader*, que recibe el objeto *http.Request*.
 
 ``` go
 var upgrader = websocket.Upgrader{
@@ -471,8 +518,8 @@ websocket.NewHub(),
 
 ### Manejar la petición al websocket
 
-Para manejar la conexión con el websocket la incluimos en un handler,
-este handler se encargará de manejar las conexiones.
+Para manejar la conexión con el websocket la incluimos en un handler, este
+handler se encargará de manejar las conexiones.
 
 ``` go
 func (hub *Hub) HandleWebsocket(w http.ResponseWriter, r *http.Request) {
@@ -486,8 +533,8 @@ func (hub *Hub) HandleWebsocket(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-En el conjunto de rutas basta con agregar la función encargada del
-manejo de websockets, HandleWebsocket.
+En el conjunto de rutas basta con agregar la función encargada del manejo de
+websockets, HandleWebsocket.
 
 ``` go
 r.HandleFunc("/ws", s.Hub().HandleWebsocket)
