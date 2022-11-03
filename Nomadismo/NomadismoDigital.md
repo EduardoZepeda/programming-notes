@@ -27,6 +27,7 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 ## Páginas para trabajadores remotos
 
 -   [Meerkad](https://meerkad.com/)
+-   [Working nomadas](https://workingNomads.org) 
 -   [Remoto list](https://remotolist.com/)
 -   [Swiss dev jobs](https://swissdevjobs.ch/)
 -   [Jobmofy](https://jobmofy.com)
@@ -56,11 +57,20 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Career Vault](https://careervault.io)
 -   [Trymeli](https://trymeli.com)
 
-### Voluntariados pagados con hospedaje, comida y a veces dinero
+
+## Páginas para buscar hospedaje como nómada digital
+
+-   [SpotAhome](https://www.spotahome.com)
+-   [flatio](https://www.flatio.es/)
+-   [Uniplaces](https://www.uniplaces.com)
+-   [Vrbo](https://www.verbo.com)
+-   [Booking](https://www.booking.com)
+
+## Voluntariados pagados con hospedaje, comida y a veces dinero
 
 -   [Worldpackers](https://www.worldpackers.com/es)
 
-### Empresas amigables con trabajo remoto
+## Empresas amigables con trabajo remoto
 
 -   [Sngular](https://www.sngular.com)
 
@@ -73,6 +83,19 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Allianz](https://allianzcare.com)
 -   [Oom](https://oominsurance.com)
 -   [Safety wing](https://safetywing.com)
+
+## Buscadores de vuelos de avión baratos
+
+-   [Greatescape](https://greatescape.co)
+-   [Skiplagged](https://skiplagged.com/)
+-   [Agoda](https://www.agoda.com/)
+-   [Hopper](https://www.hopper.com/)
+-   [Momondo](https://www.momondo.com/)
+-   [Skiscanner](https://www.skyscanner.com/)
+-   [Kayak](https://www.kayak.com/)
+-   [Google flights](https://www.google.com/travel/flights)
+-   [Priceline](https://www.priceline.com/)
+-   [Hotwire](https://hotwire.com/)
 
 ### Rentar ticktes de avión
 
