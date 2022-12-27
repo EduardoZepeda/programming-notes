@@ -606,7 +606,7 @@ if __name__ == "__main__":
 
 El truco ocurre en el método \_\_[new]()\_ este método se llama cuando
 se crea una clase y recibe la clase como parámetro. En este caso si no
-detecta el atributo "instance" creará una instancia de la clase para
+detecta el atributo \"instance\" creará una instancia de la clase para
 retornarla, si la detecta simplemente la retornará.
 
 Los métodos \_\_[getattr]()\_ y \_\_[setattr]()\_ están modificados para
@@ -685,8 +685,9 @@ if __name__ == "__main__":
 
 ## Prueba_proto
 
-El uso del decorador @abstractmethod forza a la clase individuo a poseer
-un método llamado prueba() from abc import ABCMeta, abstractmethod
+El uso del decorador \@abstractmethod forza a la clase individuo a
+poseer un método llamado prueba() from abc import ABCMeta,
+abstractmethod
 
 ``` python
 class proto(metaclass=ABCMeta):
@@ -954,7 +955,7 @@ if __name__ == "__main__":
 
 ## Template
 
-En este patrón se busca utilizar el decorador @abstractmethod para
+En este patrón se busca utilizar el decorador \@abstractmethod para
 forzar la implementación de los métodos en una clase derivada. el método
 template_method() también se hereda y es el que contendrá cada uno de
 los pasos a ejecutar
