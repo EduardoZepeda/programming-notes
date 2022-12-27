@@ -119,3 +119,8 @@ para presentar por unas cuentas decenas de dolares.
 
 -   [Tech interview
     handbook](https://yangshun.github.io/tech-interview-handbook/introduction)
+    
+## Visas
+
+- [visadb](https://visadb.io/)
+- [Visas de paises para mexicanos](https://www.mundukos.com/tips-de-viaje/a-que-paises-pueden-viajar-los-mexicanos-sin-visa/)

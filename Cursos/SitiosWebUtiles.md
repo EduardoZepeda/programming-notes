@@ -65,3 +65,9 @@
 -   SQL fiddel
 -   SQLZoo
 -   DB fiddel
+
+## Hosting de email
+
+- Fastmail
+- GoogleApps
+- Rackspace email

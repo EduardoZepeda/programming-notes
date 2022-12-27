@@ -6,7 +6,7 @@ Protocol Buffers (abreviado como Protobuf) es un formato binario de intercambio 
 
 Protobuf se utiliza en combinación con HTTP y RPC (Remote Procedure Call o llamada a procedimiento remoto) para llevar a cabo el proceso de comunicación cliente-servidor local y remota.
 
-Al estar en formato binario, se requiere su deserialización y serialización para su manejo.
+Al estar en formato binario, se requiere su deserialización y serialización para su manejo. Sin embargo este proceso es mucho más rápido que el que ocurre en JSON.
 
 gRPC
 ====
@@ -21,7 +21,7 @@ Es protocolo que oculta la implementación en el backend de la petición realiza
 Protocolo gRPC
 --------------
 
-Usando como base RPC, Google creó una versión de mejorada llamada gRPC donde:
+Usando como base RPC, Google creó una versión de mejorada llamada gRPC donde resaltan dos aspectos HTTP2 y Protobuffers:
 
 * El transporte de datos funciona con HTTP2.
     * Permite crear multiplexación a la hora de enviar mensajes: más mensajes en la conexión TCP de manera simultanea.
@@ -39,17 +39,22 @@ Unary
 
 Similar a como funciona una API con arquitectura REST; el cliente envía una petición al servidor y el servidor la responde.
 
+Se define
+
+``` go
+rpc Nombre(Request) returns (Response)
+```
+
 Streaming
 ---------
 
 Permite constante envío de data en un canal.
 
-* Del lado del cliente: el cliente envía muchas peticiones, y el servidor responde una sola vez.
-* Del lado del servidor: el cliente realiza una sola petición, y el servidor responde enviando la data en partes.
-* Bidireccional: cliente y servidor deciden ambos comunicarse por streaming de data.
+* Del lado del cliente: el cliente envía muchas peticiones, y el servidor responde una sola vez. rpc Nombre(stream Request) returns (Response)
+* Del lado del servidor: el cliente realiza una sola petición, y el servidor responde enviando la data en partes. rpc Nombre(Request) returns (stream Response)
+* Bidireccional: cliente y servidor deciden ambos comunicarse por streaming de data. rpc Nombre(stream Request) returns (stream Response)
 
 La serialización y deserialización de ambos formatos siempre ocurre, con la ventaja de que los protobbufers tienen mucha menor latencia que los JSON al hacerlo.
-
 
 Comparación de protobuffers y JSON
 ==================================
@@ -115,6 +120,8 @@ message Student {
     int32 age = 3;
 }
 ```
+
+Al compilar un protobuffer obtenemos un paquete en el lenguaje de programación que estemos usando.
 
 Servicios
 ---------
@@ -212,3 +219,8 @@ func (s *TestServer) SetQuestions(stream testpb.TestService_SetQuestionsServer) 
 	}
 }
 ```
+
+Usar gRPC en Web
+================
+
+El proyecto grpc-web o un proxy grpc/rest nos permiten usar directamente gRPC en el navegador web, como si se tratara de REST. 

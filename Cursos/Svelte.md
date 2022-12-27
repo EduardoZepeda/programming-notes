@@ -248,7 +248,7 @@ asignando el evento click con *on:click* a la función handleClick()
     }
 </style>
 
-<divclass="about">
+<div class="about">
     <p>{someText}</p>
     <button on:click = {handleClick}>Click {count === 0 ? '' : count }</button>
     {#if count > 0}

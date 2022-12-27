@@ -462,3 +462,24 @@ Retornan el más pequeño o el más grande valor de una serie, respectivamente.
 SELECT MIN(<columna>) FROM <tabla> [WHERE <condicion>];
 ```
 
+### TO_DATE y STR_TO_DATE
+
+Convierte un string en una fecha. TO_DATE se usa en postgresql y oracle, mientras que STR_TO_DATE en MySQL.
+
+### CURRENT_TIMESTAMP
+
+Retorna la fecha actual
+
+## Views
+
+Una vista es una tabla virtual como resultado de una consulta. Se usan para crear tablas virtuales de consultas complejas.
+
+``` sql
+CREATE <nombre_vista> AS <query>;
+```
+
+Donde query es una consulta tal como:
+
+``` sql
+SELECT * FROM <tabla> WHERE ...;
+```
