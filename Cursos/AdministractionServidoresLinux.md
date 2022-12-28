@@ -16,9 +16,9 @@ recomendable matar aquellas que no estamos usando.
 
 ### chvt
 
-Se encarga de cambiar la terminal
+Se encarga de cambiar la terminal.
 
-Para matar las consolar usamos
+Para matar las consolas usamos el siguiente comando:
 
 ``` bash
 ps -ft tty0

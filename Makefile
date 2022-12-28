@@ -19,6 +19,6 @@ create/pdf:
 	@echo 'Converting Cursos folder into a single pdf'
 	@	mkdir -p output;
 	@	mkdir -p output/pdf;
-	@	pandoc -f markdown-raw_tex -s -o output/pdf/apuntes.pdf Cursos/*.md --pdf-engine=xelatex --css styles/pandoc_styles.css;
+	@	pandoc -f markdown-raw_tex -N --template=templates/template.tex -s -o output/pdf/apuntes.pdf Cursos/*.md --pdf-engine=xelatex --css styles/pandoc_styles.css;
 
 

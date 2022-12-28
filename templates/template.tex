@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\setlistdepth{99}
+\def\tightlist{}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\titleformat{\section}[display]
+{\normalfont\bfseries}
+{}{20pt}{\thesection : \ }[\vspace{-0.5ex} \rule{\textwidth}{0.3pt}]
+
+\begin{document}
+$body$
+\end{document}
