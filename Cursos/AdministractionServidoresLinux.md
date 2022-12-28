@@ -808,7 +808,11 @@ sudo find /etc/ -mtime <minutos> 2
 awk es un comando que recibe patrones y nos permite condicionales y flujos de información, como si fuera un lenguaje de programación. 
 Awk muy usado para visualizar los de una manera atractiva. 
 
-Nos permite hacer referencia a las columnas con el simbolo "$", seguido del número de columna: $<numero_de_columna>.
+Nos permite hacer referencia a las columnas con el simbolo "$", seguido del número de columna:
+
+```bash
+$<numero_de_columna>
+```
 
 ### print con awk
 
