@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f48ad709102c14d3",
+        "id": "bccc85430ec16d79",
         "type": "tabs",
         "children": [
           {
-            "id": "11669a277979cf4e",
+            "id": "e50ec5537d2642a4",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -139,8 +139,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cbbf10b463982ccf",
+  "active": "e50ec5537d2642a4",
   "lastOpenFiles": [
+    "Svelte/1.-Svelte.md",
+    "ReactRouter/1.-React-Router.md",
+    "path.md",
     "Algoritmos/1. Algoritmos.md"
   ]
 }
