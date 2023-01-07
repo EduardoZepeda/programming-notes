@@ -19,6 +19,6 @@ create/pdf:
 	@echo 'Converting Cursos folder into a single pdf'
 	@	mkdir -p output;
 	@	mkdir -p output/pdf;
-	@	pandoc -f markdown-raw_tex -N --template=templates/template.tex -s -o output/pdf/apuntes.pdf "--from=markdown+rebase_relative_paths" $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ') --pdf-engine=xelatex --css styles/pandoc_styles.css;
+	@	pandoc -N --template=templates/template.tex -s -o output/pdf/apuntes.pdf "--from=markdown+rebase_relative_paths" $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ') --css styles/pandoc_styles.css --pdf-engine=xelatex -f markdown-raw_tex;
 
 
