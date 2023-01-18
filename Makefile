@@ -12,7 +12,6 @@ create/epub:
 	@	mkdir -p output/epub;
 	@	pandoc -f markdown -t epub3 -o output/epub/ApuntesCursos.epub $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ') --metadata title="Apuntes Cursos" --toc -s --toc-depth=1 --css=styles/pandoc_styles.css;
 
-
 ## create/pdf: Create a single pdf from all the notes included in the Cursos directory
 .PHONY: create/pdf
 create/pdf:

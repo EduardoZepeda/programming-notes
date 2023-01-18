@@ -1,16 +1,8 @@
 [[source]]
 url = "https://pypi.python.org/simple"
 verify_ssl = true
-name = "pypi"
-
-[packages]
+name = "pypi"[packages]
 rstcheck = "*"
-pytest = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.9"
-
-[scripts]
+pytest = "*"[dev-packages][requires]
+python_version = "3.9"[scripts]
 test = "pipenv run pytest"

@@ -33,13 +33,11 @@ def add_toc():
                         for link in sub_files
                     ]
                 )
-                f.write("\n")
                 f.write("[comment]:STARTING_GENERATED_TOC")
                 f.write("\n\n")
                 f.write("".join(li))
                 f.write("\n")
                 f.write("[comment]:ENDING_GENERATED_TOC")
-                f.write("\n")
 
 
 def remove_toc():
