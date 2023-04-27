@@ -1,3 +1,5 @@
+# Django Rest Framework
+
 [comment]:STARTING_GENERATED_TOC
 
 * [1.1-Introducción](<./content/1.1-Introducción.md>)
@@ -15,5 +17,6 @@
 * [1.13-Como-anotar-objetos-anidados](<./content/1.13-Como-anotar-objetos-anidados.md>)
 * [1.14-Enviar-imagenes-y-archivos](<./content/1.14-Enviar-imagenes-y-archivos.md>)
 * [1.15-Como-autenticar-token-en-django-channels](<./content/1.15-Como-autenticar-token-en-django-channels.md>)
+* [1.16-Manejar-fechas-y-no-serializables-en-datos-json](<./content/1.16-Manejar-fechas-y-no-serializables-en-datos-json.md>)
 
 [comment]:ENDING_GENERATED_TOC
