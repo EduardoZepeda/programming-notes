@@ -15,5 +15,14 @@
 * [11.-Redes-neuronales](<./content/11.-Redes-neuronales.md>)
 * [12.-Entrenar-redes-neuronales](<./content/12.-Entrenar-redes-neuronales.md>)
 * [13.-Overfitting](<./content/13.-Overfitting.md>)
+* [14.-Neuronas](<./content/14.-Neuronas.md>)
+* [15.-Redes-neuronales](<./content/15.-Redes-neuronales.md>)
+* [16.-Funciones-de-activacion](<./content/16.-Funciones-de-activacion.md>)
+* [17.-Descenso-del-gradiente](<./content/17.-Descenso-del-gradiente.md>)
+* [17.-Funciones-de-perdida](<./content/17.-Funciones-de-perdida.md>)
+* [18.-Backpropagation](<./content/18.-Backpropagation.md>)
+* [19.-Dimensiones-tensores-y-reshape](<./content/19.-Dimensiones-tensores-y-reshape.md>)
+* [21.-Ejemplo-entrenamiento-clasificacion-binaria](<./content/21.-Ejemplo-entrenamiento-clasificacion-binaria.md>)
+* [22.-Overfitting](<./content/22.-Overfitting.md>)
 
 [comment]:ENDING_GENERATED_TOC

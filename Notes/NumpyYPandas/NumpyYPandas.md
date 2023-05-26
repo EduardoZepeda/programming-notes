@@ -790,4 +790,7 @@ Para agregar más argumentos a la función usamos el parámetro opcional args
 
 ``` python
 data['<columna>'].apply('<nombre de la funcion>', args=[...])
-```
+```[comment]:STARTING_GENERATED_TOC
+
+
+[comment]:ENDING_GENERATED_TOC
