@@ -49,5 +49,6 @@ estilos, ser enlazados a eventos y sus estados pueden ser modificados.
 * [1.35-Clear-component](<./content/1.35-Clear-component.md>)
 * [1.36-Librerias-interesantes-de-js](<./content/1.36-Librerias-interesantes-de-js.md>)
 * [1.37-Como-previsualizar-una-imagen-en-un-form](<./content/1.37-Como-previsualizar-una-imagen-en-un-form.md>)
+* [1.38-promesas-concurrentes](<./content/1.38-promesas-concurrentes.md>)
 
 [comment]:ENDING_GENERATED_TOC

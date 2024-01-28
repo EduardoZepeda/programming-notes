@@ -16,6 +16,7 @@ Toda jerarquía de base de datos se basa en los siguientes elementos:
 
 [comment]:STARTING_GENERATED_TOC
 
+* [1.1-ACID.log](<./content/1.1-ACID.log>)
 * [1.1-ACID](<./content/1.1-ACID.md>)
 * [1.2-Instalar-y-configurar](<./content/1.2-Instalar-y-configurar.md>)
 * [1.3-Comandos-básicos](<./content/1.3-Comandos-básicos.md>)

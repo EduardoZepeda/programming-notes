@@ -25,5 +25,6 @@ elementos al redimensionar.
 * [1.14-Centrar-con-grid](<./content/1.14-Centrar-con-grid.md>)
 * [1.15-Crear-circulos](<./content/1.15-Crear-circulos.md>)
 * [1.16-Padding-inline](<./content/1.16-Padding-inline.md>)
+* [1.17-Theme-color](<./content/1.17-Theme-color.md>)
 
 [comment]:ENDING_GENERATED_TOC

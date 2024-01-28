@@ -24,5 +24,8 @@
 * [19.-Dimensiones-tensores-y-reshape](<./content/19.-Dimensiones-tensores-y-reshape.md>)
 * [21.-Ejemplo-entrenamiento-clasificacion-binaria](<./content/21.-Ejemplo-entrenamiento-clasificacion-binaria.md>)
 * [22.-Overfitting](<./content/22.-Overfitting.md>)
+* [23.-K-fold-validation](<./content/23.-K-fold-validation.md>)
+* [24.-Tipos-de-capas](<./content/24.-Tipos-de-capas.md>)
+* [25.-Metricas-de-exito](<./content/25.-Metricas-de-exito.md>)
 
 [comment]:ENDING_GENERATED_TOC

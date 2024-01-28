@@ -19,5 +19,6 @@
 * [1.16-Views](<./content/1.16-Views.md>)
 * [1.17-Window-views](<./content/1.17-Window-views.md>)
 * [1.18-Queries-comunes](<./content/1.18-Queries-comunes.md>)
+* [sql.pdf](<./content/sql.pdf>)
 
 [comment]:ENDING_GENERATED_TOC
