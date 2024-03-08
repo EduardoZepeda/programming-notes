@@ -15,5 +15,6 @@
 * [1.9-Trabajo-y-entrevistas](<./content/1.9-Trabajo-y-entrevistas.md>)
 * [1.10-Visas](<./content/1.10-Visas.md>)
 * [1.11-Blogs-interesantes](<./content/1.11-Blogs-interesantes.md>)
+* [1.12-Apps-utiles](<./content/1.12-Apps-utiles.md>)
 
 [comment]:ENDING_GENERATED_TOC

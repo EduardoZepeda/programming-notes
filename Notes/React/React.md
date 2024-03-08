@@ -8,6 +8,13 @@ React está estructurado por componentes que son como pequeños bloques de lego
 que al ser unidos forman aplicaciones de React. Estos componentes pueden tener
 estilos, ser enlazados a eventos y sus estados pueden ser modificados.
 
+Cambios importantes a partir de la versión 19
+- useMemo, useCallback, memo son gestionados automáticamente por el React compiler
+- forwardRef se reemplaza por un prop nativo llamado ref
+- useContext y throw en las promesas se reemplazará por use(Context)
+- <Context.Provider> se reemplaza por <Context>
+
+
 
 
 [comment]:STARTING_GENERATED_TOC
