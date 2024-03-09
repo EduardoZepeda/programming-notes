@@ -1,4 +1,4 @@
-# 1. Nextjs
+# Nextjs
 
 NextJS es un framework de desarrollo web basado en [React](../React/1.-React.md).
 

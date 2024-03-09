@@ -1,4 +1,4 @@
-# 1. Bootstrap
+# Bootstrap
 
 Bootstrap es un Framework CSS Frontend para agilizar el desarrollo de
 las UI.

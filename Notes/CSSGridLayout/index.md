@@ -1,4 +1,4 @@
-# 1. CSS Grid Layout
+# CSS Grid Layout
 
 
 

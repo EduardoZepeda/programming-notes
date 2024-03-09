@@ -1,4 +1,4 @@
-# 1. Matemáticas discretas
+# Matemáticas discretas
 
 
 

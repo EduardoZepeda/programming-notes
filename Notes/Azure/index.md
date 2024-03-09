@@ -1,4 +1,4 @@
-# 1. Azure
+# Azure
 
 
 ## 1.1 ¿Qué es Azure?

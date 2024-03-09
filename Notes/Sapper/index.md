@@ -1,4 +1,4 @@
-# 1. Sapper
+# Sapper
 
 Permite crear aplicaciones de alto rendimiento y manejo de rutas para
 [Svelte](../Svelte/1.-Svelte.md).

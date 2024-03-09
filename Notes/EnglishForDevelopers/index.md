@@ -1,4 +1,4 @@
-# 1. English for Developers
+# English for Developers
 
 The customer's assumptions should be taken in account. It's the
 developer responsability to transform the idea to tangible software.

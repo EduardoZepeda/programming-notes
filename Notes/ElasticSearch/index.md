@@ -1,4 +1,4 @@
-# 1. Elastic Search
+# Elastic Search
 
 Búsquedas y analíticas en tiempo real Interfaz HTTP con documentos JSON
 usando GET, POST, PUT, DELETE, etc. Guardado e indexación eficiente, la

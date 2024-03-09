@@ -1,4 +1,4 @@
-# 1. Vite
+# Vite
 
 Vite es un blunder de tercera generación para el desarrollo Frontend.
 

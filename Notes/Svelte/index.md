@@ -1,4 +1,4 @@
-# 1. Svelte
+# Svelte
 
 Es un framework de Javascript para construir interfaces de usuario,
 entre las ventajas que tiene sobre otros frameworks están las

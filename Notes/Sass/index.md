@@ -1,4 +1,4 @@
-# 1. SASS
+# SASS
 
 SASS es un lenguaje de markado para la generación de código [CSS](../HtmlYCss/1.-HTML-y-CSS.md)
 

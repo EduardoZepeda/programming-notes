@@ -1,4 +1,4 @@
-# 1. Devops
+# Devops
 
 Antes de empezar a implementar devops debemos asegurarnos de tener
 cubiertos los siguientes aspectos

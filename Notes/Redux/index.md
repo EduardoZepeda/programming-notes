@@ -1,4 +1,4 @@
-# 1. Redux
+# Redux
 
 Redux es un manejador de estado.
 
@@ -200,5 +200,5 @@ import {createStore, applyMiddleware} from 'redux';
 
 const store = createStore(asyncReducer, applyMiddleware(thunk));
 ```
-# 1. Redux toolkit[Redux Toolkit](/Notes/ReduxToolkit/1.-Redux-toolkit.md)
+# Redux toolkit[Redux Toolkit](/Notes/ReduxToolkit/1.-Redux-toolkit.md)
 

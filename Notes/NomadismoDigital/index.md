@@ -1,4 +1,4 @@
-# 1. Nomadismo digital para programadores
+# Nomadismo digital para programadores
 
 
 

@@ -1,4 +1,4 @@
-# 1. Curso Avanzado de Django
+# Curso Avanzado de Django
 
 Las decisiones que tomes son muy costosas de cambiar y pueden impactar
 fuertemente en el desempeño de una aplicación.

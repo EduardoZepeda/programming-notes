@@ -1,4 +1,4 @@
-# 1. Fundamentos de Javascript
+# Fundamentos de Javascript
 
 
 

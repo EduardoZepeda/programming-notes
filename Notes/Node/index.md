@@ -1,4 +1,4 @@
-# 1. Node
+# Node
 ## 1.2 Middleware
 
 Node permite el uso de middleware. El middleware puede regresar una

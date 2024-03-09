@@ -1,4 +1,4 @@
-# 1. Componentes web
+# Componentes web
 
 Los Web Components son un conjunto de tecnologías para desarrollar
 aplicaciones de frontend utilizando tecnologías nativas que soporta

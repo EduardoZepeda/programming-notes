@@ -1,4 +1,4 @@
-# 1. El libro de Django
+# El libro de Django
 
 
 

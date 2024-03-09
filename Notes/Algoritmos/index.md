@@ -1,4 +1,4 @@
-# 1. Algoritmos
+# Algoritmos
 
 Un algoritmo es un conjunto de instrucciones o pasos que resuelven un
 problema dado paso a paso y sin generar ambigüedades.

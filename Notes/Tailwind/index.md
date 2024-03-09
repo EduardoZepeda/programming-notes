@@ -1,4 +1,4 @@
-# 1. Tailwindcss
+# Tailwindcss
 
 Tailwindcss es un framework de [CSS](../HtmlYCss/1.-HTML-y-CSS.md) que se caracteriza por no tener
 elementos definidos, en lugar de eso ofrece una serie de clases a partir

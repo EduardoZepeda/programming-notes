@@ -1,4 +1,4 @@
-# 1. Ecuaciones diferenciales
+# Ecuaciones diferenciales
 
 La ecuaciones diferenciales nos sirven para crear modelos matemáticos de
 cosas que existen en la realidad que dependen de alguna variable como el

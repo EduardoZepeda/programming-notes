@@ -1,4 +1,4 @@
-# 1. Curso de diseño e interfaces UX
+# Curso de diseño e interfaces UX
 
 
 

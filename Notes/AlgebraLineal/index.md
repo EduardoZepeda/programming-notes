@@ -1,4 +1,4 @@
-# 1. Algebra lineal
+# Algebra lineal
 
 Un vector es una lista finita de números. Los encontramos en dos
 presentaciones:

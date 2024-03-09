@@ -1,4 +1,4 @@
-# 1. Webpack
+# Webpack
 
 Webpack es un module bundler. Su propósito es empaquetar archivos de javascript para su uso en el navegador, también es capaz de transformar [CSS](../HtmlYCss/1.-HTML-y-CSS.md), imágenes y otros archivos característicos del desarrollo web. 
 

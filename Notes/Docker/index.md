@@ -1,4 +1,4 @@
-# 1. Docker
+# Docker
 
 Docker es una herramienta que permite empaquetar una aplicación y sus dependencias en un contenedor muy ligero. 
 

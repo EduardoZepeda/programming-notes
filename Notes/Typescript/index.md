@@ -1,4 +1,4 @@
-# 1. Typescript
+# Typescript
 
 Es un superconjunto tipado de javascript, que compila a javascript.
 

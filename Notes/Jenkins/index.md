@@ -1,4 +1,4 @@
-# 1. Jenkins
+# Jenkins
 
 Jenkins es una herramienta en Java open source de CI. Debido a que es
 bastante usado existen múltiples plugins, escritos en Java,

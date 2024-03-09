@@ -1,4 +1,4 @@
-# 1. Go
+# Go
 
 Go es un lenguaje compilado desarrollado por google. Es un lenguaje
 bastante apreciado según los desarrolladores de acuerdo a las últimos

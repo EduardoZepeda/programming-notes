@@ -1,4 +1,4 @@
-# 1. Patrones de diseño en python
+# Patrones de diseño en python
 
 Acomodo y las relaciones entre objetos de código entre sí que ofrecen
 soluciones estándar para problemas recurrentes. Popularizados por el

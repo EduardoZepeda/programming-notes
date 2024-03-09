@@ -1,4 +1,4 @@
-# 1. Curso de Postgresql
+# Curso de Postgresql
 
 Toda jerarquía de base de datos se basa en los siguientes elementos:
 

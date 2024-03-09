@@ -1,4 +1,4 @@
-# 1. Startups
+# Startups
 
 El soporte a usuarios es fundamental en las Startups, pues es a ellos a
 quienes va dirigido el producto o servicio, por esto es muy importante

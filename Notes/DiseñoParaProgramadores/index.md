@@ -1,4 +1,4 @@
-# 1. Diseño para programadores
+# Diseño para programadores
 
 
 

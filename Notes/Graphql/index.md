@@ -1,4 +1,4 @@
-# 1. Graphql
+# Graphql
 
 GraphQL es un lenguaje de consulta y manipulación de datos para APIs, y
 un entorno de ejecución para realizar consultas con datos existentes.​

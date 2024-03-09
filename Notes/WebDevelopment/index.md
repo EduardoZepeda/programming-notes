@@ -1,4 +1,4 @@
-# 1. Becoming a Free Lance Web Developer
+# Becoming a Free Lance Web Developer
 
 ## 1.1 Questions to do before the project
 

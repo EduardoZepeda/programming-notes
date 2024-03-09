@@ -1,4 +1,4 @@
-# 1. Jest
+# Jest
 
 Jest es un framework de JavaScript para pruebas.
 

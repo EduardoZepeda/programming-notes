@@ -1,4 +1,4 @@
-# 1. Protobuffers y gRPC en Go
+# Protobuffers y gRPC en Go
 
 Protocol Buffers (abreviado como Protobuf) es un formato binario de intercambio de datos disponible en múltiples lenguajes de programación.
 

@@ -1,4 +1,4 @@
-# 1. Arquitectura de alta concurrencia
+# Arquitectura de alta concurrencia
 
 
 

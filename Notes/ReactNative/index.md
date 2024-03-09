@@ -1,4 +1,4 @@
-# 1. React Native
+# React Native
 
 
 

@@ -1,4 +1,4 @@
-# 1. Kubernetes
+# Kubernetes
 
 ## 1.1 ¿Qué es kubernetes?
 

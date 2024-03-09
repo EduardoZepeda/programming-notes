@@ -1,4 +1,4 @@
-# 1. React Router
+# React Router
 
 Las dependencias son
 

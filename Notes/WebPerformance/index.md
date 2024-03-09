@@ -1,4 +1,4 @@
-# 1. Web performance
+# Web performance
 
 El 53% de los usuarios dejará un sitio móvil si tarda más de 3 segundos
 en cargar

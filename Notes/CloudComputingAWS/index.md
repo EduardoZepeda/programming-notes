@@ -1,4 +1,4 @@
-# 1. Cloud computing AWS
+# Cloud computing AWS
 
 AWS cómputo se refiere a cualquier producto de AWS que nos permite
 servir algún archivo, procesar o calcular algo. Hay varios disponibles:

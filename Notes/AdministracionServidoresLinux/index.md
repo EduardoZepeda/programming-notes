@@ -1,4 +1,4 @@
-# 1. Administración de servidores Linux
+# Administración de servidores Linux
 
 Es recomendable siempre usar versiones Long Term Support(LTS), pues
 cuenta con 10 años de soporte, tanto para CentOS, como para Ubuntu

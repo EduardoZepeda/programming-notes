@@ -1,4 +1,4 @@
-# 1. Curso de Design Thinking con Minds Garage
+# Curso de Design Thinking con Minds Garage
 
 
 

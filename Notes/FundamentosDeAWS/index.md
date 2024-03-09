@@ -1,4 +1,4 @@
-# 1. Fundamentos de AWS Cloud
+# Fundamentos de AWS Cloud
 
 
 

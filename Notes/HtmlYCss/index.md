@@ -1,4 +1,4 @@
-# 1. HTML y CSS
+# HTML y CSS
 
 Hay una nueva propiedad llamada Flex que viene a solucionar muchísimos
 problemas previos, desde el alineado vertical hasta el reacomodo de

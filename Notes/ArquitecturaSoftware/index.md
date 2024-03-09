@@ -1,4 +1,4 @@
-# 1. Arquitectura de Software
+# Arquitectura de Software
 
 
 

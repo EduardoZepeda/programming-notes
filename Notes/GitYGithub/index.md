@@ -1,4 +1,4 @@
-# 1. GIT
+# GIT
 
 Es un sistema de control de versiones para llevar un seguimiento de los
 cambios en el código y poder acceder a ellos en cualquier momento.

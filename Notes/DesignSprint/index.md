@@ -1,4 +1,4 @@
-# 1. ¿Qué es un design sprint?
+# ¿Qué es un design sprint?
 
 Un proceso para resolver problemas o responder preguntas criticas en
 solo 5 días, culminando con un prototipo.

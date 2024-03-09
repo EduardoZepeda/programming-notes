@@ -1,4 +1,4 @@
-# 1. Sitios útiles para desarrollo web
+# Sitios útiles para desarrollo web
 
 ## 1.1 Para vectores
 

@@ -1,4 +1,4 @@
-# 1. Go Web sockets y REST con Gorilla
+# Go Web sockets y REST con Gorilla
 
 ## 1.1 Creación de un handler para manejo de URL
 

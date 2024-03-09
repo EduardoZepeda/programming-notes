@@ -1,4 +1,4 @@
-# 1. SQL
+# SQL
 ## 1.1 Creación de base de datos
 
 Las bases de datos se crean con el comando CREATE DATABASE, seguido del nombre de la base de datos.

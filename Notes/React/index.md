@@ -1,4 +1,4 @@
-# 1. React
+# React
 
 React cumple su función como biblioteca ya que para utilizar su código se debe
 importar. También es un Framework aunque las convenciones de cómo debe ser

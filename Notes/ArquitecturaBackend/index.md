@@ -1,4 +1,4 @@
-# 1. Arquitectura backend
+# Arquitectura backend
 
 
 

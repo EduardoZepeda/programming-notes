@@ -1,4 +1,4 @@
-# 1. Redux toolkit
+# Redux toolkit
 
 Redux toolkit nace como respuesta a una de las críticas principales de [Redux](../Redux/1.-Redux.md):
 "es muy complicado configurarlo".
