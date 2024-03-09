@@ -20,11 +20,5 @@ create/pdf:
 	@	mkdir -p output/pdf;
 	@	pandoc -f markdown -t pdf -N --template=templates/template.tex -s -o output/pdf/apuntes.pdf  $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ') --css styles/pandoc_styles.css --pdf-engine=xelatex -f markdown-raw_tex;
 
-## update/toc: Update TOC table for every index file
-.PHONY: update/toc
-update/toc:
-	@echo 'Generating new TOC for every file'
-	@	python3 utils/script.py --toc;
-	@echo 'Done'
 
 
