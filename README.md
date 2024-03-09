@@ -28,12 +28,4 @@ This script will convert all rst files to pdf files, one pdf file for each rst f
 make create/pdf
 ```
 
-### Update the TOC 
-
-This script will update the TOC of each main archive inside its respective folder, to create them it uses its respective *content* folder's content.
-
-```
-make update/toc
-```
-
 
