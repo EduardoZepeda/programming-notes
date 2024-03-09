@@ -266,17 +266,17 @@ También podemos usar $R$ para valores númericos.
 
 Implica la agrupación de una serie de datos, que busca encontrar la estructura mediante la asignación de puntos de datos a grupos específicos.
 
-![](../img/k-means.png)
+![](Notes/MachineLearningPython/img/k-means.png)
 
 Estos grupos se llaman clusters.
 
 Para hacer esto k-means usa centroides, que representan cada cluster y que, inicialmente, se colocan de manera aleatoria. El objetivo es actualizar la posición de los centroides encontrando la media de los puntos de datos que pertenecen a cada cluster.
 
-![](../img/k-means-avg.png)
+![](Notes/MachineLearningPython/img/k-means-avg.png)
 
 El parámetro más importante es el número de clusters, conocido como "k", de ahí el nombre "K-means". Este valor cambia por completo el significado de todo, pues varios puntos de datos pueden moverse de un cluster a otro.
 
-![](../img/k-means-k.png)
+![](Notes/MachineLearningPython/img/k-means-k.png)
 
 
 ### Pasos de la regla de actualización
@@ -286,7 +286,7 @@ El parámetro más importante es el número de clusters, conocido como "k", de a
 3. Asignar cada punto de datos a un cluster basándonos en la distancia más corta
 4. Computar nuevos centroides como promedios del os miembros del cluster.
 
-![](../img/k-means-update.png)
+![](Notes/MachineLearningPython/img/k-means-update.png)
 
 ### Calcular el rendimiento
 
@@ -297,7 +297,7 @@ Para evaluar un modelo usaremos una gráfica de elbow (codo), debido a su simila
 
 Lo ideal es encontrar la velocidad de cambio más lenta, el punto de inercia más pequeño antes de que se dispare el número de clusters, es decir, el punto de inflexión
 
-![](../img/k-means-performance.png)
+![](Notes/MachineLearningPython/img/k-means-performance.png)
 
 ### Función de coste
 
@@ -338,7 +338,7 @@ Esta funcion es una funci6n de activacion.
 
 Expresadas visualmente así
 
-![](../img/funciones-activacion.jpg)
+![](Notes/MachineLearningPython/img/funciones-activacion.jpg)
 
 ### Capa de salida
 
@@ -358,7 +358,7 @@ Las redes neuronales se dividen en estos 3 tipos:
 - Convolucionales
 - Recurrentes
 
-![](../img/tipos-redes-neuronales.jpg)
+![](Notes/MachineLearningPython/img/tipos-redes-neuronales.jpg)
 
 #### DNNS
 
@@ -382,7 +382,7 @@ Ideal para su uso en lenguaje
 
 El proceso se resume en la siguiente imagen
 
-![](../img/entramiento.jpg)
+![](Notes/MachineLearningPython/img/entramiento.jpg)
 
 ### Backpropagation
 
@@ -395,13 +395,15 @@ Se actualizan tomando la derivada parcial, empezando desde la salida hacia atrá
 
 El término se refiere a cuando el método ha memorizado la información de entrenamiento de los datos, pero no ha encontrado el patrón que los predice. El modelo funcionará perfectamente con los datos de entrada, pero fallará con datos nuevos.
 
-![](../img/overfitting.jpg)
+![](Notes/MachineLearningPython/img/overfitting.jpg)
 
 ### Prevenir overfitting
 
 Una estrategia para prevenir el overfitting es detener el entrenamiento en su mejor punto de predicción.
 
-![](../img/prevenir-overfitting.jpg)## Neuronas
+![](Notes/MachineLearningPython/img/prevenir-overfitting.jpg)
+
+## Neuronas
 
 La neurona, también llamado perceptrón está inspirado en las redes neuronales biológicas.
 
@@ -434,7 +436,7 @@ En redes computacionales, la Función de Activación de un nodo define la salida
 - Relu, la más usada. (Valores menores a 0 son 0, si es mayor, deja el valor)
 - Softmax, nos da la probabilidad de ciertos outputs
 
-![](../img/funciones-activacion_2.png)
+![](Notes/MachineLearningPython/img/funciones-activacion_2.png)
 
 La página [wolframalpha](https://www.wolframalpha.com/) nos permite obtener las fórmulas de las funciones y su comportamiento.## Descenso del gradiente
 
@@ -443,6 +445,7 @@ El objetivo es disminuir la función de coste respecto a los pesos (weights) de 
 * Optimizador: me dice como debo actualizar los pesos, para disminuir el error. Hay varios tipos: gradient descent, AdaGrand, AdaDelta, Momentum, Nesterov, ADAM, RMS prop
 * Learning rate: magnitud en la actualizacion de los pesos. Muy altos no encuentran un punto mínimo local o global, muy pequeños consumen demasiados recursos.
 * Momentum: para evitar caer en mínimos globales hay optimizadores que aplican momentum (como el concepto de física, es el impulso extra que acumulo en la bajada de bajada) como el RMS prop, el cual es una variación del descenso del gradiente más el momentum.
+
 ## Funciones de pérdida
 
 La función de pérdida evalúa los valores reales contra la predicción. Un valor alto en la función de pérdida indica que nuestras predicciones son malas. En cambio, un valor bajo de la función de pérdida indica una buena predicción.
@@ -459,7 +462,7 @@ Backpropagation (propagación hacia atrás) es un algoritmo de entrenamiento uti
 
 La propagación hacia atrás se llama así porque el error se propaga a través de la red desde la capa de salida hasta la capa de entrada, de manera inversa al flujo de la información durante la fase de entrenamiento hacia adelante (feedforward). Durante el proceso de entrenamiento, se calcula el error de la salida de la red en función de los valores objetivo, y luego se propagan estos errores hacia atrás a través de la red para actualizar los pesos de las conexiones.
 
-![](../img/backpropagation.jpg)
+![](Notes/MachineLearningPython/img/backpropagation.jpg)
 
 ### Fundamentos matemáticos del backpropagation
 
@@ -680,7 +683,7 @@ K-fold validation, también conocida como validación cruzada en k grupos, es un
 
 Cuando se entrena un modelo de aprendizaje automático, es común dividir los datos disponibles en dos conjuntos: uno para entrenamiento y otro para evaluar el rendimiento del modelo. Sin embargo, esta división puede ser problemática si los datos de prueba no son representativos de la distribución de los datos reales o si la partición es aleatoria y los resultados varían con cada partición.
 
-![](../img/k-fold.jpg)
+![](Notes/MachineLearningPython/img/k-fold.jpg)
 
 La validación cruzada en k-fold aborda este problema dividiendo los datos en k grupos o pliegues (folds) de tamaño similar. El valor de k se selecciona de antemano y generalmente se elige un número entre 5 y 10. Luego, el modelo se entrena y evalúa k veces, cada vez utilizando un grupo diferente como conjunto de prueba y los restantes como conjunto de entrenamiento.
 

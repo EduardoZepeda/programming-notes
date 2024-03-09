@@ -713,6 +713,7 @@ pm2 start npm --name "Mi aplicación" -- run serve -- --port 3001
 ```
 
 Esta será accesible y podemos vincularla a un gestor de servicios como systemd
+
 ## 1.1 Webpack
 
 Webpack empaquetará la aplicación y permitirá que podamos usar los
@@ -1944,12 +1945,16 @@ useEffect(()=>{
     }
 
 })
-```## Librerías interesantes de scroll
+```
 
-[aos](michalsnik.github.io/aos)
-[scrollimator](github.com/mxdubois/scrollimator)
-[scrolltrigger](greensock.com/scrolltrigger)
-[locomotive-scroll](locomotivemtl.github.io/locomotive-scroll)## Previsualizar una imagen en un form
+## Librerías interesantes de scroll
+
+- [aos](michalsnik.github.io/aos)
+- [scrollimator](github.com/mxdubois/scrollimator)
+- [scrolltrigger](greensock.com/scrolltrigger)
+- [locomotive-scroll](locomotivemtl.github.io/locomotive-scroll)
+
+## Previsualizar una imagen en un form
 
 Esto nos permite subir una imagen en un campo field. El método consiste en:
 - Revisar la existencia del archivo en el campo

@@ -161,6 +161,7 @@ El punto y coma es opcional en JavaScript, excepto en algunos casos:
 -   Cuando usamos varias instrucciones en una mísma línea
 -   Al comenzar la próxima línea con un array
 -   Al comenzar la próxima línea con un template string
+
 ## ¿Cómo ejecutar una función al cargar un script?
 
 Cuando queremos ejecutar una función una vez que se haya cargado una librería de terceros.

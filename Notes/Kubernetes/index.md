@@ -172,7 +172,9 @@ Una buena técnica mnemotécnica para memorizarlo es:
 
 [A]ll [P]eople [S]eems [T]o [N]eed [D]ata [P]rotection
 
-![](../img/arquitectura-de-red.jpg)## 1.6 Declarativo vs imperativo
+![](Notes/Kubernetes/img/arquitectura-de-red.jpg)
+
+## 1.6 Declarativo vs imperativo
 
 Kubernetes hace enfasis en ser un sistema declarativo.
 

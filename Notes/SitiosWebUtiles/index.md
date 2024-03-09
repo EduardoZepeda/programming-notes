@@ -1,7 +1,5 @@
 # 1. Sitios útiles para desarrollo web
 
-
-
 ## 1.1 Para vectores
 
 -   [humaans](http://humaans.com)
@@ -73,8 +71,11 @@
 - Fastmail
 - GoogleApps
 - Rackspace email
+
 ## SAAS-starter-kit
 
-- [StarterSaas](https://www.startersaas.com/)## Ventans de código
+- [StarterSaas](https://www.startersaas.com/)
+
+## Ventanas de código
 
 - CodeMirror

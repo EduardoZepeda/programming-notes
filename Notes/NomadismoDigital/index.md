@@ -113,7 +113,9 @@ pesar de esto, es posible rentar tickets totalmente auténticos
 para presentar por unas cuentas decenas de dolares.
 
 -   [OneWayFly](https://onewayfly.com/es/)
--   [BestOnWardTicket](https://bestonwardticket.com/#how-it-works)## 1.9 Trabajo y entrevistas
+-   [BestOnWardTicket](https://bestonwardticket.com/#how-it-works)
+
+## 1.9 Trabajo y entrevistas
 
 ### 1.9.1 Preguntas para filtrar empresas que no valen la pena
 
@@ -133,12 +135,15 @@ para presentar por unas cuentas decenas de dolares.
 
 - [visadb](https://visadb.io/)
 - [Visas de paises para mexicanos](https://www.mundukos.com/tips-de-viaje/a-que-paises-pueden-viajar-los-mexicanos-sin-visa/)
+
 ## Blogs interesantes sobre nómadas digitales
 
--   [Broken backpacker](https://www.thebrokebackpacker.com/)## 1.12-Apps-utiles
+-   [Broken backpacker](https://www.thebrokebackpacker.com/)
+
+## 1.12-Apps-utiles
 
 1. @travelspendapp: una aplicación de seguimiento presupuestario dedicada a los viajes (¡asegúrate de estar al tanto de cada gasto!).
-2. Google Translate: se explica por sí sola, pero el truco es descargar el idioma para traducirlo sin conexión. Además, utiliza la cámara para traducir menús y señales :)
+2. Google Translate: se explica por sí sola, pero el truco es descargar el idioma para traducirlo sin conexión. Además, utiliza la cámara para traducir menús y señales
 3. Google Maps - de nuevo, descarga tus mapas para que al menos puedas ver tu ubicación en vivo cuando no estés conectado y encontrar a dónde tienes que ir en consecuencia.
 4. @hostelworld - mi aplicación favorita para encontrar albergues con buenas valoraciones. También puedes chatear con otros viajeros en tu albergue o en la zona cuando reservas a través de HW.
 5. @worldpackers: el truco de vida para viajar con poco dinero y alojarse gratis. Usa el C0d3: SIERRAFERNALD para conseguir 10$ de descuento en tu suscripción 😉 .

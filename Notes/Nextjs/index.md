@@ -897,21 +897,7 @@ propios estilos CSS.
 ```
 ## Autenticación 
 
-* [2.1-Autenticación-clásica-y-moderna](<2.1-Autenticación-clásica-y-moderna.md>)
-* [2.2-Oauth](<2.2-Oauth.md>)
-* [2.3-Patrones-de-autenticación](<2.3-Patrones-de-autenticación.md>)
-* [2.4-Servicios-de-autenticación](<2.4-Servicios-de-autenticación.md>)
-* [2.5-Nextauth.js](<2.5-Nextauth.js.md>)
-* [2.6-Autenticación-manual](<2.6-Autenticación-manual.md>)
-* [2.7-Cookies-de-Nextjs](<2.7-Cookies-de-Nextjs.md>)
-* [2.8-Objeto-sessión](<2.8-Objeto-sessión.md>)
-* [2.9-Cierre-de-sesión](<2.9-Cierre-de-sesión.md>)
-* [2.10-Manejando-el-flash-of-unauthenticated](<2.10-Manejando-el-flash-of-unauthenticated.md>)
-* [2.11-Autenticando-con-Github](<2.11-Autenticando-con-Github.md>)
-* [2.12-JWT](<2.12-JWT.md>)
-* [2.13-Protegiendo-rutas-API](<2.13-Protegiendo-rutas-API.md>)
-* [2.14-Protegiendo-rutas-en-el-frontend](<2.14-Protegiendo-rutas-en-el-frontend.md>)
-* [2.15-Soluciones-basadas-en-Node.js-Passport-Auth0-emails-y-bases-de-datos](<2.15-Soluciones-basadas-en-Node.js-Passport-Auth0-emails-y-bases-de-datos.md>)## 1.1 Autenticación clásica y moderna
+### 1.1 Autenticación clásica y moderna
 
 Existen dos modelos de autenticación: clásica y la moderna.
 
@@ -1473,16 +1459,7 @@ router.query: {"key": "value"}
 ```
 ## 3.0 Internacionalización
 
-* [3.1-i18n](<3.1-i18n.md>)
-* [3.2-Anatomia-de-un-Locale](<3.2-Anatomia-de-un-Locale.md>)
-* [3.3-Arquitectura](<3.3-Arquitectura.md>)
-* [3.4-Estrategias-de-rutas-i18n](<3.4-Estrategias-de-rutas-i18n.md>)
-* [3.5-Configuración-de-locales-en-nextjs.config.js](<3.5-Configuración-de-locales-en-nextjs.config.js.md>)
-* [3.6-i18n-en-páginas-dinámicas](<3.6-i18n-en-páginas-dinámicas.md>)
-* [3.7-i18n-en-páginas-no-dinámicas](<3.7-i18n-en-páginas-no-dinámicas.md>)
-* [3.8-Detección-automática-con-Nextjs](<3.8-Detección-automática-con-Nextjs.md>)
-* [3.9-Arquitectura-de-i18n-para-labels](<3.9-Arquitectura-de-i18n-para-labels.md>)
-* [3.10-i18n-con-next-i18next](<3.10-i18n-con-next-i18next.md>)## 1.1 i18n
+## 1.1 i18n
 
 Se refiere a la adecuación del idioma, formato fechas, monedas, números,
 zonas horarias, de acuerdo a un país y región.
@@ -2078,6 +2055,7 @@ contiene una serie de recomendaciones; generales, para cada aspecto de
 un sitio web, desde la recuperación de contraseña hasta el loggeo; y
 específicas, destinadas a una sola tecnología como docker o ruby on
 rails.
+
 ## 5.0 JAM Stack
 
 Jamstack es una arquitectura de desarrollo web moderna basada en
@@ -2090,18 +2068,7 @@ Existen dos tipos de formas de renderizar una aplicación:
 -   Navegador
 -   Servidor
 
-* [5.1-Tipos-de-renderizado](<5.1-Tipos-de-renderizado.md>)
-* [5.2-Arquitectura](<5.2-Arquitectura.md>)
-* [5.3-Instalación-del-contentful-cli](<5.3-Instalación-del-contentful-cli.md>)
-* [5.4-Autogeneración-de-data-con-graphql](<5.4-Autogeneración-de-data-con-graphql.md>)
-* [5.5-getStaticProps](<5.5-getStaticProps.md>)
-* [5.6-Ventajas-y-desventajas-de-SSG](<5.6-Ventajas-y-desventajas-de-SSG.md>)
-* [5.7-Incremental-Site-Regeneration](<5.7-Incremental-Site-Regeneration.md>)
-* [5.8-Fallback](<5.8-Fallback.md>)
-* [5.9-Enfoque-stale-while-revalidate](<5.9-Enfoque-stale-while-revalidate.md>)
-* [5.10-Trade-offs-de-ISG](<5.10-Trade-offs-de-ISG.md>)
-* [5.11-SSR-ventajas-y-desventajas](<5.11-SSR-ventajas-y-desventajas.md>)
-* [5.12-Nextjs-Export](<5.12-Nextjs-Export.md>)## 1.1 Tipos de renderizado
+## 1.1 Tipos de renderizado
 
 Procesamiento de fragmentos de código y datos para mostrar un resultado.
 Por ejemplo de JS a HTML.

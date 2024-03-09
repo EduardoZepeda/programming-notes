@@ -91,7 +91,7 @@ elimine el atributo password y tokens. El método toJSON() se llama de
 manera automática al hacer el send del objeto respuesta.
 
 ``` javascript
-# Desde el schema de MongoDB
+// Desde el schema de MongoDB
 userSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
@@ -321,8 +321,8 @@ const upload = multer({
   }
 })
 ```
-## 1.1 Graphql[Graphql](../../Graphql/1.-Graphql)
-## 1.1 Mongoose[Mongoose](../../Mongoose/1.-Mongoose)## SSR con React en express
+
+## SSR con React en express
 
 Para realizar SSR en [React](../../React/1.-React.md) necesitamos vincular un renderizado del HTML a la función encargada de servir nuestras rutas en express, o cualquier otro framework.
 
@@ -402,7 +402,9 @@ npm i ignore-styles
 
 ### Ejemplo mínimo de SSR
 
-Encontré un excelente ejemplo del SSR con React en el siguiente [repositorio de github](https://github.com/juhanakristian/react-ssr-example)## Assets require hook
+Encontré un excelente ejemplo del SSR con React en el siguiente [repositorio de github](https://github.com/juhanakristian/react-ssr-example)
+
+## Assets require hook
 
 Assets require hook es un hook que se encarga de importar todas nuestras imágenes en tiempo real cuando sean requeridas mediante SSR, en lugar de ser procesadas de manera manual por la función de express.
 
