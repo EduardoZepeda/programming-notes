@@ -105,7 +105,9 @@ Si se normalizan los datos, hay que recordar que la **data de prueba va a usar l
 ``` python
 test_data = test_data - mean
 test_data = test_data / std
-```## Pandas
+```
+
+## Pandas
 
 Pandas puede leer información en csv con su método *read_csv*
 
@@ -476,6 +478,7 @@ Los datos pueden tener diferentes dimensiones dependiendo de su estructura y com
 - Vector: Un vector es una entidad matemática que tiene magnitud y dirección. Está compuesto por una secuencia de valores numéricos dispuestos en una sola dimensión. Ejemplo: Lista de coordenadas.
 - Matrix: Una matriz es un conjunto de valores numéricos dispuestos en filas y columnas que forman una estructura bidimensional. Las matrices se utilizan para realizar cálculos lineales, como transformaciones lineales, rotaciones y escalamientos. Por ejemplo: Una imagen.
 - Tensor: Un tensor es un objeto matemático de múltiples dimensiones que se utiliza en el análisis y procesamiento de datos en áreas como la física, la ingeniería y el aprendizaje automático. Un tensor puede ser un vector o una matriz de cualquier dimensión. Un ejemplo de tensor puede ser una imagen en color, que se puede representar como un tensor de tres dimensiones, con una dimensión para el ancho, otra para la altura y otra para los canales de color (rojo, verde y azul).
+
 ## Ejemplo de entrenamiento usando la imdb
 
 ### Importamos librerías
@@ -728,9 +731,9 @@ for i in range(k):
                         validation_data = (val_data, val_targets),
                         verbose=0)
     all_history.append(history.history['val_mae'])
-```## Tipos de capas en Keras
+```
 
-
+## Tipos de capas en Keras
 
 ### Capa Dense (totalmente conectada):
 
