@@ -648,6 +648,31 @@ Memo es ideal para componentes que:
 > -   Componentes muy voluminosos que tienen un impacto muy grande en el
 >     rendimiento.
 
+
+## useActionState
+
+Facilita el manejo de formularios, evita el uso del manejo de estado, useRef y loading al manejar los formularios. Disponible solo después de React 19.
+
+``` javascript
+const [data, action, isPending] = useActionState(customFunction, initialState)
+```
+
+Puede recibir un tercer parámetro opcional con una url.
+
+Esta función recibe dos parámetros, el estado previo y la información del formulario.
+
+``` javascript
+customFunction(previousState:unknown, formData: FormData){}
+```
+
+Esta inforamción del formulario puede obtenerse usando el método get de formData y puede obtenerse en el servidor o en el cliente, usando "use server" para el primer caso.
+
+``` javascript
+customFunction(previousState:unknown, formData: FormData){
+  formData.get("<field_name>") as string
+}
+```
+
 ## 1.18 Reducers
 
 Los reducers se encargan de tomar un estado previo y una acción y devolver un
