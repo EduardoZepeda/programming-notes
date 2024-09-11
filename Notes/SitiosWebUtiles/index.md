@@ -75,6 +75,9 @@
 ## SAAS-starter-kit
 
 - [StarterSaas](https://www.startersaas.com/)
+- [opensaas](https://opensaas.sh)
+- [Next-SaaS](https://github.com/mickasmt/next-saas-stripe-starter)
+- [Saas-Starter-Kit](https://github.com/Saas-Starter-Kit)
 
 ## Ventanas de código
 

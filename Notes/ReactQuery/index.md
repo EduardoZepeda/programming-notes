@@ -292,7 +292,8 @@ const queryClient = useQueryClient()
 queryClient.setQueryData(["<key>", "<key.property>"], data)
 ```
 
-Para actualizar múltiples queries se usa el método *setQueriesData*. ## Paginación
+Para actualizar múltiples queries se usa el método *setQueriesData*. 
+## Paginación
 
 Para llevar a cabo la paginación es importante colocar la página dentro de la *queryKey* y usar *keepPreviousData*.
 

@@ -39,11 +39,12 @@ No requieren usar el mismo lenguaje o framework.
 
 Un cluster es una agrupación de máquinas que corren una cierta cantidad de servicios.
 
-Cada cluster corre
+Cada cluster corre:
 
 * Docker runtime
 * Kubelet agent
 * Network proxy
+
 ## Nodos
 
 Un nodo es un worker machine, una máquina dentro de un cluster, puede ser una VM o una máquina física, debe contar con todos los servicios para ejecutar los pods.
@@ -82,7 +83,7 @@ Sin embargo, Kubernetes no realiza un provisionamiento de la infraestructura, so
 -   Establecer mecanismos para hacer roll-outs de código.
 -   Políticas de scaling automáticas.
 -   Jobs batch.
--   Correr servicios con datos stateful.
+-   Correr servicios con datos stateful, es decir con datos permanentes, similares a los volúmenes en docker.
 
 Todos los contenedores que viven dentro de un mismo Pod comparten el mismo
 segmento de red.
@@ -221,7 +222,7 @@ Los objetos más frecuentes son:
 > -   Volumen
 > -   Namespace
 
-Los objetos de algo nivel son:
+Los objetos de alto nivel son:
 
 > -   ReplicationController
 > -   ReplicaSet
@@ -503,10 +504,9 @@ Un pod es el más pequeño y más básico objeto que puede ser desplegado en
 kubernetes. Representa una instancia de un proceso que corre en el cluster. Un
 pod puede contener uno o más contenedores y **se aloja en un nodo**. Cuando un
 pod ejecuta múltiples contenedores, los contenedores se manejan como una entidad
-única y **comparten el mismo namespace de red (dirección IP) y el
-almacenamiento.**. 
+única y **comparten el mismo namespace de red (dirección IP) y el almacenamiento.**. 
 
-Generalmente no se gestionaran los pods de manera individual, sino a través de deployments o replicasets. Pero es posible crear pods sin los dos abstracciones anteriores.
+Generalmente no se gestionaran los pods de manera individual, sino a través de deployments o replicasets. Pero es posible crear pods sin las dos abstracciones anteriores.
 
 Cuando se escala un pod en kubernetes se crean nuevas copias del pod, estas
 copias son irrecuperables una vez se han eliminado, por lo que los pods son perfectos para elementos stateless. 
@@ -584,7 +584,7 @@ ReplicaController. Además asegura lo siguiente:
 -   Escalabilidad dinámica
 -   Que no haya caída del servicio
 
-Los replicaset generalmente dependen de un deployment y no se utilizan de manera aislada.
+**Los replicaset generalmente dependen de un deployment y no se utilizan de manera aislada.**
 
 ### 1.14.1 Definición de un yml de ReplicaSet
 
@@ -692,7 +692,9 @@ spec:
         - containerPort: 80
 ```
 
-El deployment es la entidad de kubernetes con la que se interactuará más frecuentemente. El
+### Importancia de los deployments
+
+**El deployment es la entidad de kubernetes con la que se interactuará más frecuentemente**. El
 despliegue de un Deployment conlleva la creación de un ReplicaSet y los Pods
 correspondientes. Por lo que es necesario definir también el replicaSet
 asociado.
@@ -780,7 +782,7 @@ Se eliminan, siguiendo la misma sintaxis
 kubectl delete deployment <deployment>
 ```
 
-## 1.16 Servicios
+## 1.16 Servicios en k8s
 
 Normalmente no podemos acceder a los pods desde fuera del cluster de Kubernetes.
 
@@ -806,7 +808,8 @@ Cuando se crea un nuevo servicio, se le asigna una nueva ip interna virtual
     a partir de la ip del servidor master del cluster.
 -   LoadBalancer: Balanceador externo provisionado para cloud providers (GKE,
     AKS o AWS). No se puede usar de manera local, excepto con *minikubetunnel*.
--   ExternalName: Entrada de DNS que es gestionada por CoreDNS.
+    Es mejor que el NodePort porque no es necesario conocer su IP de antemano para acceder.
+-   ExternalName: Entrada de DNS que es gestionada por CoreDNS. 
 
 ### 1.16.2 Creación de un servicio tipo Cluster IP
 
@@ -1097,8 +1100,8 @@ asegurarlo.
 
 ## 1.20 Daemon sets y balanceo de cargas
 
-Los daemon sets es una forma de asegurarse de que exista **una copia de un pod
-en cada nodo**.  Esto es ideal para aplicaciones de monitoreo, como logs, o estadísticas.
+Los daemon sets es una forma de asegurarse de que exista **una copia de un pod en cada nodo**.  
+Esto es ideal para aplicaciones de monitoreo, como logs, o estadísticas.
 
 **Es imposible crear daemon sets desde kubectl**, su CLI, la
 única manera es a través de los manifest files.
@@ -1130,16 +1133,6 @@ NAME                   READY   STATUS    RESTARTS   AGE
 rng-5d8b6c4cff-cw955   1/1     Running   1          21h
 rng-bn5jj              1/1     Running   0          5m23s
 ```
-
-Podremos comprobar los endpoints con
-
-```bash
-kubectl describe service <service>
-Endpoints:         10.244.0.2:80,10.244.0.20:80
-```
-
-Cada service tiene los endpoints de los pods que se están ejecutando, de manera
-que otros servicios puedan acceder.
 
 ## 1.21 Despliegues de nuevas versiones controlados
 
@@ -1392,8 +1385,9 @@ core.
 ### 1.24.3 Limites
 
 Los límites establecen los recursos máximos con los que cuenta un pod. Se
-establecen a nivel kernel de Linux, si el pod  excede el límite establecido, se
-terminará el proceso.
+establecen a nivel kernel de Linux.
+
+La diferencia entre requests y limits es que el requests es el mínimo, mientras que limits es el máximo, si excede memoria el kernel de linux lo matará, si es CPU simplemente no podrá superarlo.
 
 ```yaml
     resources:
@@ -1569,7 +1563,7 @@ kustomize build .
 ```
 
 
-## 1.26 Volúmenes
+## 1.26 Volúmenes y Statefulsets
 
 Un volumen nos permite compartir archivos entre diferentes pods o archivos en
 nuestro host que persisten incluso tras reinicios.
@@ -1591,17 +1585,41 @@ información **entre contenedores del mismo pod**.
 Podemos automatizar todo el proceso de creación de discos con componentes de
 terceros, como digital ocean.
 
+Primero especificamos donde deben montarse los volumenes y su nombre.
+
+
+``` bash
+spec:
+  template:
+    spec:
+      containers:
+        volumeMounts:
+        - mountPath: "/data"
+          name: <name>
+```
+
+Para más tarde especificar las características como su storage e incluso el proveedor de cloud, en este caso Digital Ocean.
+
 ```bash
-volumeClaimTemplates:
-- metadata:
-  name: <nombre>
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 5Gi
-    storageClassName: do-block-storage
+spec:
+  volumeClaimTemplates:
+  - metadata:
+    name: <nombre>
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: do-block-storage
+```
+
+Podemos obtener los statefulsets con:
+
+``` bash
+kubectl get statefulsets
+# o su abreviacion
+kubectl get sts
 ```
 
 ## 1.27 Namespaces
@@ -1716,7 +1734,7 @@ kubectl config view --raw -o json
         "user": {
             "client-certificate-data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURJVENDQWdtZ0F3SUJBZ0lJYnF5dENYZ..."
         }
-    }
+    ]
 }
 ```
 
@@ -2004,14 +2022,9 @@ kubectl get nodes
 
 ## 1.33 Recursos útiles
 
--   [Blog de José Domingo sobre pods, deployments, replicaSet y otros
-    recursos](https://www.josedomingo.org/pledin/blog/)
--   [Seguridad del dashboard de k8skubectl apply -f
-    kubernetes-dashboard.yml](http://link)
--   [Implementar
-    kubernetes-dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
--   [Configurar tests
-    healtcheckhttps://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/](http://link)
--   <span class="title-ref">Repositorio de Flux
-    https://github.com/weaveworks/flux</span>
+-   [Blog de José Domingo sobre pods, deployments, replicaSet y otros recursos](https://www.josedomingo.org/pledin/blog/)
+-   [Seguridad del dashboard de k8skubectl apply -f kubernetes-dashboard.yml](http://link)
+-   [Implementar kubernetes-dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
+-   [Configurar tests healtcheckhttps://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/](http://link)
+-   [Repositorio de Flux](https://github.com/weaveworks/flux)
 -   [Juniper](https://www.juniper.net/documentation/en_US/day-one-books/topics/topic-map/kubernetes-basics.html)

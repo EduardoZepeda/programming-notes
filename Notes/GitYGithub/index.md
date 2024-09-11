@@ -531,12 +531,33 @@ git stats
 ## 1.24 Recuperar cambios borrados
 
 El comando git reflog nos permite recuperar todos los cambios hechos en
-el repositorio, incluso aquellos que fueron desechos con *git reset
---hard*.
+el repositorio, incluso aquellos que fueron desechos con *git reset --hard*.
 
 ``` bash
 git reflog
 ```
+
+### ¿Cómo usar git reflog
+
+La manera de usarlo es la siguiente
+
+Utilizamos 
+
+``` bash
+git reflog show
+<hash_1> (HEAD -> main, origin/main, origin/HEAD) HEAD@{0}: commit: <message_1>
+<hash_2> HEAD@{1}: commit: <message_2>
+```
+
+Ahora podemos volver a cualquier estado del repositorio, incluso si usamos git reset.
+
+Para ello basta con identificar el head al que queremos volver y usarlo con git reset
+
+``` bash
+git reset --soft HEAD@{<number>}
+```
+
+Esto devolverá el repositorio al estado que tenía en este momento.
 
 ## 1.25 Excluir archivos del indice de git
 

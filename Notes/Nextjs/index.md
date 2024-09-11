@@ -984,7 +984,7 @@ export default function App({ Component, pageProps: { session, pageProps } }: Ap
 
 ```
 
-Si estás usando el nuevo modelo de app route puedes agregar este session provider de la siguiente manera dentro de una carpeta llamada components dentro de app:
+Si estás usando el nuevo modelo de app router puedes agregar este session provider de la siguiente manera dentro de una carpeta llamada components dentro de app:
 
 ```javascript
 // mark as client component
@@ -1044,9 +1044,9 @@ const options: NextAuthOptions = {
 export default NextAuth(options)
 ```
 
-En caso de que estés usando el nuevo modelo de App Route crea un archivo en *app/api/auth/[…nextauth]/route.ts*. NextAuth recibirá como único parámetro las opciones de autenticación, tal cual las recibe el bloque de código anterior.
+En caso de que estés usando el nuevo modelo de App Router crea un archivo en *app/api/auth/[…nextauth]/route.ts*. NextAuth recibirá como único parámetro las opciones de autenticación, tal cual las recibe el bloque de código anterior.
 
-Y los exportamos como GET y POST para que sea compatible con el modelo App Route de Nextjs
+Y los exportamos como GET y POST para que sea compatible con el modelo App Router de Nextjs
 
 ``` javascript
 import NextAuth from "next-auth"
@@ -1062,6 +1062,64 @@ El objeto options tendrá una propiedad llamada providers que se refiere
 a los diferentes métodos de autenticación. Hay muchos proveedores de
 autenticación que se encuentran disponibles en la [documentación de
 NextAuth](https://next-auth.js.org/configuration/providers#oauth-providers)
+
+## El nuevo modelo App Router
+
+Este nuevo modelo cuenta con una serie de cambios, por ejemplo que ahora los components por defecto se ejecutan en el servidor, por lo que si queremos un componente que se ejecute en el cliente debemos agregar el string "use client" al principio su archivo correspondiente.
+
+``` javascript
+"use client"
+```
+
+Otro cambio es que el componente Head que provee next para la metadata es inservible. En su lugar debemos exportar una variable llamada metadata, la cual se encargará de crear automáticamente las etiquetas, las opciones corresponden a etiquetas definidas, por lo que considera leer la documentación.
+
+``` javascript
+import type { Metadata } from "next";
+
+export const metadata = {
+    title: '',
+    applicationName: '',
+    authors: '',
+    category: '',
+    openGraph: {
+      type: '',
+      publishedTime: '',
+      section: '',
+      title: '',
+      tags: [],
+      description: '',
+    },
+  }
+```
+
+### Parallel routes o rutas paralelas
+
+Podemos manejar cada sección de una página de manera individual, de forma que si falla o está cargando podamos mostrar ese estado solo en esa sección
+
+``` bash
+@component
+  loading.ts
+  error.ts
+  page.ts
+layout.ts
+```
+
+Donde loading representa el componente a renderizar si la sección está cargando y error se renderizará si hay un error. Estos componentes se pasarán como si fueran props al componente padre.
+
+``` javascript
+// Layout.ts
+export default function Layout({component}){return <component>}
+```
+
+Por supuesto page tendrá que ser una función asíncrona
+
+``` javascript
+//page.ts
+export default async Component(){
+    await fn()
+    return <Component/>
+}
+```
 
 ## 1.6 Autenticación manual
 
@@ -1516,6 +1574,10 @@ const config = {
 }
 ```
 
+### locales en contentful
+
+Podemos crear traducciones en la sección Content de Contentful.
+
 En contenful podemos crear locales en settings\>locale. El valor de
 fallback será el valor por defecto, si no tenemos todas las traducciones
 del locale activado, usará este.
@@ -1527,6 +1589,8 @@ nuestra consulta.
 getItemCollection (limit: 10, skip: 100, locale: "es"){}
 ```
 
+### locales en SSR
+
 La función getStaticProps recibe el parámetro locale que fijamos en
 nextjs.config.js, por lo que si queremos especificarlo de acuerdo a la
 url
@@ -1537,9 +1601,7 @@ export const getStaticProps: GetStaticProps<myProps> = async ({ locale }) => {
 }
 ```
 
-Podemos crear traducciones en la sección Content de Contentful.
-
-## 1.6 i18n en páginas dinámicas
+## 1.6 i18n en páginas dinámicas en SSG
 
 Para usar i18n en páginas dinámicas necesitamos generar los paths
 correspondientes por cada locale existente, junto con sus respectivos
@@ -1741,6 +1803,8 @@ export function componente(){
 * [4.11-Sensitive-data-exposure](<4.11-Sensitive-data-exposure.md>)
 * [4.12-Token-firmados-y-encriptados-en-Nextjs](<4.12-Token-firmados-y-encriptados-en-Nextjs.md>)
 * [4.13-OWASP](<4.13-OWASP>)
+
+
 ## 1.1 A1: Injection
 
 Es el agregar parte de una consulta para crear instrucciones extras que
