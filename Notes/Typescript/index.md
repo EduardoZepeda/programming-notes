@@ -55,7 +55,7 @@ incluir, cuales excluir, así como directorios y archivos de salida.
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs"
+        "module": "commonjs",
         "strict": true,
         "removeComments": true,
         "outFile": "./",                       
@@ -167,6 +167,19 @@ La opción strictNullChecks, desactivada por default, en el archivo de
 configuración *tsconfig.json*, permite asignar null y undefined a un
 variable de tipo any o sus tipos respectivos.
 
+#### unknown
+
+El tipo desconocido, ideal para garantizar manejar tipos desconocidos, como los que obtendrías de respuesta de una API.
+Este tipo requiere que se revise explícitamente el tipo
+
+``` typescript
+let response: unknown
+if typeof response === "function" {}
+if typeof response === ...
+if response instanceof Date ...
+// ...
+```
+
 #### 1.4.1.9 object
 
 Escrito object, con minúsculas. Representa un dato con un valor que no
@@ -272,6 +285,8 @@ Awaited nos retorna el tipo que retornan las promesas
 ``` javascript
 type A = Awaited<Promise<string>>
 ```
+
+En este caso será string.
 
 ### 1.4.1.16 ReturnType
 
@@ -987,3 +1002,57 @@ nuestros elementos
 ``` bash
 export declare function <funcion>(argumento: type): type
 ```
+
+## Utility types
+
+TypeScript proporciona varios tipos de utilidades para facilitar las transformaciones de tipos comunes. Estas utilidades están disponibles globalmente. Solo he escrito las que considero las más importantes.
+
+Para ver la lista completa visita [la documentación de typescript](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
+### Awaited<Type>
+
+Este tipo está pensado para modelar operaciones como await en funciones async, o el método .then() en Promises - específicamente, la forma en que recursivamente desenvuelven Promises.
+
+``` typescript
+type C = Awaited<boolean | Promise<number>>;
+    
+type C = number | boolean
+```
+
+### Pick<Type, Keys> 
+
+Pick te permite crear un nuevo tipo eligiendo propiedades específicas (`Keys`) de un tipo existente (`Type`). Pick es útil para limitar los tipos a sólo las propiedades que nos son importantes
+
+``` typescript
+type NewType = Pick<Type, Keys>;
+
+interface Person {
+     name: string;
+     age: number;
+     gender: string;
+     address: string;
+}
+
+type PersonDetails = Pick<Person, 'name' | 'age'>;
+
+const person: PersonDetails = {
+     name: 'John Doe',
+     age: 39,
+};
+```
+
+### Omit<Type, Keys>
+
+Construye un tipo seleccionando todas las propiedades de Tipo y eliminando las Claves (literal de cadena o unión de literales de cadena). Lo contrario de Pick.
+
+### Partial<Type>
+
+Construye un tipo con todas las propiedades de Type establecidas como opcionales. Esta utilidad devolverá un tipo que representa todos los subconjuntos de un tipo dado.
+
+### Required<Type>
+
+Construye un tipo consistente en todas las propiedades de Type establecidas como requeridas. Lo contrario de Partial.
+
+### ReturnType<Type>
+
+Construye un tipo consistente en el tipo de retorno de la función Tipo.
