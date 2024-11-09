@@ -10,7 +10,7 @@ cubiertos los siguientes aspectos
 
 
 
-## 1.1 Continuous integration y artifacts
+## Continuous integration y artifacts
 
 El flujo consiste en
 
@@ -22,21 +22,21 @@ La salida del CI es un artifact. Un artifact es como una build estable
 comprimida relacionado con un release. Un artifact es inmutable, y es
 necesario conservarlo, en caso de que necesitemos realizar un rollback.
 
-## 1.2 Code coverage
+## Code coverage
 
 Además del coverage, que da una falsa sensación de seguridad, puede ser
 necesario montar code reviews.
 
-## 1.3 Continouos delivery
+## Continouos delivery
 
 Es la extensión de CI que automatiza el proceso de añador código a la
 rama principal.
 
-## 1.4 Continuous deployment
+## Continuous deployment
 
 Automatiza el despliegue o deployment. Los cambios se ven en minutos.
 
-## 1.5 Implementación de CI con Jenkins
+## Implementación de CI con Jenkins
 
 Para ello es necesario instalar ambos paquetes.
 
@@ -112,7 +112,7 @@ run" corre a través del shell, para que nos avise si falla.
 Una vez hecho, ejecutamos el job y podemos corroborar que todo se
 ejecutó de manera perfecta.
 
-## 1.6 Artifacts[Docker hub](https://hub.docker.com/) es una buena opción para almacenar
+## Artifacts[Docker hub](https://hub.docker.com/) es una buena opción para almacenar
 los artifacts.
 
 En global credentials podemos agregar los datos para autentificarnos en

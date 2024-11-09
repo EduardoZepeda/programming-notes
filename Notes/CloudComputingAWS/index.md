@@ -21,23 +21,23 @@ servir algún archivo, procesar o calcular algo. Hay varios disponibles:
 
 
 
-## 1.1 AMI
+## AMI
 
 Máquinas virtuales llamadas instancias. Cuentan con imágenes
 pre-configuradas, llamadas AMIs.
 
-### 1.1.1 Ephemeral Storage
+### Ephemeral Storage
 
 Almacenamiento que existe a menos que apaguemos o destruyamos la
 instancia..
 
-### 1.1.2 Elastic Block Storage
+### Elastic Block Storage
 
 Este permanece a pesar que borremos la maquina virtual, podemos hacer
 copias, restaurar o ir guardando en caso que este evolucionando algún
 proyecto o alguna configuración de las maquinas.
 
-### 1.1.3 Tipos de instancias EC2
+### Tipos de instancias EC2
 
 Asegurate de tener la versión correcta de tus instancias o no se ver
 ánada.
@@ -56,7 +56,7 @@ El acceso a la máquina se hacáe por medio de una key. Es recomendable
 guardarla en un lugar seguro o sera imposible conectarse por medio de
 SSH
 
-### 1.1.4 Proceso de creación de una instancia EC2
+### Proceso de creación de una instancia EC2
 
 Elegimos la imagen principal
 
@@ -99,7 +99,7 @@ esté disponible
 
 ![image](Notes/CloudComputingAWS/img/CreacionDeUnaImagen09.png)
 
-### 1.1.5 Conectarse a la instancia por medio de SSH
+### Conectarse a la instancia por medio de SSH
 
 Primero debemos quitarle permisos al archivo llave que se descargó
 
@@ -109,7 +109,7 @@ Y ahora procedemos a conectarnos por medio de ssh
 
 ssh -i \<path_del_archivo.pem\> ubuntu@\<dirección_IP_de_la_instancia\>
 
-## 1.2 Imagenes de instancias
+## Imagenes de instancias
 
 Cosas a tener en cuenta al momento de crear imágenes de instancias:
 
@@ -122,7 +122,7 @@ momento de crear una nueva instancia.
 Al reiniciar la instancia se cambia la IP pública, por lo que ya no será
 posible acceder a ella usando la misma IP
 
-## 1.3 Snapshots
+## Snapshots
 
 Una imagen es una una copia total de una instancia. Para copiar una sola
 de sus características se usa un Snapshot al volumen, es decir, al disco
@@ -132,12 +132,12 @@ Es mejor crear una imagen nueva o AMI al hacer un cambio mayor en la
 instancia, versionando a través de las imágenes en caso de que se
 necesite un rollback
 
-## 1.4 Configuración de red
+## Configuración de red
 
 Es importante establecer una IP Elastic si quieres mantener tu IP
 pública fija con cada reinicio.
 
-## 1.5 Balanceadores de carga
+## Balanceadores de carga
 
 Usando un balanceador de carga podemos balancear peticiones HTTP, HTTPS
 o TCP con los servicios de AWS.
@@ -181,14 +181,14 @@ su IP pública y privada.
 
 ![image](Notes/CloudComputingAWS/img/BalanceadorDeCarga07.png)
 
-## 1.6 Marketplace de AMI's
+## Marketplace de AMI's
 
 Es un repositorio de imágenes con la mayoría de las necesidades ya
 resueltas.
 
 <https://aws.amazon.com/marketplace>
 
-## 1.7 Lightsail
+## Lightsail
 
 Un VPS en Amazon
 
@@ -201,17 +201,17 @@ Cuenta con varios templates preconfigurados
 Escala con unos clicks Tiene base de datos disponibles Multiregiones y
 multizonas
 
-### 1.7.1 Marketplace de Lightsail
+### Marketplace de Lightsail
 
 Existen múltiples imágenes de Lightstail ya preconfiguradas, incluso
 imágenes de windows disponibles.
 
-### 1.7.2 Creación de un VPS
+### Creación de un VPS
 
 Instalar un proyecto en Lightsail es muy similar al proceso que se
 realiza en EC2.
 
-### 1.7.3 Creación de una base de datos
+### Creación de una base de datos
 
 Ofrece dos configuraciones:
 
@@ -219,7 +219,7 @@ Ofrece dos configuraciones:
 -   HA: Alta disponibilidad, donde tienes dos servidores o más con un
     load balancer.
 
-## 1.8 ECR/ECS/EKS
+## ECR/ECS/EKS
 
 ECR es el servicio que te permite usar los contenedores a través de
 Dockerfiles en Amazon.
@@ -229,7 +229,7 @@ Primero necesitamos entrar a ECS, solo ahí podremos acceder a ECR.
 Es requisito instalar AWS CLI y Docker, así como otras dependencias como
 pip, python-pip y otras.
 
-### 1.8.1 Creación de una imagen en ECR
+### Creación de una imagen en ECR
 
 Para crear la imagen necesitaremos un usuario con los siguientes
 permisos
@@ -257,7 +257,7 @@ necesarios para configurar el awscli
 
 ![image](Notes/CloudComputingAWS/img/CreacionDeUsuarioAWS1.png)
 
-### 1.8.2 Instalación de AWS
+### Instalación de AWS
 
 Înstalamos AWS por medio de pip
 
@@ -274,12 +274,12 @@ aws configure
 El cual nos pedirá nuestra ID, clave de acceso y la región para
 configurar las credenciales que usaremos para acceder
 
-### 1.8.3 Instalación de Docker
+### Instalación de Docker
 
 La instalación de Docker depende de cada distribución, por lo que es
 mejor revisar la documentación oficial.
 
-### 1.8.4 Creación del repositorio ECR
+### Creación del repositorio ECR
 
 A continuación creamos un repositorio privado con el nombre que
 querramos.
@@ -292,7 +292,7 @@ nuestra imagen
 
 ![image](Notes/CloudComputingAWS/img/PushCommands.png)
 
-### 1.8.5 ECS
+### ECS
 
 ECS es toda la infraestructura que te permite correr contenedores de
 Docker directo en AWS.
@@ -303,7 +303,7 @@ Solo se paga por la capacidad que se solicita
 
 Escalamiento basado en un contenedor de manera manual.
 
-#### 1.8.5.1 Configuración de Docker
+#### Configuración de Docker
 
 Usaremos sla siguiente secuencia de comandos
 
@@ -325,7 +325,7 @@ Con esto, ya podrás hacer imágenes de contenedores y siguiendo las
 instrucciones de la clase, podrás enviarlo a ECR (El registro de
 contenedores de AWS).
 
-### 1.8.6 EKS
+### EKS
 
 EKS es una implementación de Kubernetes en Amazon que no requiere la
 coordinación de nodos primarios y secundarios
@@ -336,7 +336,7 @@ Kubernetes o cualquier otro orquestador
 EKS va desde poner el nodo maestro de Kubernetes, poner los workers para
 posteriormente conectarse a la API y ejecutar las tareas.
 
-## 1.9 Kops/k8s en AWS
+## Kops/k8s en AWS
 
 Nos permite administrar Kubernetes en AWS.
 
@@ -397,7 +397,7 @@ kops get secrets admin --type secret -oplaintext
 
 Al terminar el deploy tendremos la url en la sección de services
 
-## 1.10 Creación de un cluster y tareas
+## Creación de un cluster y tareas
 
 Primero debemos elegir el tipo de Cluster
 
@@ -449,7 +449,7 @@ usar para acceder desde cualquier navegador.
 
 ![image](Notes/CloudComputingAWS/img/CreacionDeUnClusterYTarea11.png)
 
-## 1.11 Lambda
+## Lambda
 
 Lambda es un producto que implementa la filosofía de Serverless, lo cual
 significa no tener un servidor sino tener funciones que hagan cosas muy
@@ -462,7 +462,7 @@ Lambda escala automáticamente
 
 A la fecha te permite un millón de llamadas gratis por mes.
 
-### 1.11.1 Configuración
+### Configuración
 
 Cada función requiere una serie de permisos. Es recomendable usar el
 principio de responsabilidad mínima.
@@ -495,7 +495,7 @@ con uno.
 
 ![image](Notes/CloudComputingAWS/img/LambdaFunctions5.png)
 
-## 1.12 Elastic Beanstalk
+## Elastic Beanstalk
 
 Incluye todo lo que necesitas en un paquete
 
@@ -506,7 +506,7 @@ Incluye todo lo que necesitas en un paquete
 -   Autoescalabilidad para arriba o para abajo
 -   Base de datos interna
 
-### 1.12.1 Creación de un ambiente
+### Creación de un ambiente
 
 Requiere un archivo zip con todos los archivos.
 
@@ -520,7 +520,7 @@ rollback.
 En la configuración avanzada podemos elegir entre bajo costo o alta
 disponibilidad.
 
-### 1.12.2 Configurando un ambiente para nuevas versiones
+### Configurando un ambiente para nuevas versiones
 
 Es necesario un nuevo archivo zip.
 

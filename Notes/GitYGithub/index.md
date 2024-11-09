@@ -3,7 +3,7 @@
 Es un sistema de control de versiones para llevar un seguimiento de los
 cambios en el código y poder acceder a ellos en cualquier momento.
 
-## 1.1 ¿Cómo funciona internamente git?
+## ¿Cómo funciona internamente git?
 
 Internamente git se comporta como un grafo, donde existen tres tipos de
 objetos principales en git:
@@ -17,17 +17,17 @@ fue inicializado git, dentro de esta carpeta encontraremos subcarpetas
 que empiezan con los primeros dos digitos de su identificador
 hexadecimal.
 
-### 1.1.1 Objeto blob
+### Objeto blob
 
 Blob es un binary large object, que contiene el contenido de los commits
 comprimido. Cada blob tiene un identificador que es el resultado de
 aplicar la función SHA1 seguido de su compresión usando zlib.
 
-### 1.1.2 Objeto tree
+### Objeto tree
 
 Un tree es un apuntador a un blob o a otro tree.
 
-### 1.1.3 Objeto commit
+### Objeto commit
 
 Un commit son los metadatos de un snapshot que toma de la configuración
 del sistema. Un commit guarda una referencia a su commit padre o commit
@@ -37,7 +37,7 @@ Si quieres profundizar más, aquí hay un excelente video sobre el
 [funcionamiento interno de
 git](https://www.youtube.com/watch?v=LjwR--_ZUt8)
 
-## 1.2 Comandos de alto nivel
+## Comandos de alto nivel
 
 Generalmente no se trabaja con los objetos de manera directa, sino con
 comandos de alto nivel en los que el flujo de trabajo consiste en
@@ -46,7 +46,7 @@ comandos de alto nivel en los que el flujo de trabajo consiste en
 2.  Pasar los cambios al staging area
 3.  Guardar los cambios en el sistema de archivos de git
 
-## 1.3 Traer código de repositorios
+## Traer código de repositorios
 
 Podemos traer códigos a un proyecto usando el comando clone
 
@@ -58,7 +58,7 @@ git clone <ruta>
 
 Actualizar código
 
-## 1.4 Establecer los origines del código
+## Establecer los origines del código
 
 Podemos registrar un origen para el código usando el comando remote,
 seguido de add
@@ -79,11 +79,11 @@ Y para eliminar un origen usamos el comando rm
 git remote rm <nombre>
 ```
 
-## 1.5 Actualizar el código
+## Actualizar el código
 
 Hay dos comandos para actualizar el código, fetch y pull
 
-### 1.5.1 fetch
+### fetch
 
 Fetch obtiene los cambios a nuestro directorio de trabajo, pero sin
 realizar un merge.
@@ -99,7 +99,7 @@ git fetch <origen> <rama>
 git fetch <origen> --all
 ```
 
-### 1.5.2 pull
+### pull
 
 Mientras que pull obtiene los cambios y realiza un merge con la actual.
 
@@ -107,7 +107,7 @@ Mientras que pull obtiene los cambios y realiza un merge con la actual.
 git pull <origen>
 ```
 
-## 1.6 Agregar cambios
+## Agregar cambios
 
 El comando add nos permite agregar los cambios realizados en nuestro
 proyecto al staging area, desde donde podremos guardarlos en el control
@@ -118,12 +118,12 @@ ruta o múltiples archivos por medio wildcards y patrones.
 git add <patron>
 ```
 
-## 1.7 Guardar cambios
+## Guardar cambios
 
 Un commit es una fotografía o snapshot que guarda el estado de un
 proyecto en un momento determinado.
 
-### 1.7.1 Commit en un solo paso
+### Commit en un solo paso
 
 Abreviación para agregar archivos y hacer un commit
 
@@ -131,7 +131,7 @@ Abreviación para agregar archivos y hacer un commit
 git commit -a -m <mensaje>
 ```
 
-## 1.8 Moverse a estados anteriores u otras ramas
+## Moverse a estados anteriores u otras ramas
 
 Con git checkout cambiamos a un commit pasado u otra rama, lo que
 cambiará los archivos en nuestro directorio de trabajo.
@@ -147,7 +147,7 @@ que le indiquemos
 git checkout <hash_del_commit> [<archivo>]
 ```
 
-## 1.9 Branches o ramas
+## Branches o ramas
 
 Una rama es una bifurcación del código desde el punto en que se creo,
 esto para que el código siga evolucionando sin afectar la rama
@@ -166,7 +166,7 @@ También podemos hacerla a partir de un checkout, con el flag -b
 git checkout -b <nombre_de_rama_nueva>
 ```
 
-### 1.9.1 Eliminar ramas
+### Eliminar ramas
 
 Podemos borrar ramas con
 
@@ -188,7 +188,7 @@ de la rama.
 git push <origen> <nombre_de_la_rama>
 ```
 
-## 1.10 Mezclar cambios
+## Mezclar cambios
 
 El comando git merge crea un nuevo commit con la combinación de dos
 ramas. Unirá la rama donde nos encontramos con la que especifiquemos
@@ -199,7 +199,7 @@ git checkout main
 git merge <nombre_de_la_rama>
 ```
 
-## 1.11 Borrar archivos
+## Borrar archivos
 
 El comando git rm elimina archivos de git **sin eliminar su historial
 del sistema de versiones**.
@@ -207,7 +207,7 @@ del sistema de versiones**.
 Debemos usar uno de los flags para indicarle a Git cómo eliminar los
 archivos
 
-### 1.11.1 Mantener archivos en disco duro
+### Mantener archivos en disco duro
 
 La opción --cached elimina los archivos del área de staging y del
 próximo commit pero los mantiene en nuestro disco duro.
@@ -216,7 +216,7 @@ próximo commit pero los mantiene en nuestro disco duro.
 git rm --cached <nombre_de_archivo>
 ```
 
-### 1.11.2 Eliminar los archivos del disco duro
+### Eliminar los archivos del disco duro
 
 La opción --force Elimina los archivos de Git y del disco duro. Git
 siempre guarda todo, por lo que podemos acceder al registro de la
@@ -227,7 +227,7 @@ necesario (pero debemos usar comandos más avanzados).
 git rm --force <archivo_o_archivos>
 ```
 
-## 1.12 Deshacer o resetear cambios
+## Deshacer o resetear cambios
 
 Con git reset volvemos al pasado **sin la posibilidad de volver al
 futuro. Es permanente**
@@ -235,7 +235,7 @@ futuro. Es permanente**
 Este comando es muy peligroso y debemos usarlo solo en caso de
 emergencia. Recuerda que debemos usar alguna de estas dos opciones:
 
-### 1.12.1 Conservar el staging
+### Conservar el staging
 
 La opción --soft borra el historial y registros pero conserva el staging
 
@@ -243,7 +243,7 @@ La opción --soft borra el historial y registros pero conserva el staging
 git reset --soft <archivo_o_archivos>
 ```
 
-### 1.12.2 Borrar el staging
+### Borrar el staging
 
 La opción --hard **borra los archivos tanto del staging como de los
 registros.**
@@ -252,7 +252,7 @@ registros.**
 git reset --hard: <archivo_o_archivos>
 ```
 
-## 1.13 Editar el último commit
+## Editar el último commit
 
 El comando git commit, con la opción --amend, nos permitirá agregar
 cambios al commit anterior.
@@ -261,7 +261,7 @@ cambios al commit anterior.
 git commit --amend
 ```
 
-## 1.14 cherry pick
+## cherry pick
 
 El comando cherry-pick trae un commit del pasado y lo agrega al HEAD de
 una rama, modificando la historia. El uso de este comando *se considera
@@ -285,7 +285,7 @@ a - b - c - d - f   Main
        e - f - g Feature
 ```
 
-## 1.15 rebase
+## rebase
 
 Con rebase puedes recoger todos los cambios confirmados en una rama y
 ponerlos sobre otra. Esto mejorar la legibilidad del código, pues
@@ -329,11 +329,11 @@ a - b - c - d - x  Main
 
 Considera que la rama que estamos agregando no desaparece.
 
-## 1.16 shortlog
+## shortlog
 
 Shortlog muestra los commit que han hecho los miembros del equipo
 
-### 1.16.1 Contar commits
+### Contar commits
 
 Muestra cuantos commit han hecho cada miembros del equipo.
 
@@ -341,7 +341,7 @@ Muestra cuantos commit han hecho cada miembros del equipo.
 git shortlog -sn
 ```
 
-### 1.16.2 Mostrar commits eliminados
+### Mostrar commits eliminados
 
 La opción *-all* muestra cuantos commit han hecho cada miembros del
 equipo hasta los que han sido eliminado y merges.
@@ -350,7 +350,7 @@ equipo hasta los que han sido eliminado y merges.
 git shortlog -sn --all #
 ```
 
-### 1.16.3 Mostrar commits sin eliminados ni merges
+### Mostrar commits sin eliminados ni merges
 
 Muestra cuantos commit han hecho cada miembros quitando los eliminados y
 los merges
@@ -359,7 +359,7 @@ los merges
 git shortlog -sn --all --no-merges # 
 ```
 
-## 1.17 blame
+## blame
 
 Para poder responsabilizar por los cambios, linea a linea del código, se
 usa el comando git blame, seguido del nombre del archivo
@@ -368,7 +368,7 @@ usa el comando git blame, seguido del nombre del archivo
 git blame <ruta_al_archivo>
 ```
 
-### 1.17.1 blame linea por linea
+### blame linea por linea
 
 También es posible monitorear los cambios linea por linea con la opción
 -L
@@ -377,7 +377,7 @@ También es posible monitorear los cambios linea por linea con la opción
 git blame <ruta_al_archivo> -L<linea_inicial>,<linea_final>
 ```
 
-## 1.18 help
+## help
 
 Muestra a profundidad los detalles del comando de git que especifiquemos
 
@@ -385,14 +385,14 @@ Muestra a profundidad los detalles del comando de git que especifiquemos
 git <comando> --help
 ```
 
-## 1.19 Borrar los archivos no seguidos
+## Borrar los archivos no seguidos
 
 git clean borra los archivos que no están siendo rastreados por git.
 Recuerda que todos aquellos archivos duplicados y que correspondan con
 algún patrón en el archivo *.gitignore* quedan excluidos del alcance de
 este comando.
 
-### 1.19.1 Confirmación antes de borrar
+### Confirmación antes de borrar
 
 La opción --dry-run verifica y te indica cuales son los archivos que se
 van a borrar.
@@ -407,7 +407,7 @@ Mientras que la opción -f borra los archivos de manera directa.
 git clean -f
 ```
 
-## 1.20 Guardar cambios temporalmente
+## Guardar cambios temporalmente
 
 Git stash guarda todos aquellos cambios en el staging area de manera
 temporal en memoria para su posterior recuperación.
@@ -437,7 +437,7 @@ commits y ramas.
 git checkout <hash_de_commit_pasado>
 ```
 
-### 1.20.1 Recuperar los cambios en stash
+### Recuperar los cambios en stash
 
 Cuando querramos recuperar los cambios volvemos a nuestra rama
 
@@ -464,12 +464,12 @@ usamos *drop*
 git stash drop
 ```
 
-## 1.21 Información sobre los commits
+## Información sobre los commits
 
 Git tiene un comando derivado de grep para buscar información en los
 repositorios, llamado git grep.
 
-### 1.21.1 Encontrar un patrón
+### Encontrar un patrón
 
 El comando grep -n nos devuelve el patrón buscando y la linea donde se
 encuentra. Al igual que el grep original, cuenta con múltiples opciones
@@ -480,7 +480,7 @@ git](https://git-scm.com/docs/git-grep)
 git grep -n <patron_a_buscar>
 ```
 
-### 1.21.2 Contar patrones
+### Contar patrones
 
 La opción -c busca cuantas veces se uso el patrón.
 
@@ -489,12 +489,12 @@ git grep -c <patron_a_buscar>
 git grep -c “TAG_A_BUSCAR” # Busca cuantas veces se uso la ese tag pero entre comillas
 ```
 
-### 1.21.3 Búsqueda en los mensajes de commits
+### Búsqueda en los mensajes de commits
 
 Git tambien permite buscar información en los mensajes de los commits
 con el siguiente commando
 
-## 1.22 Ver los logs
+## Ver los logs
 
 En git, el comando log nos muestra información relativa a los commits
 
@@ -517,7 +517,7 @@ git log --all --graph --decorate --oneline
 
 Debido a que el comando es muy largo es recomendable crear un alias.
 
-## 1.23 Creación de alias
+## Creación de alias
 
 Para crear un alias de un comando lo hacemos a través del comando *git
 config*, pasándole el nombre del comando después de la sentencia
@@ -528,7 +528,7 @@ git config --global alias.stats <comando_entre_comillas>
 git stats
 ```
 
-## 1.24 Recuperar cambios borrados
+## Recuperar cambios borrados
 
 El comando git reflog nos permite recuperar todos los cambios hechos en
 el repositorio, incluso aquellos que fueron desechos con *git reset --hard*.
@@ -559,7 +559,7 @@ git reset --soft HEAD@{<number>}
 
 Esto devolverá el repositorio al estado que tenía en este momento.
 
-## 1.25 Excluir archivos del indice de git
+## Excluir archivos del indice de git
 
 El comando rm seguido de la opción --cached, mantendrá el archivo en el
 directorio de trabajo pero lo borrará del índice de git, por lo que ya
@@ -570,7 +570,7 @@ git rm --cached <nombre_de_archivo>
 git rm -r --cached <nombre_del_directorio>
 ```
 
-## 1.26 Prevenir que git vigile carpetas grandes
+## Prevenir que git vigile carpetas grandes
 
 El método *update-index* es para optimización. Para manejar una carpeta
 o una serie de archivos que no cambiarán. Este comando le dice a git que
@@ -591,7 +591,7 @@ git update-index --skip-worktree <path_name>
 Este comando no se propagará con git tiene que ejecutarse por cada
 usuario de manera individual.
 
-## 1.27 Ignorar archivos con .gitignore
+## Ignorar archivos con .gitignore
 
 La presencia de un archivo *.gitignore* en la misma carpeta .git,
 encontrada en la raiz del proyecto, le indica a git deje fuera del
@@ -606,7 +606,7 @@ node_modules/
 *.pyc
 ```
 
-### 1.27.1 Plantillas de gitignore.io
+### Plantillas de gitignore.io
 
 A veces es buena idea partir de una plantilla *.gitignore* sobre todo en
 entornos de desarrollo muy complejos con varios frameworks y
@@ -614,15 +614,15 @@ tecnologías. A la fecha de estas notas existe una página web localizada
 en *https://gitignore.io* donde es posible acceder varias plantillas de
 archivos *.gitignore* para diferentes tecnologías de desarrollo.
 
-## 1.28 Interfaz gráfica o GUI de git
+## Interfaz gráfica o GUI de git
 
 Existen diferentes versiones de GUI para git, entre las que se
 encuentran gitk, gitkraken entre otras. Sin embargo generalmente no son
 usadas por la comunidad de desarrolladores.
 
-## 1.29 Github
+## Github
 
-### 1.29.1 Tags y versiones
+### Tags y versiones
 
 Los tags son útiles en github como referencia interna en github,
 generalmente fuera de github no son tan usados.
@@ -664,7 +664,7 @@ Para borrar la referencia al tag en github usamos el siguiente comando.
 git push <origen> :refs/tags/nombre_del_tag
 ```
 
-### 1.29.2 branches en github
+### branches en github
 
 Para mostrar todas las ramas
 
@@ -672,13 +672,13 @@ Para mostrar todas las ramas
 git show-branch -all
 ```
 
-## 1.30 Flujo de trabajo en github
+## Flujo de trabajo en github
 
 Para modificar un repositorio **jamás se deben realizar commits directos
 a main**. El flujo correcto es crear una nueva branch o rama que
 contenga los cambios.
 
-### 1.30.1 Para colaboradores
+### Para colaboradores
 
 Si la persona que realizó los cambios es un colaborador podremos obtener
 los cambios de su rama y realizar un merge de manera directa.
@@ -689,7 +689,7 @@ git merge <nombre_de_rama>
 git push origin <rama_principal>
 ```
 
-### 1.30.2 Para no colaboradores
+### Para no colaboradores
 
 Si la persona que realiza cambios no es un colaborador se necesitará
 realizar un *pull request* (puede tener otros nombres en gitlab,
@@ -698,12 +698,12 @@ de github dando click en el botón que dice *Compare & pull request*, que
 aparecerá tras haber subido los cambios. O directamente en el botón *new
 pull request*.
 
-### 1.30.3 Review changes
+### Review changes
 
 Tras presionar el botón review changes podreemos comentar, aceptar o
 pedir una modificación a los cambios.
 
-### 1.30.4 Pull Request
+### Pull Request
 
 Es el estado intermedio antes de enviar el merge, sirve para que los
 demás colaboradores del proyecto observen y aprueben los cambios antes
@@ -711,7 +711,7 @@ de la función, son la base de colaboracion de proyectos, es exclusivo de
 repositorios de código y pueden nombrarse de diferente manera entre los
 otros repositorios de código como gitlab, bitbucket, etc.
 
-### 1.30.5 Traer datos del fork original
+### Traer datos del fork original
 
 Para agregar una fuente desde donde traer datos a main se usa el comando
 *remote add*. Nombrar a esta fuente de información con el nombre de
@@ -731,7 +731,7 @@ git pull <nombre_personalizado_o_upstream> <main>
 Una vez hecho esto podemos hacer un commit y push a origin main para
 actualizar el repositorio.
 
-## 1.31 Submodulos
+## Submodulos
 
 Los submodulos son como otras instancias de git dentro de un proyecto,
 tienen su propia carpeta .git y se manejan de manera independiente.

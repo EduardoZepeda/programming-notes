@@ -33,7 +33,7 @@ Pasos importantes para entender mejor a tus usuarios:
 
 
 
-## 1.1 Cómo hacer un pitch para vender tu idea
+## Cómo hacer un pitch para vender tu idea
 
 Importante tomar en cuenta a la hora de hacer un pitch para vender una
 idea:
@@ -118,7 +118,7 @@ Investigar a la audiencia. Investigar el perfil de las personas es muy
 importante para darle más personalidad a la presentación y conectar
 mejor.
 
-## 1.2 Cómo organizar el cap table de tu empresa
+## Cómo organizar el cap table de tu empresa
 
 Cap Table es la tabla donde se entiende quién es dueño de qué parte de
 la empresa.

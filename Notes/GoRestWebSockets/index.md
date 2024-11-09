@@ -1,6 +1,6 @@
 # Go Web sockets y REST con Gorilla
 
-## 1.1 Creación de un handler para manejo de URL
+## Creación de un handler para manejo de URL
 
 Es más sencillo modificar el comportamiento de nuestras vistas si envolvemos a
 la función handler dentro de otra, de manera que retorne una función
@@ -36,7 +36,7 @@ func HomeHandler(s server.Server) http.HandlerFunc {
 }
 ```
 
-### 1.1.1 Método Encode
+### Método Encode
 
 El método Encode recibe un struct que se transformará en un objeto JSON para
 retornar en la respuesta.
@@ -51,7 +51,7 @@ json.NewEncoder(w).Encode(HomeResponse{
 Agregamos contenido con el objeto json, pasándole el objeto
 *http.ResponseWriter*.
 
-## 1.2 Manejo de handlers en las URL
+## Manejo de handlers en las URL
 
 Estos handlers que creemos necesitamos asignarlos a una URL para que una
 petición a esa URL active el handler y devuelva la respuesta. Para esto
@@ -69,7 +69,7 @@ Tras ejecutar la función Handlefunc del Router de gorilla, podemos declarar los
 tipos de petición que acepta nuestra ruta. En este caso solo usará los métodos
 GET.
 
-### 1.2.1 Enrutador
+### Enrutador
 
 Para manejar rutas con parámetros necesitamos envolver el nombre del parámetro
 dentro de llaves en la ruta
@@ -81,7 +81,7 @@ func BindRoutes(s server.Server, r *mux.Router) {
 }
 ```
 
-#### 1.2.1.1 Rutas con parámetros
+#### Rutas con parámetros
 
 Para obtener los parámetros de las rutas los obtenemos con el método Vars de
 mux. 
@@ -93,7 +93,7 @@ fmt.Println(params["id"])
 
 La ruta anterior capturará el valor id en una url de tipo */ruta/&lt;id&gt;*
 
-### 1.2.2 Rutas con parámetros URL
+### Rutas con parámetros URL
 
 Para manejar rutas con parámetros opcionales simplemente llamamos al método
 Query de la URL del objeto request y accedemos al parámetro como si se tratara
@@ -110,7 +110,7 @@ func ListPostHandler(s server.Server) http.HandlerFunc {
 
 La ruta anterior capturará los parámetros */ruta?&lt;parametro&gt;=&lt;valor&gt;&...*
 
-### 1.2.3 Recibir parámetros POST en JSON
+### Recibir parámetros POST en JSON
 
 Para obtener los parámetros de una petición POST necesitamos decodificarlos
 usando el método NewDecoder en el cuerpo de la petición. El método NewDecoder,
@@ -139,9 +139,9 @@ type <RequestStruct> struct {
 }
 ```
 
-## 1.3 Puesta en marcha del servidor
+## Puesta en marcha del servidor
 
-### 1.3.1 Configurando ListenAndServe
+### Configurando ListenAndServe
 
 Para crear un servidor necesitamos crear un nuevo router usando *mux* y luego
 pasándole un número de puerto y un router, este router se unirá con el recien
@@ -168,7 +168,7 @@ type Broker struct {
 }
 ```
 
-## 1.4 Uso de middleware
+## Uso de middleware
 
 El middleware nos permite someter a un handler a una serie de funciones, a
 manera de capas a atravesar que deciden internamente si procesarla de alguna
@@ -189,7 +189,7 @@ func BindRoutes(s server.Server, r *mux.Router) {
 }
 ```
 
-### 1.4.1 Estructura del middleware
+### Estructura del middleware
 
 Un middleware es una función que retorna toma y retorna un *http.Handler* como
 su argumento y valor de retorno. Este *http.Handler* necesita recibir una
@@ -219,7 +219,7 @@ func CheckAuthMiddleware(s server.Server) func(h http.Handler) http.Handler {
 }
 ```
 
-#### 1.4.1.1 Añadir varios middleware
+#### Añadir varios middleware
 
 Podemos añadir una serie de middlewares pasándoselos de manera secuencial al router que hemos creado.
 
@@ -228,7 +228,7 @@ router := mux.NewRouter()
 router.Use(middleware1, middleware2, middleware3...)
 ```
 
-#### 1.4.1.2 Especificar middleware a ciertas rutas
+#### Especificar middleware a ciertas rutas
 
 Si queremos usar middleware para solo ciertas rutas necesitamos crear un subrouter. 
 
@@ -244,7 +244,7 @@ En el caso anterior, el middleware solo aplicará para aquellas url derivadas de
 router.ServeHTTP(w, r)
 ```
 
-## 1.5 Tokens JWT
+## Tokens JWT
 
 Los Token JWT pueden leerse con el método *ParseWithClaims*.
 
@@ -258,7 +258,7 @@ if err != nil || !token.Valid {
 }
 ```
 
-### 1.5.1 Devolver un Token
+### Devolver un Token
 
 Para crear y devolver un token JWT firmado necesitamos usar el método
 *NewWithClaims*, pasándole primero el método de firmado. Algunos métodos de
@@ -297,7 +297,7 @@ type AppClaims struct {
 }
 ```
 
-### 1.5.2 Verificar un token
+### Verificar un token
 
 Un token puede ser verificado con el método *ParseWithClaims*, le pasamos el
 tokenString, nuestro modelo de *AppClaims* y una función que retorne el
@@ -313,7 +313,7 @@ if err != nil {
 }
 ```
 
-### 1.5.3 Obtener los claims del token
+### Obtener los claims del token
 
 Para obtener los tokens necesitamos realizar un Parse del token y comprarlo con
 nuestra estructura de los claims, y pasarle como argumento la clave secreta
@@ -333,9 +333,9 @@ y revisamos que todo haya estado bien.
 claims, ok := token.Claims.(*models.AppClaims)
 ```
 
-## 1.6 Bcrypt para hashes
+## Bcrypt para hashes
 
-### 1.6.1 Obtener password hasheados
+### Obtener password hasheados
 
 Para obtener un password hasheados usamos el paquete bcrypt. Debemos recordar
 que GenerateFromPassword, requiere un array de bytes, no un string, y el
@@ -354,7 +354,7 @@ Tras obtener el password necesitamos volverlo un string para guardarlo
 string(hashedPassword)
 ```
 
-### 1.6.2 Comparar passwords hasheados
+### Comparar passwords hasheados
 
 si queremos comparar un password junto con un hash, le pasamos el hash como
 primer argumento y nuestro password e ntexto plano como el segundo argumento.
@@ -366,9 +366,9 @@ if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Pa
 }
 ```
 
-## 1.7 ksuid para identificadores
+## ksuid para identificadores
 
-### 1.7.1 Generador de id únicos
+### Generador de id únicos
 
 Para crear un identificador único usamos el método NewRandom del paquete ksuid.
 
@@ -387,7 +387,7 @@ podemos usar el método string del valor de retorno del método NewRandom
 id.String()
 ```
 
-## 1.8 CORS
+## CORS
 
 Para usar cors podemos usar el paquete de terceros cors, ya sea con la
 configuración por defecto o una personalizada. Tras realizar el binding de las
@@ -420,11 +420,11 @@ func CorsAllowAll(app *application.App) func(http http.Handler) http.Handler {
 
 En este caso permitimos cualquier tipo de origen
 
-## 1.9 Websocket con gorilla
+## Websocket con gorilla
 
 Desde finales del 2022 Gorilla se ha puesto en modo lectura, por lo que es incierto si continuará siendo la biblioteca por defecto para el manejo de servidores web.
 
-### 1.9.1 Manejo del hub
+### Manejo del hub
 
 Para manejar las conexiones es buena idea crear un Hub, el cual contendrá el conjunto de conexiones (clientes) y se encargará de agregar nuevos y clientes y remover los viejos.
 
@@ -450,7 +450,7 @@ func NewHub() *Hub {
 }
 ```
 
-#### 1.9.1.1 Manejo de conexiones y desconexiones en el hub
+#### Manejo de conexiones y desconexiones en el hub
 
 Con la función del hub podemos manejar conexiones y desconexiones, recuerda
 que los clientes conectados se manejan en el struct Hub, por lo que, para evitar
@@ -486,7 +486,7 @@ func (hub *Hub) onDisconnect(client *Client) {
 }
 ```
 
-#### 1.9.1.2 Inicializar el Hub
+#### Inicializar el Hub
 
 Para arrancar el servicio del Hub, escuchando conexiones y desconexiones, manejamos un
 bucle infinito.
@@ -505,7 +505,7 @@ func (hub *Hub) Run() {
 }
 ```
 
-#### 1.9.1.3 Inicializar la escucha de conexiones del hub
+#### Inicializar la escucha de conexiones del hub
 
 Ya con nuestra función Run definida, podemos correrla en la inicialización de
 cualquier Server.
@@ -514,7 +514,7 @@ cualquier Server.
 go app.Hub.Run()
 ```
 
-## 1.9.2 Manejo del cliente
+## Manejo del cliente
 
 Cada cliente tendrá asignado un hub, una identificación y una conexión a un
 websocket.
@@ -540,7 +540,7 @@ func NewClient(hub *Hub, socket *websocket.Conn) *Client {
 }
 ```
 
-### 1.9.2.1 enviar mensajes a través del cliente
+### enviar mensajes a través del cliente
 
 Para enviar mensajes usaremos el método WriteMessage, el cual podremos envolver en un bucle para que escuche constantemente a cualquier cambio en el canal outbund de nuestro cliente.
 
@@ -559,7 +559,7 @@ func (c *Client) Write() {
 }
 ```
 
-#### 1.9.2.2 Cerrar una conexión
+#### Cerrar una conexión
 
 Para cerrar una conexión basta con llamar al método close del socket.
 
@@ -570,9 +570,9 @@ func (c Client) Close() {
 }
 ```
 
-### 1.9.3 Manejar la petición al websocket
+### Manejar la petición al websocket
 
-#### 1.9.3.1 Upgrade de la conexión
+#### Upgrade de la conexión
 
 Una conexión puede realizar un upgrade a una conexión de websocket, para
 realizar un upgrade de la conexión modificamos la función *CheckOrigin* de la
@@ -587,7 +587,7 @@ var upgrader = websocket.Upgrader{
 }
 ```
 
-#### 1.9.3.2 Handler de manejo de websockets
+#### Handler de manejo de websockets
 
 Para manejar la conexión con el websocket la incluimos en un handler, este
 handler se encargará de manejar las conexiones.
@@ -611,7 +611,7 @@ func (hub *Hub) HandleWebSocket(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### 1.9.3.3 Añadir el handler al router
+### Añadir el handler al router
 
 En el conjunto de rutas basta con agregar la función encargada del manejo de
 websockets, HandleWebsocket.
@@ -620,7 +620,7 @@ websockets, HandleWebsocket.
 r.HandleFunc("/ws", s.Hub().HandleWebsocket)
 ```
 
-### 1.9.4 Broadcasting
+### Broadcasting
 
 Si queremos realizar un broadcasting a todos nuestros clientes basta con iterar por todo el Hub y enviar nuestro mensaje al canal outbound de cada cliente.
 
@@ -634,7 +634,7 @@ func (hub *Hub) Broadcast(message interface{}, ignore *Client) {
 	}
 }
 
-```## 1.10 Paquetes de terceros útiles
+```## Paquetes de terceros útiles
 
 -   godotenv, ideal para leer variables de entorno.
 -   golang-jwt, para manejar JWT.

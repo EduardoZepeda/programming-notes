@@ -3,7 +3,7 @@
 SASS es un lenguaje de markado para la generación de código [CSS](../HtmlYCss/1.-HTML-y-CSS.md)
 
 
-## 1.1 Sintaxis
+## Sintaxis
 
 Todos los archivos deben tener extensión scss
 
@@ -48,7 +48,7 @@ SASS tambien permite realizar operaciones matemáticas
 }
 ```
 
-## 1.2 Divisón de los archivos por carpetas
+## Divisón de los archivos por carpetas
 
 Es recomendable dividir cada elemento en un archivo por separados y,
 estos a su vez, organizados por carpetas. Lo anterior para que el código
@@ -74,7 +74,7 @@ ejemplo de organización
 3 directories, 9 files
 ```
 
-## 1.3 Mixins
+## Mixins
 
 Los mixins sirven para aplicar propiedades similares a diferentes
 elementos, clases o id. Se definen de la siguiente manera
@@ -93,7 +93,7 @@ Una vez definido debemos especificarlo en donde queremos usarlo
 }
 ```
 
-## 1.4 Mixin con parámetros
+## Mixin con parámetros
 
 Se pueden definir en funcion de variables
 
@@ -120,7 +120,7 @@ Una vez definido podemos reemplazar su valor por otro que elijamos
 }
 ```
 
-## 1.5 Uso del mixin
+## Uso del mixin
 
 Y una vez que está declarada podemos usarla en donde nosotros querramos
 
@@ -130,7 +130,7 @@ section {
 }
 ```
 
-## 1.6 Uso de content
+## Uso de content
 
 El content va a ser reemplazado por lo que nosotros le digamos, de esa
 manera nos creará un breakpoint con el mismo selector en donde lo
@@ -150,7 +150,7 @@ section{
 }
 ```
 
-## 1.7 Uso de extend
+## Uso de extend
 
 Significa que a la clase .btn--info se le va a agregar todo lo que tiene
 la clase .btn
@@ -198,13 +198,13 @@ Esto nos compilará en lo siguiente
 
 Por lo que nos evitará la duplicación de bastantes lineas de código.
 
-## 1.8 Uso de funciones
+## Uso de funciones
 
 Hay muchas funciones incluidas que pueden usarse, es mejor revisar la
 documentación para revisar. Entre ellas destacan lighten y darken, que
 aclaran y oscurecen, respectivamente.
 
-### 1.8.1 Definir funciones propias
+### Definir funciones propias
 
 Para definir una función podemos hacerlo con la siguiente sintaxis
 
@@ -222,7 +222,7 @@ div{
 }
 ```
 
-## 1.9 Uso de arrays
+## Uso de arrays
 
 Pueden usarse arrays
 
@@ -242,7 +242,7 @@ div{
 }
 ```
 
-## 1.10 Listas y directiva each
+## Listas y directiva each
 
 Es parecido a un for each de programación normal. Es importante recordar
 que el se introduce la variable en llaves y se le coloca un hash antes
@@ -270,7 +270,7 @@ El snippet anterior generará
 }
 ```
 
-## 1.11 Ciclos FOR/each
+## Ciclos FOR/each
 
 Es parecido a un bucle. Hay que recordar escapar los valores para que no
 de error
@@ -285,7 +285,7 @@ de error
 }
 ```
 
-## 1.12 Condicionales
+## Condicionales
 
 Es similar a un condicional en cualquier lenguaje de programación. Se
 usan dos simbolos de igual para hacer comparaciones
@@ -300,7 +300,7 @@ $background-color: black;
 }
 ```
 
-## 1.13 Compilación
+## Compilación
 
 Deberemos tener un archivo principal que es el que se compilará, este
 archivo tiene todas las importaciones. A la hora de compilar hay que

@@ -2,9 +2,9 @@
 
 
 
-## 1.1 Conceptos que forman parte del diseño en CSS
+## Conceptos que forman parte del diseño en CSS
 
-### 1.1.1 Flujo normal del documento: Display block, inline e inline-block
+### Flujo normal del documento: Display block, inline e inline-block
 
 **display** : La propiedad que define el tipo de visualización de un
 elemento HTML.
@@ -66,7 +66,7 @@ con `grid` y `flex` (que en realidad son block-grid y block-flex).
 -   Primer valor: Comportamiento externo de un contenedor.
 -   Segundo valor: Comportamiento interno de un contenedor.
 
-### 1.1.2 Contextos de formato: Formato de Contexto de Bloque (BFC)
+### Contextos de formato: Formato de Contexto de Bloque (BFC)
 
 BFC: Block Formatting Context. Es un mini layout dentro de otro layout.
 O sea es el layout interno de un elemento, que se comporta de manera
@@ -83,7 +83,7 @@ La propiedad overflow: auto rellena o crear un BFC invisible para
 completar el espacio restante y alinear el contenido, respecto al
 elemento
 
-#### 1.1.2.1 ¿Tiene relación Flexbox y CSS Grind con BFC?
+#### ¿Tiene relación Flexbox y CSS Grind con BFC?
 
 Flexbox crea algo similar a un BTC, llamado como **contexto de formato
 flexible,** que quiere decir que este elemento es parte de un diseño
@@ -101,13 +101,13 @@ Con la propiedad\***display***se puede controlar el tipo de dato que se
 genera. Esto se debe por que todo lo que se observa en la web
 son***cuadros,***es decir***cajas.**
 
-### 1.1.3 Posicionamiento + Dinámica: ¿Cómo se verá?
+### Posicionamiento + Dinámica: ¿Cómo se verá?
 
 La propiedad **position** declara la posición del elemento en el
 documento, y su posición final del elemento se la asigna por medio de
 las propiedades **top, left, righ, bottom**.
 
-#### 1.1.3.1 Contexto de apilamiento
+#### Contexto de apilamiento
 
 El contexto de apilamiento es la conceptualización tridimensional de los
 elementos HTML a lo largo de un eje-Z imaginario relativo al usuario que
@@ -151,23 +151,23 @@ por cualquier elemento que:
 Todos los z-index, respetarán la posición z-index del contenedor padre,
 de manera que siempre sea menor.
 
-## 1.2 ¿Flexbox o CSS Grid?
+## ¿Flexbox o CSS Grid?
 
-### 1.2.1 Diferencias entre Flexbox y CSS Grid
+### Diferencias entre Flexbox y CSS Grid
 
-#### 1.2.1.1 ¿Qué es flexbox?
+#### ¿Qué es flexbox?
 
 Es un método que ayuda a distribuir el espacio entre los elementos de
 una interfaz para mejorar las capacidades de alineación. Su
 característica principal es que es **unidimensional** con alineamiento
 únicamente horizontal o vertical.
 
-#### 1.2.1.2 ¿Qué es CSS Grid ?
+#### ¿Qué es CSS Grid ?
 
 Es un sistema de diseño que permite al auto alinear elementos en
 columnas y filas. Es un sistema **bidimensional.**
 
-#### 1.2.1.3 Propiedades mas importantes de Flexbox
+#### Propiedades mas importantes de Flexbox
 
 Las propiedades más importantes para el container:
 
@@ -188,7 +188,7 @@ Para los items:
 -   flex
 -   align-self
 
-#### 1.2.1.4 Propiedades mas importantes de CSS Grid
+#### Propiedades mas importantes de CSS Grid
 
 Las propiedades más importantes para el container:
 
@@ -208,7 +208,7 @@ Para los items:
 -   justify-self
 -   align-self
 
-### 1.2.2 Columnas
+### Columnas
 
 Dentro de la clase container especificamos la propiedad
 *grid-template-columns*, donde especificamos el ancho de cada columna,
@@ -223,7 +223,7 @@ unidades.
 }
 ```
 
-### 1.2.3 Filas
+### Filas
 
 Dentro de la clase container especificamos la propiedad
 *grid-template-rows*, donde especificamos la altura de cada fila. Las
@@ -239,7 +239,7 @@ especifiquemos
 }
 ```
 
-### 1.2.4 Grid template
+### Grid template
 
 Para declarar un template donde especifiquemos ambos podemos separarlos
 en css usaremos la siguiente sintaxis filas/columnas.
@@ -251,7 +251,7 @@ en css usaremos la siguiente sintaxis filas/columnas.
 }
 ```
 
-### 1.2.5 Anidación de grids
+### Anidación de grids
 
 Los grids pueden anidarse especificando nuevamente una atributo *grid*,
 con otro de *grid-template*
@@ -265,7 +265,7 @@ con otro de *grid-template*
 }
 ```
 
-### 1.2.6 Espaciado entre filas y columnas
+### Espaciado entre filas y columnas
 
 Podemos especificar los de columnas así *grid-column-gap*
 
@@ -298,7 +298,7 @@ sintaxis filas columnas
 }
 ```
 
-### 1.2.7 Repetidores areas
+### Repetidores areas
 
 Las unidades Fr representan fracciones, en este caso son 0.33, puede
 sustituirse usando la función repeat(3, 1fr). La función repeat también
@@ -334,7 +334,7 @@ Podemos definiar las areas de contenido
 
 Como header se repite solamente tendrá un solo espacio
 
-### 1.2.8 Tamaño de las columnas
+### Tamaño de las columnas
 
 Los hijos del grid tienen los siguientes atributos para "unir" columnas
 donde especificaremos el inicio y el final. Los valores corresponden *a
@@ -372,7 +372,7 @@ O especificar un ancho determinado de columnas con
 }
 ```
 
-### 1.2.9 Definiendo tamaño de filas
+### Definiendo tamaño de filas
 
 Lo anterior también aplica para las filas, solo se debe usar *grid-row*
 
@@ -382,7 +382,7 @@ Lo anterior también aplica para las filas, solo se debe usar *grid-row*
 }
 ```
 
-### 1.2.10 Definiendo nombre de lineas
+### Definiendo nombre de lineas
 
 También es posible asignarle nombre a las lineas separadoras de esta
 manera
@@ -456,7 +456,7 @@ predeterminado
 }
 ```
 
-### 1.2.11 Alineado de contenido
+### Alineado de contenido
 
 Podemos usar justify-items para que el contenido se alinee como queramos
 de manera horizontal. Esta propiedad puede tomar los valores de stretch,
@@ -481,7 +481,7 @@ propiedad puede tomar los valores de stretch, start, end y center.
 }
 ```
 
-### 1.2.12 Alineación individual
+### Alineación individual
 
 Para aplicar los estilos anteriores a elementos individuales usamos
 align-self y justify-self individualmente.
@@ -493,7 +493,7 @@ align-self y justify-self individualmente.
 }
 ```
 
-### 1.2.13 Alineación de la grilla
+### Alineación de la grilla
 
 Para esto usaremos justify-content y align-content, los cuales puedem
 adoptar los valores center, end, space-around, space-between,
@@ -507,7 +507,7 @@ space-events.
 }
 ```
 
-### 1.2.14 Esquemas más complejos
+### Esquemas más complejos
 
 También es posible asignar esquemas más complejos donde una columna
 abarque 3 espacios y sea ocupada por un elementoA, la segunda columna
@@ -533,29 +533,29 @@ Y más tarde especificamos las clases de cada uno de estos
 }
 ```
 
-### 1.2.15 ¿Es posible trabajar con Flexbox y CSS Grid al mismo tiempo?
+### ¿Es posible trabajar con Flexbox y CSS Grid al mismo tiempo?
 
 Se pueden combinar. Generalmente se usa grid para el plano general,
 mientras que flex para regiones más pequeñas o que contengan el plano
 general.
 
-### 1.2.16 Cuando usar Flexbox y cuando usar CSS Grind?
+### Cuando usar Flexbox y cuando usar CSS Grind?
 
 Se prefiere flexbox para los componentes de una aplicación y diseños de
 pequeña escala.
 
 Mientras que CSS Grid es ideal para diseños de mayor escala.
 
-## 1.3 Modern Layouts con CSS Grid
+## Modern Layouts con CSS Grid
 
-### 1.3.1 ¿Qué son los Modern CSS Layouts ?
+### ¿Qué son los Modern CSS Layouts ?
 
-#### 1.3.1.1 ¿Qué es un Layout?
+#### ¿Qué es un Layout?
 
 Layout significa diseño. Pero se refiere al acomodo de las cajas en la
 pantalla
 
-#### 1.3.1.2 Caracteristicas de la web en el 2010:
+#### Caracteristicas de la web en el 2010:
 
 -   Progresivamente mejorado: Con una base sobre la cual se van
     añadiendo características. La base sólida la constituyen las capas
@@ -567,9 +567,9 @@ pantalla
     forma independiente para crear componentes reusables.
 -   Tipográficamente ricos: Que permitan una variedad de fuentes
 
-### 1.3.2 Design System y detalles visuales a tener en cuenta
+### Design System y detalles visuales a tener en cuenta
 
-#### 1.3.2.1 ¿Qué es un Design System?
+#### ¿Qué es un Design System?
 
 Es una colección de componentes reutilizables que siguen unos estándares
 claros.
@@ -578,12 +578,12 @@ Muchas empresas como Uber, Airbnb e IBM, han cambiado la forma de
 diseñar productos ya que incorporar sus propios sistemas de disenño
 únicos.
 
-#### 1.3.2.2 ¿Quienes crean un Design System?
+#### ¿Quienes crean un Design System?
 
 El equipo de producto: programadores, ingenieros, diseñadores, gerentes
 de producto, equipo C-suite, etc.
 
-### 1.3.3 Tendencias de diseño UI/UX: Fase de inspiración y creatividad
+### Tendencias de diseño UI/UX: Fase de inspiración y creatividad
 
 Principios de diseno rápidos y utilices:
 
@@ -602,19 +602,19 @@ Principios de diseno rápidos y utilices:
 -   Asymmetrical layouts
 -   Storytelling
 
-### 1.3.4 Wireframes y comunicación visual simple, intuitiva y atractiva
+### Wireframes y comunicación visual simple, intuitiva y atractiva
 
 Antes de realizar cualquier diseño debemos saber que queremos hacer, que
 queremos lograr.
 
-## 1.4 El futuro de CSS Grid
+## El futuro de CSS Grid
 
-### 1.4.1 CSS Subgrid
+### CSS Subgrid
 
 Subgrid —\> Heredar mismo tamaño y numero de tracks de una cuadricula
 principal. Se debe considerar que solo tiene compatibilidad con firefox.
 
-### 1.4.2 CSS feature queries: @supports
+### CSS feature queries: @supports
 
 **feature queries** es una consulta de características.
 

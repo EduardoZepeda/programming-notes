@@ -1,6 +1,6 @@
 # Sitios útiles para desarrollo web
 
-## 1.1 Para vectores
+## Para vectores
 
 -   [humaans](http://humaans.com)
 -   [freepik](http://freepik.com)
@@ -12,7 +12,7 @@
 -   [svgporn](http://svgporn.com)
 -   [css](http://css.gg)
 
-## 1.2 Inspiración UI
+## Inspiración UI
 
 -   [uimovement](http://uimovement.com)
 -   [awwwards](http://awwwards.com)
@@ -20,7 +20,7 @@
 -   [behance](http://behance.net)
 -   [happyhues](http://happyhues.com)
 
-## 1.3 Animaciones
+## Animaciones
 
 -   useanimations
 -   izmirhovereffects
@@ -29,11 +29,11 @@
 -   amimatecss
 -   imagehovercss
 
-## 1.4 APIS
+## APIS
 
 -   [Public APIs](https://github.com/public-apis/public-apis)
 
-## 1.5 React animation
+## React animation
 
 -   [react-spring](http://react-spring.io)
 -   [react-reveal](http://react-reveal.com)
@@ -42,7 +42,7 @@
 -   [greensock](http://greensock.com)
 -   [react-motion](http://github.com/chenglou/react-motion)
 
-## 1.6 Sliders en Javascript
+## Sliders en Javascript
 
 -   Switer
 -   Flickity
@@ -50,7 +50,7 @@
 -   Slick slider
 -   Sly
 
-## 1.7 Podcast sobre desarrollo web
+## Podcast sobre desarrollo web
 
 -   Syntax
 -   Shop talk
@@ -60,13 +60,13 @@
 -   the changelog
 -   Javascript jabber
 
-## 1.8 Páginas para practicar SQL
+## Páginas para practicar SQL
 
 -   SQL fiddel
 -   SQLZoo
 -   DB fiddel
 
-## 1.9 Hosting de email
+## Hosting de email
 
 - Fastmail
 - GoogleApps

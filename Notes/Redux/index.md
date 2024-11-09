@@ -2,7 +2,7 @@
 
 Redux es un manejador de estado.
 
-## 1.1 Instalación
+## Instalación
 
 Es recomendable iniciar la construcción del sitio usando el siguiente
 comando
@@ -20,7 +20,7 @@ Primero habrá que instalarlo en el sistema por medio de npm
 npm install redux react-redux
 ```
 
-## 1.2 Actions
+## Actions
 
 Para empezar crearemos un action sencilla. Lps actions son objetos de
 javascript que **DEBEN TENER** una propiedad llamada *type*, a parte de
@@ -44,7 +44,7 @@ export default function () => (dispatch) => {
     }
 ```
 
-## 1.3 Reducers
+## Reducers
 
 Una vez que una acción ha mandado información y ha avisado que se ha
 llevado a cabo una acción, el reducer se encargará de *reducirla*
@@ -74,7 +74,7 @@ poder sobreescribir las partes del objeto que querramos. Es
 **importante** asegurarse de que nuestra función regrese siempre un
 objeto o null para que react no nos marque error.
 
-## 1.4 Preparando los reducers para pasarlos al store
+## Preparando los reducers para pasarlos al store
 
 Una vez que tengamos todos nuestros reducers podremos pasárselos al
 store, para eso primero hay que combinarlos usando la función
@@ -91,7 +91,7 @@ const reducerRoot = combineReducers({reducerFunction, })
 export default reducerRoot
 ```
 
-## 1.5 Store
+## Store
 
 Una vez hecho esto el store es el que recibirá nuestros reducers y se
 encargará de almacenar nuestro estado global.
@@ -141,7 +141,7 @@ ReactDOM.render(
 serviceWorker.unregister();
 ```
 
-## 1.6 Acciones en el componente
+## Acciones en el componente
 
 Ya tenemos la estructura básica, ahora debemos colocar los reducers
 dentro de los componentes para permitir la interacción con el usuario.
@@ -162,12 +162,12 @@ const mapStateToProps = (reducers) => {
 export default connect(mapStateToProps, {/*actions*/})(componente)
 ```
 
-## 1.7 Redux thunk
+## Redux thunk
 
 Redux thunk es un middleware que permite implementar la asincronía en el
 store.
 
-### 1.7.1 ¿Cómo lo consigue?
+### ¿Cómo lo consigue?
 
 Intercepta las acciones antes de que lleguen al reducer y si es una
 función la ejecuta, en caso contrario solo la deja pasar. De esta manera
@@ -177,13 +177,13 @@ Además de lo anterior también le otorga acceso a la función dispatch del
 store de Redux, por lo que también puede hacer dispatch a otras
 acciones.
 
-### 1.7.2 ¿Cuando debe usarse?
+### ¿Cuando debe usarse?
 
 Cuando querramos implementar funciones asíncronas como action creators,
 por ejemplo *funciones que demoren mucho tiempo en ejecutarse o
 peticiones API*
 
-## 1.8 Instalación y uso
+## Instalación y uso
 
 Primero deberemos instalarla por medio del siguiente comando
 

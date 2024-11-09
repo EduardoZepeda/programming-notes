@@ -7,7 +7,7 @@ siguientes:
 -   Menos código
 -   No más código innecesario
 -   No virtual DOM (A diferencia de [React](../React/1.-React.md))
-## 1.1 Creación de una instancia
+## Creación de una instancia
 
 Para crear un entorno de trabajo con svelte podemos partir de una
 plantilla con el siguiente código
@@ -22,7 +22,7 @@ Ya con la plantilla creada deberemos instalar las dependencias
 npm install
 ```
 
-## 1.2 Estructura
+## Estructura
 
 Lo anterior nos dejará un espacio de trabajo con la siguiente estructura
 
@@ -71,7 +71,7 @@ para trabajar con Svelte, tenemos código javascript, el html y los
 estilos. Los props aparecen entre llaves y van a ser tomados del archivo
 *main.js*
 
-## 1.3 Contenido
+## Contenido
 
 Cada archivo .svelte tiene 3 etiquetas; script, para la lógica; un div,
 componente o equivalente, para el contenido; y style, para los estilos.
@@ -82,7 +82,7 @@ componente o equivalente, para el contenido; y style, para los estilos.
 <style></style>
 ```
 
-## 1.4 Estilos
+## Estilos
 
 Todo lo que esté dentro de las etiquetas style va a ser leído. Para
 crear estilos globales usamos *:global*
@@ -112,7 +112,7 @@ p {
 }
 ```
 
-## 1.5 Variables
+## Variables
 
 Podemos agregar variables en el archivo *main.js* e utilizarlas
 directamente en la parte inferior, dentro de la etiqueta main. Para ello
@@ -136,7 +136,7 @@ como props.
 </style>
 ```
 
-## 1.6 Componentes
+## Componentes
 
 Parar crear componentes creamos una carpeta llamada components dentro de
 la carpeta src, *deberemos crear un archivo que empiece con mayúscula y
@@ -187,7 +187,7 @@ ubicación
 </style>
 ```
 
-### 1.6.1 Componentes especiales
+### Componentes especiales
 
 Svelte nos permite colocar una etiqueta svelte:head que nos sirve para
 reemplazar el contenido del head, aquí podemos modificar los valores de
@@ -199,7 +199,7 @@ SEO, o title o cualquier otro valor que deseemos sobrescribir
 </svelte:head>
 ```
 
-### 1.6.2 Anidación de componentes
+### Anidación de componentes
 
 Para anidar un componente dentro de otro tenemos que especificar que el
 primer componente va a ser usado como un contenedor, para esto
@@ -220,7 +220,7 @@ componente.
 </Box>
 ```
 
-## 1.7 Reactividad
+## Reactividad
 
 Los valores de las variables se modificarán automáticamente al cambiar.
 Para poner un ejemplo podemos crear una función para actualizar valores,
@@ -256,7 +256,7 @@ asignando el evento click con *on:click* a la función handleClick()
 </div>
 ```
 
-### 1.7.1 Modificadores
+### Modificadores
 
 También podemos usar eventos de submit para el manejo de formularios.
 
@@ -285,7 +285,7 @@ Pueden tenerse varios modificadores para un mismo evento
 <button on:click={increment} on:click={track}>Click me!</button>
 ```
 
-## 1.8 Props
+## Props
 
 Los props (propiedades) pueden pasarse a los componentes
 
@@ -329,7 +329,7 @@ dentro de llaves
 <Componente {propiedad1} {propiedad2} {propiedad3} />
 ```
 
-### 1.8.1 Pasar funciones
+### Pasar funciones
 
 También podemos pasar funciones a los componentes
 
@@ -353,7 +353,7 @@ terminación .svelte
 </div>
 ```
 
-## 1.9 Condicionales
+## Condicionales
 
 ``` html
 <div class="Component">
@@ -365,7 +365,7 @@ terminación .svelte
 </div>
 ```
 
-## 1.10 Estructuras de control
+## Estructuras de control
 
 ``` html
 <div class="Component">
@@ -396,7 +396,7 @@ recorrido esté vacío, ejemplo:
 </div>
 ```
 
-### 1.10.1 Promesas
+### Promesas
 
 Podemos usar la notación await, then y catch para manejar el estado de
 las promesas y mostrar los componentes adecuados
@@ -414,7 +414,7 @@ las promesas y mostrar los componentes adecuados
 {/await}
 ```
 
-## 1.11 Eventos del DOM y binding
+## Eventos del DOM y binding
 
 Para unir un valor deberemos usar la sintaxis bind:value de la siguiente
 manera
@@ -437,7 +437,7 @@ la siguiente sintaxis
 <div class="clase1" class:clase2={variable}></div>
 ```
 
-## 1.12 Ciclo de vida de un componente
+## Ciclo de vida de un componente
 
 Cada componente tiene un ciclo de vida, el cual inicia cuando el
 componente se crea y termina cuando se destruye. Svelte tiene unos hooks
@@ -489,7 +489,7 @@ del elemento poniéndolo entre parentesis
 </div>
 ```
 
-### 1.12.1 Tick
+### Tick
 
 Hay también una función especial llamada tick que puede ser llamada
 cuando sea. Retorna una promesa que se resuelve tan pronto como
@@ -506,7 +506,7 @@ inmediatamente después si no ha habido cambios de estado pendientes)
 </script>
 ```
 
-## 1.13 Stores
+## Stores
 
 Necesitamos crear un archivo *store.js*, dentro de ese archivo debemos
 traer el método *writable*, definiremos el nombre de la variable y le

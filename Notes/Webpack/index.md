@@ -3,7 +3,7 @@
 Webpack es un module bundler. Su propósito es empaquetar archivos de javascript para su uso en el navegador, también es capaz de transformar [CSS](../HtmlYCss/1.-HTML-y-CSS.md), imágenes y otros archivos característicos del desarrollo web. 
 
 
-## 1.1 Introducción a Webpack
+## Introducción a Webpack
 
 Webpack es un empaquetador para Javascript y sus amigos. Convierte
 módulos con dependencias en archivos estáticos que los navegadores
@@ -22,7 +22,7 @@ Escribir aplicaciones de manera eficiente. Tener un código limpio.
 Aplicar tecnología para resolver sus problemas. Tener un conjunto de
 reglas y convenciones. Entorno de desarrollo optimizado en productividad
 
-## 1.2 Webpack-cli
+## Webpack-cli
 
 Webpack-cli, la API que expone webpack en forma de CLI (Command Line
 Interface) que nos va a permitir interactuar y configurar Webpack desde
@@ -30,7 +30,7 @@ la terminal. El comando webpack tiene una bandera llamada --mode que nos
 permite cambiar entre los modos producción y desarrollo. Recuerda que
 por defecto nos pone en modo producción si no la especificamos.
 
-## 1.3 Entry point
+## Entry point
 
 Creamos un archivo llamado *webpack.config.js*
 
@@ -79,7 +79,7 @@ module.exports = {
 };
 ```
 
-## 1.4 Cargando configuraciones por defecto y personalizadas
+## Cargando configuraciones por defecto y personalizadas
 
 Por medio del uso de la bandera --config podemos especificar un archivo
 de configuración externo con el nombre que queramos en lugar del nombre
@@ -102,7 +102,7 @@ siguiente notación *--*
 npm run build:local -- -w
 ```
 
-## 1.5 Manejo de assets con Loaders
+## Manejo de assets con Loaders
 
 Los Loaders son la funcionalidad que nos da Webpack para interpretar
 tipos de archivos no soportados de forma nativa por Javascript.
@@ -110,7 +110,7 @@ tipos de archivos no soportados de forma nativa por Javascript.
 style-loader sirve para inyectar un tag style (el CSS) al DOM de nuestro
 HTML, mientras que css-loader sólo sirve para interpretar archivos CSS.
 
-## 1.6 CSS
+## CSS
 
 Para poder utilizar css usando webpack es necesario instalar dos
 programas: \* css-loader \* style-loader
@@ -182,7 +182,7 @@ module.exports = {
 }
 ```
 
-## 1.7 Recargar los cambios en tiempo real
+## Recargar los cambios en tiempo real
 
 Hay un servidor de webpack que se installa con el siguiente comando
 
@@ -207,7 +207,7 @@ devServer: {
 Importante: Si va a usarse servidor de desarrollo es conveniente quitar
 los minificadores de código, para facilitar la recarga.
 
-## 1.8 Hot module replacement
+## Hot module replacement
 
 El hot module replacement permite escuchar los cambios en los archivos
 sin tener que recargar el navegador. Unicamente debe usarse en
@@ -271,7 +271,7 @@ if(module.hot) {
 }
 ```
 
-## 1.9 Soporte de Javascript moderno
+## Soporte de Javascript moderno
 
 Para poder usar Javascript moderno y tener una buena Developer
 Experience sin afectar la User Experience, existe Babel. Babel transpila
@@ -319,7 +319,7 @@ npm install --save-dev @babel/plugin-transform-runtime
 npm install @babel/runtime
 ```
 
-## 1.10 Archivos JSX de React
+## Archivos JSX de React
 
 JSX es un lenguaje de templates para React que permite definir
 componentes con un código muy similar al HTML.
@@ -413,7 +413,7 @@ functionApp(props) {
 export default App;
 ```
 
-## 1.11 Webpack también procesa imágenes
+## Webpack también procesa imágenes
 
 Para soportar la importación de archivos binarios en nuestro código
 Javascript cómo lo son: fuentes, imágenes y videos, podemos usar
@@ -444,7 +444,7 @@ use: {
 
 Cuando un archivo no cumple los requerimientos necesitamos file-loader
 
-## 1.12 Preprocesadores de estilos
+## Preprocesadores de estilos
 
 Podemos instalar los preprocesadores
 
@@ -465,7 +465,7 @@ use: [
 ...
 ```
 
-## 1.13 Dynamic Link library
+## Dynamic Link library
 
 Mientras más librerías agregamos más lento se empiezan a volver nuestros
 builds, arruinando así la Developer Experience. Por suerte podemos crear
@@ -521,7 +521,7 @@ newMiniCssExtractPlugin({
     }),
 ```
 
-## 1.14 Evitar código duplicado
+## Evitar código duplicado
 
 Para evitar el código duplicado, por ejemplo librerias, cuando
 importamos varios archivos de javascript.
@@ -537,7 +537,7 @@ optimization: {
   }
 ```
 
-## 1.15 Dynamic imports
+## Dynamic imports
 
 Esto sirve para poder hacer import de librerias dinamicamente, como
 resultado de cambios en el código, ya sea interacción de usuario.

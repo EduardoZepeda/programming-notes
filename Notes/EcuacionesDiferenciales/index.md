@@ -16,7 +16,7 @@ Los coeficientes constantes se refieren a coeficientes de la misma clase
 
 $y^"+5y^`-6y$
 
-## 1.1 Que es una ecuación diferencial
+## Que es una ecuación diferencial
 
 Son ecuaciones con las que podemos representar problemas, que cambian en
 el tiempo y que tienen alguna dependencia con otras variables. Es una
@@ -24,21 +24,21 @@ igualdad en la que relacionamos una función, variables y derivadas. Las
 derivadas nos expresan como la función y las variables cambian en el
 tiempo. Relacionamos estos tres aspectos en una sola ecuación.
 
-### 1.1.1 Tipos de variables
+### Tipos de variables
 
 -   Variable dependiente: siempre que estemos derivando con respecto a
     una función, esa será nuestra variable dependiente.
 -   Variable independiente: es aquella cuyo valor no depende del de otra
     variable.
 
-### 1.1.2 Tipos de ecuaciones diferenciales
+### Tipos de ecuaciones diferenciales
 
 -   Ecuaciones diferenciales ordinarias (EDO): Tienen una sola variable
     independiente.
 -   Ecuaciones diferenciales parciales (EDP): Tienen más de una variable
     independiente.
 
-### 1.1.3 Tipos de ecuaciones diferenciales por orden y linealidad
+### Tipos de ecuaciones diferenciales por orden y linealidad
 
 Para saber el tipo de ecuación, dependerá de dos factores, el orden y la
 linealidad:
@@ -48,7 +48,7 @@ linealidad:
     dependiente nos esta modificada y no tiene exponentes, la ecuación
     será lineal.
 
-### 1.1.4 Que significa solucionar una ecuación diferencial
+### Que significa solucionar una ecuación diferencial
 
 Cuando tenemos una ecuación normal, solucionarla significaba encontrar
 ese número que satisfacía la igualdad de la ecuación:
@@ -64,7 +64,7 @@ satisfagan esa igualdad.
 Es encontrar una función donde la variable dependiente cambie con
 respecto a la variable independiente.
 
-### 1.1.5 Tipos de soluciones
+### Tipos de soluciones
 
 -   Solución general: Se produce cuando tenemos varias soluciones para
     una misma ecuación, donde la constante © puede tener cualquier
@@ -73,7 +73,7 @@ respecto a la variable independiente.
     valdrá cualquier valor de la constante como posible solución, si no
     ese valor en especifico es el que le dará la solución a la ecuación.
 
-## 1.2 Métodos de resolución
+## Métodos de resolución
 
 Estos metodos son para resolver ecuaciones de primer orden:
 
@@ -83,7 +83,7 @@ Estos metodos son para resolver ecuaciones de primer orden:
 > 4.  Ecuaciones exactas
 > 5.  Ecuación de Bernoulli
 
-## 1.3 Ecuaciones Diferenciales Separables
+## Ecuaciones Diferenciales Separables
 
 Son las E.D. más sencillas, se dan cuando podemos expresar la ecuación
 de manera que tengamos en cada término únicamente expresiones de una
@@ -99,7 +99,7 @@ $\frac{1}{p(y)} = h(y)$.
 
 $h(y)dy = g(x)dx.$
 
-### 1.3.1 Procedimiento para saber si una ecuación es separable
+### Procedimiento para saber si una ecuación es separable
 
 Asignaremos valores a (x, y), tal que la función de (x,y) sea diferente
 de cero. Calcularemos una nueva función en la que multiplicaremos el
@@ -116,7 +116,7 @@ $f(xo,yo)f(x,y) = f(xo,y)f(x,yo)$
 Si los tres pasos salen correctos sabremos si la ecuación es separable o
 no.
 
-## 1.4 Método de sustitución lineal
+## Método de sustitución lineal
 
 Aplicable para ecuaciones de la forma
 
@@ -158,7 +158,7 @@ $\int \frac{dv}{f(v)+a}=\int dx$.
 
 *y* = *e*<sup>*x*</sup>*C* − *x* − 5.
 
-## 1.5 Ecuaciones diferenciales exactas
+## Ecuaciones diferenciales exactas
 
 Estas ecuaciones cumplen dos condiciones:
 
@@ -177,7 +177,7 @@ variable que no integramos.
 
 Por último, integramos la ecuación para obtener nuestra solución.
 
-## 1.6 Funciones homogeneas
+## Funciones homogeneas
 
 Cuando tenemos una función homogenea todos los términos de la ecuación
 tienen el mismo grado y podemos generar una ecuacinó diferencial
@@ -212,7 +212,7 @@ también su derivada, que será la derivada del producto de dos funciones.
 
 Una vez conseguimos su ecuación separable, integraremos.
 
-## 1.7 Ecuaciones con coeficientes lineales
+## Ecuaciones con coeficientes lineales
 
 Para reconocer esta ecuación veremos que al igual que las ecuaciones de
 sustitución lineal, la ecuación con coeficientes lineales cuenta un x, y

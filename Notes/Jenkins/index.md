@@ -12,7 +12,7 @@ varios nodos para que trabajen por él.
 
 
 
-## 1.1 Instalación y configuración
+## Instalación y configuración
 
 A la fecha de la última actualización de estas notas, Jenkins requiere
 Java 8, otras versiones presentarán dificultades para usarse. Además de
@@ -23,7 +23,7 @@ Puedes revisar las instrucciones de instalación para todods los
 dispositivos en [su página de
 descargas](https://www.jenkins.io/download/)
 
-### 1.1.1 Instalación para debian
+### Instalación para debian
 
 Agregamos las keys de Jenkins al sistema.
 
@@ -46,7 +46,7 @@ Se instala como cualquier otro paquete
 sudo apt install jenkins
 ```
 
-### 1.1.2 Accediendo a jenkins
+### Accediendo a jenkins
 
 Una vez creado podemos acceder a la interfaz de jenkins en el puerto
 8080. Sin embargo **necesitaremos una contraseña autogenerada que se
@@ -60,20 +60,20 @@ Tras colocar el password, se nos presentarán dos opciones
 -   Instalación con plugins por defecto
 -   Instalación de los plugins personalizados
 
-### 1.1.3 Creando un admin
+### Creando un admin
 
 La siguiente pantalla es un formulario con datos del usuario admin de
 jenkins.
 
 ![image](Notes/Jenkins/img/CreandoUsuarioAdmin.png)
 
-### 1.1.4 Agregando un dominio
+### Agregando un dominio
 
 Jenkins permite agregar un dominio personalizado en la siguiente
 pantalla. Es recomendable crear un subdominio en lugar de usar la
 dirección ip.
 
-## 1.2 Creación de usuarios
+## Creación de usuarios
 
 Es una cuestión de seguridad el contar con una cuenta por usuario, con
 fines de trazabilidad.
@@ -84,7 +84,7 @@ y después en manage users.
 Además Es posible crear autenticación por medio de terceros, como github
 y Google.
 
-## 1.3 Jobs
+## Jobs
 
 Los jobs son la piedra central de Jenkins. Se ejecutan de manera
 concurrente por el Build Executor. Pueden existir jobs de diferentes
@@ -101,7 +101,7 @@ La siguiente es la pantalla de creación de un Job
 
 Donde podremos especificar descripciones,
 
-### 1.3.1 Freestyle project
+### Freestyle project
 
 Es el estilo más viejo y más versátil de Jenkins.
 
@@ -121,23 +121,23 @@ Si todo salió bien, podremos verificar el output
 
 ![image](Notes/Jenkins/img/VerificarOutputBuild.png)
 
-## 1.4 Configuración de Jobs
+## Configuración de Jobs
 
 Dentro de la pestaña General podemos especificar varias acciones entre
 ellas algunas importantes
 
-### 1.4.1 Descripción
+### Descripción
 
 La descripción de nuestro job.
 
-### 1.4.2 Duración de los build
+### Duración de los build
 
 Podemos especificar la duración en donde queremos guardar los builds, ya
 sea por cantidad de días o por número de builds.
 
 La configuración anterior se verá reflejada en *build history*.
 
-### 1.4.3 Pasarle parámetros
+### Pasarle parámetros
 
 Especificamos parámetros y su tipo a nuestros jobs. Que estarán
 disponibles como si fueran variables de entorno.
@@ -146,20 +146,20 @@ disponibles como si fueran variables de entorno.
 echo "Hola $NAME"
 ```
 
-### 1.4.4 Disable this project
+### Disable this project
 
 Para evitar que corra un job.
 
-### 1.4.5 Source code management
+### Source code management
 
 Aquí podemos guardar credenciales de github.
 
-### 1.4.6 Build triggers
+### Build triggers
 
 Para ejecutar un build ya sea por medio de una API, de manera periódica,
 como respuesta a un git pull en gitbub.
 
-### 1.4.7 Build environment
+### Build environment
 
 El entorno de pruebas, es **necesario marcar la casilla delete work
 before build starts** para evitar cualquier conflico con información que
@@ -168,12 +168,12 @@ se queda en el folder de trabajo.
 Entre otras opciones permite colocar variables secretas en archivos,
 abortar un job tras cierto tiempo transcurrido.
 
-### 1.4.8 Post-build actions
+### Post-build actions
 
 La más importante es *archive the artifacts*, combinada con *watch other
 jobs*.
 
-## 1.5 Interacción con máquina local
+## Interacción con máquina local
 
 Para que Jenkins interaccione con la máquina local, jenkins usará los
 binarios que están disponibles en la máquina donde se está ejecutando,
@@ -183,7 +183,7 @@ Sin embargo es recomendable utilizar las herramientas o plugins
 integradas de Jenkins para evitar perder la portabilidad si migramos el
 proyecto a otra máquina.
 
-## 1.6 Plugins de jenkins
+## Plugins de jenkins
 
 Los plugins son unidades que extienden las funcionalidades de Jenkins.
 Los plugins estarán disponibles dentro del plugin manager.
@@ -201,7 +201,7 @@ areas pertinentes de Jenkins.
 Los cambios en los paquetes se pueden realizar dentro de la sección
 configureTools.
 
-## 1.7 Cadena de jobs
+## Cadena de jobs
 
 Jenkins nos permite llamar jobs desde otros jobs, esto por medio de la
 instalación de un plugin llamado "parameterized triggers", que habilita
@@ -231,7 +231,7 @@ non-blocking en la sección de Subprojects.
 
 ![image](Notes/Jenkins/img/TriggersJenkins.png)
 
-## 1.8 Conexión con github
+## Conexión con github
 
 Para conectarse con github necesitamos colocar la url del repositorio
 dentro de la pestaña source Code Management.
@@ -250,7 +250,7 @@ Environment
 
 ![image](Notes/Jenkins/img/JenkinsBuildEnvironment.png)
 
-### 1.8.1 Conectando Github con Jenkins
+### Conectando Github con Jenkins
 
 Dentro de la sección de configuración de nuestro repositorio de github,
 podemos crear un webhook, que creará un petición a la url que le
@@ -260,7 +260,7 @@ indiquemos.
 
 ![image](Notes/Jenkins/img/GithubWebhook.jpg)
 
-## 1.9 Pipeline
+## Pipeline
 
 Al momento de crear un job podemos hacerlo como un pipelina.
 
@@ -323,18 +323,18 @@ presionemos el botón.
 
 ![image](Notes/Jenkins/img/PipelineSyntaxCreator.png)
 
-## 1.10 Replay
+## Replay
 
 Nos permite volver a ejecutar un job que ya ocurrió, **sin necesidad de
 un nuevo commit**, con la diferencia de que podemos modificarlo.
 
-## 1.11 Slaves
+## Slaves
 
 Los slaves nos permiten correr jobs de manera distribuida, usando el
 Jenkins Master como un orquestador que le delegará jobs. Por lo que
 permiten el escalamiento horizontal.
 
-### 1.11.1 Configuración de un slave
+### Configuración de un slave
 
 Para esto entramos al jenkins master.
 

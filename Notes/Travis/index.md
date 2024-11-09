@@ -2,14 +2,14 @@
 
 
 
-## 1.1 Continuous integration y continuous delivery
+## Continuous integration y continuous delivery
 
-### 1.1.1 Continuous integration
+### Continuous integration
 
 Integración continua, sirve para preparar y servir un release de forma
 sencilla y ágil
 
-### 1.1.2 Continuous delivery
+### Continuous delivery
 
 También conocido como despliegue continuo. Es la extensión de la
 integración continua. Su objetivo es poder entregar o desplegar nuevos
@@ -17,7 +17,7 @@ cambios a los clientes.
 
 ![image](Notes/Travis/img/CIyCD.png)
 
-### 1.1.3 Fases
+### Fases
 
 -   Plan: Requerimientos a cumplir, en este curso trabajaremos en un
     proyecto ya definido.
@@ -27,16 +27,16 @@ cambios a los clientes.
 -   Release: Paquete de código listo para mandar a producción.
 -   Deploy: Software operando en un ambiente de producción.
 
-## 1.2 Cuenta de Travis
+## Cuenta de Travis
 
 Travis requiere **forzosamente** una cuenta de Github o BitBucket. Desde
 el 2018 ya aceptan proyectos privados y open-source, sin necesidad de
 pagar por el servicio. Anteriormente travis.org se encargaba de los
 repositorios públicos y travis.com de los repositorios privados.
 
-## 1.3 Archivo de configuraciones
+## Archivo de configuraciones
 
-### 1.3.1 Lenguaje y sistema operativo
+### Lenguaje y sistema operativo
 
 La configuración de travis se hará a partir de un archivo con nombre
 **travis.yml**, debe encontrarse como archivo oculto, **.travis.yml**.
@@ -49,7 +49,7 @@ language: node_js
 os: osx
 ```
 
-### 1.3.2 Branches
+### Branches
 
 La configuración de branches nos permite declarar las ramas sobre las
 que trabajará travis-ci
@@ -68,7 +68,7 @@ branches:
   - stable
 ```
 
-### 1.3.3 Git
+### Git
 
 La directiva git y depth permiten declarar la profundidad de commits que
 abarcará travis-ci. El tope de commits que puede clonar travis-ci es de
@@ -79,7 +79,7 @@ git:
   depth: 3
 ```
 
-### 1.3.4 Instalaciones
+### Instalaciones
 
 Install le dice a travis las instalaciones que necesitará
 
@@ -88,7 +88,7 @@ install:
   - yarn install
 ```
 
-#### 1.3.4.1 before_install
+#### before_install
 
 before_install nos permite agregar dependencias antes de ejecutar el
 archivo.
@@ -98,7 +98,7 @@ before_install:
   - python
 ```
 
-### 1.3.5 scripts
+### scripts
 
 script nos da los comandos disponibles que se ejecutarán antes de un
 despliegue
@@ -109,7 +109,7 @@ script:
   - yarn test
 ```
 
-#### 1.3.5.1 before_script
+#### before_script
 
 before_script y after_script nos otorgan un hook que correrá antes de la
 ejecución de scripts.
@@ -122,7 +122,7 @@ after_script:
   - yarn clean
 ```
 
-#### 1.3.5.2 after_script
+#### after_script
 
 after_script es un hook que se ejecuta después de la ejecución de script
 
@@ -131,7 +131,7 @@ after_script:
   - yarn clean
 ```
 
-### 1.3.6 Cache
+### Cache
 
 Usamos la cache para especificar aquellos recursos que necesitamos
 mantener entre integraciones. Es bastante común excluir node_modules y
@@ -144,7 +144,7 @@ cache:
     - .npm
 ```
 
-## 1.4 Jobs
+## Jobs
 
 Los jobs establecen el flujo de trabajo.
 
@@ -158,7 +158,7 @@ jobs:
       script: yarn deploy
 ```
 
-## 1.5 Ciclo de Jobs
+## Ciclo de Jobs
 
 Cada trabajo es una secuencia. Las fases principales son:
 
@@ -190,7 +190,7 @@ La secuencia completa es la siguiente:
 11. OPTIONAL after_deploy (Sí y solo si despliegue está activo)
 12. after_script
 
-## 1.6 Deploy
+## Deploy
 
 Deploy nos permite pasarle una serie de configuraciones, tales como el
 provider, el repositorio
@@ -223,14 +223,14 @@ configuración de travis. Esta variable la conseguimos en la cuenta de
 github en settings -\> developer settings -\> personal token. Los
 permisos que elegiremos serán los de **admin:repo_hook, repo**
 
-## 1.7 Plataforma de Travis
+## Plataforma de Travis
 
 La plataforma nos permite sincronizar nuestros repositorios, añadir
 tareas periódicas y otras opciones.
 
-## 1.8 Notificaciones
+## Notificaciones
 
-### 1.8.1 Email
+### Email
 
 Travis nos permite enviar notificaciones por correo. Con on_success
 enviará un correo cuando la ejecución es exitosa, por otro lado, con
@@ -244,7 +244,7 @@ email:
 recipients: - <usuario@midominio.com> -<otro_usuario@miotrodominio.dev>
 on_success: always on_failure: always
 
-### 1.8.2 Slack
+### Slack
 
 Además de correo electrónico Travis permite enviar una notificación a un
 canal de Slack. Es necesario contar con los permisos adecuados en
@@ -257,7 +257,7 @@ notifications:
   slack: workspace:token
 ```
 
-## 1.9 Deploy en Heroku
+## Deploy en Heroku
 
 Heroku permite activar hooks para hacer deploy de un proyecto
 automáticamente cuando se hace push al repositorio. Para activarlo
@@ -278,9 +278,9 @@ deploy:
 Si travis-ci nos retorna un 0 significará un deploy exitoso con las
 pruebas aprobadas.
 
-## 1.10 Travis CLI
+## Travis CLI
 
-### 1.10.1 Instalación de Travis CLI
+### Instalación de Travis CLI
 
 ``` bash
 sudo apt install ruby-full
@@ -292,7 +292,7 @@ Ahora con Ruby instalado usamos el comando gem
 gem install travis
 ```
 
-### 1.10.2 Cifrado
+### Cifrado
 
 Travis permite encriptar inforamción con el comando travis encriptar. De
 esta manera podemos poner nuestra llave en nuestros archivos de

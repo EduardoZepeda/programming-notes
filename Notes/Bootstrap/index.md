@@ -5,7 +5,7 @@ las UI.
 
 
 
-## 1.1 La grilla de Bootstrap
+## La grilla de Bootstrap
 
 Debemos partir de una etiqueta div con clase "container":
 
@@ -50,7 +50,7 @@ ancho se dividirá equitativamente:
 </div>
 ```
 
-## 1.2 scrollspy
+## scrollspy
 
 Bootstrap nos permite saber la ubicación actual del menú donde nos
 encontramos a traves de la herramienta scroolspy. Para que esto sea

@@ -5,7 +5,7 @@ problema dado paso a paso y sin generar ambigüedades.
 
 
 
-## 1.1 Desarrollo de un algoritmo
+## Desarrollo de un algoritmo
 
 Los pasos recomendados para desarrollar un algoritmo son los siguientes:
 
@@ -21,12 +21,12 @@ elementos:
 -   Salidas: ¿Qué se obtiene al final del algoritmo?
 -   Tipos de datos involucrados: Textos, números, listas, etc.
 
-## 1.2 User defined data types
+## User defined data types
 
 Los User Defined DataTypes son tipos de datos creados por los
 desarrolladores de software para realizar múltiples acciones.
 
-### 1.2.1 Abstract Data Types básicos: Lists, Stacks, Queues
+### Abstract Data Types básicos: Lists, Stacks, Queues
 
 Un tipo de dato abstracto (ADT) representa un set particular de
 comportamientos, aunque no define su implementación. Mientras que una
@@ -35,7 +35,7 @@ un ADT. Es parecido al concepto de clases e instancias en programación.
 Los ADT más básicos serían: Lists, Stacks, Queues, Diccionarios, Arrays,
 Linked Lists, Trees
 
-### 1.2.2 Tipos más comunes
+### Tipos más comunes
 
 -   List, Conjunto de valores ordenados secuencialmente donde son
     recuperados mediante un número del 0 al n.
@@ -52,11 +52,11 @@ Linked Lists, Trees
     secuencia de la inserción de los datos, así el primer dato será
     recuperado al principio, y el último al final.
 
-### 1.2.3 Métodos
+### Métodos
 
 Cada ADT tiene sus propias funciones acorde a sus características.
 
-#### 1.2.3.1 Lista
+#### Lista
 
 -   get() – Retorna un elemento de la lista en cualquier posición
     especificada.
@@ -73,7 +73,7 @@ Cada ADT tiene sus propias funciones acorde a sus características.
 -   isFull() – Retorna true si la lista está llena, si no, regresa
     false.
 
-#### 1.2.3.2 Stack ADT
+#### Stack ADT
 
 -   push() – Inserta un elemento en un extremo de la pila denominado
     “cima”.
@@ -87,7 +87,7 @@ Cada ADT tiene sus propias funciones acorde a sus características.
 -   isFull() – Retorna true si la lista está llena, si no, regresa
     false.
 
-#### 1.2.3.3 Queue ADT
+#### Queue ADT
 
 -   enqueue() – Inserta un nuevo elemento al final de la cola.
 -   dequeue() – Remueve y retorna el primer elemento de la cola si la
@@ -98,34 +98,34 @@ Cada ADT tiene sus propias funciones acorde a sus características.
     false.
 -   isFull() – Retorna true si la cola está vacía, si no, retorna false.
 
-## 1.3 Algoritmos de ordenamiento
+## Algoritmos de ordenamiento
 
-### 1.3.1 Merge Sort
+### Merge Sort
 
 Utiliza el paradigma divide y vencerás, Dividiendo los elementos para
 compararlos y posteriormente volverlos a unir ordenados de la manera
 correcta. Es un algoritmo eficiente para muchos datos, pero no lo es
 tanto para pocos.
 
-### 1.3.2 Insertion Sort
+### Insertion Sort
 
 Vas comparando los elementos hasta que encuentren su lugar en la serie
 de 1 a 1. Es un algoritmo eficiente para serie de datos cortas, pero no
 para largas.
 
-### 1.3.3 Bubble Sort
+### Bubble Sort
 
 Se ordena por pares y se va repitiendo 1 a 1 hasta que queda totalmente
 ordenado, es muy iterativo, poco eficiente (por la cantidad de
 iteraciones), pero muy sencillo de ejecutar.
 
-### 1.3.4 Quick Sort
+### Quick Sort
 
 Utiliza el paradigma divide and conquer, y va comparando desde las
 esquinas al centro, es muy eficiente para serie de datos largos por lo
 que es de los más importantes.
 
-## 1.4 Recursividad
+## Recursividad
 
 La recursividad es la capacidad de una función de llamarse a si misma.
 
@@ -137,7 +137,7 @@ condicional que define el fin del ciclo. Manejan un stack que es el
 órden de las ejecuciones de las iteraciones de la función, empezando por
 la última a llamar.
 
-## 1.5 Graphos
+## Graphos
 
 Los graphos son mapas de set de nodos que tienen múltiples relaciones
 entre sí mediante enlaces (edges).

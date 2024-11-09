@@ -2,7 +2,7 @@
 
 
 
-## 1.1 Variables
+## Variables
 
 El objeto global es accesible a través de:
 
@@ -17,7 +17,7 @@ como convención:
 const PI = 3.14159
 ```
 
-## 1.2 Objetos
+## Objetos
 
 Los objetos que se pasan a las funciones se pasan por referencia y, por
 lo tanto, se modifican.
@@ -33,7 +33,7 @@ function cumpleanos(persona){
 }
 ```
 
-## 1.3 Debugger
+## Debugger
 
 Se detendrá la ejecución del programa cada que se encuentre la palabra
 debbuger:
@@ -44,13 +44,13 @@ while(sacha.peso > META){
 }
 ```
 
-## 1.4 This dentro de las arrow function
+## This dentro de las arrow function
 
 El this dentro de una arrow function apunta al this afuera de la
 función, que en el espacio global es window, por lo que no es posible
 referenciar objetos usando las arrow function
 
-## 1.5 Asincronia
+## Asincronia
 
 En Javascript hay dos pilas, las del programa principal y la de las
 tareas pendientes, todas las funciones asincronas mandan sus callbacks a
@@ -68,7 +68,7 @@ for(var i=0; i<10000000; i++){
 En el caso anterior el console.log será ejecutado hasta que se termine
 el ciclo, lo cual puede tardar minutos completos.
 
-## 1.6 Promesas
+## Promesas
 
 Hay una funcion que ejecuta un array de promesas:
 
@@ -85,7 +85,7 @@ promesas sean resueltas. Para poder utilizar esta forma, hay que colocar
 async antes de la definición de la función, y encerrar el llamado a
 Promises.all() dentro de un bloque try … catch.
 
-## 1.7 Memoización
+## Memoización
 
 La memoización permite guardar valores que cuestan mucho tiempo, para
 poder utilizarlos más tarde sin volver a incurrir en el costo de
@@ -115,7 +115,7 @@ function factorial(n){
 }
 ```
 
-## 1.8 Closures
+## Closures
 
 Un closure, básicamente, es una función que recuerda el estado de las
 variables al momento de ser invocada, y conserva este estado a través de
@@ -138,7 +138,7 @@ saludoMexicano('Jose')
 saludoColombiano('Jose')
 ```
 
-## 1.9 Cambiando el Contexto de una funcion
+## Cambiando el Contexto de una funcion
 
 El contexto (o alcance) de una función es por lo general, window. Así
 que en ciertos casos, cuando intentamos referirnos a this en alguna
@@ -154,7 +154,7 @@ Existen al menos tres maneras de cambiar el contexto de una función.
 -   Usando el método .apply, es similar a .call pero los parámetros
     adicionales se pasan como un arreglo de valores
 
-## 1.10 Casos especiales donde se debe usar punto y coma
+## Casos especiales donde se debe usar punto y coma
 
 El punto y coma es opcional en JavaScript, excepto en algunos casos:
 

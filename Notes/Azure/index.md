@@ -1,14 +1,14 @@
 # Azure
 
 
-## 1.1 ¿Qué es Azure?
+## ¿Qué es Azure?
 
 Es una plataforma informática en la nube operada por Microsoft para la gestión de aplicaciones a través de centros de datos distribuidos en todo el mundo.
 
 Proveedor de prácticamente cualquier servicio, con más de 100 servicios en la
 nube y datacenters al rededor del mundo.
 
-## 1.2 Datacenter
+## Datacenter
 
 * Una facilidad física
 * Con un grupo de servidores conectados en red
@@ -34,7 +34,7 @@ Su funcionamiento se basa en la virtualizanción de computadoras y sus
 componentes principales en servidores que son orquestados dentro de un data
 center, recibiendo instrucciones del usuario.
 
-## 1.3 Modelos de servicio
+## Modelos de servicio
 
 Azure ofrece los siguientes tipos de servicio:
 
@@ -59,39 +59,39 @@ Las características de cada uno se resumen en la siguiente tabla.
 Cada servicio se encarga de abstraer cierta capa de la aplicación total. On
 premise se refiere a la propiedad total, donde el cliente se encarga de todo.
 
-## 1.4 Tipos de Nubes
+## Tipos de Nubes
 
-### 1.4.1 Nube pública
+### Nube pública
 
 Los servicios se ofrecen a través de la red Internet pública y están disponibles
 para cualquiera que quiera comprarlos. Los recursos de nube, como los servidores
 y el almacenamiento, son propiedad de un proveedor de servicios en la nube de
 terceros, que los explota y los distribuye a través de Internet.
 
-### 1.4.2 Nube privada
+### Nube privada
 
 Una nube privada consta de recursos informáticos que determinados usuarios de
 una empresa u organización usan en exclusiva. Una nube privada puede estar
 ubicada físicamente en el centro de datos local (entorno local) de la
 organización o estar hospedada por un proveedor de servicios de terceros.
 
-### 1.4.3 Nube híbrida
+### Nube híbrida
 
 Una nube híbrida es un entorno informático que combina una nube pública y una
 nube privada, lo que permite compartir datos y aplicaciones entre ellas.
 
-## 1.5 Microsoft learn
+## Microsoft learn
 
 Azure cuenta una plataforma educativa donde puedes capacitarte en sus mismos
 servicios.
 
-## 1.6 Arquitectura de Azure
+## Arquitectura de Azure
 
-### 1.6.1 Azure funciona con virtualización
+### Azure funciona con virtualización
 
 Recibidas y organizadas por medio de un hypervisor.
 
-### 1.6.2 Estructura del Data center
+### Estructura del Data center
 
 Internamente Azure recibe instrucciones de su portal y el CLI, los cuales
 interaccionan con una API, el API con un orquestador que los lleva a un fabric
@@ -107,7 +107,7 @@ Externamente Azure cuenta con:
 El marketplace de Azure está disponible via Portal o usando su sitio web
 *azuremarketplace.microsoft.com*
 
-### 1.6.3 Cuentas de Azure
+### Cuentas de Azure
 
 Una cuenta de Azure puede tener múltiples subscripciones, una suscripcion puede
 tener múltiples grupos de recursos y un grupo de recursos puede tener múltiples
@@ -133,7 +133,7 @@ suscripciones, pero no viceversa.
 
 ![image](Notes/Azure/img/cuentasAzure.jpg)
 
-### 1.6.4 Suscripciones grupos de administración
+### Suscripciones grupos de administración
 
 Se necesita de una suscripción de Azure para utilizar servicios, existen
 cuentas:
@@ -143,38 +143,38 @@ cuentas:
 * Suscripción
 * Estudiante
 
-#### 1.6.4.1 Limites de suscripción
+#### Limites de suscripción
 
 * Facturación mensual
 * Control de acceso a recursos
 
-#### 1.6.4.2 Situaciones donde se necesitan otras suscripciones
+#### Situaciones donde se necesitan otras suscripciones
 
-##### 1.6.4.2.1 Entornos
+##### Entornos
 
 Ideal para separar entornos de trabajo.
 
-##### 1.6.4.2.2 Estructura organizacional
+##### Estructura organizacional
 
 Para apegarnos a la estructura de la empresa.
 
-##### 1.6.4.2.3 Facturación
+##### Facturación
 
 Para manejar los costos de producción, desarrollo y pruebas por separado.
 
-##### 1.6.4.2.4 Límites por suscripción
+##### Límites por suscripción
 
 Para evitar las limitaciones de hardware que pueden ocurrir como parte de las
 limitaciones por suscripción.
 
-### 1.6.5 Grupos de administración
+### Grupos de administración
 
 Podemos limitar los diferentes accesos para cada grupo o rol diferente de
 suscripciones. Las suscripciones se organizan en contenedores llamados grupos de
 administración y las condiciones de gobernanza se aplican a los grupos de
 administración.
 
-#### 1.6.5.1 Limitaciones de los grupos de administración
+#### Limitaciones de los grupos de administración
 
 * Se admiten 10 000 grupos de administración en un único directorio.
 * Un árbol de grupo de administración puede admitir hasta seis niveles de
@@ -186,9 +186,9 @@ administración.
 * Todas las suscripciones y grupos de administración están dentro de una única
     jerarquía en cada directorio.
 
-### 1.6.6 Recursos y grupos de recursos
+### Recursos y grupos de recursos
 
-#### 1.6.6.1 Características de los recursos
+#### Características de los recursos
 
 Un recurso es un elemento gestionable en Azure.
 
@@ -197,7 +197,7 @@ Un recurso es un elemento gestionable en Azure.
 * No se pueden anidar.
 * Son móviles entre grupos.
 
-### 1.6.7 Azure resource manager
+### Azure resource manager
 
 Nos permite automatizar la creación de recursos comunicándonos a través de Azure
 Portal, Azure PowerShell, Azure CLI o un cliente REST por medio de plantillas.
@@ -208,7 +208,7 @@ Based Access Control), etiquetas y facturación.
 Puedes agrupar los recursos por tags o políticas para replicar los tags en un
 mismo tipo de recursos.
 
-### 1.6.8 Características de los grupos de recursos
+### Características de los grupos de recursos
 
 Un grupo de recursos es un contenedor de recursos.
 
@@ -222,7 +222,7 @@ Un grupo de recursos es un contenedor de recursos.
     -   ubicación
     -   una combinación de los anteriores
 
-### 1.6.9 Regiones
+### Regiones
 
 Un area geográfica en el planeta con uno o más datacenters conectados con una
 latencia menor a 2ms.
@@ -234,7 +234,7 @@ latencia menor a 2ms.
   Iowa)
 * Existen regiones en asociacion (Este de China y Norte de China)
 
-#### 1.6.9.1 Zonas de disponibilidad
+#### Zonas de disponibilidad
 
 Zonas donde existen al menos tres datacenters en una sola región, equipados con
 sistemas de energía de emergencia, refrigeración y redes independientes, lo que
@@ -253,18 +253,18 @@ Zonas de Azure
     Emiratos Árabes Unidos, Norte de Emiratos Árabes Unidos
 * Zona 1 de Alemania: Centro de Alemania y Nordeste de Alemania
 
-#### 1.6.9.2 Pares de regiones
+#### Pares de regiones
 
 Azure siempre cuenta con al menos dos regiones con un máximo de 500 km de
 distancia entre ambas, para la replicación de recursos en caso de
 interrupciones. Se llevan acabo actualizaciones planeadas entre los pares. Los
 pares son estáticos y no pueden ser elegidos.
 
-## 1.7 Bases de datos
+## Bases de datos
 
 Azure ofrece bases de datos SQL y NoSQL, con soluciones para cada una.
 
-### 1.7.1 Tipos de datos
+### Tipos de datos
 
 * Estructurados. La información puede representarse usando tablas con un esquema
   estricto. Cada fila debe seguir un esquema, algunas tablas se relacionan entre
@@ -274,7 +274,7 @@ Azure ofrece bases de datos SQL y NoSQL, con soluciones para cada una.
 * No estructurados. Cualquier archivo en cualquier formato. Por ejemplo:
   binarios, aplicaciones, imágenes, video, etc.
 
-### 1.7.2 Azure Cosmos DB
+### Azure Cosmos DB
 
 Servicio de base de datos NoSQL, elástico e independiente al rendimiento y
 almacenamiento de las regiones. Es una base de datos globalmente distribuida.
@@ -288,7 +288,7 @@ Diseñado especialmente para:
 
 Compatibilidad con Gremlin, MongoDB, Cassandra.
 
-### 1.7.3 Azure SQL Database
+### Azure SQL Database
 
 Basado en Microsoft SQL Server como un PaaS, donde se encargan de las funciones
 administrativas: copias de seguridad y otras operaciones de mantenimiento
@@ -299,7 +299,7 @@ comunes.
 * Segura
 * Administrada
 
-### 1.7.4 Azure SQL Managed Instance
+### Azure SQL Managed Instance
 
 Bastante similar con Azure SQL Database, pero con las siguientes diferencias.
 
@@ -311,23 +311,23 @@ Bastante similar con Azure SQL Database, pero con las siguientes diferencias.
 Cuenta con un servicio de migración a la nube llamado Azure Database Migration
 Service.
 
-### 1.7.5 Azure Database for MySQL
+### Azure Database for MySQL
 
 También hay servicios compatible con MySQL community edition
 
-### 1.7.6 Azure Database for PostgreSQL
+### Azure Database for PostgreSQL
 
 Para PostgreSQL. Existen dos modalidades:
 
 * Servidor único, con escalamiento vertical
 * Hiperscala (Citus) para cargas de 100 GB o más, con escalamiento horizontal
 
-### 1.7.7 Azure Database for Maria
+### Azure Database for Maria
 
 Base de datos relacional MariaDB totalmente administrada y escalable con alta
 disponibilidad y seguridad.
 
-## 1.8 Análisis big data
+## Análisis big data
 
 El Big Data se define por tres características, llamadas las 3 V's
 
@@ -335,32 +335,32 @@ El Big Data se define por tres características, llamadas las 3 V's
 * Volumen de la data
 * Variedad de la data (complejidad)
 
-### 1.8.1 Azure synapse Analytics
+### Azure synapse Analytics
 
 Análisis de datos de todo tipo: **sin procesar, refinados o seleccionados.**
 Compatible con SQL y Apache Spark.
 
-### 1.8.2 Azure HDInsight
+### Azure HDInsight
 
 Herramienta multi propósito para big data y análisis de datos con muchas
 tecnologías open source disponibles: Spark, Hadoop, Kafka, Hbase, Hive, Storm.
 Admite ELS. PaaS
 
-### 1.8.3 Azure databricks
+### Azure databricks
 
 Descubre información de volúmenes masivos de datos. Compatible con Apache Spark
 Funciona con múltiples lenguaje de programación. PaaS
 
-### 1.8.4 Azure Data Lake Analytics
+### Azure Data Lake Analytics
 
 Para realizar análisis bajo demanda. Enfocado a la extracción, la transformación
 y la carga de datos (ETL) en lugar de la configuración de hardware.
 
 Modelo *pay as you go*.
 
-## 1.9 Computo en la nube
+## Computo en la nube
 
-### 1.9.1 Azure virtual machines
+### Azure virtual machines
 
 Son un ejemplo de IaaS:
 
@@ -372,13 +372,13 @@ Ideal para:
 
 Servicio de migración para máquinas locales llamado *lift and shift*
 
-### 1.9.2 Azure batch
+### Azure batch
 
 Conjunto de VM, con configuración en minutos de máquinas auténticas, por lotes
 paralelos, a gran escala de informática de alto rendimiento (HPC) y con
 escalabilidad automática.
 
-### 1.9.3 Conjuntos o sets de escalado de máquinas virtuales
+### Conjuntos o sets de escalado de máquinas virtuales
 
 Los conjuntos de escalado le permiten administrar, configurar y actualizar de
 forma centralizada un gran número de máquinas virtuales, idénticas, en cuestión
@@ -389,7 +389,7 @@ virtual. A medida que la demanda disminuya, se pueden quitar más instancias de
 máquina virtual. El proceso puede ser manual, automatizado o una combinación de
 ambos.
 
-### 1.9.4 Azure container instances (ACI)
+### Azure container instances (ACI)
 
 La manera más sencilla y rápida de correr un contenedor en Azure. Al ser
 contenedores en lugar de máquinas virtuales cargan mucho más rápido, pero con la
@@ -406,7 +406,7 @@ de una aplicación en un solo equipo host.
 Están diseñados para correr aplicaciones web pequeñas y sencillas, background
 jobs y scripts programados.
 
-### 1.9.5 Azure Kubernetes Service
+### Azure Kubernetes Service
 
 Orquestación (automatización y administración) de contenedores en volumen. Otro
 ejemplo de PaaS
@@ -416,7 +416,7 @@ Utilidad de contenedores:
 * Hacer cambios sin afectar otras partes. 
 * Hacer pruebas dentro de entornos aislados
 
-### 1.9.6 Azure App Service
+### Azure App Service
 
 PaaS para crear y alojar aplicaciones conectadas a la web. Compatible con
 Windows, Linux e implementaciones automatizadas.
@@ -430,7 +430,7 @@ Tipos de servicios:
 Se paga por los recursos de Azure Compute que la aplicación usa mientras procesa
 las solicitudes según el plan de App Service que elija
 
-## 1.10 Azure serverless
+## Azure serverless
 
 La informática sin servidor es una opción excelente para bajas cargas de trabajo
 que responden a eventos entrantes: 
@@ -439,7 +439,7 @@ que responden a eventos entrantes:
 * Mensajes de otros servicios. 
 * Colas
 
-#### 1.10.1.1 Azure Functions
+#### Azure Functions
 
 Con desarrollo orientado al código (imperativo). Ejecutable localmente y en la
 nube asignando recursos de manera automática.
@@ -451,7 +451,7 @@ Tienen ciertas características:
 
 Solo se paga por el tiempo de CPU usado mientras se ejecuta la función.
 
-#### 1.10.1.2 Azure Logic Apps
+#### Azure Logic Apps
 
 Con flujo de desarrollo Conjuntos de escalado de máquinas virtualesorientado al
 diseño (declarativo). solo ejecutable en la nube.
@@ -465,7 +465,7 @@ diseño (declarativo). solo ejecutable en la nube.
 Los flujos de trabajo se conservan como un archivo JSON con un esquema de flujo
 de trabajo conocido.
 
-#### 1.10.1.3 Comparación entre Functions y Logic Apps
+#### Comparación entre Functions y Logic Apps
 
 Functions y Logic Apps pueden crear orquestaciones complejas. Una orquestación
 es una colección de funciones o pasos que se ejecutan para realizar una tarea
@@ -476,12 +476,12 @@ compleja.
 * Con Logic Apps, se usa una GUI para definir relaciones, es declarativo, con
     estado, ejecutada en la nube.
 
-#### 1.10.1.4 Azure Service Fabric
+#### Azure Service Fabric
 
 Plataforma de sistemas distribuidos que se ejecuta en Azure o en el entorno
 local.
 
-#### 1.10.1.5 Azure Virtual Desktop
+#### Azure Virtual Desktop
 
 Es un servicio de virtualización de escritorios y aplicaciones que se ejecuta en
 la nube. Permite aislar la máquina del trabajador de la información del negocio.
@@ -501,30 +501,30 @@ Proporciona administración centralizada de la seguridad de los escritorios con
 Azure Active Directory, autenticación multifactor y protección de datos mediante
 controles de acceso basados en roles (RBAC)
 
-## 1.11 Almacenamiento
+## Almacenamiento
 
 Los datos que se almacenan en una cuenta de almacenamiento de Azure tienen al
 menos 3 copias automáticamente pero no tienen un backup automático a otro centro
 de datos.
 
-### 1.11.1 Tipos de datos aceptados por Azure
+### Tipos de datos aceptados por Azure
 
 * Estructurados
 * No estructurados
 * Semi estructurados
 
-### 1.11.2 Tipos de base de datos en Azure
+### Tipos de base de datos en Azure
 
 Azure acepta bases de datos de tipo SQL y NoSQl.
 
-### 1.11.3 Azure Blob Storage
+### Azure Blob Storage
 
 Blob Storage (Binary large object)
 
 Servicio de almacenamiento no estructurado. Sin restricciones y con soporte para
 miles de cargas simultáneas.
 
-#### 1.11.3.1 Usos de blob
+#### Usos de blob
 
 * Visualizar imágenes o videos en el navegador.
 * Acceso distribuido.
@@ -533,7 +533,7 @@ miles de cargas simultáneas.
 * Análisis de datos local o en la nube.
 * Almacenamiento de VMs mayor a 8 TB.
 
-#### 1.11.3.2 Niveles de acceso disponibles
+#### Niveles de acceso disponibles
 
 * Hot, Frecuente: Imágenes o descargas de un sitio web.
 * Cold, Esporádico (Al menos 30 días): Reportes mensuales, facturas, etc.
@@ -545,7 +545,7 @@ Donde a menor frecuencia de acceso, mayor tiempo de acceso.
 Es posible crear una URI con un token de Firma de acceso compartido (SAS) para
 permitir el acceso a un recurso privado solo durante un período corto de tiempo.
 
-### 1.11.4 Azure File storage
+### Azure File storage
 
 El equivalente de a Onedrive. Azure nos provee de la posibilidad de utilizar
 discos magnéticos, de estado sólido o algunos de calidad premium, que podemos
@@ -558,53 +558,53 @@ Ideal para:
 * Cuando muchas aplicaciones usan recursos compartidos. * Acceder a recursos
 desde varias VMs.
 
-### 1.11.5 Azure Disk Storage
+### Azure Disk Storage
 
 Discos para Azure Virtual Machines, de manera que las aplicaciones puedan
 usarlos. De diferentes tamaños y velocidades (HDD, SSD y SSD Premium)
 
-### 1.11.6 Azure Queue Storage
+### Azure Queue Storage
 
 Almacén de datos para la puesta en cola y la entrega confiable de mensajes entre
 aplicaciones.
 
-### 1.11.7 Azure Table storage
+### Azure Table storage
 
 Table Storage es un servicio que almacena datos estructurados no relacionales
 (también conocidos como datos NoSQL estructurados o semiestructurados) en la
 nube, lo que proporciona un almacén de claves y atributos con un diseño sin
 esquema.
 
-## 1.12 Web
+## Web
 
-### 1.12.1 Azure App Service
+### Azure App Service
 
 Creación rápida de aplicaciones en la nube eficaces basadas en web.
 
-### 1.12.2 Azure Notification Hubs
+### Azure Notification Hubs
 
 Envíe notificaciones push a cualquier plataforma desde cualquier back-end.
 
-### 1.12.3 Azure API Management
+### Azure API Management
 
 Publique API para desarrolladores, asociados y empleados de forma segura y a
 escala.
 
-### 1.12.4 Azure Cognitive Search
+### Azure Cognitive Search
 
 Esta búsqueda completamente administrada se implementa como servicio.
 
-### 1.12.5 Característica Web Apps de Azure App Service
+### Característica Web Apps de Azure App Service
 
 Cree e implemente rápidamente aplicaciones web críticas a escala.
 
-### 1.12.6 Servicio Azure SignalR
+### Servicio Azure SignalR
 
 Agregue funcionalidades web en tiempo real con facilidad.
 
-## 1.13 Network
+## Network
 
-### 1.13.1 Azure Virtual Network
+### Azure Virtual Network
 
 Permite a los recursos de Azure comunicarse entre sí, con usuarios de internet y
 equipos cliente en local.
@@ -643,12 +643,12 @@ equipos cliente en local.
     >     > -   Aplicaciones virtuales de red. Un máquina virtual especializada
     >     >     con una función especializada (Firewall, optimizar WAN, etc.)
 
-#### 1.13.1.1 Conexión de redes virtuales
+#### Conexión de redes virtuales
 
 Puede vincular redes virtuales entre sí mediante el emparejamiento de red
 virtual, lo que les permite comunicarse entre si.
 
-#### 1.13.1.2 Configuración
+#### Configuración
 
 Al configurar una red virtual, se define el espacio de direcciones internas con
 el formato de Enrutamiento de interdominios sin clases (CIDR).
@@ -669,26 +669,26 @@ Entre las configuraciones adicionales están:
 * Table de rutas
 * Delegación de subred
 
-### 1.13.2 Azure Load Balancer
+### Azure Load Balancer
 
 Equilibra las conexiones entrantes y salientes a aplicaciones o puntos de
 conexión de servicio.
 
-### 1.13.3 Azure Application Gateway
+### Azure Application Gateway
 
 Optimiza la entrega de granjas de servidores de aplicaciones y, al mismo tiempo,
 aumenta la seguridad de las aplicaciones.
 
-### 1.13.4 Azure Content Delivery Network
+### Azure Content Delivery Network
 
 Entrega contenido de gran ancho de banda a los clientes globalmente.
 
-### 1.13.5 Azure DDoS Protection
+### Azure DDoS Protection
 
 Protege las aplicaciones hospedadas en Azure frente a ataques por denegación de
 servicio distribuido (DDoS). 
 
-### 1.13.6 Azure VPN Gateway
+### Azure VPN Gateway
 
 Conecta redes locales a Azure vía VPN de sitio a sitio/punto, a sitio, a través
 de protocolos IPsec e IKE.
@@ -706,7 +706,7 @@ Y los recursos locales
 * Un dispositivo VPN compatible con VPN Gateway.
 * Una dirección IPv4 de acceso público.
 
-### 1.13.7 Azure ExpressRoute
+### Azure ExpressRoute
 
 Genera conexiones privadas entre Azure y la infraestructura, de forma confiable
 y rápida, sin utilizar internet público. La comunicación **es privada pero no
@@ -715,14 +715,14 @@ está cifrada**.
 El número máximo de circuitos de Azure ExpressRoute por cada suscripción es de
 10
 
-#### 1.13.7.1 Ventajas
+#### Ventajas
 
 * Redundancia integrada
 * Conectividad con los servicios en la nube de microsoft
 * Conectividad local con Gloal Reach de Express Route
 * Enrutamiento dinámico
 
-#### 1.13.7.2 Modelos de conectividad
+#### Modelos de conectividad
 
 Para conectar la red local con la nube de microsoft contamos con las siguientes
 opciones:
@@ -732,12 +732,12 @@ opciones:
 * Conexión universal
 * Directamente desde sitios de ExpressRoute
 
-### 1.13.8 Azure Network Watcher
+### Azure Network Watcher
 
 Supervisa y diagnostica problemas de red mediante el análisis basado en el
 escenario.
 
-### 1.13.9 Azure Network Security Group (NSG)
+### Azure Network Security Group (NSG)
 
 Puede usar el grupo de seguridad de red de Azure para filtrar el tráfico de red
 hacia y desde los recursos de Azure de una red virtual de Azure. Un grupo de
@@ -750,19 +750,19 @@ Por ejemplo: Su empresa desea desplegar varios servidores web y servidores de
 bases de datos en Azure y se busca limitar los tipos de conexiones desde los
 servidores web hacia las bases de datos.
 
-### 1.13.10 Azure Firewall
+### Azure Firewall
 
 Implementa un firewall de alta seguridad y alta disponibilidad con escalabilidad
 ilimitada.
 
-### 1.13.11 Azure Virtual WAN
+### Azure Virtual WAN
 
 Crea una red de área extensa (WAN) unificada que conecta sitios locales y
 remotos.
 
-## 1.14 Inteligencia artificial
+## Inteligencia artificial
 
-### 1.14.1 Introducción
+### Introducción
 
 * Deep Learning: usa redes neuronales para descubrir, aprender y crecer.
 * Machine learning: utiliza datos existentes para entrenar modelos y
@@ -776,7 +776,7 @@ Tiene servicios de:
 * Bing search
 * Procesamiento de lenguaje natural
 
-### 1.14.2 Azure Machine Learning
+### Azure Machine Learning
 
 Se usa cuando se necesita analizar datos para predecir resultados futuros a
 partir de datos históricos privados
@@ -786,7 +786,7 @@ partir de datos históricos privados
 * Ofrece control completo del diseño y entrenamiento de algoritmos.
 * Requiere proporcionar los datos
 
-### 1.14.3 Azure Cognitive Services
+### Azure Cognitive Services
 
 Modelos de ML creados que permiten a una aplicación ver, oír, hablar, entender y
 pensCognitive Sear. No se necesitan conocimientos en ML o DS.
@@ -800,12 +800,12 @@ Categorías:
 No es necesario tener conocimientos de aprendizaje automático ni ciencia de
 datos para usar estos servicio. Se accede a ellos por medio de una API.
 
-#### 1.14.3.1 Azure Cognitive Services personalizer
+#### Azure Cognitive Services personalizer
 
 Nos permie predecir el comportamiento del usuario o proporcionar a los usuarios
 recomendaciones personalizadas en la aplicación
 
-### 1.14.4 Azure Bot Service
+### Azure Bot Service
 
 Funciona internamente con Azure Cognitive Services. Ideal para asistentes
 virtuales.
@@ -815,7 +815,7 @@ virtuales.
 
 Su caso de uso es para los asistentes virtuales
 
-## 1.15 Azure DevOps Services
+## Azure DevOps Services
 
 Cuenta con un sistema de permisos mucho más granular que el de Github, además es
 capaz de generar informes.
@@ -849,14 +849,14 @@ capaz de generar informes.
     > -   Herramientas de pruebas automatizadas para garantizar la calidad antes
     >     de lanzar software.
 
-### 1.15.1 GitHub & GitHub Actions
+### GitHub & GitHub Actions
 
 * GitHub Actions
 
     > -   Automatización de flujos de trabajo basado en triggers, especialmente
     >     para CI/CD.
 
-### 1.15.2 Azure DevTest Labs
+### Azure DevTest Labs
 
 Medio automatizado para administrar proceso de compilación, configuración y
 anulación de VMs y otros recursos.
@@ -872,7 +872,7 @@ Otro ejemplo: Un equipo de desarrolladores de su empresa quiere desplegar y
 luego eliminar 50 máquinas virtuales cada semana. 25 de ellas ejecutan Windows
 Server y 25 ejecutan Ubuntu Linux.
 
-## 1.16 Monitoreo y supervisión de Azure
+## Monitoreo y supervisión de Azure
 
 * Azure Advisor: nos brinda recomendaciones y evalúa recursos a través del
     portal de Azure o su API. Ideal para el recorte de costos. Disponible en el
@@ -889,15 +889,15 @@ Server y 25 ejecutan Ubuntu Linux.
     análisis oficial de la causa principal** (RCA) de la interrupción en los
     incidentes de Azure.
 
-## 1.17 Administración de entorno
+## Administración de entorno
 
 Al trabajar en la nube es necesario tener un buen control y administración del
 trabajo. Azure nos brinda de herramientas para la administración de trabajo, las
 cuales pueden ser visuales o basadas en código.
 
-### 1.17.1 Herramientas visuales
+### Herramientas visuales
 
-#### 1.17.1.1 Azure Portal
+#### Azure Portal
 
 Es una consola unificada basada en web que proporciona una alternativa a las
 herramientas de línea de comandos. Con Azure Portal, puede administrar su
@@ -907,7 +907,7 @@ suscripción a Azure mediante una interfaz gráfica de usuario.
 
 Además permite generear informes personalizados.
 
-#### 1.17.1.2 Azure mobile app
+#### Azure mobile app
 
 Permite acceder a los recursos de Azure desde dispositivos android e iOS
 
@@ -916,7 +916,7 @@ Permite acceder a los recursos de Azure desde dispositivos android e iOS
 * Alertas, diagnósticos y correcciones
 * Ejecutar comandos de CLI o Azure PowerShell
 
-### 1.17.2 Herramientas basadas en código
+### Herramientas basadas en código
 
 Las tres primeras son ideales para escenarios de un solo uso.
 
@@ -928,7 +928,7 @@ Las tres primeras son ideales para escenarios de un solo uso.
 * Cloud Shell. Es Azure CLI pero desde el navegador.
 * Azure Resources Manager
 
-#### 1.17.2.1 Azure resources manager templates (ARM)
+#### Azure resources manager templates (ARM)
 
 Es un administrador de plantillas de recursos con un formato declarativo en
 JSON. Pueden ejecutar scripts de PowerShell y Bash antes o después de la
@@ -949,9 +949,9 @@ necesita 10 recursos de Azure para sus operaciones diarias. Todas ellas
 necesitan el mismo tipo de recurso de Azure y se necesita automatizar la
 creación de estas.
 
-## 1.18 Azure serverless
+## Azure serverless
 
-### 1.18.1 Azure functions
+### Azure functions
 
 Alojamiento de métodos o funciones que se ejecutan en respuesta a eventos:
 
@@ -978,7 +978,7 @@ Lenguajes compatibles
 
 Funciona de manera imperativa.
 
-### 1.18.2 Azure Logic Apps
+### Azure Logic Apps
 
 > Logic Apps es excelente a la hora de orquestar una gran variedad de servicios
 > distintos mediante sus API para pasar y procesar los datos a través de los
@@ -990,13 +990,13 @@ Funciona de manera imperativa.
 
 Funciona de manera declarativa.
 
-### 1.18.3 Diferencias
+### Diferencias
 
 Ambos trabajan con eventos, sin servidores. La diferencia es que functions
 trabaja en el numero de ejecuciones y el tiempo, mientras que logic apps cobra
 según el número y tipo de conectores lógicos.
 
-## 1.19 Azure Internet of Things
+## Azure Internet of Things
 
 Debido a que aún quedan muchos estándares por definir en IoT, el contar con un
 SDK y software propio de Microsoft brinda mayor seguridad.
@@ -1068,9 +1068,9 @@ SDK y software propio de Microsoft brinda mayor seguridad.
     >     >     > -   Visual Studio Code.
     >     >     > -   Línea de comandos con CMake.
 
-## 1.20 Seguridad en Azure
+## Seguridad en Azure
 
-### 1.20.1 Azure Security Center
+### Azure Security Center
 
 Servicio que brinda un punto único donde revisar la visibilidad del nivel de
 seguridad de los servicios en Azure y local. Emite recomendaciones para mejorar
@@ -1092,7 +1092,7 @@ para asegurarse de que solo se puedan ejecutar las permitidas. Azure Security
 Center también puede detectar y bloquear la instalación de malware en las
 máquinas virtuales.
 
-### 1.20.2 Puntuación de seguridad
+### Puntuación de seguridad
 
 Security center ofrece un número representativo del nivel de seguridad y
 permite:
@@ -1101,7 +1101,7 @@ permite:
 * Mejorar el nivel.
 * Compara puntos de referencia.
 
-### 1.20.3 Azure Sentinel
+### Azure Sentinel
 
 Azure Sentinel es el SIEM basado en la nube de Microsoft. Un SIEM agrega datos
 de seguridad de muchos orígenes diferentes para proporcionar capacidades
@@ -1117,7 +1117,7 @@ seguridad inteligente y análisis de amenazas.
 * Responde a incidentes por medio de la orquestación de tareas comunes
     integradas.
 
-### 1.20.4 Azure Key Vault
+### Azure Key Vault
 
 Servicio centralizado para almacenar datos confidenciales. Administra:
 
@@ -1126,7 +1126,7 @@ Servicio centralizado para almacenar datos confidenciales. Administra:
 * Certificados SSL/TLS. 
 * Respaldados por módulos de seguridad de hardware (HMS).
 
-### 1.20.5 Azure Dedicated Host
+### Azure Dedicated Host
 
 Algunas organizaciones deben ajustarse a un cumplimiento normativo que las
 obliga a ser el único cliente que usa el equipo físico en el que se hospedan sus
@@ -1143,7 +1143,7 @@ máquinas virtuales
 El costo es por host dedicado, independientemente de los host virtuales que se
 implementen.
 
-## 1.21 Conectividad de red segura
+## Conectividad de red segura
 
 La defensa en profundidad se puede visualizar como un conjunto de capas, con los
 datos que se deben proteger en el centro.
@@ -1169,7 +1169,7 @@ Los principios comunes de los datos son CIA, por sus siglas en inglés:
 * Integridad. Hash para garantizar la integridad 
 * Disponibilidad. Evitar ataques DDoS.
 
-### 1.21.1 Servicios de Seguridad de Red
+### Servicios de Seguridad de Red
 
 * Azure Firewall. Con estado, usa una IP pública estática. Permite configurar:
 
@@ -1202,7 +1202,7 @@ Los principios comunes de los datos son CIA, por sus siglas en inglés:
     > -   Intervalo de puertos
     > -   Acción.
 
-### 1.21.2 Azure active identity
+### Azure active identity
 
 * Servicios de Identidad
 
@@ -1228,13 +1228,13 @@ Los principios comunes de los datos son CIA, por sus siglas en inglés:
 
 * Inicio de Sesión Único (SSO)
 
-### 1.21.3 Acceso condicional
+### Acceso condicional
 
 Herramienta que usa Azure Active Directory para permitir (o denegar) el acceso a
 los recursos en función de señales de identidad, tales como la identidad, su
 ubicación y el dispositivo.
 
-### 1.21.4 Comandos del CLI
+### Comandos del CLI
 
 Para mostrar grupos de seguridad asociados
 
@@ -1276,7 +1276,7 @@ az network nsg rule create \
     --access Allow
 ```
 
-## 1.22 Cumplimiento de privacidad
+## Cumplimiento de privacidad
 
 Hacer aquello que determina una obligación, una ley, una orden, un castigo, un
 compromiso, una promesa.
@@ -1286,19 +1286,19 @@ compromiso, una promesa.
 * Sectoriales
 * Regionales
 
-### 1.22.1 Declaración de privacidad
+### Declaración de privacidad
 
 Explica qué datos personales recopila Microsoft, cómo los usa y para qué. Abarca
 todos sus servicios, sitios, software, servidores y dispositivos.
 
-### 1.22.2 Términos de los servicios en línea
+### Términos de los servicios en línea
 
 * Contrato legal entre Microsoft y el cliente.
 * Detalla las obligaciones de ambas partes respecto al procesamiento y
     seguridad de los datos.
 * Aplica a servicios bajo licencia.
 
-### 1.22.3 Anexo de protección de datos (Data Protection Addendum)
+### Anexo de protección de datos (Data Protection Addendum)
 
 Define términos de seguridad y procesamiento de datos para servicios en línea:
 
@@ -1306,7 +1306,7 @@ Define términos de seguridad y procesamiento de datos para servicios en línea:
 * Revelación de datos
 * Seguridad de datos
 
-## 1.23 Gobernanza
+## Gobernanza
 
 El término gobernanza describe el proceso general por el que se establecen
 reglas y directivas y se garantiza que esas reglas y directivas se aplican.
@@ -1315,7 +1315,7 @@ reglas y directivas y se garantiza que esas reglas y directivas se aplican.
 * Policy (Que)
 * Budget (Cuanto)
 
-### 1.23.1 RBAC
+### RBAC
 
 Permite crear roles que definen permisos de acceso. El control de acceso basado
 en roles se aplica a un ámbito. Donde un ambito pueden ser:
@@ -1334,12 +1334,12 @@ que pasa por Azure Resource Manager, funciona para grupos e individuos.
 Los permisos de acceso se administran en el panel Control de acceso (IAM) de
 Azure Portal.
 
-### 1.23.2 Bloqueos de recursos (Resource locks)
+### Bloqueos de recursos (Resource locks)
 
 Los bloqueos de recursos impiden que se eliminen o modifiquen recursos por
 error.
 
-### 1.23.3 Niveles de bloqueo
+### Niveles de bloqueo
 
 * CanNotDelete: Se necesita desbloquear para eliminar, la lectura y
     modificación no se ven afectados.
@@ -1347,7 +1347,7 @@ error.
     similar a aplicar a todos los usuarios autorizados el rol Lector en RBAC de
     Azure.
 
-### 1.23.4 Azure blueprints
+### Azure blueprints
 
 Para evitar la desactivación de bloqueos accidental podemos usar Azure
 blueprints. Azure Blueprints nos permite definir el conjunto recursos estándar
@@ -1381,7 +1381,7 @@ Cada componente de la definición de un plano técnico se denomina artefacto y
 estos artefactos pueden tener configuraciones de esta manera se pueden tener
 planos estandar con la flexibilidad de las configuraciones.
 
-## 1.24 Etiquetas
+## Etiquetas
 
 Las etiquetas proporcionan información extra o metadatos sobre los recursos o
 grupos de recursos.
@@ -1392,7 +1392,7 @@ Funcionan como pares nombre-valor.
 
 Un uso de estas es la identificación de costos de facturación.
 
-## 1.25 Azure policy
+## Azure policy
 
 Azure Policy es un servicio de Azure que permite crear, asignar y administrar
 directivas que controlan o auditan recursos de acuerdo a una serie de reglas.
@@ -1408,13 +1408,13 @@ La implementación de una directiva en Azure Policy conlleva tres tareas:
 2.  Asignar la definición a los recursos
 3.  Revisar los resultados de evaluación
 
-### 1.25.1 Iniciativas
+### Iniciativas
 
 Una iniciativa de Azure Policy es una forma de agrupar las directivas
 relacionadas, una directiva es una característica de reestricción. Por ejemplo:
 Solo se pueden crear recursos en la región East de USA.
 
-## 1.26 Cloud Adoption Framework para Azure
+## Cloud Adoption Framework para Azure
 
 Sirve para estandarizar la migración a la nube. Consta de 5 pasos
 
@@ -1472,7 +1472,7 @@ Cloud Adoption Framework incluye estas fases:
     >     > -   Expandir la línea base de administración
     >     > -   Operaciones y principios de diseño avanzado
 
-## 1.27 Creación de una estrategia de gobernanza
+## Creación de una estrategia de gobernanza
 
 La creación de una estrategia de gobernanza puede echar mano de varios recursos
 de Azure
@@ -1494,7 +1494,7 @@ suscripciones
 * Control de acceso
 * Límites de suscripción
 
-## 1.28 Estándares de privacidad, cumplimiento y protección de datos en Azure
+## Estándares de privacidad, cumplimiento y protección de datos en Azure
 
 Azure cuenta con una serie de ofertas de cumplimiento, agrupadas en 4
 categorias:
@@ -1513,26 +1513,26 @@ La documentación de cumplimiento proporciona proyectos de referencia, o
 definiciones de directivas, para estándares comunes que puede aplicar a su
 suscripción de Azure.
 
-### 1.28.1 Azure Government
+### Azure Government
 
 es una instancia independiente del servicio de Microsoft Azure. Aborda las
 necesidades de seguridad y cumplimiento de las agencias federales de EE. UU
 
-## 1.29 Administración de costos de servicio
+## Administración de costos de servicio
 
 Azure cuenta con una calculadora de costo total de propiedad (TOC)
 
 * Ayuda a calcular los costos de Azure vs. local.
 * Deben considerarse costos indirectos, diferencias de zona, promedios, etc.
 
-### 1.29.1 Calculadora de costos
+### Calculadora de costos
 
 La calculadora se encuentra en la sección de Total Cost of Ownership (TCO)
 Calculator en el menú de pricing.
 
 ![image](Notes/Azure/img/TOCAzureCalculator.png)
 
-#### 1.29.1.1 Definir cargas de trabajo
+#### Definir cargas de trabajo
 
 En esta parte definiremos las características generales de los servidores.
 **Recuerda que la licencia de windows tiene costo**.
@@ -1547,14 +1547,14 @@ Y para finalizar las características del almacenaje.
 
 ![image](Notes/Azure/img/TOCWorloadAzureCalculator3.png)
 
-#### 1.29.1.2 Ajustar supuestos
+#### Ajustar supuestos
 
 En esta parte verificamos características, tales como la ubicación geográfica el
 costo de la electricidad.
 
 ![image](Notes/Azure/img/TOCWorloadAzurePremisas.png)
 
-#### 1.29.1.3 Consultar informe
+#### Consultar informe
 
 Al finalizar obtendremos un estimado por región y periodo de tiempo.
 
@@ -1568,7 +1568,7 @@ La Calculadora de precios proporciona estimaciones y no cotizaciones de precios
 reales. Los precios reales pueden variar en función de la fecha de compra, la
 moneda de pago que use y el tipo de cliente de Azure en el que se encuentre.
 
-### 1.29.2 Calculadora de servicios
+### Calculadora de servicios
 
 También existe una calculadora de servicios.
 
@@ -1583,7 +1583,7 @@ Esto nos arrojará un costo mensual.
 
 ![image](Notes/Azure/img/PricingCalculatorResumen.png)
 
-### 1.29.3 Compra de servicios
+### Compra de servicios
 
 Los tres tipos de clientes principales para contratar productos y servicios de
 Azure son:
@@ -1592,7 +1592,7 @@ Azure son:
 * En la web
 * Proveedor de soluciones con un Microsoft Partner
 
-### 1.29.4 Reducción de costos
+### Reducción de costos
 
 Hay estrategias de reducción de costos tales como:
 
@@ -1609,12 +1609,12 @@ Hay estrategias de reducción de costos tales como:
 * Migración de IaaS a PaaS.
 * Azure Cost Management + Billing
 
-### 1.29.5 ¿Afecta el tráfico de red o la ubicación al costo?
+### ¿Afecta el tráfico de red o la ubicación al costo?
 
 Las transferencias de datos salientes (datos que salen de los centros de datos
 de Azure), el precio de la transferencia de datos se basa en las zonas.
 
-### 1.29.6 Azure Cost Management
+### Azure Cost Management
 
 Servicio que ayuda a comprender su factura de Azure, administrar su cuenta y sus
 suscripciones, supervisar y controlar los gastos de Azure, y optimizar el uso de
@@ -1631,7 +1631,7 @@ Sus características son:
 * Alertas
 * Recomendaciones
 
-## 1.30 Acuerdos de nivel de servicio y ciclo de vida
+## Acuerdos de nivel de servicio y ciclo de vida
 
 Contrato formal entre empresa de servicios y cliente. Define estándares de
 rendimiento que Microsoft se compromete a brindar.
@@ -1640,14 +1640,14 @@ Cada servicio de Azure define su propio acuerdo de nivel de servicio y se
 encuentran disponibles en [Acuerdos
 SLA](https://azure.microsoft.com/support/legal/sla/)
 
-### 1.30.1 ¿Qué incluyen?
+### ¿Qué incluyen?
 
 * Introducción donde se plantean los términos generales y las palabras clave,
     y detalles del nivel de servicio.
 * Términos generales.
 * Detalles del SLA (Service Level Agreement).
 
-### 1.30.2 Importancia
+### Importancia
 
 Es importante entender:
 
@@ -1656,26 +1656,26 @@ Es importante entender:
 * Hacerlas efectivas.
 * Disponibilidades.
 
-### 1.30.3 Elementos para aumentar SLA
+### Elementos para aumentar SLA
 
 * Tipo de discos, cambiar magnéticos por premium.
 * Niveles superiores de servicio.
 * Redundancia en regiones mediante replicación de servicios.
 * Redundancia en zonas de disponibilidad.
 
-### 1.30.4 ¿Qué pasa si falla un SLA?
+### ¿Qué pasa si falla un SLA?
 
 Se otorgan créditos de acuerdo al porcentaje, siendo los porcentajes menores los
 que mayor cantidad de crédito otorgan, para solicitarlos debe hacerse antes del
 mes natural donde se produjo el incidente.
 
-### 1.30.5 ¿Cómo se visualiza la interrupción de un servicio?
+### ¿Cómo se visualiza la interrupción de un servicio?
 
 Esta información se encuentra disponible en el [estado de
 Azure](https://status.azure.com/status) en formato RSS y puede conectarse a
 Microsoft Teams o Slack.
 
-### 1.30.6 Cálculo del SLA compuesto
+### Cálculo del SLA compuesto
 
 Para garantizar cierto porcentaje de servicio podemos calcularlo con la
 siguiente fórmula.
@@ -1689,7 +1689,7 @@ zona de disponibilidad; si una zona de disponibilidad se ve afectada, la
 instancia de la máquina virtual de la otra zona de disponibilidad no se verá
 afectada.
 
-### 1.30.7 Ciclo de vida
+### Ciclo de vida
 
 Todos los servicios de Azure cuentan con una
 

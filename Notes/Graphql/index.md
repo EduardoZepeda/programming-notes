@@ -7,7 +7,7 @@ liberado públicamente en 2015.​ Su función principal es crear un endpoint
 para manejar complejas consultas REST.
 
 
-## 1.1 Instalación
+## Instalación
 
 Se instala directamente desde npm o yarn.
 
@@ -15,7 +15,7 @@ Se instala directamente desde npm o yarn.
 npm install graphql
 ```
 
-## 1.2 Tipos en graphql
+## Tipos en graphql
 
 Existen 5 tipos de principales de datos en Graphql. Si no se especifica
 un tipo se tratará como null.
@@ -29,7 +29,7 @@ un tipo se tratará como null.
 En graphql **no existe un campo estándar definido para el tipo date**,
 usado para el manejo de fechas.
 
-## 1.3 Creación de un schema
+## Creación de un schema
 
 Un schema es la estructura que define lo que devolverá un API. En un
 schema solo puede haber un tipo Query, que es el que define el conjunto
@@ -53,7 +53,7 @@ Ahora le pasamos el schema ala función graphql
 graphql(schema, '{hello}').then(data=>console.log(data))
 ```
 
-## 1.4 Query
+## Query
 
 Una query permite realizar una petición al API, dentro de una query se
 indica la consulta a realizar y los campos a obtener.
@@ -68,7 +68,7 @@ data.
 }
 ```
 
-### 1.4.1 Errores la query
+### Errores la query
 
 Graphql devuelve una respuesta en forma de objeto con un campo data y un
 campo error, este es un arreglo.
@@ -80,7 +80,7 @@ campo error, este es un arreglo.
 }
 ```
 
-## 1.5 Resolver
+## Resolver
 
 Para realizar un query **se requiere del objeto resolvers**, este objeto
 contiene **una propiedad del mismo nombre que la query** que va a
@@ -105,7 +105,7 @@ graphql(schema, 'query { hello }', resolvers).then((data) => {
 });
 ```
 
-## 1.6 Graphql con express
+## Graphql con express
 
 Instalamos express y express-graphql
 
@@ -138,7 +138,7 @@ app.listen(port, () => {
 })
 ```
 
-## 1.7 Custom types
+## Custom types
 
 Graphql nos permite definir nuestros propios tipos de datos.
 
@@ -164,7 +164,7 @@ Para luego leerlos de la siguiente manera
 const schema = buildSchema(readFileSync(join(__dirname, 'lib', 'schema.graphql'), 'utf-8'))
 ```
 
-### 1.7.1 Anidación de types
+### Anidación de types
 
 Los types pueden ser anidados e incluso especificar arreglos de types.
 
@@ -182,7 +182,7 @@ type Query {
 }
 ```
 
-## 1.8 Graphql-tools
+## Graphql-tools
 
 Es un wrapper de buildSchema con funciones mejoradas **DESACTUALIZADO**
 
@@ -210,7 +210,7 @@ Query: {
 }
 ```
 
-## 1.9 Querys con argumentos
+## Querys con argumentos
 
 Podemos especificar un nuevo tipo de query, este recibirá un argumento
 llamado id, y será de tipo ID. El caracter ! indica que es un campo
@@ -243,7 +243,7 @@ Query: {
 }
 ```
 
-## 1.10 Aislando variables de entorno
+## Aislando variables de entorno
 
 El paquete dotenv lee variables de entorno en un archivo llamado .env en
 la raiz del proyecto.
@@ -278,7 +278,7 @@ const {
 } = process.env
 ```
 
-## 1.11 Configurando MongoDB para Graphql
+## Configurando MongoDB para Graphql
 
 Para crear una cuenta y tener disponible mongodb en la nube, directo de
 la página oficial, podemos usar Mongo Atlas, los pasos son los
@@ -294,7 +294,7 @@ siguientes:
 7.  En la pestaña de la base de datos ir a collections y agregar una
     base de datos
 
-### 1.11.1 Configurar de un administrador GUI para mongoDB
+### Configurar de un administrador GUI para mongoDB
 
 Descargar e instalar Robot 3T para nuestro sistema operativo aquí hay un
 [tutorial bastante
@@ -308,7 +308,7 @@ completo](https://angelcruz.dev/post/instalar-robo-3t-formerly-robomongo-en-ubun
 4.  Click en test connection
 5.  Si todo salio bien y la conexión fue exitosa, guardar con Save.
 
-## 1.12 Configurar MongoDB en el proyecto
+## Configurar MongoDB en el proyecto
 
 Mongo db requiere la instalación del paquete mongo
 
@@ -393,7 +393,7 @@ Query: {
 }
 ```
 
-## 1.13 mutations
+## mutations
 
 Un mutation va a requerir de un campo de tipo Input que son como
 plantillas que le van a indicar qué campos son necesarios para insertar
@@ -478,7 +478,7 @@ createCourse(input:{
 }
 ```
 
-## 1.14 Nested types
+## Nested types
 
 Para poder agregar un subtipo en el schema necesitamos crear un resolver
 donde creemos un objeto con el nombre del padre y una propiedad con el
@@ -532,7 +532,7 @@ module.exports = {
 }
 ```
 
-## 1.15 Alias y fragments
+## Alias y fragments
 
 Un alias permite ejecutar más de dos consultas al mismo tiempo y
 nombrarlas de distinta manera para poder identificarlas.
@@ -571,7 +571,7 @@ otroCampo
 }
 ```
 
-## 1.16 Variables
+## Variables
 
 Podemos utilizar variables dentro de las peticiones que hagamos a
 GraphQL simplemente definiéndolas con la siguiente sintaxis:
@@ -580,7 +580,7 @@ GraphQL simplemente definiéndolas con la siguiente sintaxis:
 $nombre: tipo
 ```
 
-## 1.17 Enums
+## Enums
 
 tipos de datos escalares cuyos valores son configurables. Si definimos
 un tipo de dato como enum sus valores posibles solamente serán aquellos
@@ -604,7 +604,7 @@ level: Level
 }
 ```
 
-## 1.18 Interfaces
+## Interfaces
 
 Una interfaz nos permite definir un tipo de datos padre que, utilizando
 la palabra implements, va a implementar los campos que tenga definidos
@@ -651,7 +651,7 @@ Person: {
 }
 ```
 
-### 1.18.1 Queries con interfaces
+### Queries con interfaces
 
 En la query podemos usar el tipo de los hijos para agregar campos de
 retorno opcionales en las queries. La sintaxis es por medio de tres
@@ -673,12 +673,12 @@ getPeople{
 Al retornar la query graphql le agregará el campo phone únicamente a los
 tipos Monitor.
 
-## 1.19 Directivas
+## Directivas
 
 Las directivas son una instrucción que permite agregar comportamientos
 especiales. Con ellas podemos modificar el flujo de nuestras queries.
 
-### 1.19.1 @include
+### @include
 
 @include incluye el contenido si su argumento es true
 
@@ -702,7 +702,7 @@ query getPeopleData($monitor: Boolean!){
     }
 ```
 
-### 1.19.2 @skip
+### @skip
 
 Omite su contenido si el argumento es true.
 
@@ -716,7 +716,7 @@ query getPeopleData($monitor: Boolean!){
     }
 ```
 
-### 1.19.3 @deprecated
+### @deprecated
 
 Para marcar propiedades que caducarán
 
@@ -728,7 +728,7 @@ type Monitor {
 }
 ```
 
-## 1.20 Unions
+## Unions
 
 Unions permite agrupar tipos personalizados usando la palabra *union*.
 
@@ -794,7 +794,7 @@ comporte diferente dependiendo del type.
 }
 ```
 
-### 1.20.1 Usando los unions para manejar búsquedas en múltiples collecciones
+### Usando los unions para manejar búsquedas en múltiples collecciones
 
 Para efectuar una búsqueda en múltiples collections, primero necesitamos
 crear índices de búsqueda. Eso se crea en la sección "search index" de
@@ -824,7 +824,7 @@ courses = await db.collection('courses').aggregate([
 totalItems = [...courses, ...]
 ```
 
-## 1.21 Preparar para producción
+## Preparar para producción
 
 Para subir un servidor de graphql a producción necesitamos el paquete de
 express y un middleware. Usaremos el paquete cors, para los headers
@@ -864,7 +864,7 @@ Ya en package.json o en otro archivo podemos hacer algo como:
 }
 ```
 
-## 1.22 Peticiones HTTP
+## Peticiones HTTP
 
 Para acceder al resultado de la api de Graphql le pasamos el parámetro
 GET llamado query, seguido de nuestro string de consulta escapado

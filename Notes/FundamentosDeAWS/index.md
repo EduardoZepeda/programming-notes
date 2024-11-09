@@ -2,7 +2,7 @@
 
 
 
-## 1.1 ¿Qué es el cómputo en la nube?
+## ¿Qué es el cómputo en la nube?
 
 En AWS el cómputo en la nube trata de los siguiente:
 
@@ -39,7 +39,7 @@ Ventajas de AWS:
 -   Si no lo usas, no lo pagas
 -   Cobertura mundial
 
-## 1.2 Servicios de AWS:
+## Servicios de AWS:
 
 -   Computo
 -   Storage
@@ -87,7 +87,7 @@ Ventajas de AWS:
 -   Game Development: \[Motor de juegos\] Puedes generar un juego con el
     software que te proporcionan. Crear escenas, interacción.
 
-## 1.3 EC2
+## EC2
 
 EC2 son un conjunto de maquinas virtuales en línea que puedes utilizar
 para desarrollo, calidad o producción. Estas son algunas de sus
@@ -116,7 +116,7 @@ características:
 Recuerda que puedes ver la documentación oficial de EC2 en:
 <https://docs.aws.amazon.com/es_es/AWSEC2/latest/UserGuide/concepts.html>
 
-### 1.3.1 ¿Qué es Lambda y Serverless?
+### ¿Qué es Lambda y Serverless?
 
 Lambda es un proyecto de AWS muy relacionado con el concepto de
 Serverless, dejar la administración de tus servidores en manos de Amazon
@@ -152,7 +152,7 @@ virtual exclusivo, aislado de las demás ejecuciones lamba.
 Recuerda que AWS te regala 1 millón de peticiones lamba gratis el primer
 año.
 
-#### 1.3.1.1 Funcion Lambda
+#### Funcion Lambda
 
 Para ejecutar una función lambda debemo tener una función llamada
 *lambda_handler* con un evento y un contexto como parámetros:
@@ -168,7 +168,7 @@ def lamda_handler(event, context):
 AWS nos permitirá establecer variables de entorno a las que podemos
 acceder
 
-## 1.4 Conociendo Elastic Beanstalk
+## Conociendo Elastic Beanstalk
 
 Elastic Beanstalk es una plataforma donde en pocos pasos, obtienes un
 balanceador de cargas y tantas instancias EC2 como tu quieras.
@@ -191,7 +191,7 @@ Esta herramienta soporta los siguientes ambientes:
 -   Python
 -   Ruby
 
-## 1.5 Almacenamiento S3
+## Almacenamiento S3
 
 Existen dos grandes opciones para almacenamiento en AWS:
 
@@ -206,7 +206,7 @@ tus instancias EC2, Lamba u otras son efímeras y puedes borrarlas sin
 preocupación alguna. Tambien te permite hacer respaldos en tiempo
 prácticamente real en otras regiones de AWS.
 
-### 1.5.1 Bases de Datos - RDS Aurora PG
+### Bases de Datos - RDS Aurora PG
 
 AWS creó un producto llamado RDS que optimiza el funcionamiento de un
 motor de bases de datos. Este servicio incluye mantenimiento a tu base
@@ -218,7 +218,7 @@ Aurora MySQL, MySQL, MariaDB, PostgreSQL, Oracle y Microsoft SQL Server.
 AWS implementa el motor de PostgreSQL (RDS PG) en una instancia
 optimizada para correr con la máxima eficacia.
 
-#### 1.5.1.1 ¿Qué incluye?
+#### ¿Qué incluye?
 
 RDS PG incluye, por omisión, tareas de optimización como vacuum,
 recuperación de espacio en el disco duro y planificación de queries.
@@ -239,7 +239,7 @@ Otras ventajas de RDS PG son:
 Recuerda que Amazon RDS provee de seguridad por omisión tan alta que
 **no podrás conectarte a tu DB hasta que explícitamente lo permitas.**
 
-### 1.5.2 Conociendo Aurora PG (Postgress)
+### Conociendo Aurora PG (Postgress)
 
 Aurora PG es una nueva propuesta en bases de datos, AWS toma el motor de
 Postgres, instancias de nueva generación, optimizaciones varias en el
@@ -258,12 +258,12 @@ Antes de migrar a Aurora PG debes considerar los siguientes puntos:
         disponibilidad con distintas zonas, es decir, en 3 centros de
         datos a un mismo tiempo.
 
-### 1.5.3 Mejores prácticas
+### Mejores prácticas
 
 -   Respaldos diarios
 -   Replicar base de datos
 
-## 1.6 Redes - Route53
+## Redes - Route53
 
 Existen muchos servicios de redes en AWS, uno de los más interesantes es
 Route 53.
@@ -276,7 +276,7 @@ Route 53 está disponible en todas las regiones de AWS, por lo que
 funcionará excelente aún en caso de que alguna de las regiones se
 pierda.
 
-## 1.7 Herramientas de administración
+## Herramientas de administración
 
 Existen muchas herramientas de administración en AWS muy útiles, las
 siguientes tres son las más importantes:
@@ -295,7 +295,7 @@ acceder a más logs, estas opciones cuentan con almacenamiento histórico
 y hacen un gran trabajo al tratar la información para auditar
 actividades y deshabilitar usuario.
 
-## 1.8 Certificate manager
+## Certificate manager
 
 Existen varias herramientas de seguridad en AWS. Vamos a ver las más
 importantes:

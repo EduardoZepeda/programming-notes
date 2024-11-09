@@ -2,15 +2,15 @@
 
 
 
-## 1.1 Sistema monolítico
+## Sistema monolítico
 
 Una sola pieza, por ejemplo: LAMP
 
-## 1.2 Sistema distribuido
+## Sistema distribuido
 
 Múltiples piezas que se comunican por red
 
-### 1.2.1 Elementos que podemos encontrar en un Sistema Distribuido
+### Elementos que podemos encontrar en un Sistema Distribuido
 
 Existen
 
@@ -22,7 +22,7 @@ Existen
 -   Servicios Publisher-Suscriber (Ejemplo: SNS)
 -   Pipelines
 
-## 1.3 Conexión en el backend
+## Conexión en el backend
 
 Una API o Interfaz de programación de aplicaciones entrega una series de
 servicios llamados endpoints.
@@ -33,7 +33,7 @@ servicios llamados endpoints.
 -   PATCH -\> Partial Update
 -   DELETE -\> Eliminacion
 
-## 1.4 Documento de diseño
+## Documento de diseño
 
 Es un archivo que contendrá todos los detalles que necesitamos para
 poder desarrollar el sistema. Es completamente agnóstico al sistema.
@@ -89,7 +89,7 @@ Limitaciones: Aquí podemos especificar tiempos de latencia.
 
 Costo: En esta parte hacemos estimaciones del costo del sistema
 
-## 1.5 Revisión de diseño
+## Revisión de diseño
 
 Cosas importantes a tener en cuenta:
 
@@ -100,7 +100,7 @@ Cosas importantes a tener en cuenta:
 
 Elaboración de la arquitectura del sistema
 
-## 1.6 Elaboración de la arquitectura del sistema
+## Elaboración de la arquitectura del sistema
 
 Podemos combinar diferentes arquitecturas, bases de datos de acuerdo a
 nuestras necesidades.
@@ -115,11 +115,11 @@ Para elaborar la arquitectura podemos usar
 
 Diseños de bajo nivel, planes de prueba e integración continua
 
-## 1.7 Entidad
+## Entidad
 
 Una entidad es un objeto que satisface las reglas del negocio, las
 cuales pueden ser computadas.
 
-## 1.8 Escalabilidad, Throttling y Retry Policy
+## Escalabilidad, Throttling y Retry Policy
 
 Podemos limitar la cantidad de peticiones por minuto usando Throttling.

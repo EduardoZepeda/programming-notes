@@ -8,16 +8,16 @@ Al estar en formato binario, se requiere su deserialización y serialización pa
 
 
 
-## 1.1 gRPC
+## gRPC
 
 gRPC es un protocolo creado por Google basado en RPC.
 
-### 1.1.1 ¿Qué es RPC?
+### ¿Qué es RPC?
 
 
 Es protocolo que oculta la implementación en el backend de la petición realizada por cliente, aunque el cliente sepa como hacer la petición y pueda llamarla como si fuera suya.
 
-### 1.1.2 Protocolo gRPC
+### Protocolo gRPC
 
 Usando como base RPC, Google creó una versión de mejorada llamada gRPC donde resaltan dos aspectos HTTP2 y Protobuffers:
 
@@ -27,11 +27,11 @@ Usando como base RPC, Google creó una versión de mejorada llamada gRPC donde r
 * Usa los protobuffers como estructura para intercambio de datos.
     * Permite serializar y deserializar datos más rápido.
 
-## 1.2 Métodos de gRPC
+## Métodos de gRPC
 
 Existen dos métodos unary y streaming.
 
-### 1.2.1 Unary
+### Unary
 
 Similar a como funciona una API con arquitectura REST; el cliente envía una petición al servidor y el servidor la responde.
 
@@ -41,7 +41,7 @@ Se define
 rpc Nombre(Request) returns (Response)
 ```
 
-### 1.2.2 Streaming
+### Streaming
 
 Permite constante envío de data en un canal.
 
@@ -51,7 +51,7 @@ Permite constante envío de data en un canal.
 
 La serialización y deserialización de ambos formatos siempre ocurre, con la ventaja de que los protobbufers tienen mucha menor latencia que los JSON al hacerlo.
 
-## 1.3 Comparación de protobuffers y JSON
+## Comparación de protobuffers y JSON
 
 JSON es un formato de mensajes eficiente para JavaScript con las siguientes características
 
@@ -65,13 +65,13 @@ Protobuffers es un formato de mensaje agnóstico a cualquier lenguaje de program
 * Esta compilación solo ocurre en tiempo de creación o modificación, no en tiempo de ejecución.
 * Se puede llamar archivos .proto desde otros archivos .proto.
 
-### 1.3.1 ¿Cuando usar JSON y cuando Protobuffer?
+### ¿Cuando usar JSON y cuando Protobuffer?
 
 Usa JSON cuando la aplicación requiere que la data sea más flexible, por ejemplo REST APIs directo al cliente
 Usa Protobuffers cuando el rendimiento sea un factor crítico, ideal para microservicios.
 
 
-## 1.4 Instalación del compilador
+## Instalación del compilador
 
 ```bash
 apt install -y protobuf-compiler
@@ -85,7 +85,7 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 
-## 1.5 Estructura de un Protobuffer
+## Estructura de un Protobuffer
 
 Un protobuffer es un archivo con terminación .proto
 
@@ -99,7 +99,7 @@ package student;
 option go_package = "github.com/EduardoZepeda/protobuffers-grpc;studentpb";
 ```
 
-### 1.5.1 Messages
+### Messages
 
 Un message servirá como un struct con las propiedades de nuestros mensajes a intercambiar entre cliente y servidor.
 
@@ -113,7 +113,7 @@ message Student {
 
 Al compilar un protobuffer obtenemos un paquete en el lenguaje de programación que estemos usando.
 
-### 1.5.2 Servicios
+### Servicios
 
 Los servicios definen las funciones que utilizará el cliente para interaccionar con el servidor, debemos especificar los servicios con la palabra *service*, el nombre del servicio. Y dentro de este, anteponer la palabra rpc al nombre del servicio, su argumento y su valor de retorno entre paréntesis.
 
@@ -135,7 +135,7 @@ service StudentService {
 
 Nota como se usa *returns*, en plural, en lugar del más conocido return.
 
-### 1.5.3 Compilación
+### Compilación
 
 La compilación se lleva a cabo con el siguiente comando:
 
@@ -152,7 +152,7 @@ Cuyo comportamiento podemos modificar con los siguientes flags:
 
 Tras correr el comando se crearán archivos con extensión go, estos archivos son generados de manera automática y no necesitan modificarse.
 
-## 1.6 Creación de un servidor gRPC
+## Creación de un servidor gRPC
 
 Para crear un servidor necesitamos llamar al método NewServer y posteriormente registrar un servidor de servicio en el modelo gRPC creado anteriormente.
 
@@ -168,7 +168,7 @@ type Server struct {
     studentpb.UnimplementedStudentServiceServer
 }
 
-### 1.6.1 Usando reflection para obtener los métodos
+### Usando reflection para obtener los métodos
 
 El paquete reflection puede ser de mucha utilidad para leer los métodos del servidor gRPC usando herramientas como Postman.
 
@@ -178,7 +178,7 @@ testpb.RegisterTestServiceServer(s, server)
 reflection.Register(s)
 ```
 
-## 1.7 Streaming
+## Streaming
 
 Para manejar el streaming se usa la palabra stream en el argumento de nuestro método rpc. De esta manera le decimos al servidor que el cliente puede enviar un stream de data, del tipo del argumento.
 
@@ -186,7 +186,7 @@ Para manejar el streaming se usa la palabra stream en el argumento de nuestro m�
 rpc SetQuestions(stream Question) returns (SetQuestionResponse);
 ```
 
-### 1.7.1 Cerrar el streaming
+### Cerrar el streaming
 
 Escucharemos eternamente por un error de tipo EOF, que se dispara cuando el cliente cancela la conexión y lo manejaremos cerrando el stream.
 
@@ -204,6 +204,6 @@ func (s *TestServer) SetQuestions(stream testpb.TestService_SetQuestionsServer) 
 }
 ```
 
-## 1.8 Usar gRPC en Web
+## Usar gRPC en Web
 
 El proyecto grpc-web o un proxy grpc/rest nos permiten usar directamente gRPC en el navegador web, como si se tratara de REST. 

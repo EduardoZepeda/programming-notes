@@ -8,13 +8,13 @@ optimizando sin mejorar la experiencia de los usuarios. Con Nextjs
 podemos ahorrarnos el trabajo de configuración de React y su ecosistema.
 
 
-## 1.1 Cost of ownership
+## Cost of ownership
 
 Al crear tan personalizado estamos creando un framework personalizado,
 que muchas veces tiene un alto costo de mantenimiento que no se ve
 compensado con el valor de la aplicación.
 
-## 1.2 ¿Por qué usar Next.js?
+## ¿Por qué usar Next.js?
 
 NextJS es un framework que se encarga de muchos aspectos, inclusive del
 deploy.
@@ -32,9 +32,9 @@ deploy.
 -   Rutas de API para crear endpoints de API con funciones sin servidor
 -   Totalmente ampliable
 
-## 1.3 Instalación
+## Instalación
 
-### 1.3.1 Instalar dependencias
+### Instalar dependencias
 
 Recomendable tener las versiones más actualizadas de Node.
 
@@ -48,7 +48,7 @@ Luego instalaremos las dependencias de next junto con next
 npm install next react react-dom
 ```
 
-### 1.3.2 Crear carpeta pages
+### Crear carpeta pages
 
 Nextjs requiere una carpeta llamada pages en el root del proyecto
 
@@ -56,7 +56,7 @@ Nextjs requiere una carpeta llamada pages en el root del proyecto
 mkdir pages
 ```
 
-### 1.3.3 Cambiar scripts
+### Cambiar scripts
 
 ``` javascript
 "scripts": {
@@ -66,7 +66,7 @@ mkdir pages
 }
 ```
 
-## 1.4 Create-next-app
+## Create-next-app
 
 Con el mismo espíritu de create-react-app, Nextjs implementó un comando
 para crear aplicaciones de nextjs llamado *create-next-app*.
@@ -81,7 +81,7 @@ Y si queremos usar typescript:
 npx create-next-app@latest --typescript
 ```
 
-## 1.5 Rutas básicas
+## Rutas básicas
 
 Nextjs tomará los archivos index.js como los home de cada carpeta. Es un
 routing basado en file system. Por lo que las pedidas a /about,
@@ -95,7 +95,7 @@ pages
 /-- product
 ```
 
-## 1.6 Páginas dinámicas
+## Páginas dinámicas
 
 Se crean usando una sintaxis que involucra corchetes y dentro de ellos
 la variable a capturar. Si este archivo estuviera dentro de una carpeta
@@ -125,7 +125,7 @@ export default Componente
 Lo que viene despues de la propiedad query será el nombre de nuestro
 archivo.
 
-## 1.7 Setup y páginas
+## Setup y páginas
 
 En los scripts del archivo *package.json* build se encarga de compilar,
 mientras que start inicia el servidor de node.
@@ -138,7 +138,7 @@ mientras que start inicia el servidor de node.
 }
 ```
 
-## 1.8 Enlazando páginas
+## Enlazando páginas
 
 Para enlazar páginas de manera dinámica se lleva acabo con el componente
 Link que proviene de *next/link*. Es necesario colocar una etiqueta
@@ -161,7 +161,7 @@ export default Componente
 Nextjs hace un prefetch al hacer hover en un enlace y descarga la
 información, de esta manera mejora la optimización.
 
-## 1.9 Etiqueta Head
+## Etiqueta Head
 
 Nextjs implementa un componente Head que se encarga de añadir
 información en la etiqueta head de una página
@@ -184,7 +184,7 @@ return (
 export default IndexPage
 ```
 
-## 1.10 Link y Proxy
+## Link y Proxy
 
 A partir de Nextjs 10 podemos duplicar rutas sin necesidad de duplicar
 las carpetas. Rewrites nos permite solucionar este problema.
@@ -205,7 +205,7 @@ module.exports = {
 }
 ```
 
-## 1.11 API
+## API
 
 Las Api deben de ir dentro de una carpeta llamada Api,
 *obligatoriamente*. La forma de crear rutas es la misma.
@@ -223,7 +223,7 @@ const allData = async (request: IncomingMessage, response: ServerResponse) => {
 export default allData
 ```
 
-### 1.11.1 Objetos response y request
+### Objetos response y request
 
 Nextjs tiene objetos que fueron extendidos para manejar las respuestas y
 peticiones web, estos son:
@@ -251,7 +251,7 @@ limpia.
 response.status(200).json({data: entry})
 ```
 
-## 1.12 Middleware
+## Middleware
 
 El middleware necesita ser una función middleware y estar dentro un
 archivo llamado \_middleware, con extensión tsx o js, que se encuentre
@@ -270,7 +270,7 @@ event: NextFetchEvent
 
 Si manejas código asíncrono, es necesario agregar el prefijo async.
 
-### 1.12.1 El objeto NextRequest
+### El objeto NextRequest
 
 Es una extensión del objeto response con varios métodos y propiedades
 añadidas
@@ -281,7 +281,7 @@ añadidas
 -   ip, con la dirección IP
 -   ua, useragent
 
-### 1.12.2 El objeto NextResponse
+### El objeto NextResponse
 
 Una extensión del objeto Response con los siguientes métodos y
 propiedades añadidos
@@ -291,12 +291,12 @@ propiedades añadidos
 -   rewrite()
 -   next(), para continuar la cadena de middlewares
 
-## 1.13 Personalización de NextJS
+## Personalización de NextJS
 
 Document es el documento principal, dentro de esta se encuentra App y
 dentro de esta se encuentra la aplicación.
 
-### 1.13.1 Extendiendo document
+### Extendiendo document
 
 Para modificar el document creamos un archivo, dentro de la carpeta
 pages/, llamado \_document.tsx o \_document.js , ya sea que estemos
@@ -340,7 +340,7 @@ class MyDocument extends Document {
 export default MyDocument
 ```
 
-### 1.13.2 Extendiendo App
+### Extendiendo App
 
 Igual que en el ejemplo de document, Nextjs proporciona una
 [plantilla](https://nextjs.org/docs/advanced-features/custom-app) que
@@ -427,7 +427,7 @@ const Layout: React.FC= ({children}) => {
 export default Layout
 ```
 
-## 1.14 Path Alias
+## Path Alias
 
 Para evitar la repeticion de salir de componentes una y otra vez
 
@@ -453,7 +453,7 @@ respectivamente.
 La diagonal y el asterisco despues de cada componente indica que es el
 acceso a muchos archivos
 
-## 1.15 CSS
+## CSS
 
 Nextjs se muestra totalmente agnóstico sobre que tipo de implementación
 de [CSS](../../HtmlYCss/1.-HTML-y-CSS.md) se debería usar.
@@ -463,7 +463,7 @@ de [CSS](../../HtmlYCss/1.-HTML-y-CSS.md) se debería usar.
 3)  CSS-in-JS Styled JSX (Mantenida por los creadores de NextJS y
     Vercel)
 
-### 1.15.1 Glocal CSS
+### Glocal CSS
 
 Podemos integrarlo directo en el archivo \_app.tsx, de esta manera
 estará disponible en todas las páginas-
@@ -475,7 +475,7 @@ import '../styles.css'
 Ahora los estilos disponibles en el archivo styles.css deben estar
 disponibles para todos las páginas.
 
-### 1.15.2 Module CSS
+### Module CSS
 
 El module.css se aplica por componente. Module css aplica hashes para
 evitar colisiones dentro de los archivos.
@@ -486,7 +486,7 @@ import styles from './layout/module.css'
 <div className={styles.container}></div>
 ```
 
-### 1.15.3 CSS-in-JS
+### CSS-in-JS
 
 Tenemos que colocar una etiqueta estile con el atributo jsx y dentro los
 estilos que queremos especificicar. De la misma manera NextJS creará
@@ -502,7 +502,7 @@ hashes para evitar colisiones de nombres.
 </style>
 ```
 
-### 1.15.4 Usando SASS
+### Usando SASS
 
 Para los que usamos SCSS o SASS 1) Debemos instalar las dependencias
 @zeit/next-sass node-sass 2) Crear un archivo con el nombre
@@ -533,7 +533,7 @@ module.exports = withSass(withFonts({
 }));
 ```
 
-## 1.16 Contenido estático
+## Contenido estático
 
 Nextjs espera una carpeta llamada **public** dentro del root del
 proyecto. Podemos servir los contenidos estáticos de esta carpeta
@@ -545,7 +545,7 @@ subcarpetas también
 <img src="/subcarpeta/tu-imagen.jpg" alt=""/>
 ```
 
-### 1.16.1 Imágenes con el componente Image
+### Imágenes con el componente Image
 
 A partir de NextJS se incorpora un componente de imagen que se encarga
 de optimizar la carga de las imágenes de manera perezosa, además de
@@ -560,12 +560,12 @@ import Image from 'next/image'
 El ancho y largo se forzan, para minimizar el impacto en el cumulative
 layour shift
 
-## 1.17 Pre-render modes
+## Pre-render modes
 
 Nextjs nos provee dos maneras de servir el contenido SSG (Static Site
 Generation) y SSR (Server Side Rendering)
 
-## 1.18 SSR
+## SSR
 
 El useEffect de React siempre se ejecuta en el navegador, por lo que
 siempre va a tomar la función de SSR.
@@ -576,7 +576,7 @@ servidor implica una petición web, por lo que siempre recibirá el
 contenido actualizado, este método es ideal para contenido que se
 actualiza constantemente.
 
-### 1.18.1 SSR con getServerSideProps
+### SSR con getServerSideProps
 
 Su función es comunicar los props de nuestro componente con código que
 ejecutamos antes de que Next.js responda al cliente.
@@ -624,7 +624,7 @@ export const getServerSideProps = async (params) => {
 }
 ```
 
-## 1.19 Variables de entorno
+## Variables de entorno
 
 Si queremos que nextjs cargue variables de entorno en nuestra aplicación
 deberemos crear un archivo llamado .env en la raiz de la aplicación
@@ -659,7 +659,7 @@ Las 3 primeras deben incluirse en los repositorios. *.env.local* debería
 añadirse a *.gitignore* y *.env.local* contendrá aquellos valores
 sensibles.
 
-## 1.20 SSG
+## SSG
 
 El método de SSG creará páginas estáticas para servir contenido por
 medio de Nextjs. La implementación consiste en hacer una única petición
@@ -667,7 +667,7 @@ y, posteriormente generar el contenido estático.
 
 El SSG es ideal para contenido que no cambia con frecuencia.
 
-### 1.20.1 SSG con getStaticProps
+### SSG con getStaticProps
 
 Esta función se exporta desde una página, es imposible usarla desde
 cualquier otro componente. Este método no se ejecutará en modo
@@ -696,7 +696,7 @@ const Component = ({ourProps}) => {...}
 Así mismo debemos cambiar todos los métodos que no existen en un
 contexto de servidor, como fetch.
 
-### 1.20.2 SSG Páginas dinámicas
+### SSG Páginas dinámicas
 
 Estas páginas cambiarán
 
@@ -718,7 +718,7 @@ export const getStaticProps = async ({ params }) => {
 }
 ```
 
-## 1.21 Static Dynamic Static Generation
+## Static Dynamic Static Generation
 
 Con Static dynamic static generation podemos generar sitios estáticos
 para una gran cantidad de páginas dinámicas, para eso necesitaremos dos
@@ -728,7 +728,7 @@ funciones:
     dinámica.
 -   getStaticPaths, que retornará la lista de páginas dinámicas a crear.
 
-### 1.21.1 SDSG con getStaticPaths
+### SDSG con getStaticPaths
 
 NextJs requiere que le digamos de antemano todas las páginas dinámicas,
 aquellas que usan corchetes en su sintaxis, por ejemplo *\[id\].js*, que
@@ -832,7 +832,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 ```
 
-## 1.22 Deploy
+## Deploy
 
 Además de hacer deploy con Vercel se puede hacer un deploy de estáticos
 haciendo un export por medio de next. Al usar next export se producirán
@@ -850,12 +850,12 @@ Tras correr el comando nos generará una carpeta llamada out. Esta
 carpeta contiene páginas estáticas en html completamente planas. Estás
 páginas podemos usarlas con cualquier servidor que sirva html plano.
 
-## 1.23 Diferencia entre next build y next export
+## Diferencia entre next build y next export
 
 El primero construye una aplicación lista para producción de Node. El
 segundo produce archivos estáticos.
 
-## 1.24 Métricas
+## Métricas
 
 NextJs nos permite obtener métricas al exportar la funcion
 reportWebVitals desde el archivo \_app.js o \_app.tsx. Estas podemos
@@ -868,7 +868,7 @@ export function reportWebVitals(metric){
 }
 ```
 
-## 1.25 Optimización de imagenes AVIF
+## Optimización de imagenes AVIF
 
 A partir de la versión Nextjs 12, cuenta con soporte de optimización
 para imágenes formato AVIF. Se activa modificando la propiedad
@@ -882,7 +882,7 @@ module.exports = {
 }
 ```
 
-## 1.26 Troubleshooting
+## Troubleshooting
 
 A veces los layouts no salen como queremos, sobre todo cuando usamos un
 grid como estructura para el root de la aplicación. Si es el caso, hay
@@ -897,11 +897,11 @@ propios estilos CSS.
 ```
 ## Autenticación 
 
-### 1.1 Autenticación clásica y moderna
+### Autenticación clásica y moderna
 
 Existen dos modelos de autenticación: clásica y la moderna.
 
-### 1.1.1 Clásica
+### Clásica
 
 Se realiza por cookies. Se crea un objeto en el servidor que persiste en
 todos los request del cliente. Generlamente usada por los frameworks de
@@ -910,7 +910,7 @@ PHP, Django y sistemas antiguos.
 Es stateful, porque el servidor mantiene y controla por completo las
 sesiones.
 
-### 1.1.2 Moderna
+### Moderna
 
 Se crea un token firmado por el servidor y enviado al cliente. El
 cliente puede leer algunas partes del token, pero no crear nuevos. El
@@ -922,17 +922,17 @@ tokens creados. La verificación se basa en la firma criptográfica.
 Tiene la ventaja de que se ahorra espacio, pues no se necesita guardar
 los tokens en el servidor.
 
-## 1.2 Oauth
+## Oauth
 
 Estandar abierto para la delegación de acceso que evita el usar las
 contraseñas de los usuarios.
 
-## 1.3 Patrones de autenticación
+## Patrones de autenticación
 
 1.  validar en el cliente
 2.  validar desde el servidor
 
-## 1.4 Servicios de autenticación
+## Servicios de autenticación
 
 Para el lado del cliente.
 
@@ -946,12 +946,12 @@ Para el lado del servidor, compatibles con cualquier DB
 -   iron-session
 -   Auth0
 
-## 1.5 Nextauth.js
+## Nextauth.js
 
 Open source y construido para next.js siguiendo buenas prácticas de
 seguridad.
 
-### 1.5.1 Configuración
+### Configuración
 
 Instalar next-auth
 
@@ -1121,7 +1121,7 @@ export default async Component(){
 }
 ```
 
-## 1.6 Autenticación manual
+## Autenticación manual
 
 Provider usa oauth por debajo para manejar la autenticación. Si
 accedemos a la propiedad *Credentials* seremos nosotros quienes nos
@@ -1153,7 +1153,7 @@ providers: [Credentials({
 })]
 ```
 
-### 1.6.1 Creando una pantalla de login
+### Creando una pantalla de login
 
 El campo credentials será un objeto con diferentes atributos html5, aqui
 especificamos el password y el label. Nextjs se encargará de crear
@@ -1164,7 +1164,7 @@ automática en la ruta */api/auth/signin*
 
 ![image](Notes/Nextjs/img/NextjsAuthSignin.png)
 
-### 1.6.2 Función authorize
+### Función authorize
 
 La función authorize llamará al provider que especificamos y se ejecuta
 cuando intentamos hacer un loggeo en la pantalla de login.
@@ -1222,7 +1222,7 @@ const credentials: NextApiHandler<User> = async (request: NextApiRequest, respon
 export default credentials
 ```
 
-## 1.7 Cookies de Nextjs
+## Cookies de Nextjs
 
 Si ahora nos loggeamos en la pantalla creada por nextjs y la
 autenticación es exitosa, tendremos una cookie de sesión llamada
@@ -1238,7 +1238,7 @@ El token es firmado por defecto (JWS) pero no es encriptado (JWE)
 next-auth.session-token=eyJhbG...
 ```
 
-## 1.8 Objeto sessión
+## Objeto sessión
 
 El objeto de sesión que viene en la cookie *next-auth.session-token* es
 innaccesible desde el frontend, por su propiedad HttpOnly, por lo que,
@@ -1257,7 +1257,7 @@ sesión.
 }
 ```
 
-## 1.9 Cierre de sesión
+## Cierre de sesión
 
 Nextjs provee métodos para abrir y cerrar sesiones. Podemos usar estos
 métodos para crear componentes con funcionamiento personalizado.
@@ -1275,7 +1275,7 @@ function LoginLogout() {
 }
 ```
 
-## 1.10 Manejando el flash of unauthenticated
+## Manejando el flash of unauthenticated
 
 Este flash sucede justo despúes del cambio de estado entre un estado de
 sesión iniciada. El hook *useSession* contiene también un estado de
@@ -1288,7 +1288,7 @@ const [session, loading] = useSession()
 if(loading){return null}
 ```
 
-## 1.11 Autenticando con Github
+## Autenticando con Github
 
 Creamos un Oauth application en
 [Github](https://github.com/settings/apps) y especificamos el callback
@@ -1311,12 +1311,12 @@ Tras agregar los valores en nuestro archivo de variables de entorno.
 Tendremos un nuevo botón en la página de signin creada por nextjs en
 *api/auth/signin*
 
-## 1.12 JWT
+## JWT
 
 si no existe una base de datos, se utiliza JWT almacenando el token en
 una cookie.
 
-## 1.13 Protegiendo rutas API
+## Protegiendo rutas API
 
 Podemos proteger las rutas de la carpeta api, que provee los resultados
 para el backend, simplemente obteniendo el objeto session y observando
@@ -1332,7 +1332,7 @@ if(session==null) {
 }
 ```
 
-## 1.14 Protegiendo rutas en el frontend
+## Protegiendo rutas en el frontend
 
 useSession está escuchando constantemente al objeto window para
 actualizar las páginas escuchando los cambios en el objeto session, para
@@ -1349,7 +1349,7 @@ if (session == null) {
 }
 ```
 
-## 1.15 Soluciones basadas en Node.js: Passport, Auth0, emails y bases de datos
+## Soluciones basadas en Node.js: Passport, Auth0, emails y bases de datos
 
 NextAuth ofrece soluciones para conectar con proveedores de email.
 
@@ -1515,14 +1515,14 @@ router.query: {}
 router.isReady: false
 router.query: {"key": "value"}
 ```
-## 3.0 Internacionalización
+## Internacionalización
 
-## 1.1 i18n
+## i18n
 
 Se refiere a la adecuación del idioma, formato fechas, monedas, números,
 zonas horarias, de acuerdo a un país y región.
 
-## 1.2 Anatomia de un Locale
+## Anatomia de un Locale
 
 Consta de 3 secciones. La primera es el lenguaje, la segunda la
 representación del lenguaje y la tercera se refiere a la región
@@ -1535,7 +1535,7 @@ Por ejemplo: la-Scr-RE
 
 Generalmente la segunda sección, el script, suele omitirse.
 
-## 1.3 Arquitectura
+## Arquitectura
 
 Existe información dinámica e información estática, es decir, texto
 hardcodeado en el html.
@@ -1546,14 +1546,14 @@ Podemos separar el contenido:
     con soporte para locale.
 -   APP - React: Manejará los labels y los timezone.
 
-## 1.4 Estrategias de rutas i18n
+## Estrategias de rutas i18n
 
 Hay dos estrategias que podemos tomar al respecto
 
 -   sub-atch routing: /es/productos
 -   domain routing: .es/productos
 
-## 1.5 Configuración de locales en nextjs.config.js
+## Configuración de locales en nextjs.config.js
 
 Especificamos dentro de la propiedad i18n los valores de locales y
 defaultLocale, para especificar los idiomas disponibles y el valor por
@@ -1601,7 +1601,7 @@ export const getStaticProps: GetStaticProps<myProps> = async ({ locale }) => {
 }
 ```
 
-## 1.6 i18n en páginas dinámicas en SSG
+## i18n en páginas dinámicas en SSG
 
 Para usar i18n en páginas dinámicas necesitamos generar los paths
 correspondientes por cada locale existente, junto con sus respectivos
@@ -1621,7 +1621,7 @@ return {
 }
 ```
 
-## 1.7 i18n en páginas no dinámicas
+## i18n en páginas no dinámicas
 
 getStaticPaths recibe *locales* (en plural) como parámetro
 
@@ -1655,7 +1655,7 @@ export const getStaticPaths = ({ locales }) => {
 }
 ```
 
-## 1.8 Detección automática con Nextjs
+## Detección automática con Nextjs
 
 Nextjs detecta automáticamente el idioma usando el header de preferencia
 "Accept-language" que elige el navegador. Podemos desactivar la función
@@ -1689,7 +1689,7 @@ Link
 <Link href="/br/about-us" locale={ false }/>
 ```
 
-### 1.8.1 i18n cookie
+### i18n cookie
 
 Nextjs también puede colocar una preferencia de idioma por medio de la
 cookie llamada NEXT_LOCALE, que sería leída por Nextjs. La cookie
@@ -1699,7 +1699,7 @@ NEXT_LOCALE tiene prioridad de la detección automática de Nextjs.
 setCookie('NEXT_LOCALE', 'es')
 ```
 
-## 1.9 Arquitectura de i18n para labels
+## Arquitectura de i18n para labels
 
 Todo el texto se extrae del código y se mueve a un archivo JSON
 (locales/es.json)
@@ -1733,7 +1733,7 @@ function useTranslate(){
 }
 ```
 
-### 1.9.1 Librerías de i18n en React
+### Librerías de i18n en React
 
 Ya existen librerías que manejan la i18n en react.
 
@@ -1743,7 +1743,7 @@ Ya existen librerías que manejan la i18n en react.
 -   rosetta
 -   next-intl
 
-## 1.10 i18n con next-i18next
+## i18n con next-i18next
 
 Primero debemos envolver nuestra app en la función appWithTranslation
 que nos provee la librería.
@@ -1805,7 +1805,7 @@ export function componente(){
 * [4.13-OWASP](<4.13-OWASP>)
 
 
-## 1.1 A1: Injection
+## A1: Injection
 
 Es el agregar parte de una consulta para crear instrucciones extras que
 serán ejecutadas en el lado del servidor.
@@ -1817,13 +1817,13 @@ serán ejecutadas en el lado del servidor.
 Generalmente estos errores suceden al usar consultas sql por medio de
 vanilla js, python, etc.
 
-### 1.1.1 Prevención de Injection
+### Prevención de Injection
 
 -   Evitar usar el intérprete.
 -   Usar herramientas ORM como Prisma, TypeORM.
 -   Validar siempre los datos de entrada.
 
-## 1.2 A7: Cross-site scripting o XSS
+## A7: Cross-site scripting o XSS
 
 Son un tipo de ataque donde se logra ejecutar código en los navegadores
 de los usuarios que acceden a un sitio web legítimo. Por ejemplo, la
@@ -1831,13 +1831,13 @@ inserción de etiquetas script para ejecutar código arbitrario o
 simplemente con propósitos intrusivos como alerts y confirms de
 javascript.
 
-### 1.2.1 Prevención de XSS
+### Prevención de XSS
 
 -   Validación en formularios por medio de HTML5 (usando los tipos de
     input) o Yup.
 -   El texto debe ser usado para fines de presentación.
 
-### 1.2.2 Sanitize HTML
+### Sanitize HTML
 
 Sanitize HTML nos permite sanear el texto que recibimos de los usuarios.
 
@@ -1852,18 +1852,18 @@ const safeHTMLWithTags = sanitizeHTML(value, {
 })
 ```
 
-## 1.3 Otras reglas de prevención
+## Otras reglas de prevención
 
 -   Evitar el uso de eval
 -   Evitar document.write, inner.HTML y outerHTML
 -   Usar con precaución node.innerText
 -   Preferir usar node.textContent
 
-## 1.4 Broken Authentication
+## Broken Authentication
 
 Recomendaciones, usar oAuth, OpenID
 
-## 1.5 Protección de sesiones en el cliente
+## Protección de sesiones en el cliente
 
 Para proteger una sesión creamos
 
@@ -1883,7 +1883,7 @@ protegido
 <Protected>Contenido Protegido</Protected>
 ```
 
-## 1.6 ¿Donde guardar una sessión?
+## ¿Donde guardar una sessión?
 
 Podemos guardarlo en las cookies o en el local storage, cada cual con
 sus fortalezas y debilidades.
@@ -1891,7 +1891,7 @@ sus fortalezas y debilidades.
 El sessión ID no debe ser obvio, estar expuesto en la URL o dar
 información sobre las tecnologías o frameworks del cual provienen.
 
-## 1.7 Cookies
+## Cookies
 
 Hay algunos atributos muy útiles para manejar la seguridad de nuestras
 cookies.
@@ -1899,16 +1899,16 @@ cookies.
 Es la opción preferida, además tenemos múltiples atributos que nos
 ayudan con la seguridad.
 
-### 1.7.1 Atributo secure
+### Atributo secure
 
 Para mandar la cookie solo por una conexión segura de HTTPS.
 
-### 1.7.2 Atributo HttpOnly
+### Atributo HttpOnly
 
 Las cookies serán accesibles únicamente por http, no por código
 javascript.
 
-### 1.7.3 Atributo SameSite
+### Atributo SameSite
 
 Controla si una cookie de terceros debe enviarse en peticiones entre
 sitios.
@@ -1922,32 +1922,32 @@ Sus atributos son:
     de terceros. Las cookies se enviarán solo si el dominio es el mismo
     que el path, para el cual la cookie ha sido colocada.
 
-### 1.7.4 Path
+### Path
 
 Limita el alcance de la cookie usando el flag *Path*.
 
-### 1.7.5 Expiration
+### Expiration
 
 Usa una fecha de expiración tan corta como sea posible.
 
-## 1.8 Web Storage
+## Web Storage
 
 -   LocalStorage. Persistente a través de sesiones en páginas del mismo
     origen. **Nunca debe usarse para guardar información sensible**
 -   SessionStorage. Persiste solo mientras la pestaña está abierta.
 
-## 1.9 ¿Dónde guardar un token JWT?
+## ¿Dónde guardar un token JWT?
 
-### 1.9.1 JWT en Cookies
+### JWT en Cookies
 
 Estaremos seguros contra ataques XSS, pero inseguros contra CSRF.
 
-### 1.9.2 Session Storage
+### Session Storage
 
 Nos mantendremos seguros contra ataques de CSRF, pero estaremos
 inseguros contra ataques XSS.
 
-### 1.9.3 Recomendaciones de OWASP
+### Recomendaciones de OWASP
 
 La recomendación para sesiones es
 
@@ -1959,13 +1959,13 @@ La recomendación para cookies es
 -   Si se usan cookies usar los atributos Secure y HttpOnly.
 -   PRotección adicional contra CSRF.
 
-### 1.9.4 Next Auth
+### Next Auth
 
 Nextjs se encarga de realizar la Autenticación en el navegador. Los JWT
 se crea en el server y se manda como cookie con los atributos Secure y
 HttpOnly. Además, Next Auth usa CSRF para páginas de login y logout.
 
-### 1.9.5 Guardar tokens
+### Guardar tokens
 
 Podemos usar un webworker para interceptar las peticiones web y
 adjuntarles un token, de la misma manera puede recibir las peticiones y
@@ -1973,7 +1973,7 @@ limpiarlas de datos sensibles. Una desventaja es que no todos los
 navegadores tienen soporte para estos, además es sensible al mismo tipo
 de vulnerabilidades.
 
-## 1.10 Estrategia de las dos cookies
+## Estrategia de las dos cookies
 
 Peter Locke propone llevar a cabo la autenticación diviendo el JWT en
 dos cookies:
@@ -1986,12 +1986,12 @@ dos cookies:
 Más información en su [post en
 medium](https://medium.com/lightrail/getting-token-authentication-right-in-a-stateless-single-page-application-57d0c6474e3)
 
-## 1.11 Sensitive data exposure
+## Sensitive data exposure
 
 Todo tipo de información sensible jamás debe de mandarse en un token que
 persista en el tiempo ni almacenarse en el local storage.
 
-### 1.11.1 ¿Cuánto tiempo debería durar un access_token?
+### ¿Cuánto tiempo debería durar un access_token?
 
 A mayor tiempo de existencia de duración mayor peligro. Pero depende del
 tipo de aplicación. Se tiene que encontrar un balance. No es lo mismo el
@@ -2004,7 +2004,7 @@ Session Storage es ideal para bancos, páginas de trading u otra
 información sensible pues la sesión dura hasta que se cierra el
 navegador.
 
-### 1.11.2 Ajustar tiempo con Next Auth
+### Ajustar tiempo con Next Auth
 
 ``` javascript
 const options: NextAuthOptions = {
@@ -2015,12 +2015,12 @@ session: {
 }
 ```
 
-## 1.12 Token firmados y encriptados en Nextjs
+## Token firmados y encriptados en Nextjs
 
 En NextAuth, de manera predeterminada, el token es firmado pero no
 encriptado.
 
-### 1.12.1 Tiempo de sesión
+### Tiempo de sesión
 
 Para cambiar el secreto del JWT.
 
@@ -2038,7 +2038,7 @@ jwt: {
 
 Donde AUTH_JWT_SECRET debe ser una llave SHA de 256 bits.
 
-### 1.12.2 Llave de firmado
+### Llave de firmado
 
 También podemos definir la llave que se usa para firmar en el mismo
 objeto jwt en NextAuthOptions
@@ -2111,7 +2111,7 @@ jwt: {
     async decode({secret, token, maxAge}) {},
 }
 ```
-## 4.13 OWASP
+## OWASP
 
 OWASP es una organización que aboga por las buenas prácticas de
 seguridad en las aplicaciones web, su [sitio web](https://owasp.org)
@@ -2120,7 +2120,7 @@ un sitio web, desde la recuperación de contraseña hasta el loggeo; y
 específicas, destinadas a una sola tecnología como docker o ruby on
 rails.
 
-## 5.0 JAM Stack
+## JAM Stack
 
 Jamstack es una arquitectura de desarrollo web moderna basada en
 JavaScript del lado del cliente, API reutilizables y marcado
@@ -2132,7 +2132,7 @@ Existen dos tipos de formas de renderizar una aplicación:
 -   Navegador
 -   Servidor
 
-## 1.1 Tipos de renderizado
+## Tipos de renderizado
 
 Procesamiento de fragmentos de código y datos para mostrar un resultado.
 Por ejemplo de JS a HTML.
@@ -2150,7 +2150,7 @@ Modos de rendering:
 Next.js permite crear aplicaciones híbridas, con uno o varios de los
 tipos de renderizado.
 
-## 1.2 Arquitectura
+## Arquitectura
 
 La arquitectura general de una aplicación Jamstack es la siguiente:
 
@@ -2164,7 +2164,7 @@ Para este ejemplo podemos usar un CMS, entre las opciones están:
 -   storyblock
 -   directus
 
-## 1.3 Instalación del contentful-cli
+## Instalación del contentful-cli
 
 Primero necesitamos instalar el cli de contentful, por lo que lo haremos
 usando npm
@@ -2189,14 +2189,14 @@ Ahora importamos la configuración directo desde nuestro archivo.
 contentful space import --config import/config.json
 ```
 
-## 1.4 Autogeneración de data con graphql
+## Autogeneración de data con graphql
 
 Es posible generar tipos de typescript usando graphql con el siguiente
 recurso:
 
 <https://www.graphql-code-generator.com/>
 
-## 1.5 getStaticProps
+## getStaticProps
 
 Get static props permite efectuar el renderizado en el servidor.
 useEffect no es compatible con el renderizado en el servidor por lo que
@@ -2238,14 +2238,14 @@ export default function Home({plants}: InferGetStaticPropsType<typeof getStaticP
 }
 ```
 
-## 1.6 Ventajas y desventajas de SSG
+## Ventajas y desventajas de SSG
 
-### 1.6.1 Ventajas de SSG
+### Ventajas de SSG
 
 Archivos estáticos que son faciles de subir para servidor por cualquier
 servidor. Esto mejora el SEO y la velocidad de carga.
 
-### 1.6.2 Desventajas de SSG
+### Desventajas de SSG
 
 No todos los sitios se pueden volver archivos estáticos, sobre todos
 aquellos que requieren datos actualizados desde la base de datos.
@@ -2254,7 +2254,7 @@ El tiempo de compilado puede incrementarse en proporción directa al
 número de páginas. Por lo que en sitios con demasiadas páginas tendremos
 problemas con el compilado.
 
-## 1.7 Incremental Site Regeneration
+## Incremental Site Regeneration
 
 Permite escalar el sitio sin importar el número de páginas por medio de
 la generación dinámica de páginas estáticas. Se construye un número bajo
@@ -2289,7 +2289,7 @@ Para páginas que no cambien es bueno ponerle valores altos, pero para
 páginas que cambien seguido o que requieran un estado constante de
 actualización podemos ponerle valores muy bajos, de hasta 1 segundo.
 
-### 1.7.1 Leyendo desde el sistema de archivos
+### Leyendo desde el sistema de archivos
 
 En lugar de recibir la información de una API, podemos recibirla desde
 el sistema de archivos. Lo anterior es posible porque nextjs ejecuta
@@ -2305,7 +2305,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 }
 ```
 
-## 1.8 Fallback
+## Fallback
 
 El parámetro fallback de getStaticPaths puede tomar tres valores,
 'blocking', false o true.
@@ -2346,7 +2346,7 @@ if(router.isFallback){
     }
 ```
 
-## 1.9 Enfoque stale-while-revalidate
+## Enfoque stale-while-revalidate
 
 Cada vez que un usuario ingresa nextjs responde con páginas listas, si
 el contenido en contentful cambia. Nextjs empieza a descargar la página
@@ -2354,7 +2354,7 @@ nueva, mientras sigue devolviendo la página antigua, una vez terminada
 la nueva página. Todo lo anterior se realiza sin que el usuario lo sepa,
 de manera que el usuario siempre reciba una respuesta.
 
-## 1.10 Trade-offs de ISG
+## Trade-offs de ISG
 
 Requiere un servidor de Node.js El build-time no aumenta con el número
 de páginas No podemos ajustar tiempos de revalidación ante un enlace que
@@ -2363,20 +2363,20 @@ dashboard, información en tiempo real, como bancaria, bolsa de valores
 ISG no brinda ningún beneficio para sitios con pocas páginas, quizás
 hasta 1000 páginas.
 
-## 1.11 SSR ventajas y desventajas
+## SSR ventajas y desventajas
 
-### 1.11.1 Nextjs SSR Ventajas
+### Nextjs SSR Ventajas
 
 -   La información siempre estará actualizada
 -   Poder modificar la respuesta con base en la petición puede ser muy
     conveniente
 
-### 1.11.2 Nextjs SSR desventajas
+### Nextjs SSR desventajas
 
 -   Golpea el servidor por cada petición y puede ser costoso. (consume
     recursos y consume dinero)
 
-## 1.12 Nextjs Export
+## Nextjs Export
 
 Nextjs exporta un renderizado HTML, CSS y Javascript, por lo que el
 contenido puede servirse con un servidor de archivos estáticos. Sin

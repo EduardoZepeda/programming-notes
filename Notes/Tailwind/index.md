@@ -4,7 +4,7 @@ Tailwindcss es un framework de [CSS](../HtmlYCss/1.-HTML-y-CSS.md) que se caract
 elementos definidos, en lugar de eso ofrece una serie de clases a partir
 de las cuales podrán irse moldeando los elementos. Esto permite que cada
 desarrollador cree sus propios botones, tarjetas.
-## 1.1 Instalación
+## Instalación
 
 Para instalarlo podemos usar npm
 
@@ -30,7 +30,7 @@ npx tailwindcss init
 npx tailwindcss init tailwind.config.full.js --full
 ```
 
-## 1.2 Creación de un archivo css
+## Creación de un archivo css
 
 Creamos un archivo *postcss.config.js* para poder procesar el archivo
 *tailwind.css* en nuestro archivo final
@@ -55,7 +55,7 @@ podemos incorporar un build desde los scripts en *package.json*
 }
 ```
 
-### 1.2.1 Postcss en Nextjs
+### Postcss en Nextjs
 
 Nextjs ya realiza un procesamiento de css con Postcss, si colocamos un
 archivo llamado *postcss.config.js* sobreescribirá la configuración por
@@ -101,7 +101,7 @@ module.exports = {
 }
 ```
 
-## 1.3 Colores
+## Colores
 
 Podemos fijar el fondo con la etiqueta. Para referencia mira los valores
 del archivo de configuración en full
@@ -128,7 +128,7 @@ El numero después del primer borde implica el ancho. Para el placeholder
 placeholder-color-500
 ```
 
-## 1.4 Dimensiones y espacios
+## Dimensiones y espacios
 
 Las propiedades donde puede usarse son:
 
@@ -182,7 +182,7 @@ Lo mismo aplica también para padding
 <h1 class="py-8 px-4">Hello world</h1>
 ```
 
-## 1.5 Tipografia
+## Tipografia
 
 Puedes modificar el:
 
@@ -213,7 +213,7 @@ Negritas o cursivas
 <h1 class="font-hairline">Hello world</h1>
 ```
 
-## 1.6 Espaciado entre lineas y letras
+## Espaciado entre lineas y letras
 
 Podemos cambiar el espaciamiento entre letras de la siguiente manera
 
@@ -230,7 +230,7 @@ Para el espaciamiento entre lineas
 <h1 class="leading-snug">Hello world</h1>
 ```
 
-## 1.7 Alineado
+## Alineado
 
 Podemos alinear el texto usando la clase text-alineación, pudiendo
 alineación tomar los valores de center, left, right, justify
@@ -243,7 +243,7 @@ alineación tomar los valores de center, left, right, justify
 También podemos usar tachado, subrayado y sin subrayar, usando las
 clases linethrough, underline, no-underline, respectivamente.
 
-## 1.8 Mayúsculas, minúsculas y capitalize
+## Mayúsculas, minúsculas y capitalize
 
 Para lo anterior usamos las clases uppercase, capitalize y lowercase
 
@@ -252,7 +252,7 @@ Para lo anterior usamos las clases uppercase, capitalize y lowercase
 <h1 class="capitalize">Hello world</h1>
 ```
 
-## 1.9 Display
+## Display
 
 Puede tomar los siguientes valores:
 
@@ -274,7 +274,7 @@ La clase la especificamos de la sigueinte manera
 
 Flex es más complejo así que tendrá un capítulo aparte
 
-### 1.9.1 Flex
+### Flex
 
 Podemos especificar si usaremos row o col
 
@@ -358,7 +358,7 @@ El item-baseline alinea los elementos acorde a un texto
 </div>
 ```
 
-### 1.9.2 Orden
+### Orden
 
 Podemos especificar un orden usando la clase order-n
 
@@ -370,7 +370,7 @@ Podemos especificar un orden usando la clase order-n
 </div>
 ```
 
-## 1.10 Grid
+## Grid
 
 Crear un grid es bastante sencillo, simplemente creamos una etiqueta con
 clase flex
@@ -453,7 +453,7 @@ por tamaño de pantalla.
 </div>
 ```
 
-## 1.11 Creación de utilerias
+## Creación de utilerias
 
 Podemos usar la directiva variantes en nuestro archivo talwind.css
 
@@ -487,7 +487,7 @@ Y en el código html
 <div class="sm:rotate-45 caja"></div>
 ```
 
-## 1.12 Variantes y pseudoclases
+## Variantes y pseudoclases
 
 Las variantes más comunes son:
 
@@ -496,7 +496,7 @@ Las variantes más comunes son:
 -   focus
 -   disabled
 
-### 1.12.1 pseudoclases
+### pseudoclases
 
 Es una palabra clave quie se añade a la clase:
 
@@ -533,7 +533,7 @@ efectos
 </button>
 ```
 
-## 1.13 @apply
+## @apply
 
 Usamos apply para especificar directivas de tailwind que queremos
 aplicar a nuestros componentes
@@ -553,7 +553,7 @@ aplicar a nuestros componentes
 **Importante** @apply no puede ser usado para pseudoclases como active,
 hover, focus, etc.
 
-## 1.14 Optimización con purgecss y cssnano
+## Optimización con purgecss y cssnano
 
 El archivo que se crea con PostCSS tiene todas las directivas, aunque no
 se usen y, además, no está minimizado. Por esta razón su tamaño puede

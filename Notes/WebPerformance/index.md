@@ -4,7 +4,7 @@ El 53% de los usuarios dejará un sitio móvil si tarda más de 3 segundos
 en cargar
 
 
-## 1.1 RAIL MODE
+## RAIL MODE
 
 Modelo centrado en el usuario para medir la experiencia de usuario.
 
@@ -16,18 +16,18 @@ El tiempo que tarda en cargar la página por completo
 El tiempo estándar es de *entre 0 y 300ms* Entre 300 y 1000ms es
 aceptable Entre 1000ms y 2000ms el usuario percibe un problema
 
-## 1.2 Medición
+## Medición
 
 Para medir se utilizarán los Chromedev tools o equivalentes Otra
 herramienta bastante útil es Lighthouse, que también se encarga de
 optimizar el SEO, PWA.
 
-## 1.3 Métricas
+## Métricas
 
 LCP Largest Contentful Paint FID First input Delay CLS Cumulative Layour
 Shift
 
-### 1.3.1 LCP
+### LCP
 
 Trata sobre la carga. El tiempo que tarda en pintar el *mayor elemento
 visible* en la ventana
@@ -36,7 +36,7 @@ visible* en la ventana
 -   Regular de 2.5 a 4s
 -   Mala de 4s en adelante
 
-### 1.3.2 FID
+### FID
 
 Es sobre la interactividad. Demora del primer input, incluye botones.
 Mide el peor de ellos
@@ -45,7 +45,7 @@ Mide el peor de ellos
 -   Regular de 100 a 300ms
 -   Malo de 300ms en adelante
 
-### 1.3.3 CLS
+### CLS
 
 Se enfoca en la estabilidad. Mide los cambios inesperados en el layout
 de una página
@@ -54,7 +54,7 @@ de una página
 -   Regular de 0.1 a 0.25
 -   Malo de 0.25 en adelante
 
-## 1.4 CRP
+## CRP
 
 Critical rendering Path. Comprende varias etapas:
 
@@ -68,23 +68,23 @@ Los pasos 1,2 corresponden al Object Model El paso 3 es Render Tree.
 Mientras que los pasos 4 y 5 se refieren al Layout/Paint, siendo Paint
 el paso más pesado de todos
 
-### 1.4.1 Object Model
+### Object Model
 
 Se encarga de construir el árbol del DOM y el CSSOM (CSS object model)
 Una vez creados estos dos árboles se fusionarán en uno solo.
 
-### 1.4.2 Render tree
+### Render tree
 
 Aquí se empieza a determinar que elementos se van a renderizar en la
 pantalla y cuales no.
 
-### 1.4.3 Layout/Paint
+### Layout/Paint
 
 El viewport le dice las dimensiones del dispositivo al navegador para
 que realice los calculos pertinentes. Realizamos el layout y después
 pintamos los pixeles en la pantalla.
 
-## 1.5 Recursos bloqueantes
+## Recursos bloqueantes
 
 Javascript y CSS son recursos que bloquean el renderizado del HTML en el
 navegador. Podemos modificar este comportamiento con los atributos defer
@@ -92,12 +92,12 @@ y async.
 
 ![image](Notes/WebPerformance/img/defecto.png)
 
-### 1.5.1 Critical CSS
+### Critical CSS
 
 Permite extraer el CSS necesario para renderizar la sección más visible
 de una ventana (Above the Fold).
 
-### 1.5.2 defer
+### defer
 
 El atributo defer le dice al navegador que descargue un archivo pero no
 lo ejecute.
@@ -108,7 +108,7 @@ lo ejecute.
 
 ![image](Notes/WebPerformance/img/defer.png)
 
-### 1.5.3 Async
+### Async
 
 El atributo async descarga el script en paralelo, pero en cuanto se
 acaba de descargar lo ejecuta, bloqueando el parsing.
@@ -119,7 +119,7 @@ acaba de descargar lo ejecuta, bloqueando el parsing.
 <script async src="ruta-del-script/script.js">
 ```
 
-## 1.6 Priorización de recursos
+## Priorización de recursos
 
 Podemos asignar prioridades a los archivos diviendo los archivos y
 usando media queries, sin embargo hay que recordar que cada archivo
@@ -134,13 +134,13 @@ La linea anterior hará que en pantallas pequeñas se le asigne prioridad
 baja a desktop.css, mientras que en pantallas grandes se le dé prioridad
 alta.
 
-## 1.7 Preloading y fetching de recursos
+## Preloading y fetching de recursos
 
 Podemos hacer un prefetching del contenido de los CDN para llevar a cabo
 el handshake antes de que se haga la petición de los recursos. Debemos
 tener cuidado con los subdominios, pues deberemos removerlos
 
-### 1.7.1 Preloading
+### Preloading
 
 Podemos precargar recursos usando el atributo rel llamado preload. Este
 se diferencia de prefetch en que se enfoca en hacer fetching para la
@@ -151,7 +151,7 @@ elementos de su página.
 <link rel="preload" href="/_next/static/chunks/chunk.js" as="script"/>
 ```
 
-### 1.7.2 Preconnect
+### Preconnect
 
 Preconnect permite al navegador establecer conexiónes tempranas antes de
 que la petición HTTP se mande al servidor, esto incluye búsquedas DNS,
@@ -162,7 +162,7 @@ ahorra tiempo.
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
 ```
 
-### 1.7.3 Prefetch
+### Prefetch
 
 Prefetch nos permite conectarnos previamente a dominios en el tiempo
 inactivo del navegador. Es un proceso de baja prioridad. Una vez
@@ -172,7 +172,7 @@ descargados los guarda en la cache asumiendo que se necesitarán.
 <link rel="prefetch" href="/uploads/images/pic.png"/>
 ```
 
-### 1.7.4 Prefetch-dns
+### Prefetch-dns
 
 Este es una versión simple de preconnect, pues se encarga únicamente de
 hacer una búsqueda dns de los recursos, se recomienda para contenido
@@ -182,12 +182,12 @@ servido por un CDN
 <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
 ```
 
-## 1.8 Fases Paint y Layour del CRP
+## Fases Paint y Layour del CRP
 
 Todas las propiedades que no sean opacity o transform causan un Paint.
 Paint es **la etapa más costosa para un navegador**.
 
-## 1.9 Detectando Paints costosos
+## Detectando Paints costosos
 
 Podemos detectar paints costosos usando la herramienta performance y
 luego record del navegador. Podemos especificarle al navegador que va a
@@ -229,7 +229,7 @@ por su versión en transform, que es menos costosa a nivel paint
 }
 ```
 
-## 1.10 Complejidad de selectores
+## Complejidad de selectores
 
 Hay que buscar que los selectores del navegador que cortos y directos.
 Mientras menos anidaciones, mucho mejor. Lo mejor es evitar las
@@ -266,7 +266,7 @@ En su lugar es mejor pasar la imagen al HTML
 <img src="https://example.org/logo.png"/>
 ```
 
-## 1.11 Webfonts
+## Webfonts
 
 Impactan de manera muy negativa en el rendimiento, se recomienda usar
 **máximo 2 webfonts por página**.
@@ -276,7 +276,7 @@ Unestyled Text (FOAT) De forma alterna, cargando una fuente por defecto
 de manera asíncrona y luego cambiándola por la nuestra. \* Flash of
 Invisible Text (FOIT) No mostrar texto hasta que se descargue la fuente.
 
-### 1.11.1 Google Fonts
+### Google Fonts
 
 Nos permite cargar previamente una fuente cambiando el parámetro "block"
 por "swap"
@@ -285,7 +285,7 @@ por "swap"
 <link href="https://fonts.googleapis.com/css?family=Muli&display=block" rel="stylesheet"/>
 ```
 
-### 1.11.2 Web Font Loader
+### Web Font Loader
 
 Web Font Loader es una libreria que nos permite cargar fuentes desde
 otros proveedores. Además de darnos mucho más control sobre la carga de
@@ -349,35 +349,35 @@ Esquema del funcionamiento de font-display
 
 ![](Notes/WebPerformance/img/FontDisplay.jpg)
 
-## 1.12 Imágenes, formato y compresión
+## Imágenes, formato y compresión
 
 Hay que elegir los tipos de imágenes correctos para el propósito
 requerido.
 
-### 1.12.1 GIF
+### GIF
 
 Ideal para imágenes con poca densidad de colores.
 
-### 1.12.2 JPG
+### JPG
 
 Tiene dos modos, progresivo y no progresivo. Donde en uno va cargando
 linea por linea, el modo progresivo muestra una imagen de baja
 resolución y luego la reemplaza por la imagen real.
 
-### 1.12.3 webp
+### webp
 
 El mejor tipo de formato para imagen hasta el momento, sin embargo no es
 recomendable por el momento porque no todos los navegadores le dan
 soporte.
 
-## 1.13 Web Fonts, imágenes o SVG
+## Web Fonts, imágenes o SVG
 
-### 1.13.1 web fonts
+### web fonts
 
 Son prácticos, fáciles de usar y distribuir, sin embargo requieren una
 conexión extra HTTP, son bloqueantes.
 
-### 1.13.2 SVG
+### SVG
 
 Son livianos, accesibles, permiten animaciones, sin embargo requieren un
 diseñador y pueden incrementar el largo del HTML.
@@ -385,9 +385,9 @@ diseñador y pueden incrementar el largo del HTML.
 Son perfectos para logotipos simples, de pocos colores, ilustraciones e
 ilustraciones animadas. Son ideales para la parte superior de la página.
 
-## 1.14 Lazy Loading
+## Lazy Loading
 
-### 1.14.1 Imágenes
+### Imágenes
 
 Podemos cargar las imágenes solo cuando se van utilizando.Para hacer un
 lazy Loading hay 3 formas:
@@ -452,18 +452,18 @@ La tercera opción es usar un scroll listener, es compatible con todos
 los navegadores pero impacta de forma negativa el performance de la
 página.
 
-## 1.15 Técnicas avanzadas de Responsive Loading
+## Técnicas avanzadas de Responsive Loading
 
 Una excelente técnica es cambiar el tamaño de la imagen de acuerdo al
 dispositivo (parecido a lo que hace DjangoVersatileImage). No se
 ahondará en esto pues hay variadas maneras acorde al lenguaje.
 
-## 1.16 Javascript
+## Javascript
 
 Es importante usar el modo producción en webpack para que este tome las medidas
 necesarias para optimizar el bundle.js
 
-### 1.16.1 Webpack Bundle analyzer
+### Webpack Bundle analyzer
 
 Puede usarse para analizar el código y decirnos exactamente como está
 coconformado nuestro bundle. Si lo incluimos en los plugins, al correr una
@@ -498,10 +498,10 @@ para solo usar una o dos funciones.
 
 ![image](Notes/WebPerformance/img/bundleAnalyzerPlugin.jpg)
 
-### 1.16.2 Uso de Bundlephobia[Bundlephobia](https://bundlephobia.com/) nos da muestra el costo de añadir un
+### Uso de Bundlephobia[Bundlephobia](https://bundlephobia.com/) nos da muestra el costo de añadir un
 nuevo paquete de npm
 
-## 1.17 treeshaking
+## treeshaking
 
 Treeshaking nos permite deshacernos de todas las funciones que no
 necesitamos de una librería. Webpack hace treeshaking automáticamente.
@@ -528,7 +528,7 @@ get()
 Nota: Moment, por su sintaxis, no permite treeshaking. Un reemplazo de
 moment.js puede ser date-fns.
 
-## 1.18 Code splitting
+## Code splitting
 
 Consiste en la divisón del bundle en diferentes partes.
 
@@ -549,7 +549,7 @@ optimization: {
 Esto nos permite dividir el bundle en otras partes, lo cual será
 bastante útil usando cache o usando Lazy Module Loading.
 
-## 1.19 Lazy Module Loading
+## Lazy Module Loading
 
 Se trata de cargar los modulos de manera perezosa, justo en el momento
 en el que los necesitemos.
@@ -576,7 +576,7 @@ if(accionParaImportarLibreria){
 }
 ```
 
-## 1.20 Event Propagation
+## Event Propagation
 
 **Un solo listener es mucho más eficiente que tener un montón de
 ellos**. En lugar de tener varios podemos tener un único listener en su
@@ -592,7 +592,7 @@ document.body.addEventListener('click', event => {
 }
 ```
 
-## 1.21 SSR
+## SSR
 
 Podemos mover los renderizados de javascript del navegador al
 servidor.El SSR no se lleva a cabo en el caso de Lazy module loading. El
@@ -602,7 +602,7 @@ donde está el server code tendremos un tiempo de respuesta menor. Por
 otro lado, si está en un dominio diferente requerirá evaluarse si es
 mejor que lo haga el servidor o el navegador.
 
-## 1.22 Static Site Generation
+## Static Site Generation
 
 Un archivo web estático es el contenido más rápido y sencillo de servir
 
@@ -616,17 +616,17 @@ tenemos un boost de peformance.
 Sin embargo no todas las páginas webs se pueden renderizar, sobre todo
 aquellas donde el contenido cambia constantemente.
 
-## 1.23 Cache y CDN
+## Cache y CDN
 
 En redes distribuidas hay cache que nos permite mejorar el rendimiento.
 
-## 1.24 Netifly
+## Netifly
 
 Netifly permite subir automáticamente los proyectos en node y se encarga
 de todo el lado del servidor (No de la API), donde ellos se encargan de
 tener un setup óptimo para el rendimiento
 
-## 1.25 Github Actions
+## Github Actions
 
 Github actions es una herramienta de CI. Es decir, podemos especificar
 las tareas automáticas que queremos que se ejecuten con cada push desde
@@ -681,7 +681,7 @@ jobs:
         path: './report'
 ```
 
-## 1.26 Cache con service Worker
+## Cache con service Worker
 
 Pasos para ejecutar el cache son service worker.
 
@@ -757,7 +757,7 @@ Además podemos usar un service worker para:
 -   Offline experiences (PWA)
 -   Background services
 
-## 1.27 Performance Budget
+## Performance Budget
 
 Para medir el performance budget tenemos que
 
@@ -768,7 +768,7 @@ Para medir el performance budget tenemos que
 Una vez elegidas nuestras métricas importantes, cada auditoría sucesiva
 debe asegurarse de que las métricas mejoran.
 
-### 1.27.1 Automatizar auditoría
+### Automatizar auditoría
 
 Podemos usar github actions, podemos integrarlo con Netifly, sitios
 estáticos, puppeter y otras tecnologías. Ponemos una carpeta oculta con
@@ -853,7 +853,7 @@ nuestras métricas a cumplir.
 }
 ```
 
-## 1.28 RUM
+## RUM
 
 Todo lo anterior son métricas de laboratorio. Es necesario tomar
 métricas reales desde el sitio de producción. Para esto necesitamos

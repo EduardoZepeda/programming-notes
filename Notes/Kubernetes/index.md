@@ -1,6 +1,6 @@
 # Kubernetes
 
-## 1.1 ¿Qué es kubernetes?
+## ¿Qué es kubernetes?
 
 La tarea de automatizar y administrar una gran cantidad de contenedores (y de
 interactuar con ellos) se conoce como orquestación. Esta herramienta open
@@ -10,7 +10,7 @@ desarrollada por Google se encarga de esto.
 Kubernetes combina la automatización de contenedores con una extensa API para
 crear una entidad de administración.
 
-### 1.1.1 Relación entre Docker y Kubernetes
+### Relación entre Docker y Kubernetes
 
 Docker se encarga del ciclo de vida de los contendores y Kubernetes de asignar
 el nodo en el que nodo deben correr.
@@ -27,7 +27,7 @@ de manera manual.
 Los contenedores se usan normalmente para crear soluciones mediante una
 arquitectura de microservicios.
 
-#### 1.1.1.1 ¿Qué es un microservicio?
+#### ¿Qué es un microservicio?
 
 Los Microservicios es un servicio web que es pequeño, bien definido y
 desacoplado del resto de servicios, además de ser individualmente desplegable.
@@ -49,12 +49,12 @@ Cada cluster corre:
 
 Un nodo es un worker machine, una máquina dentro de un cluster, puede ser una VM o una máquina física, debe contar con todos los servicios para ejecutar los pods.
 
-### 1.5.2 Nodos
+### Nodos
 
 Anteriormente **se les conocia como minions**. Todos los nodos y masters están
 conectados a una red física para poder comunicarse entre sí.
 
-#### 1.5.2.1 Componentes muy importantes que viven en los nodos
+#### Componentes muy importantes que viven en los nodos
 
 -   Kubelet: Agente de kubernetes, se conecta con el control play y le pregunta
     que recursos (pods, contenedores) debo correr al scheduler via API Server.
@@ -67,14 +67,14 @@ conectados a una red física para poder comunicarse entre sí.
 -   Container-runtime: El contenedor local, que contiene las aplicaciones
     corriendo.
 
-## 1.2 ¿Qué problema resuelve?
+## ¿Qué problema resuelve?
 
 Cuando las aplicaciones crecen demasiado es muy complicado la administración de
 decenas o cientos de conetendores.
 
 Sin embargo, Kubernetes no realiza un provisionamiento de la infraestructura, solo su orquestación.
 
-## 1.3 ¿Qué hace kubernetes en la práctica?
+## ¿Qué hace kubernetes en la práctica?
 
 -   K8s permite correr varias réplicas y asegurarse de que todas se encuentren
     funcionando.
@@ -88,7 +88,7 @@ Sin embargo, Kubernetes no realiza un provisionamiento de la infraestructura, so
 Todos los contenedores que viven dentro de un mismo Pod comparten el mismo
 segmento de red.
 
-## 1.4 Contenedores en Kubernetes
+## Contenedores en Kubernetes
 
 Los contenedores, (como los de [Docker](../../Docker/1.-Docker.md)) no son un first class citizen del kernel de Linux. Es un
 concepto abstracto conformado por diferentes tecnologías que se potencian las
@@ -111,7 +111,7 @@ unas a las otras y trabajando en conjunto componen esta tecnología.
 > Aunque Kubernetes es un orquestador de contenedores, la unidad mínima de
 > ejecución son los pods:
 
-## 1.5 Arquitectura de kubernetes
+## Arquitectura de kubernetes
 
 Kubernetes consiste en:
 
@@ -123,7 +123,7 @@ instrucciones de una API a la que se accede con una UI o un CLI.
 
 ![image](Notes/Kubernetes/img/arquitectura-kubernetes.jpg)
 
-### 1.5.1 Estructura del nodo master
+### Estructura del nodo master
 
 El nodo master consiste en los siguientes elementos:
 
@@ -175,11 +175,11 @@ Una buena técnica mnemotécnica para memorizarlo es:
 
 ![](Notes/Kubernetes/img/arquitectura-de-red.jpg)
 
-## 1.6 Declarativo vs imperativo
+## Declarativo vs imperativo
 
 Kubernetes hace enfasis en ser un sistema declarativo.
 
-### 1.6.1 Diferencias entre sistemas imperativos y declarativos
+### Diferencias entre sistemas imperativos y declarativos
 
 Un sistema es imperativo cuando ejecuta una serie de pasos a seguir. Si algún
 paso se interrumpe, la secuencia inicia desde el primer paso.
@@ -187,11 +187,11 @@ paso se interrumpe, la secuencia inicia desde el primer paso.
 Un sistema es declarativo cuando trata de converger a un estado meta, a partir
 de un estado actual.
 
-## 1.7 Kubectl y flujo de trabajo
+## Kubectl y flujo de trabajo
 
 El trabajo lo realizamos con una cli, como kubectl.
 
-### 1.7.1 Kubectl
+### Kubectl
 
 Kubectl es el cliente de kubernetes, se encarga de interactuar con un cluster de
 kubernetes.
@@ -207,7 +207,7 @@ kubernetes.
     indicados
 5.  Este job y su especificación serán guardados en una la base de datos etcd.
 
-## 1.8 Objetos de kubernetes
+## Objetos de kubernetes
 
 Los objetos de kubernetes representan:
 
@@ -231,9 +231,9 @@ Los objetos de alto nivel son:
 > -   DaemonSet
 > -   Job
 
-## 1.9 ¿Como desplegar un cluster de kubernetes?
+## ¿Como desplegar un cluster de kubernetes?
 
-### 1.9.1 Minikube
+### Minikube
 
 Minikube usa opciones de hypervisor como virtualbox, hyperkit o KVM2 para
 despleguar un cluster mínimo. En otras palabras, usa una máquina virtual para
@@ -245,7 +245,7 @@ minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 Minikube utiliza kubeadm internamente.
 
-### 1.9.2 Kubeadm
+### Kubeadm
 
 ```bash
 kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr <ip>
@@ -313,7 +313,7 @@ node1   Ready    control-plane,master   15m     v1.20.1   192.168.0.13   <none> 
 node2   Ready    <none>                 7m45s   v1.20.1   192.168.0.12   <none>        CentOS Linux 7 (Core)   4.4.0-101-generic   docker://20.10.1
 ```
 
-### 1.9.3 EKS
+### EKS
 
 EKS es el servicio de kubernetes de AWS. Con un cloud cluster nos brincamos la
 parte de la configuración desde cero y la actualización de los clusters de
@@ -322,7 +322,7 @@ manera manual.
 Es necesario crear roles para utilizar un cluster en AWS. Por lo que es buena
 idea revisar la documentación vigente que ofrece Amazon.
 
-### 1.9.4 Localmente con kind
+### Localmente con kind
 
 Kind nos permite desplegar un cluster de manera local, usando contenedores..
 Para ver las instrucciones accede a esta [guia para usar
@@ -332,7 +332,7 @@ Una vez instalado kind es muy sencillo crear un cluster.
 
 Sin embargo kind, a la fecha, es un proyecto en Beta, que no ha alcanzado su versión 1.0 por lo que pueden ocurrir de compatibilidad.
 
-## 1.10 Kubectl y sus comandos
+## Kubectl y sus comandos
 
 Es el cliente para interaccionar con el cluster de kubernetes.
 
@@ -345,7 +345,7 @@ Si queremos usar otro archivo usamos
 kubectl --config <config_file>
 ```
 
-### 1.10.1 Comandos de Kubectl
+### Comandos de Kubectl
 
 Para ver la lista de comandos es necesario llamar al comando con el flag --help
 
@@ -447,7 +447,7 @@ Mientras que para ver la definición técnica de de manera recursiva.
 kubectl explain <node|deployment|service|...> --recursive
 ```
 
-## 1.11 Recursos de kubernetes
+## Recursos de kubernetes
 
 Kubernetes cuenta con varios servicios que le permiten manejar aplicaciones:
 
@@ -458,7 +458,7 @@ Kubernetes cuenta con varios servicios que le permiten manejar aplicaciones:
 -   Ingress
 -   Endpoints
 
-## 1.12 Ingress 
+## Ingress 
 
 Viene de NGNIX Ingress Controller. Permite crear accesos a nuestros servicios basados en el path. K8s se encarga de un controlador nginx y va a leer el tipo de recurso, llamado ingress y se autoconfigurará para redireccionar el tráfico a donde debe. 
 
@@ -498,7 +498,7 @@ Tras establecer el prefijo v1 podemos acceder a la dirección con el path que es
 curl <direccion_ip>/v1
 ```
 
-## 1.13 Pod
+## Pod
 
 Un pod es el más pequeño y más básico objeto que puede ser desplegado en
 kubernetes. Representa una instancia de un proceso que corre en el cluster. Un
@@ -532,7 +532,7 @@ spec:
 Estableciendo la versión de la API, el tipo de recurso, la metada para
 identificación del pod y las características del recurso.
 
-### 1.13.1 Creación de un pod
+### Creación de un pod
 
 Un pod se puede crear directo con el archivo yml que indica el kind pod y el
 comando create.
@@ -547,7 +547,7 @@ Podremos corroborar su creación y ver el nodo en el que se creo con
 kubectl get pods -o wide
 ```
 
-### 1.13.2 Gestión de un pod
+### Gestión de un pod
 
 Para describir un pod usamos el comando describe
 
@@ -574,7 +574,7 @@ Y si queremos acceder a su interior
 kubectl exec -it <pod> -- /bin/bash
 ```
 
-## 1.14 Replica set
+## Replica set
 
 Un ReplicaSet es un recurso de Kubernetes que garantiza que siempre se ejecute
 un número de réplicas de un pod determinado. Sustitye al recurso más antiguo
@@ -586,7 +586,7 @@ ReplicaController. Además asegura lo siguiente:
 
 **Los replicaset generalmente dependen de un deployment y no se utilizan de manera aislada.**
 
-### 1.14.1 Definición de un yml de ReplicaSet
+### Definición de un yml de ReplicaSet
 
 ``` yml
 apiVersion: extensions/v1beta1
@@ -641,7 +641,7 @@ Y, manteniendo la sintaxis podremos borrar ReplicaSets con
 kubectl delete rs <replica-set>
 ```
 
-## 1.15 Deployment
+## Deployment
 
 Un deployment es una abstracción de la aplicación; a nivel práctico un deployment es un template para la creación y escalamiento de los pods o replicaset que la conforman.
 
@@ -655,7 +655,7 @@ Un deployment nos permite:
 -   Despliegues automáticos
 -   Rollback a versiones anterior
 
-### 1.15.1 Canary deployment
+### Canary deployment
 
 Es un término que se utiliza cuando se quiere transicionar un deployment a nueva
 versión código, de manera controlada.
@@ -703,7 +703,7 @@ asociado.
     rollback.
 -   Strategy indica el modo en que se actualizará el deploymet.
 
-### 1.15.2 Creación de deployments
+### Creación de deployments
 
 Para crearlo a partir de un fichero usamos
 
@@ -718,7 +718,7 @@ comando create deployment.
 kubectl create deployment <deployment> --image=<image>
 ```
 
-### 1.15.3 Replicas en deployment
+### Replicas en deployment
 
 Para hacer replicas de nuestro deployment corremos el comando scale y le
 indicamos el número de replicas que necesitamos.
@@ -741,7 +741,7 @@ kubectl run --dry-run -o yml <nombre> --image <image> <comando>
 
 Y para ver los logs de los pods usamos el comando *describe pods*
 
-### 1.15.4 Actualizar deployment
+### Actualizar deployment
 
 Para actualizar un deployment podemos editar la imagen con el comando edit
 
@@ -757,7 +757,7 @@ kubectl set image deployment <deployment> <nginx>=<nginx>:version --all
 
 El flag *--all* obliga a la actualización de los pods.
 
-### 1.15.5 Logs deployment
+### Logs deployment
 
 Para ver los logs de un deployment usamos el comando logs. Este comando pueden
 añadirsele opciones como --tail, que tiene la misma función que en linux,
@@ -774,7 +774,7 @@ Para ver los logs de muchos pods ejecutándose.
 kubectl logs -l run=<palabra>
 ```
 
-### 1.15.6 Borrar deployment
+### Borrar deployment
 
 Se eliminan, siguiendo la misma sintaxis
 
@@ -782,7 +782,7 @@ Se eliminan, siguiendo la misma sintaxis
 kubectl delete deployment <deployment>
 ```
 
-## 1.16 Servicios en k8s
+## Servicios en k8s
 
 Normalmente no podemos acceder a los pods desde fuera del cluster de Kubernetes.
 
@@ -798,7 +798,7 @@ Se implementan con iptables y son monitoreados por el componente kube-proxy.
 Cuando se crea un nuevo servicio, se le asigna una nueva ip interna virtual
 (IP-CLUSTER) que permite la conexión desde otros pods.
 
-### 1.16.1 Tipos de servicios
+### Tipos de servicios
 
 -   ClusterIP: Reserva una IP virtual fija para el servicio que elijamos. Solo
     permite el acceso interno entre distintos servicios. Es el tipo por defecto.
@@ -811,7 +811,7 @@ Cuando se crea un nuevo servicio, se le asigna una nueva ip interna virtual
     Es mejor que el NodePort porque no es necesario conocer su IP de antemano para acceder.
 -   ExternalName: Entrada de DNS que es gestionada por CoreDNS. 
 
-### 1.16.2 Creación de un servicio tipo Cluster IP
+### Creación de un servicio tipo Cluster IP
 
 Para crear un servicio, podemos establecer la definición del recurso en un
 archivo yml:
@@ -856,7 +856,7 @@ Una manera alternative, usando la lina de comandos, sería:
 kubectl expose deployment/nginx --port=80 --type=ClusterIP
 ```
 
-### 1.16.3 Acceso a un ClusterIP
+### Acceso a un ClusterIP
 
 Para acceder desde el exterior podemos usar kubectl proxy.
 
@@ -871,7 +871,7 @@ http://localhost:8001/api/v1/namespaces/<NAMESPACE>/services/<SERVICE NAME>:<POR
 # PORT_NAME = HTTP
 ```
 
-### 1.16.4 Creación de un servicio Node Port
+### Creación de un servicio Node Port
 
 Para establecer el tipo NodePort lo podemos hacer directamente en el servicio, estableciendo el tipo y el nodePort. Este tipo tiene el inconveniente de que se necesita conocer la dirección IP de cada nodo para acceder a él.
 
@@ -912,7 +912,7 @@ curl 143.244.166.129:30000
 # Response
 ```
 
-### 1.16.5 Acceso con kubectl-post-forward
+### Acceso con kubectl-post-forward
 
 Esto nos permite realizar lo mismo que kubectl-proxy, pero accediendo a
 cualquier puerto del servicio expuesto en nuestro cluster
@@ -921,7 +921,7 @@ cualquier puerto del servicio expuesto en nuestro cluster
 kubectl post-foward svc/<svc> <puerto_local>:<puerto_remoto> &
 ```
 
-### 1.16.6 Acceso a NodePort
+### Acceso a NodePort
 
 Si modificamos el type del archivo anterior
 
@@ -938,7 +938,7 @@ NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
 nginx        NodePort    <IP>             <none>        80:34325/TCP   3h
 ```
 
-### 1.16.7 Ejemplo de deployment
+### Ejemplo de deployment
 
 Para este ejemplo creamos primero un deployment de una imagen
 
@@ -1009,7 +1009,7 @@ nodo.
 sudo iptables -t nat -nL KUBE-SEP-<ID>
 ```
 
-## 1.17 Edpoints en kubernetes
+## Edpoints en kubernetes
 
 Se refiere a las direcciones ip a las que tendriamos que consultar si
 quisieramos acceder a ese servicio.
@@ -1037,7 +1037,7 @@ Events:  <none>
 Es el único recurso que se nombra en plural, puesto que pertenecen a uno o más
 pods.
 
-## 1.18 Despliegue de una app en k8s
+## Despliegue de una app en k8s
 
 Recuerda que para que nuestra app funcione correctamente necesitamos exponer los
 puertos correctos de nuestros deployments como un servicio.
@@ -1082,7 +1082,7 @@ docker exec <nombre-cluster> comando <ip-interna>
 docker exec kind-control-plane curl 10.244.0.30
 ```
 
-## 1.19 Kubernetes dashboard
+## Kubernetes dashboard
 
 El dashboard es una interfaz web que permite manejar el cluster y obtener
 información de este de una manera visual. El dashboard no está activo por
@@ -1098,7 +1098,7 @@ crea en otro namespace.
 Al final de estos apuntes hay recursos para implementar el dashboard y
 asegurarlo.
 
-## 1.20 Daemon sets y balanceo de cargas
+## Daemon sets y balanceo de cargas
 
 Los daemon sets es una forma de asegurarse de que exista **una copia de un pod en cada nodo**.  
 Esto es ideal para aplicaciones de monitoreo, como logs, o estadísticas.
@@ -1134,7 +1134,7 @@ rng-5d8b6c4cff-cw955   1/1     Running   1          21h
 rng-bn5jj              1/1     Running   0          5m23s
 ```
 
-## 1.21 Despliegues de nuevas versiones controlados
+## Despliegues de nuevas versiones controlados
 
 Al momento de realizar una actualización a una nueva versión, kubernetes se
 encarga de crear los pods nuevos, manteniendo un mínimo para que nuestra app
@@ -1151,14 +1151,14 @@ kubectl get deploy -o json | jq ".items[] | {name:.metadata.name} + .spec.strate
 }
 ```
 
-### 1.21.1 maxSurge
+### maxSurge
 
 Es un campo opcional que indica el número máximo de Pods que pueden existir al
 momento de que ocurra una aplicación. En el momento en el que se están
 eliminando pods y creando nuevos puede haber un número mayor al número
 establecido. Su número por default es 25%.
 
-### 1.21.2 maxUnavailable
+### maxUnavailable
 
 Es un campo opcional que indica el número máximo de Pods que pueden no estar
 disponibles durante el proceso de actualización. Su número por default es 25%.
@@ -1198,7 +1198,7 @@ Podemos verificar el status de un deployment con
 kubectl rollout status deployment <deployment>
 ```
 
-## 1.22 Healtchecks
+## Healtchecks
 
 Healthchecks es un organismo que tiene kubernetes para evaluar el correcto
 funcionamiento de nuestra aplicación.
@@ -1209,12 +1209,12 @@ Hay tres tipos de healtchecks:
 -   liveness
 -   startup
 
-### 1.22.1 liveness
+### liveness
 
 Kubelet usa pruebas tipo liveness para saber si un pod está vivo, cuando
 reiniciar un contenedor.
 
-### 1.22.2 readiness
+### readiness
 
 Kubelet usa pruebas tipo readiness para saber si un container está listo para
 recibir tráfico. Un pod se considera listo cuando todos sus contenedores se
@@ -1222,7 +1222,7 @@ encuentran listos. Si no es el caso, se considera un fallo y, tras superarse el
 failureThreshold, se marca como "not ready" y se remueve del servicio de
 balanceo de carga.
 
-#### 1.22.2.1 Pruebas comunes
+#### Pruebas comunes
 
 Command: Si el comando retorna 0, se considera exitoso, de otra manera se
 elimina el contenedor y se reinicia.
@@ -1234,13 +1234,13 @@ reinicia.
 TCP: Kubelet intentará abrir un puerto y conectarse si no lo consigue se elimina
 el contenedor y se reinicia.
 
-### 1.22.3 startup
+### startup
 
 Kubelet usa pruebas de tipo startup para saber cuando una aplicación ha
 iniciado. Puede ser usado para adaptar test de lveness en containers que
 empiezan lento, evitando eliminarlos antes de que estén listos.
 
-### 1.22.4 Agregar un healtcheck
+### Agregar un healtcheck
 
 Para agregar un deployment necesitamos editarlo.
 
@@ -1270,7 +1270,7 @@ Para ingresar a un contenedor
 kubectl exec <pod> -ti bash
 ```
 
-## 1.23 Helm
+## Helm
 
 Es una herramienta que funge como gestor de paquetes de Kubernetes a través de
 sus manifest YML. Permite empaquetar una aplicación en un bundle. A estos
@@ -1280,12 +1280,12 @@ Las versiones previas de Helm requerían correr el comando init. A partir de la
 versión 3 ya no es necesario. También aparecía el Server Side Component de Helm
 llamado tillir, esto ya no sucede.
 
-### 1.23.1 Instalación de Helm
+### Instalación de Helm
 
 Lo mejor para instalar helm es ir a las [instrucciones en la página
 oficial](https://helm.sh/docs/intro/quickstart/)
 
-### 1.23.2 Prometheus
+### Prometheus
 
 Es una herramienta de monitoreo bastante popular que está empaquetada en el
 chart.
@@ -1316,7 +1316,7 @@ helm install my-prometheus prometheus-community/prometheus --set server.service.
 helm install <target_name> <chart_name> 
 ```
 
-### 1.23.3 Creación de un helm chart
+### Creación de un helm chart
 
 Para crear un chart con helm corremos
 
@@ -1335,7 +1335,7 @@ archivos yml, en el interior de la carpeta templates.
 kubectl get -o yml deployment <service>
 ```
 
-## 1.24 Gestionando configuraciones con Config Maps
+## Gestionando configuraciones con Config Maps
 
 La mayoría de las aplicaciones requieren configuraciones.
 
@@ -1345,7 +1345,7 @@ Existen formas de configuraciones diferentes:
 -   Variables de entorno
 -   Archivos de configuración
 
-### 1.24.1 Variables de entorno
+### Variables de entorno
 
 Las variables de entorno se pueden establecer desde el manifiesto:
 
@@ -1369,7 +1369,7 @@ También es posible obtener variables desde otro lado
             FieldPath: stats.HostIP
 ```
 
-### 1.24.2 Resources o recursos
+### Resources o recursos
 
 Sirve para asignarle recursos mínimos a los contenedores, no a los pods. La
 memoria se establece en Megabytes y el cpu en milicores; la milésima parte de un
@@ -1382,7 +1382,7 @@ core.
         cpu: "100m"
 ```
 
-### 1.24.3 Limites
+### Limites
 
 Los límites establecen los recursos máximos con los que cuenta un pod. Se
 establecen a nivel kernel de Linux.
@@ -1396,7 +1396,7 @@ La diferencia entre requests y limits es que el requests es el mínimo, mientras
         cpu: "500m"
 ```
 
-### 1.24.4 Config Maps
+### Config Maps
 
 Un config map es un archivo que se hostea en kubernetes y se puede acceder desde los pods. Es ideal para establecer variables de entorno en los archivos.
 
@@ -1512,7 +1512,7 @@ Para modificar el configmap que estamos usando corremos edit.
 kubectl edit configmap <name>
 ```
 
-### 1.24.5 Secrets
+### Secrets
 
 Secret es un derivado de un configmap pero el contenido está codificado en base64. Debemos ser cuidadosos pues la base64 no representa un cifrado, sino un codificado, por lo que no es seguro guardar la información ahí.
 
@@ -1535,7 +1535,7 @@ kubectl create secret generic <nombre_de_las_credenciales> --from-literal=<data_
 
 Podemos hacer referencia como si fuera cualquier config map y k8s se encargará de decodificarlos de la base64.
 
-## 1.25 Kustomization
+## Kustomization
 
 Nos permite generar manifiestos a partir de un archivo yaml.
 
@@ -1563,24 +1563,24 @@ kustomize build .
 ```
 
 
-## 1.26 Volúmenes y Statefulsets
+## Volúmenes y Statefulsets
 
 Un volumen nos permite compartir archivos entre diferentes pods o archivos en
 nuestro host que persisten incluso tras reinicios.
 
-### 1.26.1 Ciclo de vida
+### Ciclo de vida
 
 -   Está vinculado al ciclo de vida de los pods
 -   El volumen se crea cuando el pod se crea.
 -   Un volumen se mantiene aún cuando se reinicie el contenedor
 -   El volumen se destruye cuando el pod se elimina.
 
-### 1.26.2 Diferencia entre docker y k8s
+### Diferencia entre docker y k8s
 
 En docker comparten información en el mismo host, k8s permite compartir
 información **entre contenedores del mismo pod**.
 
-### 1.26.3 Especificar un volumen con claim templates
+### Especificar un volumen con claim templates
 
 Podemos automatizar todo el proceso de creación de discos con componentes de
 terceros, como digital ocean.
@@ -1622,7 +1622,7 @@ kubectl get statefulsets
 kubectl get sts
 ```
 
-## 1.27 Namespaces
+## Namespaces
 
 Un namespace es un medio que tiene kubernetes para correr aplicaciones en un
 entorno aislado. Permite tener recursos con el mismo nombre y tipo, pero en
@@ -1652,7 +1652,7 @@ Donde cada uno significa
 -   kube-public: configurar claves de configuración. Creado por kube admin.
 -   kube-system: donde viven los recursos administrativos del cluster
 
-### 1.27.1 Creación de un namespace
+### Creación de un namespace
 
 Para crear un namespace usamos el comando create namespace.
 
@@ -1682,7 +1682,7 @@ kubectl -n <name> get svc
 -   Nombre de recursos
 -   Namespace
 
-### 1.27.2 Cambio de namespace
+### Cambio de namespace
 
 Para configurar un contexto y no tener que especificar el flag -n en cada
 servicio usamos set-context
@@ -1698,7 +1698,7 @@ ejecutaran dentro del namespace que establecimos.
 kubectl get pods
 ```
 
-## 1.28 Autorización y autenticación
+## Autorización y autenticación
 
 Cuando el API server recibe un request, intenta autorizarlo usando:
 
@@ -1738,7 +1738,7 @@ kubectl config view --raw -o json
 }
 ```
 
-### 1.28.1 Service account tokens
+### Service account tokens
 
 Este es un método de autenticación en kubernetes. Un service account puede
 crearse, eliminarse y actualizarse, sirven para otorgar permisos a aplicaciones
@@ -1820,7 +1820,7 @@ Ahora simplemente utilizamos el token en el Authorization header
 "Authorization: Bearer ABC.ED..."
 ```
 
-## 1.29 RBAC (Role based access control)
+## RBAC (Role based access control)
 
 Un rol es un objeto con una lista de rules. **Un rolbinding asocia uno de estos
 roles a un usuario.**
@@ -1868,7 +1868,7 @@ no tiene los permisos adecuados.
 error: failed to create deployment: deployments.apps is forbidden: User "system:serviceaccount:default:viewer" cannot create resource "deployments" in API group "apps" in the namespace "default"
 ```
 
-### 1.29.1 Consultar permisos
+### Consultar permisos
 
 Para conocer los permisos podemos usar el comando auth, seguido de can-i con la
 instrucción a consultar
@@ -1896,7 +1896,7 @@ Y para describir un rolebinding
 kubectl describe clusterrolebinding cluster-admin
 ```
 
-## 1.30 Recomendaciones
+## Recomendaciones
 
 Establece una cultura de containers en la organización servicios
 
@@ -1934,7 +1934,7 @@ Stacks deployments
 -   GitOps (infraestructure as code)
 -   Heml, Spinnaker o Brigade
 
-## 1.31 GitOps
+## GitOps
 
 GitOps es una práctica que gestiona toda la configuración de nuestra
 infraestructura y las aplicaciones en producción a través de Git, es decir que
@@ -1962,7 +1962,7 @@ operador tomará la configuración del repositorio mediante un pull y la aplicar
 
 ![image](Notes/Kubernetes/img/gitops.jpg)
 
-### 1.31.1 Flux
+### Flux
 
 El [sync operator flux](https://fluxcd.io/docs/) permite crear un flujo de
 trabajo. Obtenemos el código con *git clone* Y modificaremos el archivo
@@ -2003,7 +2003,7 @@ repositorio y hará deploy la aplicación en la plataforma.
 Ahora con cada push que hagamos se detectará el cambio y se volverá a
 implementar las especificaciones del repositorio de github.
 
-## 1.32 Conexión con digital ocean
+## Conexión con digital ocean
 
 En digital ocean podemos crear los clusters de kubernetes y descargar el archivo
 de configuración. 
@@ -2020,7 +2020,7 @@ Y luego ejecutar
 kubectl get nodes
 ```
 
-## 1.33 Recursos útiles
+## Recursos útiles
 
 -   [Blog de José Domingo sobre pods, deployments, replicaSet y otros recursos](https://www.josedomingo.org/pledin/blog/)
 -   [Seguridad del dashboard de k8skubectl apply -f kubernetes-dashboard.yml](http://link)

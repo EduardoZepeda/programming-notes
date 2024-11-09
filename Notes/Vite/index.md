@@ -5,7 +5,7 @@ Vite es un blunder de tercera generación para el desarrollo Frontend.
 Vite.js se caracteriza por su velocidad, ya que el tiempo para compilar y transpilar es mucho más rápido. Superando a otros blunders, como [Webpack](../Webpack/1.-Webpack.md)
 
 
-## 1.1 Características
+## Características
 
 * Pre-bundling, en el que Vite adapta módulos al formato estándar de ECMAScript, los ES Modules.
 * Usa un servidor de archivos estático para exponer los archivos vía URL y posteriormente los importa.
@@ -19,7 +19,7 @@ Vite.js se caracteriza por su velocidad, ya que el tiempo para compilar y transp
 * Vite se encarga aplicar hashes a los bundles de nuestros archivos de manera automática.
 * Vite se encarga de actualizar cambios en el código por medio del HMR (Hot module Replacement)
 
-## 1.2 Importar CSS con Vite
+## Importar CSS con Vite
 
 Vite incluye soporte con PostCSS para optimizar la producción y dar soporte a preprocesadores de CSS.
 
@@ -36,7 +36,7 @@ Para importar dentro de un archivo javascript usamos import, como si se tratara 
 import './<archivo>.css'
 ```
 
-### 1.2.1 Import dentro de un archivo CSS
+### Import dentro de un archivo CSS
 
 Dentro de un archivo CSS podemos usar la sintaxis de import anteponiendo un arroba a la ubicación del archivo.
 
@@ -44,7 +44,7 @@ Dentro de un archivo CSS podemos usar la sintaxis de import anteponiendo un arro
 @import './<archivo>.css'
 ``` 
 
-## 1.3 Soporte para pre-procesadores de CSS
+## Soporte para pre-procesadores de CSS
 
 Vite tiene soporte para archivos LESS o SASS de manera automática.
 
@@ -59,7 +59,7 @@ import './<archivo>.sass'
 import './<archivo>.less'
 ```
 
-## 1.4 Soporte para módulos CSS
+## Soporte para módulos CSS
 
 Los CSS modules son archivos que terminan en .module.css.
 
@@ -71,7 +71,7 @@ import styles from './layout/<archivo>.module.css'
 <div className={styles.<clase>}></div>
 ```
 
-## 1.5 Importar imágenes
+## Importar imágenes
 
 Vite cuenta con soporte para importar imágenes.
 
@@ -83,7 +83,7 @@ function imagen(){
 }
 ```
 
-## 1.6 Importar JSON
+## Importar JSON
 
 En Vite podemos realizar un import de manera directa.
 
@@ -97,7 +97,7 @@ Si queremos importar un único atributo del objeto JSON desestructurándolo de n
 import { <atributo> }  from './<archivo>.json'
 ```
 
-## 1.7 Importación global
+## Importación global
 
 Vite permite importar el contenido de un directorio completo usando el método glob y usando asterisco como un wildcard.
 
@@ -113,7 +113,7 @@ for (const path in modules){
 }
 ```
 
-## 1.8 Soporte para typescript
+## Soporte para typescript
 
 Vite ya cuenta con soporte para Typescript de manera predeterminada, por lo que no necesita de ningún plugin externo, basta con importarlo para usarlo.
 
@@ -121,13 +121,13 @@ Vite ya cuenta con soporte para Typescript de manera predeterminada, por lo que 
 import <function> from './<archivo>.ts'
 ```
 
-### 1.8.1 Typescript con configuración personalizada
+### Typescript con configuración personalizada
 
 Si queremos usar una configuración diferente basta con agregar un archivo tsconfig.json a la raiz del directorio.
 
 Cada vez que realicemos un cambio a este archivo necesitamos borrar el caché del navegador.
 
-## 1.9 Configuración de Vite
+## Configuración de Vite
 
 Para modificar las configuraciones por defecto de Vite es necesario crear un arcivo vite.config.js.
 
@@ -183,7 +183,7 @@ export default defineConfig(() => {
 })
 ```
 
-## 1.10 Comando y modo
+## Comando y modo
 
 La función defineConfig puede recibir desestructurar algunos parámetros opcionales:
 
@@ -205,7 +205,7 @@ export default defineConfig(({command, mode}) => {
 })
 ```
 
-## 1.11 Variables de entorno
+## Variables de entorno
 
 Vite mantiene todas las variables del archivo .env en la raiz ocultas, la única manera de que Vite lea las variables de entorno es si tienen el prefijo VITE_.
 
@@ -225,7 +225,7 @@ export default defineConfig(({command, mode}) => {
 }
 ```
 
-## 1.12 Sitios multi-página
+## Sitios multi-página
 
 Hay ocasiones donde querremos que una página tenga sus propias dependencias y fuentes.
 
@@ -275,7 +275,7 @@ export default defineConfig(({command, mode}) => {
 
 Format se refiere a los formatos como es2017, modulos umd. Vite generará una salida para cada tipo de formato.
 
-## 1.13 Vite para React y Vue
+## Vite para React y Vue
 
 Vite brinda soporte completo para React y Vue.
 
@@ -287,6 +287,6 @@ npm create vite@latest
 
 Tras la creación del proyecto e instalar las dependencias, tendremos el archivo de configuración vite.config.js en la raiz del proyecto, junto con los comandos y el archivo index.html
 
-### 1.13.1 Archivos estáticos en React
+### Archivos estáticos en React
 
 De igual forma, los archivos estáticos pueden colocarse en el interior de una carpeta llamada public, en la raiz del proyecto.

@@ -17,12 +17,12 @@ El vector siguiente tiene 3 coeficientes.
 
 
 
-## 1.1 Igualdad
+## Igualdad
 
 Sean a,b dos vectores a = b si ai=bi con 0\<i\<n-1. Si cada entrada o
 subindice es igual.
 
-## 1.2 Bloque o stack de vectores
+## Bloque o stack de vectores
 
 Podemos tener un stack de vectores
 
@@ -46,7 +46,7 @@ quedaría de la siguiente manera:
 
 *b* = *a*0 : (*m*−1)*c* = *a**m* : (*m*+*n*−1)*d* = *a*(*m*+*n*) : (*m*+*n*+*p*−1)
 
-## 1.3 Convenciones
+## Convenciones
 
 Generalmente se usan letras griegas para escaleras y letras minúsculas
 para vectores.
@@ -68,7 +68,7 @@ es
 
 (*e**i*)*j* = 1, *s**i**i* = *j**o*0*s**i**i*! = *j*
 
-## 1.4 Modelo aditivo RGB
+## Modelo aditivo RGB
 
 Es un modelo donde cada color se representa con un vector de 3
 dimensiones (R, G, B)
@@ -80,14 +80,14 @@ Y la combinación de diferentes colores se logra sumando esos vectores.
 
 El amarillo, por ejemplo es (255, 255, 0).
 
-## 1.5 Suma de vectores
+## Suma de vectores
 
 Para sumar vectores ambos deben tener la misma dimensión y simplemente
 se sumando elemento a elemento a sus entradas.
 
 0, 1, 2 + 2, 3,  − 1 = 2, 4, 1
 
-### 1.5.1 Propiedades de la suma
+### Propiedades de la suma
 
 -   Conmutativa, a + b = b + a
 -   Asociativa, (a + b) + c = a + (b + c)

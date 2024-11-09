@@ -3,11 +3,11 @@
 Docker es una herramienta que permite empaquetar una aplicación y sus dependencias en un contenedor muy ligero. 
 
 
-## 1.1 Problemas al desarrollar software
+## Problemas al desarrollar software
 
 Problemáticas del desarrollo de software
 
-### 1.1.1 Construir - Escribir código en ambiente del desarrollador
+### Construir - Escribir código en ambiente del desarrollador
 
 Problemática:
 
@@ -18,7 +18,7 @@ Problemática:
 -   versiones/compatibilidad de 3rd party (integración con otros
     servicios ejem: base de datos)
 
-### 1.1.2 Distribuir - Llevar la aplicación donde se va a desplegar
+### Distribuir - Llevar la aplicación donde se va a desplegar
 
 Problemática:
 
@@ -27,7 +27,7 @@ Problemática:
 -   Ejecución nativa vs virtualizada
 -   Entornos Serverless
 
-### 1.1.3 Ejecutar - Implementar la solución en el ambiente de producción
+### Ejecutar - Implementar la solución en el ambiente de producción
 
 El reto Hacer que funcione como debería funcionar
 
@@ -40,7 +40,7 @@ Problemática:
     externos)
 -   Recursos de hardware (Capacidad de ejecución)
 
-## 1.2 Conceptos fundamentales
+## Conceptos fundamentales
 
 Los contenedores son diferentes y más ligeros a una máquina virtual pues
 no es necesario emular el sistema operativo completo.
@@ -50,9 +50,9 @@ docker hub.
 
 Una imagen de un contenedor es una plantilla que no va a cambiar.
 
-## 1.3 Comandos básicos
+## Comandos básicos
 
-### 1.3.1 Correr un contenedor
+### Correr un contenedor
 
 Para correr un contenedor usaremos el comando run. Además, puedes
 especificar como quieres que se llame tu contenedor con la opción –name
@@ -78,7 +78,7 @@ Digest: sha256:4cf9c47f86df71d48364001ede3a4fcd85ae80ce02ebad74156906caff5378bc
 ...
 ```
 
-### 1.3.2 Buscar una imagen
+### Buscar una imagen
 
 Para buscar una imagen podemos usar el comando docker search. Lo que
 hace este comando es conectarse a docker hub y buscar la imagen que le
@@ -112,7 +112,7 @@ REPOSITORY        TAG            IMAGE ID            CREATED             SIZE
 hello-world       latest         bf756fb1ae65        8 months ago        13.3kB
 ```
 
-### 1.3.3 Inspeccionar una imagen
+### Inspeccionar una imagen
 
 Para inspeccionar una imagen basta con usar docker inspect, seguido del
 nombre o id de la imagen. Docker imprimirá información relacionada con
@@ -129,7 +129,7 @@ docker inspect hello-world
  ...] 
 ```
 
-### 1.3.4 Historial de una imagen
+### Historial de una imagen
 
 Docker history nos muestra la historia de una imagen.
 
@@ -139,7 +139,7 @@ IMAGE               CREATED             CREATED BY                              
 bf756fb1ae65        9 months ago        /bin/sh -c #(nop)  CMD ["/hello"]               0B                  
 ```
 
-### 1.3.5 Borrar una imagen
+### Borrar una imagen
 
 Para borrar una imagen existe el comando rmi, sí como rm, pero con la i
 de «image» a continuación, necesitaremos ya sea su id o su repository y
@@ -150,7 +150,7 @@ docker rmi repository:tag
 docker rmi id_de_la_imagen
 ```
 
-### 1.3.6 Ver los procesos de Docker
+### Ver los procesos de Docker
 
 Si queremos ver los procesos ejecutados usamos docker ps con la opción
 -a. Por favor nota que nuestro contenedor tiene un id y, además un
@@ -172,7 +172,7 @@ docker ps
 CONTAINER ID   IMAGE              COMMAND        CREATED        STATUS                  PORTS     NAMES
 ```
 
-### 1.3.7 Borrar un contenedor al terminar de ejecutarlo
+### Borrar un contenedor al terminar de ejecutarlo
 
 Cada vez que ejecutamos docker run se crea un nuevo contenedor. Para
 evitar llenarnos de contenedores podemos borrarlos automáticamente
@@ -195,7 +195,7 @@ contenedor adicional al que ya teníamos.
 > 0f100ae4a21e hello-world "/hello" 10 minutes ago Exited (0) 10 minutes
 > ago lucid_morse
 
-### 1.3.8 Borrar un contenedor
+### Borrar un contenedor
 
 Para borrar los contenedores, puedes usar el comando docker rm, con el
 nombre o id del contenedor.
@@ -204,7 +204,7 @@ nombre o id del contenedor.
 docker rm nombre_o_id_del_contenedor
 ```
 
-#### 1.3.8.1 Borrar todos los contenedores en Docker
+#### Borrar todos los contenedores en Docker
 
 Es bastante común querer borrar todos los contenedores en Docker. Para
 hacerlo necesitamos conseguir todos los id de los contenedores. Si
@@ -228,7 +228,7 @@ docker rm para eliminar todos los contenedores.
 docker rm $(docker ps -aq)
 ```
 
-### 1.3.9 Acceder a la terminal de un contenedor
+### Acceder a la terminal de un contenedor
 
 El siguiente comando nos introducirá en un contenedor creado a partir de
 una imagen. Técnicamente lo que hace docker run -it es vincular la
@@ -255,7 +255,7 @@ pwd
 /
 ```
 
-### 1.3.10 Correr un contenedor en segundo plano
+### Correr un contenedor en segundo plano
 
 Cuando queremos que un contenedor permanezca ejecutándose en segundo
 plano usamos la etiqueta -d, que viene de detach (también puedes
@@ -275,7 +275,7 @@ CONTAINER ID    IMAGE           COMMAND                  CREATED             STA
 8c7fbece083b    nginx           "/docker-entrypoint.…"   8 seconds ago       Up 6 seconds        80/tcp       boring_hugle
 ```
 
-### 1.3.11 Ver los logs de un contenedor
+### Ver los logs de un contenedor
 
 Si nuestro contenedor no pudo ejecutarse de la manera en la que
 esperábamos, examinar los logs sería un buen punto de partida. Para esta
@@ -289,7 +289,7 @@ docker logs nombre_del_contenedor
 ...
 ```
 
-### 1.3.12 Ejecutar un comando en un contenedor corriendo
+### Ejecutar un comando en un contenedor corriendo
 
 Para ejecutar un comando en un contenedor que está corriendo se usará el
 comando exec. Es importante hacer notar que aquí se usa el nombre del
@@ -313,7 +313,7 @@ docker exec -it boring_hugle curl localhost
 ...
 ```
 
-### 1.3.13 Detener un contenedor
+### Detener un contenedor
 
 Para detener un contenedor que está corriendo basta con ejecutar docker
 stop, seguido del nombre o id del contenedor.
@@ -322,7 +322,7 @@ stop, seguido del nombre o id del contenedor.
 docker stop nombre_o_id_del_contenedor
 ```
 
-### 1.3.14 Iniciamos un contenedor
+### Iniciamos un contenedor
 
 Si queremos correr un contenedor que se encuentra detenido usamos ahora
 docker start
@@ -331,7 +331,7 @@ docker start
 docker start nombre_o_id_del_contenedor
 ```
 
-### 1.3.15 Reiniciar un contenedor
+### Reiniciar un contenedor
 
 Si en lugar de eso queremos reiniciar un contenedor que se encuentra
 corriendo podemos usar docker restart
@@ -340,7 +340,7 @@ corriendo podemos usar docker restart
 docker restart nombre_o_id_del_contenedor
 ```
 
-### 1.3.16 Exponer un contenedor al exterior
+### Exponer un contenedor al exterior
 
 Hasta ahora hemos creado contenedores con los cuales no podemos
 interaccionar desde el exterior. Cada contenedor tiene su propia red y
@@ -372,7 +372,7 @@ docker run --name mongoDB -d -v /Users/usuario/Dev/database:/data/db mongo
 Cualquier cambio que hagamos en nuestro contenedor o en nuestra máquina
 va a modificar el volumen que especificamos.
 
-## 1.4 Crear volúmenes en Docker
+## Crear volúmenes en Docker
 
 Podemos crear un volumen en docker usando el comando volume create,
 seguido del nombre del volumen.
@@ -381,7 +381,7 @@ seguido del nombre del volumen.
 docker volume create nombre_del_volumen
 ```
 
-### 1.4.1 Montar volúmenes en Docker
+### Montar volúmenes en Docker
 
 Para montar un volumen que hemos creado en un contenedor usamos la
 opción –mount, seguido del nombre del volumen (src) y de su destino en
@@ -391,7 +391,7 @@ el contenedor (dst), separados por una coma
 docker run -d --name db --mount src=nombre_del_volumen,dst=/data/db mongo
 ```
 
-### 1.4.2 Listar volúmenes
+### Listar volúmenes
 
 Para listar todos los volúmenes que hemos creado usaremos el comando ls
 volume en docker
@@ -402,7 +402,7 @@ DRIVER              VOLUME NAME
 local               nombre_del_volumen
 ```
 
-### 1.4.3 Limpiar volúmenes
+### Limpiar volúmenes
 
 Si tenemos volúmenes que no están asociados a ningún contenedor podemos
 deshacernos de ellos usando docker volume prune.
@@ -411,7 +411,7 @@ deshacernos de ellos usando docker volume prune.
 docker volume prune
 ```
 
-### 1.4.4 Borrar volúmenes
+### Borrar volúmenes
 
 Para borrar un volumen usamos el comando volume rm.
 
@@ -419,7 +419,7 @@ Para borrar un volumen usamos el comando volume rm.
 docker volume rm nombre_del_volumen
 ```
 
-## 1.5 Usando un Dockerfile para crear una imagen
+## Usando un Dockerfile para crear una imagen
 
 Hasta ahorita todo se ha hecho de manera manual, pero que tal si
 queremos una manera de guardar nuestro proceso de transformaciones a una
@@ -480,7 +480,7 @@ necesita saber donde está el archivo wsgi.py para iniciar el servidor.
 └── requirements.txt
 ```
 
-## 1.6 Ejemplo, creación y análisis de un Dockerfile
+## Ejemplo, creación y análisis de un Dockerfile
 
 Con todos estos archivos vamos a crear una imagen personalizada para
 nuestro Dockerfile. Abre el archivo Dockerfile con tu editor de texto
@@ -526,7 +526,7 @@ CMD ["gunicorn", "myDockerDjangoApp.wsgi"]
     Python. En este caso, como mencioné arriba, gunicorn solo necesita
     saber donde está el archivo wsgi que generó django automáticamente.
 
-### 1.6.1 El orden es importante en un Dockerfile
+### El orden es importante en un Dockerfile
 
 La compilación de un Dockerfile es un proceso secuencial, cada paso crea
 una imagen intermediaria que Docker puede guardar en cache. Docker usa
@@ -566,7 +566,7 @@ Successfully built 6e3ffe358338
 Successfully tagged djangocontainer:0.1
 ```
 
-### 1.6.2 Compilación de un Dockerfile
+### Compilación de un Dockerfile
 
 Para compilar un Dockerfile y crear una imagen personalizada creada a
 partir del contenido de nuestro archivo, basta con ejecutar el comando
@@ -608,17 +608,17 @@ mismo número.
 docker run -p 8000:8000 -d --name test_container djangocontainer:0.1
 ```
 
-## 1.7 Ignorar archivos
+## Ignorar archivos
 
 Al igual que git, docker tiene un archivo en donde listar los archivos o
 carpetas a ignorar llamado **dockerignore**.
 
-## 1.8 Construcción en multiples etapas
+## Construcción en multiples etapas
 
 Esto nos permite usar Docker files con varias fases, donde una fase
 puede usar el resultado de la otra.
 
-## 1.9 Correr Dive dentro de Docker in Docker
+## Correr Dive dentro de Docker in Docker
 
 Esto se hace usando este comando
 
@@ -626,9 +626,9 @@ Esto se hace usando este comando
 docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/bin/docker wagoodman/dive:latest myapp
 ```
 
-## 1.10 Miscelaneas
+## Miscelaneas
 
-### 1.10.1 Herramienta dive
+### Herramienta dive
 
 Esta herramienta busca la imagen y nos ofrece una mirada de como está
 construida la imagen

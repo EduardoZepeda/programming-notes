@@ -2,7 +2,7 @@
 
 
 
-## 1.1 Es muy tarde para ser nómada digital
+## Es muy tarde para ser nómada digital
 
 En algunos
 [foros](https://nomadlist.com/forum/t/is-it-too-late-to-become-a-digital-nomad-at-40/4750)
@@ -13,20 +13,20 @@ la mayoría de las nomadas digitales empiezan cercad de los 38 años. En
 Twitter se dice que la mayoría de los nómadas digitales se centran en
 gente al principio de sus 20\'s y finales de sus 30\'s.
 
-## 1.2 Guia sobre el trabajo remoto
+## Guia sobre el trabajo remoto
 
 Si no sabes como empezar aquí hay una [guia sobre el trabajo remoto que
 no intenta venderte
 nada.](https://blog.stephsmith.io/the-guide-to-remote-work/) Aquí hay
 otra [guia](https://www.guiatrabajoremoto.cl/)
 
-## 1.3 El manifiesto remoto de Gitlab
+## El manifiesto remoto de Gitlab
 
 Otro referente en cuanto al trabajo remoto es gitlab, puedes leer su
 [manifiesto
 remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 
-## 1.4 Páginas para trabajadores remotos
+## Páginas para trabajadores remotos
 
 -   [Proxify](https://career.proxify.io/)
 -   [Meerkad](https://meerkad.com/)
@@ -65,7 +65,7 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Vanhack](https://vanhack.com/)
 -   [First job](https://firstjob.me/)
 
-## 1.5 Páginas para buscar hospedaje como nómada digital
+## Páginas para buscar hospedaje como nómada digital
 
 -   [SpotAhome](https://www.spotahome.com)
 -   [flatio](https://www.flatio.es/)
@@ -73,17 +73,17 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Vrbo](https://www.verbo.com)
 -   [Booking](https://www.booking.com)
 
-## 1.6 Voluntariados pagados con hospedaje, comida y a veces dinero
+## Voluntariados pagados con hospedaje, comida y a veces dinero
 
 -   [Worldpackers](https://www.worldpackers.com/es)
 -   [Global Giving](https://www.globalgiving.org/)
 -   [Projects Abroad](https://www.projects-abroad.net/)
 
-## 1.7 Empresas amigables con trabajo remoto
+## Empresas amigables con trabajo remoto
 
 -   [Sngular](https://www.sngular.com)
 
-### 1.7.1 Seguros
+### Seguros
 
 -   [Intermundial](https://www.intermundial.es)
 -   [Mondo](https://heymondo.com)
@@ -93,7 +93,7 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Oom](https://oominsurance.com)
 -   [Safety wing](https://safetywing.com)
 
-## 1.8 Buscadores de vuelos de avión baratos
+## Buscadores de vuelos de avión baratos
 
 -   [Greatescape](https://greatescape.co)
 -   [Skiplagged](https://skiplagged.com/)
@@ -106,7 +106,7 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Priceline](https://www.priceline.com/)
 -   [Hotwire](https://hotwire.com/)
 
-### 1.8.1 Rentar ticktes de avión
+### Rentar ticktes de avión
 
 La mayoría de los paises te piden un vuelo de regreso cuando viajas. A
 pesar de esto, es posible rentar tickets totalmente auténticos
@@ -115,9 +115,9 @@ para presentar por unas cuentas decenas de dolares.
 -   [OneWayFly](https://onewayfly.com/es/)
 -   [BestOnWardTicket](https://bestonwardticket.com/#how-it-works)
 
-## 1.9 Trabajo y entrevistas
+## Trabajo y entrevistas
 
-### 1.9.1 Preguntas para filtrar empresas que no valen la pena
+### Preguntas para filtrar empresas que no valen la pena
 
 -   Am I replacing someone\'s position? If that\'s the case, tell me
     what happened to that person?
@@ -126,12 +126,12 @@ para presentar por unas cuentas decenas de dolares.
 -   How did your company/organization respond to COVID-19 pandemic?
 -   How did this position open up?
 
-### 1.9.2 Recursos para mejorar entrevistas
+### Recursos para mejorar entrevistas
 
 -   [Tech interview
     handbook](https://yangshun.github.io/tech-interview-handbook/introduction)
 
-## 1.10 Visas
+## Visas
 
 - [visadb](https://visadb.io/)
 - [Visas de paises para mexicanos](https://www.mundukos.com/tips-de-viaje/a-que-paises-pueden-viajar-los-mexicanos-sin-visa/)
@@ -140,7 +140,7 @@ para presentar por unas cuentas decenas de dolares.
 
 -   [Broken backpacker](https://www.thebrokebackpacker.com/)
 
-## 1.12-Apps-utiles
+##-Apps-utiles
 
 1. @travelspendapp: una aplicación de seguimiento presupuestario dedicada a los viajes (¡asegúrate de estar al tanto de cada gasto!).
 2. Google Translate: se explica por sí sola, pero el truco es descargar el idioma para traducirlo sin conexión. Además, utiliza la cámara para traducir menús y señales

@@ -4,7 +4,7 @@ Jest es un framework de JavaScript para pruebas.
 
 
 
-## 1.1 ¿Qué es un test?
+## ¿Qué es un test?
 
 Como developers tenemos que garantizar que el codigo escrito cumpla con
 ciertos requisitos/expectativas. Esto lo hacemos por medio de una prueba
@@ -15,7 +15,7 @@ Esto nos asegura:
 -   Nuestro codigo cumple con el standar.
 -   Enviamos a producción sin errores.
 
-### 1.1.1 Tipos de pruebas
+### Tipos de pruebas
 
 Debemos tener en cuenta que existen dos tipos de pruebas:
 
@@ -27,7 +27,7 @@ Debemos tener en cuenta que existen dos tipos de pruebas:
 
 -   No funcionales.
 
-## 1.2 Instalación
+## Instalación
 
 Para instalarlo lo hacemos desde npm:
 
@@ -48,7 +48,7 @@ Dentro de la carpeta src colocaremos una carpeta en su interior llamada
 2 directories, 3 files
 ```
 
-### 1.2.1 Las pruebas se harán desde global.test.js
+### Las pruebas se harán desde global.test.js
 
 En el archivo global.test.js Jest esperará una función llamada test, que
 recibirá un string y una funcion anónima:
@@ -67,7 +67,7 @@ Recuerda agregar el comando jest a los scripts de npm:
 },
 ```
 
-## 1.3 Promesas
+## Promesas
 
 Las pruebas en promesas se llevan a cabo de la siguiente manera:
 
@@ -88,7 +88,7 @@ test('probar async/await', async()=> {
 })
 ```
 
-## 1.4 Ejecutar código después de cada prueba
+## Ejecutar código después de cada prueba
 
 Para ejecutar código despus de cada prueba o despues de todas las
 pruebas usamos:
@@ -98,7 +98,7 @@ afterEach(()=>{})
 afterAll(()=>{})
 ```
 
-## 1.5 Ejecutar código antes de cada prueba
+## Ejecutar código antes de cada prueba
 
 Y para ejecutar codigo antes de cada prueba o antes de todas las
 pruebas:
@@ -108,7 +108,7 @@ beforeEach(()=>{})
 beforeAll(()=>{})
 ```
 
-## 1.6 Describe
+## Describe
 
 Describe nos permite crear una serie de test:
 
@@ -120,7 +120,7 @@ describe('Probar muchas pruebas', ()=>{
 })
 ```
 
-## 1.7 watch
+## watch
 
 Podemos pedirle a jest que se quede vigilando las pruebas con el flag
 --watch:
@@ -131,7 +131,7 @@ Podemos pedirle a jest que se quede vigilando las pruebas con el flag
 },
 ```
 
-## 1.8 coverage
+## coverage
 
 Podemos revisar la porción del código cubierto por las pruebas con el
 flag --coverage:
@@ -146,7 +146,7 @@ De la misma manera creará una carpeta nueva llamada coverage, con un
 reporte en html que muestra las partes del código no cubiertas por las
 pruebas.
 
-## 1.9 Instalación de otras dependencias
+## Instalación de otras dependencias
 
 Necesitamos instalar las dependencias necesarias para hacer test a los
 componentes, estas son:
@@ -208,7 +208,7 @@ describe('<Footer/>', ()=>{
 Sin embargo recordemos que Enzyme no reconoce estilos, por lo que
 necesitamos emular la función de estos estilos usando Mock
 
-## 1.10 Mock
+## Mock
 
 Para esto creamos una carpeta dentro del proyecto llamada
 \_\_[mocks]()\_ y agregamos un archivo que exportará un objeto vacio
@@ -234,7 +234,7 @@ el resto de la configuración de jest.
 Todos los archivos terminados en styl o css coincidirán con la búsqueda
 y serán reemplazados por styleMock.js
 
-## 1.11 Sobre el scope de los components
+## Sobre el scope de los components
 
 Para asegurarnos que los componentes estén disponible para todas
 nuestras funciones test, debemos colocarlos dentro de la función
@@ -252,7 +252,7 @@ describe('<Footer/>', ()=>{
 });
 ```
 
-## 1.12 Testear con BrowserRouter y Redux
+## Testear con BrowserRouter y Redux
 
 Para testear un componente que cuenta con un estado y un router
 necesitamos crear un componente con un mockup que englobe a nuestro
@@ -282,7 +282,7 @@ const ProviderMock = props => {
 export default ProviderMock;
 ```
 
-## 1.13 Shallow y Mount
+## Shallow y Mount
 
 ¿Cuándo utilizar mount y cuándo utilizar shallow?
 
@@ -292,7 +292,7 @@ export default ProviderMock;
     necesitamos toda su estructura y elementos del DOM. Shallow ni
     siquiera realiza el DOM rendering que hace React
 
-## 1.14 Snapshots
+## Snapshots
 
 Es para componentes estáticos que solo representan una estructura
 visual. De gran utilidad para asegurarnos que la UI no cambia.
@@ -321,7 +321,7 @@ Creamos el Footer con create y luego lo transformamos en un JSON para
 compararlo con el snapshot. Si el snapshot no existe se creará al
 momento de correr las pruebas.
 
-## 1.15 Reescribiendo el snapshot
+## Reescribiendo el snapshot
 
 Si queremos reescribir el snapshot basta con correr este comando:
 
@@ -329,7 +329,7 @@ Si queremos reescribir el snapshot basta con correr este comando:
 jest --updateSpapshot
 ```
 
-## 1.16 Probar actions
+## Probar actions
 
 Para probar actions necesitamos probar el payload:
 
@@ -349,7 +349,7 @@ describe('Actions', ()=>{
 });
 ```
 
-## 1.17 Probar reducers
+## Probar reducers
 
 Para probar reducers probamos así mismo lo que devuelve cada uno de
 ellos:
@@ -370,7 +370,7 @@ en el caso de arriba, como el reducer recibe un estado y devuelve otro,
 le pasamos un objeto vacio y una cadena vacia (que no coincidirá con
 ningún caso) y retornar el objeto vacio.
 
-## 1.18 Probar Fetch
+## Probar Fetch
 
 Para probar fetch necesitamos reemplazar el global fetch en nuestro
 archivo de configuración setupTest.js:
@@ -407,7 +407,7 @@ describe('Fetch API', ()=>{
 })
 ```
 
-## 1.19 Métodos utiles de pruebas
+## Métodos utiles de pruebas
 
 Para comparar un string usamos toMatch
 

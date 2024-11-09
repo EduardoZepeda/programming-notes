@@ -13,34 +13,34 @@ que podemos adaptar a nuestras necesidades.
 -   Comportamiento: Comunicación entre objetos y la asignación de sus
     responsabilidades
 
-### 1.1.1 Singleton
+### Singleton
 
 Hace posible trabajar con una sola instancia que pueda ser accesada de
 manera global.
 
-### 1.1.2 Factory
+### Factory
 
 La definición de una familia de clases base que permite que las
 subclases alteren los comportamientos de manera especīfica. Una de las
 desventajas de usar Factory es que puede complicar ligeramente el
 código.
 
-### 1.1.3 Observer
+### Observer
 
 Nos permite que un objeto esté pendiente de un evento que va a ocurrir
 en otro objeto.
 
-### 1.1.4 Strategy
+### Strategy
 
 Cuando se tiene una familia de algoritmos que persiguen objetivos
 similares y se requiere que sean intercambiados en tiempo de ejecución.
 
-### 1.1.5 Adapter
+### Adapter
 
 Nos permite crear código que no tenga la necesidad de reescribir las
 interfaces que ya existen
 
-## 1.1 Builder
+## Builder
 
 Este patrón consta de un director y un constructor. El constructor es
 responsable de crear varias partes del objeto complejo, el director
@@ -262,7 +262,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## 1.2 Factory
+## Factory
 
 En este ejemplo primero creamos clases para cuadrado y circulo, cada
 clase tendrá un método para dibujarse en pantalla, la fabrica abstracta
@@ -343,7 +343,7 @@ class SquareFactory(AbstractFactory):
       draw_function(circleFactory)
 ```
 
-## 1.3 Facade
+## Facade
 
 El patrón de facade nos permite simplemente crear una interfaz (puede
 ser una clase) donde nosotros podamos volver más sencillo una interfaz
@@ -458,7 +458,7 @@ def nice_sales_processor(customer_id, item_dict_list, payment_type):
     Sale.generate_receipt(invoice,payment_type)
 ```
 
-## 1.4 State
+## State
 
 Este patrón de sirve para manejar los cambios de estado de un objeto, ya
 sea un personaje de un videojuego (correr a la izquierda, derecha,
@@ -524,7 +524,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## 1.5 Interpreter
+## Interpreter
 
 El patrón interprete se trata de la creación de un Lenguaje de dominio
 especifico (DSL), el cual es un esquema (puede ser gramatical) que pueda
@@ -566,7 +566,7 @@ if 'increase' in ' '.join(cmd):
 print(boiler)
 ```
 
-## 1.6 Command
+## Command
 
 Este patrón permite tener una clase de comando, esta clase se encargará
 de recibir una clase con la función print_message. La clase Invoker
@@ -611,7 +611,7 @@ if __name__ == "__main__":
     invoker.run()
 ```
 
-## 1.7 Strategy
+## Strategy
 
 El patrón de estrategia permite cambiar las opciones de ejecución. En
 lugar de usar múltiples if/else para seleccionar el tipo de operación
@@ -640,7 +640,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## 1.8 Singleton
+## Singleton
 
 El truco ocurre en el método \_\_[new]()\_ este método se llama cuando
 se crea una clase y recibe la clase como parámetro. En este caso si no
@@ -677,7 +677,7 @@ class SingletonObject(object):
         return setattr(self.instance, name)
 ```
 
-## 1.9 Decorators
+## Decorators
 
 Con un decorador podemos agregarle una funcionalidad extra a una
 función, el decorador wraps nos permite mantener constantes los
@@ -721,7 +721,7 @@ if __name__ == "__main__":
     print("Fibonacci number for n = {}: {}".format(n, fib(n)))
 ```
 
-## 1.10 Prueba_proto
+## Prueba_proto
 
 El uso del decorador \@abstractmethod forza a la clase individuo a
 poseer un método llamado prueba() from abc import ABCMeta,
@@ -745,7 +745,7 @@ if __name__ == '__main__':
     indi1 = individuo()
 ```
 
-## 1.11 Proxy
+## Proxy
 
 Un proxy provee la misma interfaz que el objeto original, pero controla
 el acceso. Como parte de ese control puede efectuar otras tareas antes o
@@ -803,7 +803,7 @@ if __name__ == "__main__":
     )
 ```
 
-## 1.12 Mvc
+## Mvc
 
 En el modelo vista controlador se trata de encapsular los diferentes
 flujos de un programa input, procesamiento y salida en partes
@@ -882,7 +882,7 @@ if __name__ == "__main__":
     main(sys.argv[1])
 ```
 
-## 1.13 Chain of responsability
+## Chain of responsability
 
 Cada función tiene una única responsabilidad. El patrón de
 responsabilidad puede servir para encapsular el procesamiento de
@@ -924,7 +924,7 @@ if __name__ == "__main__":
     main(request)
 ```
 
-## 1.14 Observer
+## Observer
 
 El ejemplo correspondiente a la clase Task da cuenta de objetos
 acoplados, en el que es necesario que un objeto sepa muchísima
@@ -991,7 +991,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## 1.15 Template
+## Template
 
 En este patrón se busca utilizar el decorador \@abstractmethod para
 forzar la implementación de los métodos en una clase derivada. el método
@@ -1024,7 +1024,7 @@ class ConcreteImplementationClass(TemplateAbstractBaseClass):
     def _step_3(self): pass
 ```
 
-## 1.16 Adapter
+## Adapter
 
 Si quisieramos utilizar la función required_function en una interfaz
 pero esa función tuviera otro nombre en otro objeto, en lugar de heredar
@@ -1049,7 +1049,7 @@ class ObjectAdapter(object):
         return getattr(self.what_i_have, attr)
 ```
 
-## 1.17 Prototype
+## Prototype
 
 El patrón de prototipo requiere lo siguiente:
 
@@ -1163,7 +1163,7 @@ if __name__ == "__main__":
     print("[archer1] {}".format(archer1))
 ```
 
-## 1.18 Publisher
+## Publisher
 
 ``` python
 class Message(object):

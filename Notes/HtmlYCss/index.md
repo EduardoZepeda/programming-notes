@@ -8,7 +8,7 @@ elementos al redimensionar.
 .container{
     display: flex;
 ```
-## 1.1 CSS compuesto
+## CSS compuesto
 
 CSS nos permite componer varios elementos de CSS para lograr diferentes
 comportamientos.
@@ -94,7 +94,7 @@ Solo si el elemento es unico dentro de su padre
 only-of-type */ /*
 ```
 
-## 1.2 Root en CSS
+## Root en CSS
 
 Hay una nueva notación de CSS para especificar variables:
 
@@ -112,7 +112,7 @@ Y podemos usarla posteriormente en otro lugar usando la función var():
 }
 ```
 
-## 1.3 ¿Cómo generar diferentes vistas de diferentes dispositivos?
+## ¿Cómo generar diferentes vistas de diferentes dispositivos?
 
 Podemos generar vistas de como se ve una página HTML en diferentes
 resoluciones y dispositivos en estas páginas
@@ -121,7 +121,7 @@ resoluciones y dispositivos en estas páginas
 -   [Mockuphone](https://mockuphone.com/)
 -   [Mockerup](https://mockerup.net)
 
-## 1.4 Validación
+## Validación
 
 Podemos validar usando HTML colocando el atributo pattern y
 especificando un patrón REGEX.
@@ -130,7 +130,7 @@ especificando un patrón REGEX.
 <input pattern="regex">
 ```
 
-## 1.5 Escalado de imágenes
+## Escalado de imágenes
 
 Para escalar imágenes usamos la propiedad CSS llamada image-rendering.
 

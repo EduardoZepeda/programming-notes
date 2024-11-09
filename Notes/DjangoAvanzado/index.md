@@ -5,11 +5,11 @@ fuertemente en el desempeño de una aplicación.
 
 
 
-## 1.1 Django extensions
+## Django extensions
 
 Es un paquete que nos permite extender las capacidades de Django.
 
-## 1.2 Web services
+## Web services
 
 Web Services es la manera en que se implementan las arquitecturas
 orientadas a servicios, se crean bloques que son accesibles a través de
@@ -22,7 +22,7 @@ la web, son independientes del lenguaje de programación.
 -   GraphQL: Es el más moderno, desarrollado por Facebook. Funciona más
     como un Query Language para las API, un lenguaje de consultas.
 
-## 1.3 Proxy model
+## Proxy model
 
 Un proxy model permite agregar funciones a otro modelo, dado que tambien
 hereda el object manager podemos usar la clase indistintamente. Al usar
@@ -47,7 +47,7 @@ Persona.funcion_exclusiva() #No existe la funcion
 PersonaQueSaluda.funcion_exclusiva() #aquí si se ejecuta
 ```
 
-## 1.4 Abstract model
+## Abstract model
 
 Un Abstract model permite agregar un model de atributos que sean comunes
 para todos los modelos que hereden
@@ -79,7 +79,7 @@ Persona.funcion_exclusiva() #No existe la funcion
 PersonaQueSaluda.funcion_exclusiva() #aquí si se ejecuta
 ```
 
-## 1.5 Modelo personalizado de usuario
+## Modelo personalizado de usuario
 
 Para crear un modelo de usuario personalizado podemos heredar de
 AbstractUser
@@ -105,7 +105,7 @@ Luego en el archivo settings debemos especificar el AUTH_USER_MODEL
 AUTH_USER_MODEL = 'users.User'
 ```
 
-## 1.6 Validación personalizada de campos
+## Validación personalizada de campos
 
 Podemos especificar una lista de validadores en un modelo usando la
 función RegexValidator y pasándola como un argumento de nombre
@@ -120,7 +120,7 @@ phone_regex = RegexValidator(
 phone_number = models.CharField(validators = [phone_regex], max_length=17, blank=True)
 ```
 
-## 1.7 JWT
+## JWT
 
 En lugar de utilizar el generador de tokens de Django Rest Framework, es
 más seguro utilizar la libreria JWT para poder utilizarla solo la
@@ -168,7 +168,7 @@ class AccountVerificationSerializer(serializers.Serializer):
          user.save()
 ```
 
-## 1.8 Permisos
+## Permisos
 
 Podemos crear permisos personalizados instanciando una clase como base
 de BasePermission y haciendo que retorne un booleano
@@ -199,7 +199,7 @@ def get_permissions(self):
     return [p() for p in permissions]
 ```
 
-## 1.9 Celery
+## Celery
 
 Es posible crear tareas periódicas con celery usando el decorador
 periodic_task
@@ -210,7 +210,7 @@ def tarea():
     hace_cosas()
 ```
 
-## 1.10 Acciones
+## Acciones
 
 Una acción nos permite ejecutar una funcionalidad en el panel de Admin
 de Django. Para registrar acciones se crea una lista con el nombre de

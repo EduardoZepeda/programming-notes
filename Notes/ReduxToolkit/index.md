@@ -7,7 +7,7 @@ Redux toolkit abstrae muchísimas de las cosas que antes se necesitan
 dejar explícitas en el código y vuelve el uso de redux mucho más simple
 que su predecesor.
 
-## 1.1 Instalación
+## Instalación
 
 La instalación se realiza de manera diferente a redux. Recuerda agregar
 *react-redux* a la instalación si vas a usarlo en React.
@@ -16,7 +16,7 @@ La instalación se realiza de manera diferente a redux. Recuerda agregar
 npm install --save @reduxjs/toolkit
 ```
 
-## 1.2 Configurar un store
+## Configurar un store
 
 Para configurar un store necesitas importar el método *configureStore*
 del toolkit y pasarle un único objeto: la combinación de todos los
@@ -39,7 +39,7 @@ reducer,
 export default store;
 ```
 
-## 1.3 Slices en react-redux toolkit
+## Slices en react-redux toolkit
 
 Un slice es un objeto que acepta un objeto reducers, que contiene los
 reducers, un nombre y un estado inicial y que, generará automáticamente
@@ -76,7 +76,7 @@ reducers: {
 export default slice.reducer
 ```
 
-## 1.4 Configurar acciones en react-toolkit
+## Configurar acciones en react-toolkit
 
 Las acciones realizan un dispatch del contenido que devuelvan los
 reducers.
@@ -121,7 +121,7 @@ const store = configureStore({
 export default store;
 ```
 
-## 1.5 Usando los actions
+## Usando los actions
 
 Cuando necesitemos usar una action simplemente importamos el hook de
 react-redux llamado *useDispatch* y realizamos un dispatch
@@ -135,7 +135,7 @@ const dispatch = useDispatch()
 dispatch(logout())
 ```
 
-## 1.6 Acceder al store
+## Acceder al store
 
 Para acceder a los valores del store usamos el hook useSelector, que
 recibe una función con el estado como parámetro y nos devuelve el valor
@@ -147,7 +147,7 @@ import {useDispatch, useSelector} from 'react-redux'
 const { user } = useSelector(state => state.user)
 ```
 
-## 1.7 Redux toolkit en React
+## Redux toolkit en React
 
 Para usarlo con React hay que envolver nuestra aplicación en un
 componente que tenga acceso al store de redux.
@@ -165,7 +165,7 @@ document.getElementById('root')
 )
 ```
 
-## 1.8 Extra reducers
+## Extra reducers
 
 Los slices contienen una propiedad opcional extra además de reducers,
 llamada extraReducers. La diferencia con los reducers es que la
@@ -178,7 +178,7 @@ Los extraReducers son para lidiar con acciones creadas en un lugar
 diferente a la función *createSlice*, generalmente se usan para
 funciones creadas con *createAsyncThunk*
 
-## 1.9 createAsyncThunk
+## createAsyncThunk
 
 Es una función que acepta una string de un action type y una función que
 **debe retornar una promesa**.

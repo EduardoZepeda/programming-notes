@@ -1,7 +1,7 @@
 # Mongoose
 
 Mongoose es una librería para el manejo de MongoDB escrita en [Javascript](/Notes/FundamentosDeJavascript/1.-Fundamentos-de-Javascript.md).
-## 1.1 Crear conexión
+## Crear conexión
 
 Antes de utilizarlo debemos crear una conexión con mongoDB. Esta
 conexion debemos importarla al archivo que servirá como el enrutador.
@@ -18,7 +18,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
 
 
 
-## 1.2 Schemas
+## Schemas
 
 En Mongoose un schema es únicamente la estructura que tendran los datos,
 la estructura así como el tipo de los datos. Mientras que un modelo es
@@ -43,7 +43,7 @@ const Task = mongoose.model('Task', {
 module.exports = Task
 ```
 
-### 1.2.1 Ids en los schemas
+### Ids en los schemas
 
 Los modelos en MongoDB tienen id en formato de hash. Normalmente
 buscamos un objeto usando el método findById de su modelo.
@@ -52,7 +52,7 @@ buscamos un objeto usando el método findById de su modelo.
 const task = await Task.findById('hash')
 ```
 
-### 1.2.2 Métodos para los schemas
+### Métodos para los schemas
 
 Podemos especificar métodos para nuestros modelos. En este ejemplo
 creamos un método para generar tokens de autenticación
@@ -67,7 +67,7 @@ userSchema.methods.generateAuthToken = async function () {
 
     return token
 }
-```## 1.3 Queries
+```## Queries
 
 Podemos obtener las colecciones con el método getCollection
 
@@ -75,13 +75,13 @@ Podemos obtener las colecciones con el método getCollection
 db.getCollection(name)     
 ```
 
-### 1.3.1 Concatenación de queries
+### Concatenación de queries
 
 Luego podemos encadenar métodos de búsqueda como find
 
 ``` javascript
 db.getCollection(name).find({owner: user._id})
-```### 1.4.3 FindOne
+```### FindOne
 
 En este ejemplo creamos un método para encontrar credenciales. El método
 findOne nos lo provee mongoose para manipular nuestros modelos, le
@@ -104,7 +104,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
     return user
 }
-```## 1.5 Hooks
+```## Hooks
 
 Podemos especificar acciones previas a ejecutar cuando un método se
 ejecuta.
@@ -121,7 +121,7 @@ El método pre ejecutará, antes de cualquier remove, la función que borra
 cualquier Task cuyo usuario tenga el \_id del useEl método pre
 ejecutará, antes de cualquier remove, la función que borra cualquier
 Task cuyo usuario tenga el \_id del user
-## 1.6 Relaciones tipo Foreign Key
+## Relaciones tipo Foreign Key
 
 Podemos crear relaciones tipo Foreign Key especificando un Id
 
@@ -146,7 +146,7 @@ const Task = mongoose.model('Task', {
 })
 
 module.exports = Task
-```## 1.7 Relaciones inversas
+```## Relaciones inversas
 
 Para crear una relación inverse podemos usar la relación usando la
 función virtual, esta es solo una relación virtual, no está en la base
@@ -160,7 +160,7 @@ userSchema.virtual('tasks', {
     localField: '_id',
     foreignField: 'owner'
 })
-```## 1.8 Validación
+```## Validación
 
 También podemos especificar métodos de validación para cada campo.
 
@@ -211,7 +211,7 @@ age: {
 },
 ```
 
-### 1.8.1 Array de valores
+### Array de valores
 
 También nos es posible tener array de valores, para casos donde tenemos
 varias instancias de un mismo tipo de datos.

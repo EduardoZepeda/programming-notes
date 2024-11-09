@@ -1,5 +1,5 @@
 # Node
-## 1.2 Middleware
+## Middleware
 
 Node permite el uso de middleware. El middleware puede regresar una
 respuesta http o una llamada a next(), este último le indicará que debe
@@ -46,7 +46,7 @@ router.get('/users/me', auth, async (req, res) => {
 })
 ```
 
-## 1.3 Logging out
+## Logging out
 
 Para hacer un cambio en el estado de loggeo debemos seleccionar el token
 que usaremos para cerrar sesión. Recuerda que al tener varios tokens que
@@ -69,7 +69,7 @@ res.send()
 
 })
 
-## 1.4 Hide private data
+## Hide private data
 
 Solo debemos mostrarle información necesaria para el usuario. Esto
 excluye el password hash, los tokens innecesarios.
@@ -122,7 +122,7 @@ router.get('/tasks', auth, async (req, res)=> {
 })
 ```
 
-## 1.5 Pagination
+## Pagination
 
 Para fijar una paginación especificamos la propiedad limit dentro de
 options. parseInt se encarga de transformar un string de número en un
@@ -172,7 +172,7 @@ router.get('/tasks', auth, async (req, res)=> {
 })
 ```
 
-## 1.6 Ordenando
+## Ordenando
 
 Para ordenarr valores vamos a usar la propiedad sort, que aceptará como
 valor un campo. Como parámetro GET usaremos sortBy.
@@ -211,7 +211,7 @@ router.get('/tasks', auth, async (req, res)=> {
 })
 ```
 
-## 1.7 File Upload
+## File Upload
 
 Para llevar a cabo un upload de un archivo usamos la libreria multer.
 Esta libreria es un middleware para manejar multipart/form-data.
@@ -237,7 +237,7 @@ del request.
 >
 > })
 
-### 1.7.1 Validación
+### Validación
 
 Al recibir archivos debemos validarlos, podemos reestringir el tamaño y
 el tipo de archivo. Estos valores podemos especificarlos en el objeto de

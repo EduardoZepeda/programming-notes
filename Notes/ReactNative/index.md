@@ -2,7 +2,7 @@
 
 
 
-## 1.1 Características que lo hacen atractivo
+## Características que lo hacen atractivo
 
 Hay ciertas características que lo hacen bastante atractivo para
 desarrollar
@@ -13,12 +13,12 @@ desarrollar
 -   Network inspector
 -   Stack trace
 
-## 1.2 Instalación en GNU/Linux
+## Instalación en GNU/Linux
 
 Necesitamos instalar Node, JDK (java development kit), Android Studio y
 el cliente de React Native.
 
-### 1.2.1 Node
+### Node
 
 Node lo descargas desde aquí
 <https://nodejs.org/en/download/package-manager/>
@@ -32,14 +32,14 @@ tambien
 npm install -g react-native-cli
 ```
 
-### 1.2.2 JDK (java development kit)
+### JDK (java development kit)
 
 Java Development Kit lo descargas desde aquí
 <http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>
 
 Recuerda usar una versión igual o superior a la 8
 
-### 1.2.3 Android Studio
+### Android Studio
 
 Lo descargas desde aquí
 <https://developer.android.com/studio/index.html> En la instalación
@@ -74,7 +74,7 @@ la terminal tome las nuevas consiguraciones
 
 Es todo.
 
-## 1.3 Creacion de una App
+## Creacion de una App
 
 Para hacerlo usamos el comando:
 

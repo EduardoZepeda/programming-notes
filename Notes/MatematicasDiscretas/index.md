@@ -2,14 +2,14 @@
 
 
 
-## 1.1 Conjuntos
+## Conjuntos
 
 No distinguen orden.
 
 Nos interesa la relación de dependencia, que se expresa con el símbolo
 ∈.
 
-### 1.1.1 Determinación de un conjunto y cardinalidad
+### Determinación de un conjunto y cardinalidad
 
 Se pueden expresar por
 
@@ -18,38 +18,38 @@ Se pueden expresar por
 
 Pueden ser: \* Finitos \* Infinitos
 
-#### 1.1.1.1 Cardinalidad
+#### Cardinalidad
 
 La cardinalidad es el número de elementos que componen un conjunto \*
 \#A = 4 \* \|A\| = 4
 
-#### 1.1.1.2 Subconjuntos
+#### Subconjuntos
 
 Si todo elemento de un conjunto (A) está contenido dentro de otro (B) se
 dice que ese A es subconjunto de B
 
-### 1.1.2 Conjuntos especiales
+### Conjuntos especiales
 
-#### 1.1.2.1 Conjunto nulo
+#### Conjunto nulo
 
 Cuando el conjunto no contiene elementos
 
 A = {Numeros pares 1\<x\<1.5} No existe un número par que cumpla esas
 condiciones.
 
-#### 1.1.2.2 Conjunto unitario
+#### Conjunto unitario
 
 Cuando el conjunto solo contiene un elementos
 
 A = {2}
 
-#### 1.1.2.3 Conjunto universal
+#### Conjunto universal
 
 A = {1,3} B = {5,6,7} C = {1,3,5,7,9}
 
 U = {x\|x es un numero natural \<10}
 
-### 1.1.3 Operaciones entre conjuntos
+### Operaciones entre conjuntos
 
 A = {5,6,7,8,9,10}
 
@@ -57,7 +57,7 @@ B = {2,4,6,8,10}
 
 U = {1,2,3,4,5,6,7,8,9,10}
 
-### 1.1.4 Simbología
+### Simbología
 
 La simbología para los conjuntos son los siguientes:
 
@@ -65,20 +65,20 @@ La simbología para los conjuntos son los siguientes:
 Subconjunto estricto ⊃ Superconjunto estricto \|A\| Cardinalidad \#A
 Cardinalidad Cª = C' Complemento
 
-#### 1.1.4.1 Union
+#### Union
 
 Es la unión, de ambos conjuntos. No se repiten elementos.
 
 A ⋃ B = {2,4,5,6,7,8,9,10}
 
-#### 1.1.4.2 Intersección
+#### Intersección
 
 La Intersección de dos conjuntos A y B son aquellos elementos que se
 encuentran tanto en A como en B.
 
 A ⋂ B = {6,8,10}
 
-#### 1.1.4.3 Resta
+#### Resta
 
 En la Resta de conjuntos a diferencia de la unión y la intersección, si
 importa el orden de los conjuntos, por ejemplo, la Resta de un conjunto
@@ -87,14 +87,14 @@ en el conjunto A.
 
 A - B = {5,7,9} B - A = {2,4}
 
-#### 1.1.4.4 Complemento
+#### Complemento
 
 Por ultimo el Complemento de un conjunto son todos los elementos que le
 faltan al conjunto para volverse el conjunto universal.
 
 A'= {1,2,3,4} B'= {1,3,5,7,9}
 
-### 1.1.5 Representación gráfica de conjuntos
+### Representación gráfica de conjuntos
 
 Cuando representamos gráficamente algún conjunto utilizamos figuras
 geométricas como los círculos, cuadrados o triángulos. Representar
@@ -102,13 +102,13 @@ gráficamente los conjuntos nos sirve mucho al momento de identificar las
 operaciones entre conjuntos. El complemento de algún conjunto también
 puede ser expresado como la resta del conjunto al conjunto universal.
 
-#### 1.1.5.1 Ley de Morgan
+#### Ley de Morgan
 
 La ley de Morgan nos da las siguientes equivalencias.
 
 (A ⋃ B)' = A'⋂ B' (A ⋂ B)' = A'⋃ B'
 
-## 1.2 Teoría de grafos
+## Teoría de grafos
 
 El concepto básico de un gráfico es, un modelo matemático que sirve para
 representar las relaciones entre objetos de un conjunto. Un gráfico o
@@ -131,7 +131,7 @@ mover fácilmente a través del grafo.
 -   Multígrafo Dirigido que cuenta con dirección en las conexiones y
     puede haber múltiples conexiones entre dos nodos.
 
-### 1.2.1 Grafos caminos y cadenas
+### Grafos caminos y cadenas
 
 ¿Qué es el grado de un vértice? Es el número de aristas que tiene un
 nodo con otros nodos.
@@ -146,7 +146,7 @@ y conexiones donde no puedes repetir ningún vértice ni conexión, \* En
 un ciclo el vértice de inicio es igual al vértice donde termina. \* Un
 grafo conexo es aquel donde todos los nodos están unidos entre sí.
 
-#### 1.2.1.1 Caminos y ciclos eulerianos
+#### Caminos y ciclos eulerianos
 
 Ya sabes que un camino es una sucesión de vértices y conexiones donde no
 pasas dos veces por el mismo vértice, y un ciclo es una sucesión de
@@ -160,7 +160,7 @@ Un Ciclo Euleriano es aquel ciclo que recorre todo el grafo sin repetir
 una conexión, este se cumplirá solo cuando **todos los vértices o
 conexiones del grafo son grado par.**
 
-#### 1.2.1.2 Caminos y ciclos hamiltonianos
+#### Caminos y ciclos hamiltonianos
 
 A diferencia de los caminos y ciclos eulerianos, los caminos y ciclos
 hamiltonianos buscaran recorrer los nodos una sola vez sin importar el
@@ -174,7 +174,7 @@ camino hamiltoniano, pero **no se podrá afirmar.**
 Si hay un camino hamiltoniano, pero no un ciclo, entonces el grafo no es
 hamiltoniano.
 
-### 1.2.2 Matriz de adyacencia
+### Matriz de adyacencia
 
 Cuando un grafo se vuelve muy complejo es recomendable usar una matriz
 de adyacencia. En esta se estableceran las conexiones que tiene cada
@@ -200,7 +200,7 @@ En la matriz de adyacencia asimétrica, si sumamos las filas de cada nodo
 nos dirá la cantidad de conexiones que inciden en el nodo, y si miramos
 las columna nos dirá sobre que nodo inciden los nodos.
 
-### 1.2.3 Matriz de incidencia
+### Matriz de incidencia
 
 Antes de construir una matriz de incidencia deberás darle un nombre o
 identificador a cada conexión de tu grafo. Estas conexiones van a
@@ -226,7 +226,7 @@ En esta matriz solo habrá 1 y 0, a diferencia de la anterior.
 | d   | 0   | 0   | 0   | 1   | 1   | 1   |
 | e   | 0   | 0   | 1   | 1   | 0   | 0   |
 
-## 1.3 Árboles
+## Árboles
 
 Los Árboles nos permiten organizar o estructurar información. Si tenemos
 un nodo A y un nodo B, solo existirá una conexión entre ellos.
@@ -236,7 +236,7 @@ jerarquía.
 
 Existen diferentes tipos de árboles:
 
-### 1.3.1 Tipos de árboles
+### Tipos de árboles
 
 -   Libre: no es claro cual es el nodo principal o nodo raíz dentro de
     este árbol.
@@ -256,18 +256,18 @@ la raíz más uno.
 
 La altura de un árbol es igual al nivel del árbol más el nivel raíz.
 
-### 1.3.2 Subárbol
+### Subárbol
 
 Un subárbol es una parte de un árbol que hace parte de un árbol más
 grande. Nos referimos a ellos como sub árbol raiz "b"
 
-### 1.3.3 Vértice
+### Vértice
 
 Un vértice terminal es aquel nodo que ya no tiene más hijos o donde el
 árbol ya no se expande. Por otro lado, los vértices internos son
 aquellos que tienen hijos, ya sea uno o dos.
 
-### 1.3.4 Árbol de expansión mínimo
+### Árbol de expansión mínimo
 
 Un árbol de expansión mínimo es aquel árbol que partiendo de una raíz
 pueda conectar todos los vértices buscando los caminos de menor costo.
@@ -281,12 +281,12 @@ raiz del árbol.
 
 ![image](Notes/MatematicasDiscretas/img/arbol_expansion_minima_raiz_g.png)
 
-### 1.3.5 Árbol binario
+### Árbol binario
 
 Un árbol binario es aquel donde tenemos un máximo de dos hijos por cada
 uno de los vértices.
 
-#### 1.3.5.1 Tipos
+#### Tipos
 
 Existen dos tipos de arboles binarios:
 
@@ -305,14 +305,14 @@ hijo.
 
 ![image](Notes/MatematicasDiscretas/img/arbol_binario_degenerado.png)
 
-#### 1.3.5.2 Recursividad
+#### Recursividad
 
 Un árbol binario es una estructura recursiva pues puede llamarse a si
 misma, puedes descomponerlo en partes más pequeñas.
 
 ![image](Notes/MatematicasDiscretas/img/arbol_binario_recursivo.png)
 
-#### 1.3.5.3 Recorrido de árboles
+#### Recorrido de árboles
 
 Al momento de representar un árbol debemos elegir el orden en el cual
 vamos a recorrer dicho árbol. Dependiendo de qué orden se elija será la
@@ -331,7 +331,7 @@ Cuando nos encontremos con que el hijo izquierdo o derecho son a su vez
 un nodo raiz habrá que desarrolloarlos tomándolos a ellos mismos como la
 raiz.
 
-### 1.3.6 Expresiones aritméticas
+### Expresiones aritméticas
 
 Los árboles también nos sirven para representar expresiones aritméticas,
 para ello debe cumplir con las siguientes condiciones:
@@ -353,9 +353,9 @@ escriben izquierda y derecha, siempre en ese orden.**
 
 ![image](Notes/MatematicasDiscretas/img/arbol_operaciones_aritmeticas.jpg)
 
-### 1.3.7 Algoritmos
+### Algoritmos
 
-#### 1.3.7.1 Algoritmo de Prim
+#### Algoritmo de Prim
 
 Encuentra el menor costo de recorrer todos los vértices de un árbol de
 expansión.
@@ -367,7 +367,7 @@ expansión.
 5.  El algoritmo termina cuando hemos conectado todos los vértices con
     n-1 aristas, donde n es la cantidad de vértices.
 
-#### 1.3.7.2 Algoritmo de Dijkstra
+#### Algoritmo de Dijkstra
 
 El algoritmo de Dijkstra va a buscar la ruta optima o de menor coste
 entre dos vértices.
@@ -380,7 +380,7 @@ entre dos vértices.
     reemplazar en el nodo, sino dejar la anterior
 5.  Se finalizará cuando se llega al nodo final.
 
-#### 1.3.7.3 Algoritmo de Kruskal
+#### Algoritmo de Kruskal
 
 El algoritmo de Kruskal al igual que el algoritmo de Prim sirve para
 buscar el árbol de expansión mínimo, la diferencia es que el algoritmo
@@ -396,7 +396,7 @@ disponible.
 3.  El algoritmo finaliza cuando todos los vertices esten conectados con
     n-1 arcos.
 
-#### 1.3.7.4 Algoritmo de Fleury
+#### Algoritmo de Fleury
 
 El algoritmo de Fleury va a encontrar un ciclo euleriano. Recordemos que
 un ciclo euleriano es un ciclo donde inicias y terminas en el mismo
@@ -416,7 +416,7 @@ Para corroborar, el número de veces que se visita cada vértice debe ser
 la mitad de su grado. Exceptuando el nodo inicial y terminal, que son el
 mismo.
 
-#### 1.3.7.5 Algoritmo de flujo máximo
+#### Algoritmo de flujo máximo
 
 Encuentra el camino de un punto A a un punto B, en un **grafo
 dirigido**, con la mayor cantidad de flujo.

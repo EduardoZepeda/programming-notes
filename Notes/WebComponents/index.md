@@ -10,7 +10,7 @@ combinarán para crear una aplicación web. La diferencia con los
 frameworks es que, al estar basadas en estándares web, no es necesario
 que pertenezcan al mismo framework o librerías.
 
-## 1.1 ¿Qué son los web component?
+## ¿Qué son los web component?
 
 Primitivos de bajo nivel que te permiten definir tus propias etiquetas
 HTML.
@@ -22,12 +22,12 @@ Y para poder construirlos necesitamos un set de webAPIs.
 -   Shadow DOM
 -   ES Modules
 
-## 1.2 webAPIs
+## webAPIs
 
 HTML5 es el estandar principal de etiquetas donde cada etiqueta es
 interepretada por el navegador.
 
-### 1.2.1 Custom Elements
+### Custom Elements
 
 Son etiquetas HTML personalizadas que el navegador es capaz de
 interpretar.
@@ -35,14 +35,14 @@ interpretar.
 Mínimo dos palabras separadas por un guión, con el fin de que no entren
 en conflicto con las etiquetas HTML5
 
-### 1.2.2 HTMLTemplate
+### HTMLTemplate
 
 Se refiere a la etiqueta \<template\>, una plantilla flexible para
 rellenar el Shadow DOM. La cual no es renderizada en la página web, sino
 que solo va a retornar un document fragment, que requiere Javascript
 para renderizarse.
 
-### 1.2.3 Shadow DOM
+### Shadow DOM
 
 Se refiere al encapsulamiento del código para que incorporen cierta
 funcionalidad sin tener que escribirla. Por ejemplo la etiqueta
@@ -50,31 +50,31 @@ funcionalidad sin tener que escribirla. Por ejemplo la etiqueta
 botón de play, de pausa y una barra de progreso. Toda esa funcionalidad
 está encapsulada y no fue escrita al momento de utilizar la etiqueta.
 
-### 1.2.4 ES Modules
+### ES Modules
 
 Se refiere a las importaciones de código usando ECMA script 6
 
-## 1.3 Beneficios de usar webcomponents
+## Beneficios de usar webcomponents
 
-### 1.3.1 Reutilización
+### Reutilización
 
 Permite seguir la máxima de DRY. Pues podemos reutilizar los componentes
 previamente escritos.
 
-### 1.3.2 Legibilidad
+### Legibilidad
 
 Favorece la semántica y la legibilidad
 
-### 1.3.3 Mantenibilidad
+### Mantenibilidad
 
 Al ser unidades aisladas es posible testearlas de manera independiente.
 
-### 1.3.4 Interoperabilidad y consistencia
+### Interoperabilidad y consistencia
 
 Es posible combinar diferentes web componentes entre sí, o incluso
 dentro de frameworks.
 
-## 1.4 Ciclo de vida de un componente
+## Ciclo de vida de un componente
 
 El ciclo de vida de un componente consiste en:
 
@@ -89,7 +89,7 @@ El ciclo de vida de un componente consiste en:
 -   adoptedCallback: Es un caso extremedamente raro, ocurre cuando el
     componente se adopta dentro de un iFrame.
 
-## 1.5 Crear custom Elements
+## Crear custom Elements
 
 Algunos métodos útiles para recordar
 
@@ -104,7 +104,7 @@ Algunos métodos útiles para recordar
 -   element.appendChild: Inserta esa etiqueta que estaba en memoria al
     DOM real.
 
-### 1.5.1 Importación
+### Importación
 
 Primero importemos el archivo que contendrá nuestros módulos de web
 components. **Recuerda que la importación debe ocurrir debajo del web
@@ -127,7 +127,7 @@ class MiEtiqueta extends HTMLElement {
 }
 ```
 
-### 1.5.2 Creación del componente
+### Creación del componente
 
 Para crearlo especificaremos el nombre de la etiqueta y posteriormente
 la clase en el método define de customElements
@@ -142,7 +142,7 @@ Una vez hecho esto ya podemos añadirla a nuestro archivo HTML
 <mi-etiqueta>
 ```
 
-### 1.5.3 Agregar etiquetas HTML, bajo nivel
+### Agregar etiquetas HTML, bajo nivel
 
 Podemos crear propiedades para usar en nuestro componente usando la
 palabra this y luego usarlas cuando querramos.
@@ -160,7 +160,7 @@ class MiEtiqueta extends HTMLElement {
 }
 ```
 
-### 1.5.4 Agregar etiquetas con innerHTML, bajo nivel
+### Agregar etiquetas con innerHTML, bajo nivel
 
 También es posible agregar estilos directamente.
 
@@ -179,7 +179,7 @@ class MiEtiqueta extends HTMLElement {
 }
 ```
 
-## 1.6 Templates
+## Templates
 
 Para simplificar la creación de elementos y volverlo más escalable y
 repetible usamos la etiqueta contenedora \<template\>, dentro de la cual
@@ -195,7 +195,7 @@ podemos colocar código HTML.
 Si solo la usamos así, sin renderizar, obtendremos un
 \#document-fragment. Para renderizarlo necesitamos Javascript.
 
-### 1.6.1 Agregando contenido con cloneNode
+### Agregando contenido con cloneNode
 
 Es posible clonar el contenido y añadirlo usando appendChild, seguido
 del método cloneNode del contenido de la etiqueta \<template\>.
@@ -223,7 +223,7 @@ class MiEtiqueta extends HTMLElement {
 }
 ```
 
-## 1.7 ShadowDom
+## ShadowDom
 
 Puede entenderse como un DOM independiente del DOM global, por lo que se
 evitan los conflictos entre ellos.
@@ -254,7 +254,7 @@ this.appendChild(...) //Ya no hace nada
 this.shadowRoot.appendChild(...) // Esto sí
 ```
 
-## 1.8 Content Slot
+## Content Slot
 
 Es una etiqueta que nos permite darle interactividad al componente, para
 pasarle información de manera dinámica.
@@ -274,7 +274,7 @@ template.innerHTML(`
 `)
 ```
 
-## 1.9 Multi content slots
+## Multi content slots
 
 Para agregar múltiples slots podemos asignarles un nombre
 
@@ -294,7 +294,7 @@ Y ahora en nuestro HTML hacemos referencia a esos nombres
 </mi-etiqueta>
 ```
 
-## 1.10 Atributos a las etiquetas
+## Atributos a las etiquetas
 
 Es posible usar los atributos en nuestras etiquetas personalizadas y
 acceder a ellas con Javascript. Es un concepto parecido a los props.
@@ -327,7 +327,7 @@ En el código HTML le pasamos esos atributos a la etiqueta personalizada.
 <mi-elmento newTitle="titulo" content="contenido" img="https://example.org/example.jpg"></mi-elemento>
 ```
 
-## 1.11 attributeChangedCallback
+## attributeChangedCallback
 
 Para vigilar cuando cambien los atributos necesitamos crear un
 observador llamado *observedAttributes*, que retorne la lista de
@@ -367,7 +367,7 @@ class MiEtiqueta extends HTMLElement {
 Es importante **No usar atributos que ya forman parte de HTML (como
 title) o se generará un error Maximum call stack size exceeded.**
 
-## 1.12 connectedCallback
+## connectedCallback
 
 Ocurre cuando el elemento se agrega al DOM.
 
@@ -380,7 +380,7 @@ class MiEtiqueta extends HTMLElement {
 }
 ```
 
-## 1.13 disconnectedCallback
+## disconnectedCallback
 
 Es el último paso del ciclo de vida de un componente. **Es importante
 desvincular \*eventListeners\* antes de que un componente se desmonte**
@@ -395,7 +395,7 @@ class MiEtiqueta extends HTMLElement {
 }
 ```
 
-## 1.14 :host
+## :host
 
 Es una pseudoclase que sirve para darle estilos al componente web.
 Adentro de host colocamos todos los estilos querramos. Sirve como el
@@ -431,7 +431,7 @@ render() {
 }
 ```
 
-### 1.14.1 Clases en :host
+### Clases en :host
 
 Podemos pasarle clases a nuestro web component
 
@@ -448,7 +448,7 @@ de manera condicional
 }
 ```
 
-### 1.14.2 Atributos en :host
+### Atributos en :host
 
 Si queremos usar atributos
 
@@ -465,7 +465,7 @@ de manera condicional
 }
 ```
 
-### 1.14.3 Contexto en :host
+### Contexto en :host
 
 Este contexto se refiere al padre del web component.
 
@@ -487,7 +487,7 @@ tu navegador es compatible primero ya que **no todos los navegadores dan
 soporte para :host-context**. A la última fecha de revisión de este
 apunte, ni Firefox ni Safari ofrecen compatibilidad para esta función.
 
-### 1.14.4 Custom properties
+### Custom properties
 
 Es posible generar variables dentro de :host para evitar repetir
 valores, estas variables se comportarán similar a :root en CSS.
@@ -522,7 +522,7 @@ mi-etiqueta {
 }
 ```
 
-## 1.15 ::slotted
+## ::slotted
 
 Pseudoelemento que sirve para poder agregar estilos específicos al
 contenido dinámico, es decir dentro de etiquetas slot, que provenga de
@@ -554,7 +554,7 @@ Esto dotará de estilos a las clases anidadas en nuestro web component
 </mi-etiqueta>
 ```
 
-## 1.16 ¿Dónde encontrar web components?
+## ¿Dónde encontrar web components?
 
 El [Sitio web oficial de web components](https://www.webcomponents.org/)
 ofrece múltiples web components escritos por la comunidad o incluso por

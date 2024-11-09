@@ -3,13 +3,13 @@
 Búsquedas y analíticas en tiempo real Interfaz HTTP con documentos JSON
 usando GET, POST, PUT, DELETE, etc. Guardado e indexación eficiente, la
 búsqueda es 
-## 1.1 Casos de uso
+## Casos de uso
 
 Búsqueda de información en una app o sitio web Motor de almacenamiento
 para automatizar flujos de negocios Machile Learning para modelar
 comportamiento de datos Uso de GIS
 
-## 1.2 Configuración a nivel físico
+## Configuración a nivel físico
 
 Es un cluster agrupa nodos, mientras que los nodos agrupan los shards,
 las piezas; las distintas divisiones de un índice, operan por si solas.
@@ -19,7 +19,7 @@ del resto respaldada para poder restaurar la información completamente.
 
 ![image](Notes/ElasticSearch/img/elasticSearchCluster.png)
 
-## 1.3 Instalación
+## Instalación
 
 Podemos instalarla elastic search por medio de Docker usando el
 siguiente archivo *docker-compose.yml*
@@ -72,7 +72,7 @@ configuración correspondiente.
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-## 1.4 Creación de índices y documentos
+## Creación de índices y documentos
 
 Elastic search crea un índice por defecto si no existe, al nosotros
 hacer una petición. Hacemos una llamada PUT con datos en formato JSON.
@@ -133,7 +133,7 @@ localhost:9200/usuarios/_doc
 }
 ```
 
-### 1.4.1 Creación múltiple
+### Creación múltiple
 
 Para crear varios documentos crearemos un archivo *usuarios.json* Este
 archivo debe terminan con una linea vacia.
@@ -196,7 +196,7 @@ Lo anterior nos generará una respuesta de este tipo
 }
 ```
 
-## 1.5 Mappeo de datos
+## Mappeo de datos
 
 Es bueno crear un mapeo explícito para tener un rendimiento óptimo.
 Podemos guardar el texto con *text* y *keyword*
@@ -204,12 +204,12 @@ Podemos guardar el texto con *text* y *keyword*
 -   text (Búsquedas de texto completo)
 -   keyword (valores exactos)
 
-### 1.5.1 Tipos de datos
+### Tipos de datos
 
 Hay de tipo
 
 |             |                             |
-|-------------|-----------------------------|
+| ----------- | --------------------------- |
 | Tipos       | Valor                       |
 | texto       | text,keyword                |
 | fechas      | date                        |
@@ -302,7 +302,7 @@ localhost:9200/nombre_del_indice/_doc/1
 
 Donde el número 1 es el id
 
-## 1.6 Puntaje
+## Puntaje
 
 Nos especifica que tan bien coincide un documento con la búsqueda. Los
 resultados se ordenan por puntaje de manera descendente, acorde con su
@@ -399,7 +399,7 @@ campos.
 }
 ```
 
-## 1.7 Clausulas
+## Clausulas
 
 Las clausulas de búsqueda son las siguientes: Must, Filter, Should y
 Must Not
@@ -412,29 +412,29 @@ Para más de una consulta
 
 > \[\] Usar una lista
 
-### 1.7.1 Must
+### Must
 
 AND lógico Debe aparecer en los documentos retornados Influye en el
 puntaje
 
-### 1.7.2 Filter
+### Filter
 
 AND lógico Debe aparecer en los documentos retornados No influye en el
 puntaje Permite caché
 
-### 1.7.3 Should
+### Should
 
 OR lógico Alguna de las consultas debería aparecer en los documentos
 retornados Influye en puntaje *minimum_should_match* especifica cuantos
 términos de búsqueda deben aparecer Si hay un término AND en la consulta
 booleana este valor se volverá cero
 
-### 1.7.4 Must Not
+### Must Not
 
 NOT lógico La consulta no debe aparecer No influye en el puntaje Permite
 caché
 
-## 1.8 Consultas booleanas
+## Consultas booleanas
 
 Una consulta booleana puede contar con varias clausulas
 
@@ -473,7 +473,7 @@ Una consulta booleana puede contar con varias clausulas
 }
 ```
 
-## 1.9 Consultas compuestas
+## Consultas compuestas
 
 Hay consultas compuestas donde podemos especificar una serie de
 condiciones que deben de reunir las consultas
@@ -505,7 +505,7 @@ condiciones que deben de reunir las consultas
 }
 ```
 
-## 1.10 Consultas anidadas
+## Consultas anidadas
 
 Guardar una lista de objetos dentro de un documentos. Esta consulta
 encuentra documentos usando los objetos anidados, al encontrar una
@@ -555,11 +555,11 @@ La consulta se envia mediante el método GET a
 localhost:9200/indice/_search
 ```
 
-## 1.11 Unificación de datos
+## Unificación de datos
 
-## 1.12 Consultas de rango y agregaciones
+## Consultas de rango y agregaciones
 
-### 1.12.1 Rangos
+### Rangos
 
 Podemos especificar los campos que queremos buscar y únicamente nos
 devolverá esos. En el ejemplo de abajo filtramos calificación para
@@ -595,7 +595,7 @@ Podemos usar los mismos parámetros, gt y lte, para buscar por fechas
 }
 ```
 
-### 1.12.2 Agregaciones
+### Agregaciones
 
 No son consultas, sino métricas que se calculan sobre los resultados de
 una consulta. Para ellos usaremos la palabra *aggs* y determinaremos la

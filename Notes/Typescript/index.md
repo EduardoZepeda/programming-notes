@@ -11,17 +11,17 @@ Es un superconjunto tipado de javascript, que compila a javascript.
 Previene cerca del 15% de los bugs según un [estudio
 científico](http://earlbarr.com/publications/typestudy.pdf)
 
-## 1.1 Instalación de herramientas
+## Instalación de herramientas
 
 Typescript requiere Nodejs para su funcionamiento
 
-### 1.1.1 Compilador de Typescript tsc
+### Compilador de Typescript tsc
 
 ``` bash
 npm install -g typescript
 ```
 
-## 1.2 Uso del compilador
+## Uso del compilador
 
 El compilador creará un archivo js de salida usando un archivo ts de
 entrada
@@ -37,7 +37,7 @@ archivo
 tsc --watch hello.ts
 ```
 
-## 1.3 Archivo de configuración
+## Archivo de configuración
 
 Nos permite especificar la raiz de nuestro proyecto. Así como diferentes
 opciones para el compilador
@@ -76,7 +76,7 @@ compilador buscará el archivo de configuración.
 tsc
 ```
 
-## 1.4 Tipado
+## Tipado
 
 Typescript requiere que se especifique el tipo de dato
 
@@ -96,7 +96,7 @@ En el caso de let podemos declararla únicamente
 let nombreDeVariable: tipoDeVariable
 ```
 
-### 1.4.1 Tipos de datos
+### Tipos de datos
 
 Los tipos de datos disponbiles para asginar son los siguientes. Deben de
 colocarse en minúsculas
@@ -115,40 +115,40 @@ colocarse en minúsculas
 -   Object
 -   Awaited
 
-#### 1.4.1.1 Number
+#### Number
 
 Soporta enteros, flotantes, hexadecimales (0x), binario (0b)
 
-#### 1.4.1.2 Boolean
+#### Boolean
 
 Recibe true o false
 
-#### 1.4.1.3 String
+#### String
 
 Cadenas de texto con comillas simples o dobles así como template strings
 usando backticks.
 
-#### 1.4.1.4 Any
+#### Any
 
 Ideal para *valores dinámicos o valores que cambian con el paso del
 tiempo*; API, librerías de terceros. Debe usarse como último recurso.
 **Si no especificamos un tipo el compilador asignará any de manera
 automática.**
 
-#### 1.4.1.5 Void
+#### Void
 
 Si any es cualquier tipo, entonces void es la ausencia de tipo. Se
 utiliza en la declaración de funciones, en el caso de que no retornen
 nada
 
-#### 1.4.1.6 Never
+#### Never
 
 Representa a funciones que tiran excepciones o nunca retornan un valor.
 La diferencia entre void y never es que la primera termina su código
 pero no retorna datos, mientras que la segunda no termina y, por lo
 tanto, nunca retorna.
 
-#### 1.4.1.7 Null
+#### Null
 
 Cuando queremos asignar un valor a null.
 
@@ -157,7 +157,7 @@ let nullVariable: null;
 nullVariable = null;
 ```
 
-#### 1.4.1.8 Undefined
+#### Undefined
 
 ``` javascript
 let undefinedVariable: undefined 
@@ -180,7 +180,7 @@ if response instanceof Date ...
 // ...
 ```
 
-#### 1.4.1.9 object
+#### object
 
 Escrito object, con minúsculas. Representa un dato con un valor que no
 es primitivo (string, number, boolean, undefined, any, undefined). No se
@@ -193,7 +193,7 @@ state = {id: 1, ...}
 console.log(state.id) // Error del compilador.
 ```
 
-#### 1.4.1.10 Object (Con mayúscula inicial)
+#### Object (Con mayúscula inicial)
 
 Object, con mayúscula inicial. Es una instancia de la clase Object de
 Javascript
@@ -206,7 +206,7 @@ const isInstance = myObj instanceof Object;
 console.log(myObj.id) // Correcto
 ```
 
-#### 1.4.1.11 Array
+#### Array
 
 Para especificar un array uniform colocamos el tipo de datos seguido de
 corchetes.
@@ -234,7 +234,7 @@ Esta última notación es muy popular cuando se usan hooks en React
 export const getStaticProps: GetStaticProps<HomeProps|null> = async () => {}
 ```
 
-#### 1.4.1.12 Tuplas
+#### Tuplas
 
 Para especificar tuplas asignamos cada valor individualmente. Los tipos
 deben ser diferentes para cada una de las posiciones.
@@ -249,7 +249,7 @@ También podemos hacer un arreglo de tuplas
 let user: [number, string][]
 ```
 
-#### 1.4.1.13 Enum
+#### Enum
 
 Ideales para valores limitados, tales como colores, paises, opciones.
 
@@ -269,7 +269,7 @@ Para usarlos asignamos el nombre del enum y accedemos a su propiedad.
 const dia: DiasLaborales = DiasLaborales.Lunes
 ```
 
-#### 1.4.1.14 Union de tipos
+#### Union de tipos
 
 Se pueden unir tipos usando el caracter pipe "\|". En el ejemplo
 siguiente la variable aceptará valores tanto number como string.
@@ -278,7 +278,7 @@ siguiente la variable aceptará valores tanto number como string.
 let idUser: number | string
 ```
 
-#### 1.4.1.15 Promesas
+#### Promesas
 
 Awaited nos retorna el tipo que retornan las promesas
 
@@ -288,7 +288,7 @@ type A = Awaited<Promise<string>>
 
 En este caso será string.
 
-### 1.4.1.16 ReturnType
+### ReturnType
 
 Nos da el tipo que retorna una función
 
@@ -296,7 +296,7 @@ Nos da el tipo que retorna una función
 type A = ReturnType<typeof function>
 ```
 
-#### 1.4.1.17 Parameters
+#### Parameters
 
 Devuelve el tipo de los parámetros, se le puede particionar como si fuera una lista
 
@@ -304,14 +304,14 @@ Devuelve el tipo de los parámetros, se le puede particionar como si fuera una l
 type A = Parameters<ReturnType<typeof function>>[0]
 ```
 
-#### 1.4.1.18 NonNullable
+#### NonNullable
 
 Remueve los tipos nullos como undefined o null de la respuesta
 
 ``` javascript
 type A = NonNullable<Parameters<typeof function>[0]>
 ```
-## 1.5 Alias de tipos
+## Alias de tipos
 
 Los tipos se crearán usando la palabra type
 
@@ -327,7 +327,7 @@ type dimensionesAceptadas = '100 x 100' | '200 x 200'
 let dimension: dimensionesAceptadas = '200 x 200'
 ```
 
-## 1.6 Aserciones de tipo
+## Aserciones de tipo
 
 Para hacerlo colocamos el tipo dentro de los simbolos de mayor que y
 menor que.
@@ -358,7 +358,7 @@ Se puede forzar la sintaxis "as" modificando el archivo de configuración
 Es recomendable usar la sintaxis "as" para evitar ambigüedades en
 archivos jsx.
 
-## 1.7 Funciones
+## Funciones
 
 Debemos especificar el tipo de los argumentos que recibirá una función.
 
@@ -387,7 +387,7 @@ if(message === 'MAX SIZE'){
 }
 ```
 
-## 1.8 Interfaces
+## Interfaces
 
 Las interfaces son una forma de definir la estructura de un objeto en
 POO. Anteriormente los types eran mucho más limitados que las
@@ -407,7 +407,7 @@ Ahora podemos usarlo en una función o donde queramos
 function(sale: Sale){...}
 ```
 
-### 1.8.1 Extendibilidad
+### Extendibilidad
 
 Difieren con los tipos en que pueden extenderse, además puedes
 duplicarlas y el compilador mezclará sus propiedades. Las interfaces
@@ -429,7 +429,7 @@ const song: Song = {
 };
 ```
 
-### 1.8.2 Recomendaciones de interfaces
+### Recomendaciones de interfaces
 
 Siempre usa las interfaces para la definición de API's públicas, le
 permitará a los consumidores extenderlas si faltan algunas definiciones.
@@ -437,7 +437,7 @@ permitará a los consumidores extenderlas si faltan algunas definiciones.
 Considera usar types para los props de tus componentes de react y el
 estado, por consistencia.
 
-### 1.8.3 Atributos opcionales
+### Atributos opcionales
 
 Podemos definir atributos opcionales colocando el símbolo de
 interrogación tras el nombre de la variable.
@@ -451,7 +451,7 @@ interface Sale {
  }
 ```
 
-### 1.8.4 Atributos de solo lectura
+### Atributos de solo lectura
 
 Para especificar atributos de solo lectura usamos la palabra reservada
 readonly antes del nombre del atributo.
@@ -465,7 +465,7 @@ interface Sale {
 }
 ```
 
-### 1.8.5 Extension de interfaces
+### Extension de interfaces
 
 Podemos extender las interfaces, como si se tratara de herencia de
 clases en POO.
@@ -481,7 +481,7 @@ interface Avatar extends Person {
 }
 ```
 
-## 1.9 Clases
+## Clases
 
 Para las clases debemos declarar previamente las variables en el cuerpo,
 el contructor debe contener así mismo el tipo de dato de las variables.
@@ -502,7 +502,7 @@ class Picture {
 }
 ```
 
-### 1.9.1 Clases miembros públicos
+### Clases miembros públicos
 
 Todas las variables son públicas por defecto. Sin embargo podemos
 especificarlo de manera explícita.
@@ -523,7 +523,7 @@ class Picture {
 }
 ```
 
-### 1.9.2 Clases miembros privados
+### Clases miembros privados
 
 Los miembros privados de una clase se especifican usando la variable
 private.
@@ -555,7 +555,7 @@ privadas de manera directa.
 console.log(picture.id) // Error del compilador
 ```
 
-#### 1.9.2.1 Sintaxis alternativa
+#### Sintaxis alternativa
 
 Podemos declarar elementos privados usando el caracter hashtag antes del
 nombre del atributo.
@@ -585,7 +585,7 @@ compilador para ES6 en el archivo *tsconfig.json*.
 }
 ```
 
-### 1.9.3 Métodos get y set
+### Métodos get y set
 
 Métodos que permiten controlar el acceso a cada miembro.
 
@@ -628,9 +628,9 @@ console.log(picture.id)
 //Llamado a la función get id() sin parámetro
 ```
 
-## 1.10 Herencia de clases y propiedades estáticas
+## Herencia de clases y propiedades estáticas
 
-### 1.10.1 Atributos protected
+### Atributos protected
 
 Este tipo de atributo en una clase padre, permite que sus clases hijas
 puedan acceder a los atributos asignados.
@@ -639,7 +639,7 @@ puedan acceder a los atributos asignados.
 protected _id: number;
 ```
 
-### 1.10.2 Método super
+### Método super
 
 Para invocar al constructor de una super clase usamos la función super.
 De esta manera nos aseguramos de que se ejecute el constructor de la
@@ -651,7 +651,7 @@ constructor(id:number, description: string){
 }
 ```
 
-### 1.10.3 Herencia
+### Herencia
 
 Para crear una clase hija usamos la palabra reservada extends
 
@@ -661,7 +661,7 @@ class Dog extends Animal{
 }
 ```
 
-### 1.10.4 Clases abstractas
+### Clases abstractas
 
 Una clase abstracta es aquella que no queremos instanciar, pero que
 queremos usar para que otras clases deriven de ella
@@ -672,7 +672,7 @@ abstract class Animal{
 }
 ```
 
-### 1.10.5 Atributos estáticos
+### Atributos estáticos
 
 ``` javascript
 static modified: boolean;
@@ -681,7 +681,7 @@ static modified: boolean;
 A través de la palabra reservada **static** se puede definir un miembro
 visible únicamente a nivel de clase
 
-## 1.11 Generics
+## Generics
 
 Los generics son marcadores de posición para tipos. La forma más simple
 de un generic es esta:
@@ -729,7 +729,7 @@ type Base = {
 export const GenericComponent = <GenericValue extends Base>(props: GenericProps<GenericValue>) => {}
 ```
 
-## 1.12 keyof
+## keyof
 
 La palabra keyof toma un objeto y devuelve un *union* de sus keys
 
@@ -746,7 +746,7 @@ type VideojuegoKeys = keyof Videojuego;
 *VideojuegoKeys* será igual a la unión *"id" \| "titulo" \|
 "descripcion"*
 
-## 1.13 Type Guard
+## Type Guard
 
 Es una condicional en la que nos aseguramos de que el tipo de un valor
 sea uno en especifico, para poder devolver el tipo correcto.
@@ -760,7 +760,7 @@ return value.id;
 };
 ```
 
-## 1.14 const assertion
+## const assertion
 
 Un const assertion se refiere a tratar un elemento como si fuera una
 constante. Es decir, no podrán modificarse, ni ampliarse y serán de solo
@@ -786,7 +786,7 @@ Exceptuando archivos *.tsx* la notación con brackets está permitida
 let arrayConstante = <const>["Videojuego", "Film"];
 ```
 
-## 1.15 typeof
+## typeof
 
 El operador *typeof* funciona igual que el de javascript, pero con
 types, en lugar de con valores.
@@ -799,7 +799,7 @@ const opciones = ['Videojuegos', 'Peliculas', 'Libros'] as const;
 type Opciones = typeof opciones; // Opciones será ['Videojuegos' | 'Peliculas' | 'Libros'];
 ```
 
-## 1.16 Indexed access type
+## Indexed access type
 
 Lo usamos cuando queremos declarar un type usando el subtype de un type
 en particular.
@@ -828,13 +828,13 @@ const MyArray = [
 type OtroVideojuego = typeof MyArray[number];
 ```
 
-## 1.17 Buenas prácticas
+## Buenas prácticas
 
 Es mejor dividir el código en archivos y/o carpetas para dejar una única
 responsabilidad a cada archivo. Una vez separados podemos llamarlos por
 medio de importaciones.
 
-## 1.18 Resolución de modulos
+## Resolución de modulos
 
 Al importar un modulo en typescript el compilador puede seguir dos
 estrategias: clasic o node. Estas estrategias le dirán la ruta que
@@ -856,7 +856,7 @@ configuración.
 }
 ```
 
-### 1.18.1 Estrategia clasic
+### Estrategia clasic
 
 En el import relativo el compilador buscará un archivo que termine en
 .ts o .d.ts en la ruta actual.
@@ -866,7 +866,7 @@ En el import absoluto el compilador buscará un archivo que termine en
 dentro de la estructura, si no lo encuentra volverá a subir un
 directorio y repetirá el proceso.
 
-### 1.18.2 Estrategia node
+### Estrategia node
 
 En el import relativo el compilador buscará un archivo que termine en
 .ts o .d.ts o **.tsx** en la carpeta actual. Así mismo podría buscar un
@@ -883,7 +883,7 @@ package.json, que incluya instrucciones para encontrar la ruta, en una
 carpeta del mismo nombre del modulo. Todo esto **dentro de la carpeta
 node_modules**. Si no lo encuentra intentará subir un nivel.
 
-## 1.19 Webpack
+## Webpack
 
 Para usar webpack debemos inicializar un archivo de configuración de
 node
@@ -937,7 +937,7 @@ Podemos agregar un script en el archivo *package.json*
 }
 ```
 
-## 1.20 Typescript para React
+## Typescript para React
 
 En React existen casos donde necesitamos especificar children como parte
 de los props.
@@ -978,7 +978,7 @@ const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 }
 ```
 
-## 1.21 Distribución de paquetes
+## Distribución de paquetes
 
 Si queremos incluir declaraciones de tipos en nuestros paquetes podemos
 agregar la configuración del archivo en forma de *ts.config.json*,

@@ -18,7 +18,7 @@ Cambios importantes a partir de la versión 19
 
 
 
-## 1.1 ReactDOM y React
+## ReactDOM y React
 
 React y ReactDOM trabajarán en conjunto.
 
@@ -30,7 +30,7 @@ lo queremos renderizar.
 
 Siempre que escribas JSX es requisito importar React.
 
-## 1.2 Creando una app con Create-react-app
+## Creando una app con Create-react-app
 
 Nota: create-react-app ya está deprecado y el mismo React desaconseja su uso.
 
@@ -38,14 +38,14 @@ Nota: create-react-app ya está deprecado y el mismo React desaconseja su uso.
 
 Recomiendan usar las herramientas directas de frameworks como Gatsby, Nextjs o Vite.
 
-## 1.3 ReactDOM
+## ReactDOM
 
 ReactDOM.render() toma dos argumentos: Qué queremos renderizar y dónde lo
 queremos renderizar.
 
 Siempre que escribas JSX es requisito importar React.
 
-## 1.4 JSX
+## JSX
 
 JSX es una extensión de JavaScript creada por Facebook para el uso con la
 biblioteca React. Sirve de preprocesador (como Sass o Stylus a CSS) y transforma
@@ -60,7 +60,7 @@ React.createElement recibe 3 argumentos:
 El tipo de elemento que estamos creando sus atributos o props y el children que
 es el contenido.
 
-## 1.5 Componentes
+## Componentes
 
 Los componentes en React son bloques de construcción.
 
@@ -77,7 +77,7 @@ El source de las imágenes en React puede contener direcciones en la web o se le
 puede hacer una referencia directa importándola. Si se importa deben usarse
 llaves para que sea evaluado.
 
-## 1.6 Estilos
+## Estilos
 
 Cómo aplicar estilos Para los estilos crearemos una carpeta llamada Styles y
 allí vivirán todos los archivos de estilos que tienen que ver con los
@@ -88,7 +88,7 @@ instalado con npm install bootstrap y debe ser importado en el index.js Existen
 estilos que son usados de manera global o en varios componentes, así que deben
 ser importados en el index.js
 
-## 1.7 Props
+## Props
 
 Los props que es la forma corta de properties son argumentos de una función y en
 este caso serán los atributos de nuestro componente como class, src, etc.
@@ -104,7 +104,7 @@ Estos props se leerian así:
 
 > this.props.firstName this.props.lastName
 
-## 1.8 Enlazando eventos
+## Enlazando eventos
 
 React dispone de eventos. Cada vez que se recibe información en un input se
 obtiene un evento onChange y se maneja con un método de la clase
@@ -130,7 +130,7 @@ submit. Si no queremos que pase así hay dos maneras de evitarlo: especificando
 que su valor es de tipo button o manejándolo desde el formulario cuando ocurre
 el evento onSubmit.
 
-## 1.9 Manejo de estado
+## Manejo de estado
 
 Hasta esta clase todos los componentes han obtenido su información a través de
 props que vienen desde afuera (otros componentes) pero hay otra manera en la que
@@ -164,7 +164,7 @@ Si los colocamos nada más así nos sacará un error, hay que inicializar el est
 state = {}
 ```
 
-## 1.10 Introducción a React Router
+## Introducción a React Router
 
 Las aplicaciones que se trabajan en React son llamadas single page apps. Esto es
 posible gracias a React Router que es una librería Open Source. React Router
@@ -180,7 +180,7 @@ componentes:
 > -   Link: Toma el lugar del elemento \<a\>, evita que se recargue la página
 >     completamente y actualiza la URL.
 
-### 1.10.1 Divison de la aplicación en rutas
+### Divison de la aplicación en rutas
 
 Tenemos que importar los componentes, dentro de BrowserRouter solo debe haber un
 elemento child, esto se soluciona metiendolos en un Switch, que solo permitirá
@@ -212,7 +212,7 @@ import { Link } from 'react-router-dom'
 <Link to="ruta/ruta">
 ```
 
-### 1.10.2 Páginas 404
+### Páginas 404
 
 Esta es un ejemplo de como crear un 404
 
@@ -223,7 +223,7 @@ import { Redirect, Route } from "react-router-dom";
 <Redirect from="*" to="/404" />
 ```
 
-### 1.10.3 Obtención de parametros de rutas
+### Obtención de parametros de rutas
 
 Los parametros de las rutas pueden obtenerse cuando estamos usando React Router
 de la siguiente manera
@@ -234,7 +234,7 @@ this.props.match.params.parametroAObtener
 
 
 
-## 1.10 React router
+## React router
 
 Reach Router es una versión simplificada y mejor optimizada de React
 Router, su creador es Ryan Florence el mismo creador de React Router. Se
@@ -275,7 +275,7 @@ Y el script de package.json que corre el servidor de desarrollo
 "dev": "webpack serve --history-api-fallback",
 ```
 
-### 1.10.1 Componente Link
+### Componente Link
 
 Funciona igual que el de react router
 
@@ -287,13 +287,13 @@ import { Link } from '@reach/router'
 </Link>
 ```
 
-##### 1.10.1.1.1 Obtener la página activa
+##### Obtener la página activa
 
 @reach/router le añade el atributo aria-current="page" al componente
 Link activo. Lo que nos permite darle estilos directamente buscando la
 propiedad del componente y aplicandole estilos condicionales.
 
-### 1.10.2 Renderizado condicional de rutas
+### Renderizado condicional de rutas
 
 Renderizar rutas de acuerdo a parametros tales como el estado de loggeo
 se hace creando un componente que envolverá a otros componentes. En este
@@ -338,7 +338,7 @@ const {isAuth} = useContext(Context)
 </Router>
 ```
 
-### 1.10.3 Páginas 404
+### Páginas 404
 
 React router puede especificar una página como default si no se
 encuentra ninguna ruta colocandole un prop que diga default.
@@ -350,28 +350,28 @@ import { PageNotFound } from './pages/PageNotFound'
         <PageNotFound default/>
     </Router>
 ```
-## 1.11 Ciclo de vida de un componentes
+## Ciclo de vida de un componentes
 
 Cuando React renderiza los componentes decimos que entran en escena, cuando su
 estado cambia o recibe unos props diferentes se actualizan y cuando cambiamos de
 página se dice que se desmontan.
 
-### 1.11.1 Montaje:
+### Montaje:
 
 Representa el momento donde se inserta el código del componente en el DOM. Se
 llaman tres métodos: constructor, render, componentDidMount.
 
-### 1.11.2 Actualización:
+### Actualización:
 
 Ocurre cuando los props o el estado del componente cambian. Se llaman dos
 métodos: render, componentDidUpdate.
 
-### 1.11.3 Desmontaje:
+### Desmontaje:
 
 Nos da la oportunidad de hacer limpieza de nuestro componente. Se llama un
 método: componentWillUnmount.
 
-## 1.12 React.Fragment
+## React.Fragment
 
 React.Fragment es la herramienta que te ayudará a renderizar varios componentes
 y/o elementos sin necesidad de colocar un div o cualquier otro elemento de HTML
@@ -387,7 +387,7 @@ render(
 )
 ```
 
-## 1.13 Portales
+## Portales
 
 Hay momentos en los que queremos renderizar un modal, un tooltip, etc. Esto
 puede volverse algo complicado ya sea por la presencia de un z-index o un
@@ -398,7 +398,7 @@ esto React tiene una herramienta llamada Portales que funcionan parecido a
 ReactDOM.render; se les dice qué se desea renderizar y dónde, con la diferencia
 de que ese dónde puede ser fuera de la aplicación.
 
-## 1.14 Hooks
+## Hooks
 
 Las funciones no tienen un estado propio que manejar como ciclos de vida a los
 que deben suscribirse, mientras tanto las clases sí cuentan con ello.
@@ -422,7 +422,7 @@ condicionalmente (if).
 
 useState regresa un arreglo de dos argumentos.
 
-### 1.14.1 UseState
+### UseState
 
 UseState es el reemplazo de state en los componentes de React. El método
 useState nos provee de dos elementos; el primero, es el valor del estado; el
@@ -446,7 +446,7 @@ setValue("Nuevo valor")
 
 Al tomar el nuevo valor se llevará acabo un renderizado del componente.
 
-### 1.14.2 UseEffect
+### UseEffect
 
 UseEffect viene a dotar a las funciones de los mismos ciclos de vida que tiene
 un componente. useEffect() se ejecutará cada vez que un componente se renderiza.
@@ -459,7 +459,7 @@ useEffect(()=>{
 })
 ```
 
-#### 1.14.2.1 Eliminar listeners y procesos en useEffect
+#### Eliminar listeners y procesos en useEffect
 
 Como useEffect() se ejecuta cuando hay una actualización o una montura de un
 componente, podemos generar memory leaks al usar listeners o timeOuts. Hacer una
@@ -511,7 +511,7 @@ useEffect(() => {
   }, [name]) 
 ```
 
-#### 1.14.2.2 Múltiples useEffect por componente
+#### Múltiples useEffect por componente
 
 Se pueden declarar múltiples useEffects dentro de un componente. Todos se
 ejecutarán de acuerdo a sus parámetro opcional, después de la renderización.
@@ -524,7 +524,7 @@ useEffect(()=>{
   }, [])
 ```
 
-### 1.14.3 useContext
+### useContext
 
 useContext sirve para especificar un contexto en común para todos los
 componentes y evitar tener que pasar props de un componente a otro. Muy parecido
@@ -580,7 +580,7 @@ const Header = () => {
 };
 ```
 
-## 1.15 useCallback
+## useCallback
 
 useCallback es un hook de React que se encarga de memoizar las funciones y que
 no se rerenderizen al montarse los components. Es muy útil cuando se transfieren
@@ -604,7 +604,7 @@ const MyComponent = ({prop}) => {
 }
 ```
 
-## 1.16 useMemo
+## useMemo
 
 Esta función es un hook de React que sirve para memoizar el valor que devuelve
 una función. La función useMemo acepta dos argumentos y retorna un valor. El
@@ -622,7 +622,7 @@ const OtherComponent({value}) => {
 }
 ```
 
-## 1.17 Memo
+## Memo
 
 Memo **no es un hook**, es un High Order Component (HOC), es decir una función
 que toma un componente como parámetro y retorna un nuevo componente.
@@ -673,7 +673,7 @@ customFunction(previousState:unknown, formData: FormData){
 }
 ```
 
-## 1.18 Reducers
+## Reducers
 
 Los reducers se encargan de tomar un estado previo y una acción y devolver un
 objeto actualizado. Generalmente toman la forma de un switch. Así mismo también
@@ -728,7 +728,7 @@ function App() {
 }
 ```
 
-## 1.19 Deploy
+## Deploy
 
 Para hostear una aplicación de node y que esta se mantenga activa incluso si se
 presentan errores podemos usar pm2 o forever.
@@ -739,12 +739,12 @@ pm2 start npm --name "Mi aplicación" -- run serve -- --port 3001
 
 Esta será accesible y podemos vincularla a un gestor de servicios como systemd
 
-## 1.1 Webpack
+## Webpack
 
 Webpack empaquetará la aplicación y permitirá que podamos usar los
 módulos EcmaScript para resolver dependencias.
 
-### 1.1.1 Instalación de webpack
+### Instalación de webpack
 
 Procedemos a instalar webpack, webpack-cli y webpack-dev-server para su
 uso como dependencias de desarrollo
@@ -760,7 +760,7 @@ crearnos un index.html como punto de entrada
 npm i html-webpack-plugin
 ```
 
-### 1.1.2 Configurar webpack
+### Configurar webpack
 
 La configuración de webpack consiste en especificar un modo, un archivo
 de salida y la lista de plugins que debe usar. El archivo de entrada
@@ -791,7 +791,7 @@ mientras que dev iniciará el servidor de desarrollo en el puerto 8080
 }
 ```
 
-## 1.2 Instalación de react
+## Instalación de react
 
 React es la librería en si misma y react-dom nos permite usar los
 componentes de react en el DOM
@@ -837,7 +837,7 @@ import ReactDOM from 'react-dom'
 ReactDOM.render('Hello', document.getElementById('app'))
 ```
 
-## 1.3 Instalación de Babel
+## Instalación de Babel
 
 Para crear código compatible con todos los navegadores usaremos Babel.
 Lo instalamos como dependencia de desarrollo
@@ -866,13 +866,13 @@ module: {
 }
 ```
 
-## 1.4 StandardJS
+## StandardJS
 
 Unas reglas para lintar nuestro código. A pesar de lo que diga su
 nombre, Standard, no es oficial, sin embargo es bastante popular entre
 la comunidad de usuarios de Javascript
 
-### 1.4.1 Instalacion
+### Instalacion
 
 El linter standard se instala con
 
@@ -900,7 +900,7 @@ configuración para que los editores de código los detecte.
 }
 ```
 
-## 1.5 Deploy con Vercel
+## Deploy con Vercel
 
 Instalamos vercel. Dado que vercel cambia la configuración de sus
 archivos e instrucciones es mejor revisar la documentación oficial al
@@ -933,7 +933,7 @@ Vercel CLI 23.0.1
 (Move up and down to reveal more choices)
 ```
 
-## 1.6 Styled components
+## Styled components
 
 Librería que nos permite estilar de forma muy sencilla, siguiendo CSS y
 usando los tags de HTML que queramos usar en nuestra aplicación y
@@ -978,7 +978,7 @@ export const Anchor = styled(Link)``
 ``
 ```
 
-### 1.6.1 Estilos globales
+### Estilos globales
 
 Creamos un archivo globalStyles
 
@@ -1007,7 +1007,7 @@ export const App = () => (
 )
 ```
 
-### 1.6.2 Creando animaciones
+### Creando animaciones
 
 Podemos crear animaciones reutilizables usando keyframes directamente de
 la librería de styled-components.
@@ -1041,16 +1041,16 @@ export const Img = styled.img``
 ``
 ```
 
-## 1.7 Hooks
+## Hooks
 
 Para ver los hooks principales revisa los apuntes de React básico.
 
-### 1.7.1 useRef
+### useRef
 
 El hook useRef nos permite guardar una referencia, esta referencia puede
 ser a cualquier elemento.
 
-#### 1.7.1.1 useRef al componente
+#### useRef al componente
 
 useRef nos permite capturar la referencia al elemento en el DOM. Ref no
 hace referencia al elemento en el cual se crea, sino a aquel que se lo
@@ -1083,7 +1083,7 @@ propiedad current de la referencia.
 haz_algo(ref.current)
 ```
 
-#### 1.7.1.2 UseRef al estado
+#### UseRef al estado
 
 También podemos referenciar un estado de React. Esto es bastante útil al
 mezclarlo con useEffect en ocasiones donde queremos asignar un callback,
@@ -1131,7 +1131,7 @@ useEffect(()=>{
 Usando este acomodo podemos crear un callback que funcionará de manera
 correcta usando la referencia que hemos creado hacia el estado.
 
-### 1.7.2 Context
+### Context
 
 Context nos permite acceder a datos sin usar las Props por medio de un
 contexto global.
@@ -1173,13 +1173,13 @@ que creamos.
 </Context.Consumer>
 ```
 
-### 1.7.3 Custom hooks
+### Custom hooks
 
 Sirven para poder reutilizar la lógica en diferentes componentes. Para
 poder utilizarlos, deben empezar por la palabra use (useMiNombreDeHook).
 Los custom hooks pueden usar otros hooks incluso, otros custom hooks.
 
-##### 1.7.3.1.1 Intersection observer
+##### Intersection observer
 
 Un uso común del intersection observer es revisar si el elemento
 referenciado está en el viewport del usuario. En la función useEffect de
@@ -1214,7 +1214,7 @@ show && <article ref={ref}>...<article/>
 
 // Podemos reemplazarlo por
 <article ref={ref}>{show&&<contenido/>}<article/>
-```## 1.8 RenderProps
+```## RenderProps
 
 Es una técnica para compartir código entre componentes en React que
 utiliza una prop (cómo children u otra de otro nombre, aunque
@@ -1246,7 +1246,7 @@ colocándolo como un children
 </Mouse>
 ```
 
-## 1.10 React router
+## React router
 
 Reach Router es una versión simplificada y mejor optimizada de React
 Router, su creador es Ryan Florence el mismo creador de React Router. Se
@@ -1287,7 +1287,7 @@ Y el script de package.json que corre el servidor de desarrollo
 "dev": "webpack serve --history-api-fallback",
 ```
 
-### 1.10.1 Componente Link
+### Componente Link
 
 Funciona igual que el de react router
 
@@ -1299,13 +1299,13 @@ import { Link } from '@reach/router'
 </Link>
 ```
 
-##### 1.10.1.1.1 Obtener la página activa
+##### Obtener la página activa
 
 @reach/router le añade el atributo aria-current="page" al componente
 Link activo. Lo que nos permite darle estilos directamente buscando la
 propiedad del componente y aplicandole estilos condicionales.
 
-### 1.10.2 Renderizado condicional de rutas
+### Renderizado condicional de rutas
 
 Renderizar rutas de acuerdo a parametros tales como el estado de loggeo
 se hace creando un componente que envolverá a otros componentes. En este
@@ -1350,7 +1350,7 @@ const {isAuth} = useContext(Context)
 </Router>
 ```
 
-### 1.10.3 Páginas 404
+### Páginas 404
 
 React router puede especificar una página como default si no se
 encuentra ninguna ruta colocandole un prop que diga default.
@@ -1362,7 +1362,7 @@ import { PageNotFound } from './pages/PageNotFound'
         <PageNotFound default/>
     </Router>
 ```
-## 1.10 React router
+## React router
 
 Reach Router es una versión simplificada y mejor optimizada de React
 Router, su creador es Ryan Florence el mismo creador de React Router. Se
@@ -1403,7 +1403,7 @@ Y el script de package.json que corre el servidor de desarrollo
 "dev": "webpack serve --history-api-fallback",
 ```
 
-### 1.10.1 Componente Link
+### Componente Link
 
 Funciona igual que el de react router
 
@@ -1415,13 +1415,13 @@ import { Link } from '@reach/router'
 </Link>
 ```
 
-##### 1.10.1.1.1 Obtener la página activa
+##### Obtener la página activa
 
 @reach/router le añade el atributo aria-current="page" al componente
 Link activo. Lo que nos permite darle estilos directamente buscando la
 propiedad del componente y aplicandole estilos condicionales.
 
-### 1.10.2 Renderizado condicional de rutas
+### Renderizado condicional de rutas
 
 Renderizar rutas de acuerdo a parametros tales como el estado de loggeo
 se hace creando un componente que envolverá a otros componentes. En este
@@ -1466,7 +1466,7 @@ const {isAuth} = useContext(Context)
 </Router>
 ```
 
-### 1.10.3 Páginas 404
+### Páginas 404
 
 React router puede especificar una página como default si no se
 encuentra ninguna ruta colocandole un prop que diga default.
@@ -1478,7 +1478,7 @@ import { PageNotFound } from './pages/PageNotFound'
         <PageNotFound default/>
     </Router>
 ```
-## 1.11 React Helmet
+## React Helmet
 
 Helmet nos permite reemplazar el title y colocar cualquier otro
 contenido dentro de la etiqueta head. Para usarlo primero hay que
@@ -1529,7 +1529,7 @@ export const Layout = ({ children, title, description, showTitle = false, showDe
   )
 }
 ```
-## 1.14 PWA
+## PWA
 
 ``` javascript
 npm i webpack-pwa-manifest --save-dev
@@ -1577,7 +1577,7 @@ plugins: [
 Lo anterior creará un archivo manifest en la misma carpeta de salida del
 bundle que se genera con webpack.
 
-### 1.14.1 Soporte offline como PWA
+### Soporte offline como PWA
 
 Para crear soporte como PWA google nos ofrece una aplicación llamada
 workbox-webpack-plugin
@@ -1653,7 +1653,7 @@ service-worker, necesitamos incluirlo en nuestro archivo html.
 
 Recuerda que cualquier cambio en la configuración de webpack requiere el
 reinicio del server.
-## 1.12 React Lazy
+## React Lazy
 
 React lazy se encarga de importar de manera dinámica los componentes
 como se van necesitando. Para lograrlo necesitamos pasarle a la función
@@ -1696,7 +1696,7 @@ import { Spinner } from './components/Spinner'
 Si todo funcionó correctamente podrás ver que al acceder al componente,
 este realiza una petición al código que necesita para renderizarse. De
 esta manera, se reduce el tamaño del bundle principal y el resto del
-código se va cargando conforme se necesite.## 1.13 PropTypes
+código se va cargando conforme se necesite.## PropTypes
 
 Solia ser parte de React, pero fue separada. Es bastante similar al
 tipado que ofrece Typescript.
@@ -1736,7 +1736,7 @@ ListOfSomethingComponent.propTypes = {
 }
 ```
 
-### 1.13.1 Node es un proptype que se refiere a componentes de React
+### Node es un proptype que se refiere a componentes de React
 
 Hay ciertos componentes que reciben como prop un componente. En este
 caso el tipo de dato será node, que se refiere a cualquier cosa que
@@ -1759,7 +1759,7 @@ SubmitButton.propTypes = {
 }
 ```
 
-### 1.13.2 PropTypes personalizados
+### PropTypes personalizados
 
 También podemos crear validaciones de props personalizadas, para
 componentes más complejos. Creando una función que recibe los props, el
@@ -1786,7 +1786,7 @@ PhotoCard.propTypes = {
   }
 }
 ```[[1.31-PWA]]
-[[1.33-Testing-con-cypress]]## 1.15 Testing con cypress
+[[1.33-Testing-con-cypress]]## Testing con cypress
 
 ``` javascript
 npm i cypress --save-dev
@@ -1821,7 +1821,7 @@ para que se ejecuten las pruebas.
 npm run test
 ```
 
-### 1.15.1 Configurar cypress
+### Configurar cypress
 
 Al momento de ejecutar las pruebas se crea un archivo llamado
 cypress.json, dentro de la raiz del directorio. En este archivo podremos
@@ -1836,7 +1836,7 @@ especificar una serie de parámetros para facilitar nuestras pruebas.
 }
 ```
 
-### 1.15.2 Pruebas
+### Pruebas
 
 El objeto cy nos dotará de una serie de métodos que nos ayudarán a
 visitar sitios y scrapear el DOM
@@ -1852,7 +1852,7 @@ it('Prueba si la ruta favs muestra dos formularios', function() {
     cy.get('form').should('have.length', 2) //Obten los elementos form del DOM y asegúrate de que sean 2
 })
 ```
-## 1.9 Graphql
+## Graphql
 
 GraphQL es un lenguaje creado por Facebook para obtener solo los datos
 que necesitamos.
@@ -1911,7 +1911,7 @@ Ahora podemos usar la functión useQuery para obtener los datos
 const { loading, error, data } = useQuery(whitPhotos);
 ```
 
-### 1.9.1 Parámetros con graphql
+### Parámetros con graphql
 
 Las queries tambien pueden recibir parámetros
 
@@ -1938,7 +1938,7 @@ parámetro.
 const { loading, error, data } = useQuery(withPhotos, { variables: { categoryId } });
 ```
 
-### 1.9.2 Mutaciones
+### Mutaciones
 
 Las mutaciones nos permiten modificar datos y darles seguimiento.
 Además, al igual que con useQuery, el hook de las mutaciones nos

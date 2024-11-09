@@ -15,9 +15,7 @@ mascota que creó una herramienta para crear avatares personalizados en
 embargo el [logo oficial de go](https://blog.golang.org/go-brand) ya ha
 sido definido.
 
-
-
-## 1.1 Instalación
+## Instalación
 
 Go se encuentra en la mayoría de los repositorios de las distribuciones
 de GNU/Linux. En debian se instala como cualquier otro paquete.
@@ -26,12 +24,12 @@ de GNU/Linux. En debian se instala como cualquier otro paquete.
 sudo apt install golang
 ```
 
-## 1.2 Estructura de un archivo de go
+## Estructura de un archivo de go
 
 Los archivos de go se estructuran de la siguiente manera y en este
 orden:
 
-### 1.2.1 Nombre del paquete
+### Nombre del paquete
 
 Una sección donde se declara el nombre del paquete después de la palabra
 *package*
@@ -40,7 +38,7 @@ Una sección donde se declara el nombre del paquete después de la palabra
 package main
 ```
 
-### 1.2.2 Importaciones
+### Importaciones
 
 Una sección donde se importan todos los paquetes que se usarán. Para
 ello usamos la palabra *import*.
@@ -59,12 +57,12 @@ import (
 )
 ```
 
-### 1.2.3 Contenido
+### Contenido
 
 El contenido del archivo, es decir declaraciones de variables, types,
 funciones, constantes, etc.
 
-## 1.3 El paquete principal
+## El paquete principal
 
 Go requiere de un paquete principal llamado main, que se especificará
 colocando *package main* al principio de nuestro código fuente.
@@ -73,7 +71,7 @@ colocando *package main* al principio de nuestro código fuente.
 package main
 ```
 
-### 1.3.1 La función main
+### La función main
 
 La función main es el punto de partida de un archivo de go y no retorna
 nada.
@@ -88,7 +86,7 @@ func main() {
 }
 ```
 
-### 1.3.2 Función de Inicialización
+### Función de Inicialización
 
 Antes del punto de entrada del programa se ejecuta una función init,
 esta puede contener todas las inicializaciones necesarias para la
@@ -108,7 +106,7 @@ func main() {
 }
 ```
 
-## 1.4 Ejecutar un archivo de go
+## Ejecutar un archivo de go
 
 Dado que go es un lenguaje compilado, requiere que se ejecute un
 compilado antes de poder ejecutar el código. El compilado se realiza con
@@ -125,7 +123,7 @@ run en lugar de go.
 go run src/main.go
 ```
 
-### 1.4.1 Diferencias entre run y build
+### Diferencias entre run y build
 
 Go run compila el código y lo ejecuta desde un directorio temporal,
 posteriormente limpia los archivos generados. Si agregamos la opción
@@ -136,9 +134,9 @@ go run --work src/main.go
 # WORK=/tmp/go-build983014220
 ```
 
-## 1.5 Variables, constantes y zero values
+## Variables, constantes y zero values
 
-### 1.5.1 Variables
+### Variables
 
 Go permite definir variables especificando el tipo de dato y la keyword
 var.
@@ -167,7 +165,7 @@ En Go no puedes asignar una variable al valor nulo de go; nil.
 var gravedad = nil // error
 ```
 
-### 1.5.2 Constantes
+### Constantes
 
 Con las constantes funciona de manera similar, pero se caracterizan
 porque no pueden modificarse. Se usa la keyword const. **Es necesario
@@ -183,7 +181,7 @@ Si no especificamos un tipo de constante go intentará intuirlo.
 const pi = 3.14159
 ```
 
-### 1.5.3 Zero values
+### Zero values
 
 Si no asignamos un valor go usará valores predeterminados diferentes
 para cada tipo de dato.
@@ -193,11 +191,11 @@ para cada tipo de dato.
 -   string: ""
 -   bool: false
 
-### 1.5.4 Valor nulo
+### Valor nulo
 
 Go usa la palabra nil para referirse a un valor nulo.
 
-## 1.6 comentarios
+## comentarios
 
 Los comentarios se marcan usando dos diagonales seguidas
 
@@ -214,7 +212,7 @@ Este es un comentario multilinea
 */
 ```
 
-## 1.7 Operadores aritméticos en go
+## Operadores aritméticos en go
 
 Los operadores de go son similares al resto de los lenguajes.
 
@@ -235,12 +233,12 @@ Los operadores de go son similares al resto de los lenguajes.
 -   ++, incremental
 -   --, decremental
 
-## 1.8 Tipos primitivos de datos
+## Tipos primitivos de datos
 
 Los datos primitivos de go nos permiten definir un tipo de dato para una
 constante o varible.
 
-### 1.8.1 Entero
+### Entero
 
 Para valores enteros con o sin signo.
 
@@ -250,7 +248,7 @@ Para valores enteros con o sin signo.
 -   int32
 -   int64
 
-### 1.8.2 Entero sin signo
+### Entero sin signo
 
 Para valores sin signo, es decir, positivos.
 
@@ -260,22 +258,22 @@ Para valores sin signo, es decir, positivos.
 -   uint32
 -   uint64
 
-### 1.8.3 Decimal
+### Decimal
 
 Para números decimales
 
 -   float32
 -   float64
 
-### 1.8.4 Textos
+### Textos
 
 Para textos existe únicamente string
 
-### 1.8.5 Boolean
+### Boolean
 
 Para valores true or false
 
-### 1.8.6 Números complejos
+### Números complejos
 
 Permite manejar números reales e imaginarios:
 
@@ -284,7 +282,7 @@ Permite manejar números reales e imaginarios:
 
 Por ejemplo: c:=100+2i
 
-### 1.8.7 Funciones
+### Funciones
 
 Las funciones pueden ser un tipo de dato en un struct.
 
@@ -296,13 +294,13 @@ table := []struct {
             }
 ```
 
-## 1.9 Paquete fmt
+## Paquete fmt
 
 Es el paquete encargado de manejar entradas y salidas en la terminal.
 Incluye todo lo necesario para lidiar con caracteres especiales, como el
 idioma chino.
 
-### 1.9.1 Println
+### Println
 
 Print que agrega un salto de linea al final, es posible separar
 variables por comas.
@@ -311,7 +309,7 @@ variables por comas.
 fmt.Println("Hello wired")
 ```
 
-### 1.9.2 Printf
+### Printf
 
 Permite agregar operadores de posición
 
@@ -319,7 +317,7 @@ Permite agregar operadores de posición
 fmt.printf("Hello %s %d", texto, numero)
 ```
 
-### 1.9.3 Sprintf
+### Sprintf
 
 No imprime en la terminal, sino que genera un string con los operadores
 de posición.
@@ -328,7 +326,7 @@ de posición.
 var message string = fmt.Sprintf("Hello %s %d", texto, numero)
 ```
 
-### 1.9.4 Operadores de posición
+### Operadores de posición
 
 Hay algunos operadores de posición destacables.
 
@@ -344,7 +342,7 @@ Hay algunos operadores de posición destacables.
 
 Puedes ver más en la [página oficial de go](https://pkg.go.dev/fmt)
 
-## 1.10 Funciones en Go
+## Funciones en Go
 
 Las funciones se declaran con la siguiente sintaxis
 
@@ -425,7 +423,7 @@ función
 value1, value2 = double(2, 3)
 ```
 
-### 1.10.1 returns sin nombre
+### returns sin nombre
 
 Una función puede implementar que retorne lo que le pasamos como tipo
 por defecto. En este caso le indicamos que devolverá una variable x y
@@ -440,7 +438,7 @@ func split(sum int) (x, y int) {
 }
 ```
 
-### 1.10.2 Cantidad variable de argumentos
+### Cantidad variable de argumentos
 
 Si no sabemos la cantidad de argumentos que va a recibir una función,
 colocamos el nombre del argumento, seguido del operador ... y a
@@ -456,9 +454,9 @@ func Sum(nums ...int) int {
 }
 ```
 
-## 1.11 Strings, runes y bytes
+## Strings, runes y bytes
 
-### 1.11.1 Bytes
+### Bytes
 
 Un byte en go es sinónimo de un *uint8*. Es decir, 8 bits que podemos
 asignar de manera directa a diferentes notaciones. El hecho de que sea
@@ -471,7 +469,7 @@ var ch2 byte = 0o132      // Octadecimal
 var ch3 byte = 0x5a       // hexadecimal
 ```
 
-#### 1.11.1.1 Array de bytes
+#### Array de bytes
 
 Así como tenemos el tipo de dato byte, también podemos crear un array de
 bytes.
@@ -488,7 +486,7 @@ var t4 = make([]byte, 5)
 copy(t4, "ABCDE")
 ```
 
-### 1.11.2 Runes
+### Runes
 
 Las runes son sinónimo de un tipo *int32*. Es el tipo de **variable por
 defecto cuando defines un caracter**. Si no especificas byte u otro, Go
@@ -500,7 +498,7 @@ fmt.Printf("type:%T, value:%v\n", runa, runa)
 // type:int32, value:65
 ```
 
-#### 1.11.2.1 Array de Runes
+#### Array de Runes
 
 Go permite, de la misma manera manejar un array de runes que es
 totalmente modificable
@@ -511,7 +509,7 @@ arrayRunas[0] = 'H'
 arrayRunas = append(arrayRunas, '!', '?')
 ```
 
-### 1.11.3 Strings
+### Strings
 
 Un string es un slice de bytes de solo lectura, se declara usando
 comillas dobles.
@@ -547,7 +545,7 @@ for index, runeValue := range s {
 //U+60C5 '情' starts at byte position 20    
 ```
 
-## 1.12 Paquete strings
+## Paquete strings
 
 Go cuenta con un paquete para manejar strings, con múltiples métodos.
 Aquí dejo algunos de los más importantes:
@@ -579,7 +577,7 @@ Aquí dejo algunos de los más importantes:
 Revisa las funciones completas en [la documentación de strings en
 go](https://pkg.go.dev/strings)
 
-## 1.13 Paquete strconv
+## Paquete strconv
 
 Permite convertir strings en otros tipos de datos:
 
@@ -591,7 +589,7 @@ Permite convertir strings en otros tipos de datos:
 Mira el resto de funciones en [la documentación de strconv en
 go](https://pkg.go.dev/strconv)
 
-## 1.14 Función len
+## Función len
 
 La función len se encarga de devolver el número de elementos que tiene
 un string, un slice, un array, un channel. Sin embargo, en el caso de
@@ -613,7 +611,7 @@ func main() {
     fmt.Println(utf8.RuneCountInString(data)) // imprime 1
 ```
 
-## 1.15 Ignorando variables
+## Ignorando variables
 
 Para ignorar una variable le pasamos un guión bajo o underscore y el
 compilador no tendrá en cuenta si la usamos o no.
@@ -622,18 +620,18 @@ compilador no tendrá en cuenta si la usamos o no.
 value1, _ = double(2, 3)
 ```
 
-## 1.16 godoc
+## godoc
 
 Godoc es una página que nos muestra detalles de cada función que compone
 un paquete, así como un parseo de la información de github. Para hacerlo
 debemos ir a la [sección packages](https://golang.org/pkg/) de la página
 oficial de golang.
 
-## 1.17 Ciclos
+## Ciclos
 
 En go solamente existen los ciclos for, hay varios tipos de ciclos for.
 
-### 1.17.1 Con contador
+### Con contador
 
 Es el clásico ciclo en el que existe un contador y el código se ejecuta
 mientras se cumpla un contador
@@ -644,7 +642,7 @@ for i:= 0; i < 10; i++ {
 }
 ```
 
-### 1.17.2 Con condición
+### Con condición
 
 El ciclo se ejecuta mientras se cumpla una condición
 
@@ -655,7 +653,7 @@ for counter < 10 {
 }
 ```
 
-### 1.17.3 counterForever
+### counterForever
 
 El ciclo se ejecuta indefinidamente
 
@@ -666,7 +664,7 @@ for {
 }
 ```
 
-## 1.18 Condicional if
+## Condicional if
 
 Usado para manejar el flujo del código de acuerdo a una condición
 
@@ -678,7 +676,7 @@ if num % 2 == 0 {
     fmt.Println("es impar")
 ```
 
-## 1.19 Switch
+## Switch
 
 Para manejar múltiples casos para una condición específica
 
@@ -698,9 +696,9 @@ default:
 }
 ```
 
-## 1.20 defer, break y continue
+## defer, break y continue
 
-### 1.20.1 defer
+### defer
 
 Se usa para retrasar la ejecución de código hasta el final de la
 operación. Defer es perfecta para cerrar base de datos u operaciones que
@@ -710,7 +708,7 @@ necesitas que se ejecuten siempre.
 defer CloseDatabase()
 ```
 
-### 1.20.2 break
+### break
 
 Se usa para romper un ciclo
 
@@ -737,7 +735,7 @@ loop:
         }
 ```
 
-### 1.20.3 continue
+### continue
 
 Se usa para interrumpir una iteración de un ciclo y continuar con la
 siguiente iteración
@@ -753,17 +751,17 @@ for counter < 10 {
 }
 ```
 
-## 1.21 make
+## make
 
 La función make asigna e inicializa un objeto del tipo slice, map o chan
 y lo retorna.
 
-## 1.22 Array y slices
+## Array y slices
 
 Los array y los slices son estructuras para manejar colecciones de tipos
 de datos.
 
-### 1.22.1 Array
+### Array
 
 Los arrays son inmutables, debemos definir un tamaño y un tipo de dato.
 Una vez creados no se pueden modificar.
@@ -779,7 +777,7 @@ array[0] = 1
 array[1] = 2
 ```
 
-### 1.22.2 slices
+### slices
 
 Los slices son colecciones mutables de tipos de datos.
 
@@ -808,7 +806,7 @@ slice[4] = 4
 // panic: runtime error: index out of range [4] with length 4
 ```
 
-#### 1.22.2.1 Particionado de slices
+#### Particionado de slices
 
 Los slices pueden partirse en un estilo similar al de Python,
 especificando una posición incluyente para el primer dígito y excluyente
@@ -823,7 +821,7 @@ list[:2] // {0, 1}
 list[2:3]// { 2 }
 ```
 
-#### 1.22.2.2 Append
+#### Append
 
 Los slices son mutables, por lo que es posible agregar nuevos elementos.
 Esto se hace con append, y recibe cualquier número de elementos,
@@ -843,7 +841,7 @@ otherSlice :=[]int{7, 8, 9}
 slice = append(slice, otherSlice...)
 ```
 
-#### 1.22.2.3 Recorriendo slices con range
+#### Recorriendo slices con range
 
 Parecido a la sintaxis de Python, podemos recorrer un array donde
 asignamos cada elemento a una variable.
@@ -854,7 +852,7 @@ slice := []string = ["aldo", "javier", "marti"]
 }
 ```
 
-## 1.23 Maps
+## Maps
 
 Los maps o hash tables son el equivalente de los diccionarios. Poseen un
 valor, encerrado e corchetes, que sirve como llave o key, seguido de
@@ -901,7 +899,7 @@ tipo booleano.
 value, exist := diccionario["Helio"]
 ```
 
-### 1.23.1 Capacidad opcional
+### Capacidad opcional
 
 Para establecer uan capacidad máxima en un map, le pasamos la máxima
 capacidad como segundo argumento.
@@ -914,7 +912,7 @@ Esta capacidad es solo indicativa para que el compilador asigne un
 mínimo de memoria, si agregamos más llaves del valor máximo se seguirán
 añadiendo, aunque no tan eficientemente.
 
-### 1.23.2 delete
+### delete
 
 La función delete borra una llave del diccionarios
 
@@ -922,7 +920,7 @@ La función delete borra una llave del diccionarios
 delete(diccionario, "Helio")
 ```
 
-### 1.23.3 Recorrer map con range
+### Recorrer map con range
 
 De la misma manera que con un slice, podemos recorrer los maps con
 range, asignando una variable para la llave y otra para el valor. El
@@ -943,7 +941,7 @@ for _, v := range m {
 }
 ```
 
-## 1.24 Structs
+## Structs
 
 Los structs son colecciones de campos, se definen con el keyword type
 seguido del nombre a asignar y la palabra struct.
@@ -955,7 +953,7 @@ type Videogame struct {
 }
 ```
 
-### 1.24.1 Creación de un struct
+### Creación de un struct
 
 Para crear un struct existen dos maneras
 
@@ -972,7 +970,7 @@ var myVideogame Videogame
 myVideogame.Genre = "Horror"
 ```
 
-### 1.24.2 campos anónimos en structs
+### campos anónimos en structs
 
 En go, es posible no especificar el nombre del campo de nuestro struct y
 colocar únicamente el tipo de dato. Hecho así, los campos adoptarán el
@@ -989,7 +987,7 @@ fmt.Println(myVideogame)
 // imprime {Titulo 2000}
 ```
 
-## 1.25 Privacidad en structs, funciones y variables
+## Privacidad en structs, funciones y variables
 
 Para marcar un struct, función o variable como privada o pública, igual
 que sus respectivos campos para el struct, basta con declarar la primera
@@ -1017,7 +1015,7 @@ type Videogame struct {
 }
 ```
 
-## 1.26 Manejo de errores con go
+## Manejo de errores con go
 
 Go nos permite manejar errores creando una segunda variable de retorno
 para la función que queremos probar. Si ocurre un error lo obtendremos y
@@ -1030,7 +1028,7 @@ if err != nil {
 }
 ```
 
-## 1.27 Variables de entorno de go
+## Variables de entorno de go
 
 Go maneja dos variables de entorno:
 
@@ -1040,12 +1038,12 @@ Go maneja dos variables de entorno:
     directorio llamado go, dentro de home. Aquí se descargan los
     paquetes.
 
-## 1.28 Importacion de paquetes con go mod
+## Importacion de paquetes con go mod
 
 En go no existen las importaciones relativas. Se debe usar la ruta
 absoluta considerando la variable de entorno GOPATH o usar go mod.
 
-### 1.28.1 Creación de un archivo go.mod
+### Creación de un archivo go.mod
 
 Un archivo de go.mod nos permite establecer un directorio afuera de
 GOPATH para tomar los paquetes. El comando go mod init, seguido del
@@ -1081,7 +1079,7 @@ terminaremos con la siguiente estructura. Aprecia que los archivos
 1 directory, 3 files
 ```
 
-### 1.28.2 Contenido del archivo go.mod
+### Contenido del archivo go.mod
 
 Dentro del archivo go.mod que creo go se encuentra el nombre del modulo
 a partir del cual crearemos la ruta de importación, así como la versión
@@ -1093,7 +1091,7 @@ module mypackage
 go 1.15
 ```
 
-### 1.28.3 Definir nombre de los modulos
+### Definir nombre de los modulos
 
 El nombre de cada modulo se establecerá al principio de cada archivo,
 colocándolo después de la palabra package. En este ejemplo será
@@ -1110,7 +1108,7 @@ type Videogame struct {
 }
 ```
 
-### 1.28.4 Importando el contenido de un paquete
+### Importando el contenido de un paquete
 
 Para importar el contenido de un paquete hacemos referencia a su ruta,
 \<nombre_del_modulo_como_aparece_en_go_mod\>/\<nombre_del_package\>, es
@@ -1134,7 +1132,7 @@ func main() {
 }
 ```
 
-### 1.28.5 Alias al importar paquetes
+### Alias al importar paquetes
 
 Podemos declarar un alias a la hora de importar un paquete anteponiendo
 el alias antes de la importación
@@ -1143,7 +1141,7 @@ el alias antes de la importación
 import nuestroAlias "ruta/a/paquete"
 ```
 
-## 1.29 Structs y punteros
+## Structs y punteros
 
 Cuando se crea una variable se le asigna una dirección de memoria, a la
 que podemos acceder con el operador ampersand
@@ -1159,7 +1157,7 @@ Para modificar la variable usamos el caracter de desestructuración.
 *b = 100
 ```
 
-## 1.30 Composición en Go
+## Composición en Go
 
 Para acceder a instancias de structs en las funciones necesitamos
 colocar un parentesis entre la keyword func y el nombre de la función.
@@ -1191,7 +1189,7 @@ struct.
 videogame.IncreaseYear()
 ```
 
-### 1.30.1 Constructor en structs
+### Constructor en structs
 
 Go no tiene un mecanismo de constructores implementados. Pero puede
 crearse una función que devuelva un objeto ya inicializado con los
@@ -1206,7 +1204,7 @@ func NewVideogame(year int, genre string) *Videogame {
 }
 ```
 
-### 1.30.2 Herencia en structs
+### Herencia en structs
 
 Para que un struct en go posea todos los campos que declara otro struct,
 le pasamos este último como un campo anónimo.
@@ -1222,7 +1220,7 @@ type Profesor struct {
 }
 ```
 
-## 1.31 Polimorfismo usando interfaces
+## Polimorfismo usando interfaces
 
 Las interfaces son un método para especificar el comportamiento de
 diferentes objetos. Una interface se encargará de llamar al método que
@@ -1279,7 +1277,7 @@ calcular(miRectangulo)
 // Area 8
 ```
 
-## 1.32 String en structs
+## String en structs
 
 La función para personalizar el output en consola en los structs debe
 llamarse String(). Nota la ausencia del operador de desestructuración.
@@ -1290,7 +1288,7 @@ func (myStructVariable Videogame) String() string {
 }
 ```
 
-### 1.32.1 slice de interfaces
+### slice de interfaces
 
 Existen los slice de interfaces, que nos permiten guardar diferentes
 tipos de datos en un solo slice. Un slice de interfaces lleva doble par
@@ -1301,7 +1299,7 @@ myInterface := []interface{}{"Hola", 1, 3.4}
 fmt.Println(myInterface...)
 ```
 
-## 1.33 Concurrencia
+## Concurrencia
 
 Go es un lenguaje diseñado para ser concurrente, no paralelo. A las
 corrutinas de go se les conoce como goroutines. La función main se
@@ -1319,7 +1317,7 @@ Aunque si nada más hacemos esto, el programa finalizará sin que se
 ejecute nuestra goroutine. Para detener la ejecución del programa hasta
 que se termine de ejecutar nuestra goroutine necesitamos un *WaitGroup*.
 
-### 1.33.1 sync
+### sync
 
 Un WaitGroup acumula un conjunto de goroutines y las va liberando
 paulatinamente. Un WaitGroup funciona con un contador que
@@ -1351,7 +1349,7 @@ say(text string, wg *sync.WaitGroup) {
 }
 ```
 
-### 1.33.2 Funciones anónimas en goroutines
+### Funciones anónimas en goroutines
 
 Se usan frecuentemente en goroutines.
 
@@ -1368,7 +1366,7 @@ go func(text string) {
 }("Texto")
 ```
 
-## 1.34 Channels
+## Channels
 
 Los channels o canales son conductos, que aceptan un único tipo de dato,
 a através de los cuales introducimos información, que posteriormente
@@ -1409,7 +1407,7 @@ Para obtener la respuesta del canal invertimos el orden de \<-
 fmt.Println(<-c)
 ```
 
-### 1.34.1 Canales de entrada y de salida
+### Canales de entrada y de salida
 
 Hay canales que reciben información y canales que sacan información, de
 manera predeterminada un canal es bidireccional, pero podemos declarar
@@ -1437,7 +1435,7 @@ En ocasiones es importante definir el tipo de canal pues, con los
 canales bidireccionales corremos el riesgo de ocasionar un bloqueo en
 nuestro programa.
 
-### 1.34.2 Deadlocks o bloqueos
+### Deadlocks o bloqueos
 
 La capacidad por defecto de un canal es de 0, esto provoca que no
 podamos almacenar datos en los canales predeterminadamente. Si
@@ -1463,7 +1461,7 @@ Esto devolverá un error
 fatal error: all goroutines are asleep - deadlock!
 ```
 
-### 1.34.3 Previniendo deadlocks
+### Previniendo deadlocks
 
 Podemos usar inmediatamente el dato del canal usando una goroutine.
 Observa el uso de la palabra *go* y como esta función recibe el canal
@@ -1500,7 +1498,7 @@ func main() {
 }
 ```
 
-### 1.34.4 Canales con buffer
+### Canales con buffer
 
 Un canal con buffer es solo un canal que cuenta con una capacidad. Para
 establecer cuantos datos soporta un canal, se lo pasamos como argumento
@@ -1519,7 +1517,7 @@ func main() {
 }
 ```
 
-### 1.34.5 canal de canales
+### canal de canales
 
 Es posible tener un canal de canales
 
@@ -1529,7 +1527,7 @@ type Worker struct {
 }
 ```
 
-### 1.34.6 Conocer el número de CPU's con GO
+### Conocer el número de CPU's con GO
 
 El método runtime nos permite devolver el número de procesadores de
 nuestro sistema.
@@ -1538,7 +1536,7 @@ nuestro sistema.
 var numCPU = runtime.NumCPU()
 ```
 
-## 1.35 Operaciones bloqueantes
+## Operaciones bloqueantes
 
 Las operaciones que mandan o reciben valores de canales son bloqueantes
 dentro de su propia goroutine.
@@ -1578,7 +1576,7 @@ func main() {
 La función que imprime el canal bloqueará la ejecución del código hasta
 que reciba la información del canal out.
 
-### 1.35.1 Usando structs vacios para bloquear
+### Usando structs vacios para bloquear
 
 Entre algunos programadores se suelen usar structs vacios para el
 bloqueo de un programa
@@ -1592,7 +1590,7 @@ done <- struct{}{}
 <-done
 ```
 
-## 1.36 Range, close y select en channels
+## Range, close y select en channels
 
 La función len nos dice cuantos datos hay en un channel y cap nos
 devuelve la capacidad máxima, respectivamente.
@@ -1604,7 +1602,7 @@ c <- "dato2"
 fmt.Println(len(c), cap(c))
 ```
 
-### 1.36.1 close
+### close
 
 close cierra el canal, incluso aunque tenga capacidad
 
@@ -1615,7 +1613,7 @@ c <- "dato2"
 close(c)
 ```
 
-### 1.36.2 Range
+### Range
 
 Range es ideal para iterar sobre los datos de los canales.
 
@@ -1627,7 +1625,7 @@ for message := range c {
 
 Sin embargo **no existe certeza sobre que dato recibiremos**
 
-### 1.36.3 Select
+### Select
 
 Select nos permite definir acciones diferentes para cada canal, a esto
 se le llama **multiplexación**. Por lo que es importante conocer el
@@ -1655,7 +1653,7 @@ funct main() {
 }
 ```
 
-## 1.37 Go get: manejador de paquetes
+## Go get: manejador de paquetes
 
 El equivalente de pip y npm pero en go.
 
@@ -1675,12 +1673,12 @@ Para especificar una versión necesitamos agregarla como parte de la ruta
 go get rsc.io/quote/v3
 ```
 
-## 1.38 Librerías
+## Librerías
 
 Hay un directorio de frameworks, librerías y utilidades en [Awesome
 go](http://awesome-go.com/)
 
-## 1.39 Go modules: Ir más allá del GoPath con Echo
+## Go modules: Ir más allá del GoPath con Echo
 
 Para reemplazar librerías hacemos un git clone de la libreríaa que
 necesitamos, lo editamos y, posteriormente, usamos replace. Esto creará
@@ -1739,7 +1737,7 @@ El comando para limpiar librerías no utilizadas.
 go mod tidy
 ```
 
-## 1.40 Librerías de desarrollo web
+## Librerías de desarrollo web
 
 -   [Hugo](https://gohugo.io/)
 -   [Hugo themes](https://themes.gohugo.io/)
@@ -1749,7 +1747,7 @@ go mod tidy
 -   [Revel](https://revel.github.io/)
 -   [Buffalo](https://gobuffalo.io/en/)
 
-## 1.41 Enlaces útiles
+## Enlaces útiles
 
 -   [Atour of go](http://tour.golang.com/)
 -   [Play with go](https://play-with-go.dev/)
@@ -1759,7 +1757,7 @@ go mod tidy
     go](https://open.spotify.com/show/2cKdcxETn7jDp7uJCwqmSE?si=q88UkEYQTxS0t1QVws22tw&amp;nd=1)
 
 
-## 1.2 Race conditions
+## Race conditions
 
 Sucede cuando dos diferentes procesos leen y modifican un mismo dato,
 podemos tener resultados impredecibles dependiendo de que proceso
@@ -1769,12 +1767,12 @@ saldo X y le suman el depósito, puede ocurrir que tengamos un resultado
 igual a X + Y o X + Z, cuando el resultado correcto debería ser X + Y +
 Z.
 
-## 1.3 Netcat
+## Netcat
 
 Netcat es una librería que nos permite leer y escribir de una conexión
 TCP especificada.
 
-### 1.3.1 Conectarse con netcat
+### Conectarse con netcat
 
 Netcat nos permite conectarnos por medio de su método Dial
 
@@ -1785,7 +1783,7 @@ if err != nil {
 }
 ```
 
-### 1.3.2 Servir contenido con netcat
+### Servir contenido con netcat
 
 También nos permite escuchar conexiones usando su método Listen
 
@@ -1813,7 +1811,7 @@ for {
         go HandleConnection(conn)
 ```
 
-## 1.4 Sync Mutex: Lock y Unlock
+## Sync Mutex: Lock y Unlock
 
 Podemos ver si nuestro programa crea una condición de carrera con el
 comando build.
@@ -1849,7 +1847,7 @@ lock.Lock()
 lock.Unlock()
 ```
 
-### 1.4.1 Mutex de lectura y escritura
+### Mutex de lectura y escritura
 
 Go provee locks que permiten una sola goroutine que escriba y múltiples
 lectores por medio de RWMutex
@@ -1868,7 +1866,7 @@ lock.RUnlock()
 
 El contenido dentro del candado de lectura puede ser leído múltiples
 veces.
-## 1.1 Servidor básico de Go
+## Servidor básico de Go
 
 Go puede crear un servidor básico usando la librería estándar.
 
@@ -1885,7 +1883,7 @@ func main() {
 }
 ```
 
-### 1.1.1 Handler para cada ruta
+### Handler para cada ruta
 
 La configuración anterior no hace prácticamente nada, necesitamos asignar una URI con una función de go.
 
@@ -1928,7 +1926,7 @@ func main() {
 }
 ```
 
-### 1.1.2 Manejo de sesiones
+### Manejo de sesiones
 
 Para el manejo de sesiones podemos usar gorilla
 
@@ -1958,12 +1956,12 @@ func MySessionHandler(w http.ResponseWriter, r *http.Request) {
     }
 ```
 
-## 1.2 Testing en go
+## Testing en go
 
 Go ya cuenta con un modulo de testing en su librería estándar que está
 lista para nuestro uso, solo hace falta importarla y usarla.
 
-### 1.2.1 Preparación del testing en go
+### Preparación del testing en go
 
 Para que se lleven a cabo los tests necesitamos:
 
@@ -2012,7 +2010,7 @@ func Division(a int, b int) int {
 }
 ```
 
-### 1.2.2 Ejecutar los tests
+### Ejecutar los tests
 
 Para ejecutar los tests necesitamos estar en el directorio donde se
 encuentran nuestros archivos terminados en \_\_test.go\_ y correr el
@@ -2036,7 +2034,7 @@ exit status 1
 FAIL    main/testing    0.001s
 ```
 
-### 1.2.3 Manejo de casos con tablas
+### Manejo de casos con tablas
 
 En el ejemplo anterior necesitariamos una función por cada test, pero
 eso se puede volver tedioso si los casos a manejar son demasiados. Para
@@ -2077,7 +2075,7 @@ for _, table := range tables {
 
 Si todo salió bien, pasaremos todas las pruebas.
 
-### 1.2.4 Coverage
+### Coverage
 
 Coverage ya forma parte del código en go, por lo que no necesitamos
 librerías externas. Si no sabes que es Coverage, piensa en él como el
@@ -2097,7 +2095,7 @@ ok      _/home/eduardo/Programacion/goTesting/testing   0.002s
 Como nuestra función es muy corta, obtenemos un resultado de 100%, sin
 desglosar, de coverage
 
-#### 1.2.4.1 Exportar resultados de coverage
+#### Exportar resultados de coverage
 
 Podemos mandar el toda la información en bruto de nuestro test de
 coverage a un archivo externo con el flag *-coverprofile*.
@@ -2113,7 +2111,7 @@ Este archivo, de nombre *coverage.out* , que fue generado, es un archivo
 que contiene información en bruto y que **será necesario para visualizar
 los resultados** de una manera más detallada.
 
-#### 1.2.4.2 Visualización de resultados con go tool
+#### Visualización de resultados con go tool
 
 Para resumir de una manera más legible la información del archivo que
 contiene nuestro test de coverage, usaremos el comando tool, acompañado
@@ -2144,7 +2142,7 @@ obtendremos un esquema diferente al anterior. Ahora sí aparece una
 sección de código no cubierto por los tests en colo rojo y nuestro
 coverage bajó a 50%.
 
-### 1.2.5 Profiling
+### Profiling
 
 go nos permite perfilar la eficiencia de nuestro código analizando el
 desempeño del código.
@@ -2186,7 +2184,7 @@ Y exportarlo a pdf con
 (pprof) pdf
 ```
 
-### 1.2.6 Mock
+### Mock
 
 Si queremos emular el comportamiento de base de datos api usamos una
 función mock.
@@ -2232,9 +2230,9 @@ func TestGetFullTimeEmployeeById(t *testing.T) {
 }
 ```
 
-## 1.3 Asincronía en go
+## Asincronía en go
 
-### 1.3.1 Unbuffered channels y buffered channels
+### Unbuffered channels y buffered channels
 
 Es un canal sin una capacidad máxima definida. Un canal sin buffer
 transmite un mensaje en cuanto lo recibe. Tenemos que estar seguros de
@@ -2260,7 +2258,7 @@ c <- 1
 fmt.Println(<-c)
 ```
 
-### 1.3.2 Waitgroups
+### Waitgroups
 
 Los Waitgroups sirven para sincronizar las goroutines.
 
@@ -2308,7 +2306,7 @@ contadores.
 wg.Wait()
 ```
 
-### 1.3.3 canales de lectura y escritura
+### canales de lectura y escritura
 
 Canal de solo escritura: Flecha \<- a la derecha de chan. Como si
 entrara en el canal
@@ -2324,7 +2322,7 @@ del canal.
 func Print(c <-chan int)
 ```
 
-### 1.3.4 Worker pools
+### Worker pools
 
 Es un modelo que permite que un conjunto de workers, implementados con
 goroutines, efectuen tareas en una cola de tareas, implementada con
@@ -2371,7 +2369,7 @@ for _, t := range tasks {
 close(jobs)
 ```
 
-### 1.3.5 Multiplexación
+### Multiplexación
 
 Se usa la palabra reservada select y case en conjunto para identificar
 canales y actuar en consecuencia.
@@ -2386,9 +2384,9 @@ select {
     }
 ```
 
-## 1.4 Patrón workers, jobs y dispatchers
+## Patrón workers, jobs y dispatchers
 
-### 1.4.1 Jobs
+### Jobs
 
 Un job representa una tarea a ser ejecutada. Posee un nombre, un tiempo
 de duración entre jobs y un número.
@@ -2401,7 +2399,7 @@ type Job struct {
 }
 ```
 
-### 1.4.2 Worker
+### Worker
 
 Un worker representa la unidad que se va a encargar de obtener los jobs
 del JobQueue y procesarlos usando su método Start. En el método Start se
@@ -2417,7 +2415,7 @@ type Worker struct {
 }
 ```
 
-### 1.4.3 Dispatcher
+### Dispatcher
 
 El dispatcher se encarga de asignar jobs a los workers.
 
@@ -2429,7 +2427,7 @@ type Dispatcher struct {
 }
 ```
 
-### 1.4.4 NewWorker
+### NewWorker
 
 Crea un nuevo worker con id y su pool de workers.
 
@@ -2444,7 +2442,7 @@ func NewWorker(id int, workerPool chan chan Job) *Worker {
 }
 ```
 
-### 1.4.5 Método Start del Worker
+### Método Start del Worker
 
 Comienza la ejecución de los workers.
 
@@ -2471,7 +2469,7 @@ func (w Worker) Start() {
 }
 ```
 
-### 1.4.6 Método Stop del worker
+### Método Stop del worker
 
 Cambia la propiedad Quit del worker.
 
@@ -2483,7 +2481,7 @@ func (w Worker) Stop() {
 }
 ```
 
-### 1.4.7 Creador del dispatch
+### Creador del dispatch
 
 Crea un nuevo dispatcher con los argumentos que le pasamos.
 
@@ -2498,7 +2496,7 @@ func NewDispatcher(jobQueue chan Job, maxWorkers int) *Dispatcher {
 }
 ```
 
-### 1.4.8 Método dispatch del Dispatcher
+### Método dispatch del Dispatcher
 
 El método dispatch creará un loop infinito, en el cual escuchará por
 objetos de la cola de Jobs y los asignará a un worker
@@ -2518,7 +2516,7 @@ func (d *Dispatcher) dispatch() {
 }
 ```
 
-### 1.4.9 Método run del dispatch
+### Método run del dispatch
 
 Crea un worker hasta que alcancemos el máximo número de workers y
 córrelo.
@@ -2534,7 +2532,7 @@ func (d *Dispatcher) Run() {
 }
 ```
 
-## 1.5 Creando un servidor web
+## Creando un servidor web
 
 Creamos una función llamada RequestHandler que reciba un objeto
 ResponseWriter que escribe en la respuesta HTTP, un objeto Request, que
@@ -2621,7 +2619,7 @@ http.HandleFunc("/fib", func (w http.ResponseWriter, r*http.Request){
 })
 ```
 
-### 1.5.1 Middleware en un servidor web
+### Middleware en un servidor web
 
 En Go podemos declarar un middleware como una función que reciba un
 http.Handler y retorne un http.Handler. Para pasar al siguiente
@@ -2655,7 +2653,7 @@ func main() {
 Para evitar anidar múltiples middlewares podemos usar programación
 funcional.
 
-## 1.6 Peticiones http
+## Peticiones http
 
 Go puede realizar peticiones http usando su método GET. Observa como se
 cierra la conexión **solo tras haber verificando que no hubo un error**
@@ -2699,7 +2697,7 @@ if err != nil {
 fmt.Println(string(body))
 ```
 
-## 1.7 Panic
+## Panic
 
 Podemos recuperarnos de errores tipo panic llamando a la función
 recover. **recover solo puede usarse dentro de una función con defer
@@ -2712,7 +2710,7 @@ defer func() {
     }()
 ```
 
-## 1.8 JSON
+## JSON
 
 Para crear un json usaremos el paquete json y su método Marshal
 
@@ -2746,7 +2744,7 @@ fmt.Println(jsonString)
 //{"uno":1}
 ```
 
-### 1.8.1 Serialización
+### Serialización
 
 Cuando go requiere establecer como se llamará un campo tras
 serializarlo, lo especificamos con una cadena de texto usando backticks
@@ -2760,7 +2758,7 @@ Status  bool   `json:"status"`
 
 }
 
-## 1.9 Argumentos en Go
+## Argumentos en Go
 
 Go provee un objeto llamado flag para recibir argumentos
 

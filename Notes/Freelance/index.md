@@ -3,7 +3,7 @@
 
 
 
-## 1.1 Contratos
+## Contratos
 
 En este tema debemos ser serios y responsables. Debemos tener claro el
 pago y las condiciones que estamos solicitando. También debemos ser
@@ -26,29 +26,29 @@ finalizar.
 Una recomendación es solicitar 50% para iniciar el proyecto y el resto
 diferido en meses
 
-### 1.1.1 Hello sign
+### Hello sign
 
 Plataforma de contratos para firmas electrónicas
 
 www.hellosign.com
 
-## 1.2 Recibir pagos trabajando como Freelance
+## Recibir pagos trabajando como Freelance
 
-### 1.2.1 Transferencia Electrónicas.
+### Transferencia Electrónicas.
 
 Debes tener una cuenta en el banco a tu nombre, en algunas empresas no
 te van a realizar el pago si la cuenta no está a tu nombre. Esto
 funciona muy bien cuando están en el mismo país, si manejas negocios con
 bancos nacionales.
 
-### 1.2.2 Payoneer
+### Payoneer
 
 Esto funciona muy bien cuando tu cliente se encuentra en otro país.
 Payoneer es la forma de manejar transferencias electrónicas de manera
 internacional y te proporciona una tarjeta de débito, puedes manejar tu
 moneda en dolares y euros.
 
-### 1.2.3 Paypal
+### Paypal
 
 Es la opción amada por muchos. Es el método de pago más popular, por la
 facilidad para crear una cuenta. Es como una capa que te permite generar
@@ -58,18 +58,18 @@ bancaria nacional.
 Paypal tiene una comisión al momento de hacer esta transferencia a tu
 cuenta bancaria nacional.
 
-### 1.2.4 Skrill
+### Skrill
 
 Es un método de pago que también tiene bastante tiempo en el mercado.
 
-### 1.2.5 MercadoPago
+### MercadoPago
 
 Con esta opción puedes generar un código QR y enviárselo a tu cliente y
 a partir de eso puede generar una transferencia a tu cuenta. Puede que
 tenga alguna restricción dependiendo de tu país. Funciona muy bien en
 México, Colombia y Argentina.
 
-### 1.2.6 Impuestos
+### Impuestos
 
 México:
 
@@ -87,7 +87,7 @@ con todo el sistema tributario y nunca evadir impuestos.
 -   Las facturas son digitales respaldadas por un Comprobante Fiscal
     Digital por Internet(CFDI)
 
-## 1.3 Herramientas de productividad
+## Herramientas de productividad
 
 -   Jira (Cronograma de trabajo)
 -   Trello (To-Do’s)
@@ -96,21 +96,21 @@ con todo el sistema tributario y nunca evadir impuestos.
 -   Monday (Combina varias herramientas)
 -   Técnica Pomodoro (Centra en tareas específicas)
 
-## 1.4 Aplicaciones de administración financiera
+## Aplicaciones de administración financiera
 
-### 1.4.1 iHomeMoney
+### iHomeMoney
 
 Uno de mis sitios favoritos es iHomeMoney me agrada mucho su interfaz es
 muy fácil de usar además que tiene gráficos muy interesantes que me
 permiten ver muy fácil en qué estoy gastando mi dinero.
 
-### 1.4.2 YNAB
+### YNAB
 
 YNAB es una aplicación muy atractiva pues partes de un presupuesto para
 definir el curso de tus finanzas. Tener presupuestos para todo es una de
 las mejores prácticas para cuidar tu dinero.
 
-### 1.4.3 Mint
+### Mint
 
 Mint es un sitio y app que reúne todo lo anterior. Maneja gráficos
 sencillos de ver, presupuestos y un sistema de alertas (¡muy bueno!).

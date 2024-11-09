@@ -8,14 +8,14 @@ Ubuntu Server es la versión más popular de distribución de GNU/Linux, de
 acuerdo a las estadísticas de w3tech.
 
 
-## 1.1 Terminales de GNU/Linux
+## Terminales de GNU/Linux
 
 Las consolas físicas tienen una terminación de tty1 hasta tty6. Cada
 usuario activo en nuestro sistema operativo crea una nueva conexión.
 Podemos ver todas estas. Para verlas usamos el comando w o who. Es
 recomendable matar aquellas que no estamos usando.
 
-### 1.1.1 chvt
+### chvt
 
 Se encarga de cambiar la terminal.
 
@@ -25,7 +25,7 @@ Para matar las consolas usamos el siguiente comando:
 ps -ft tty0
 ```
 
-### 1.1.2 sort
+### sort
 
 El comando sort nos permite ordenar un output por una llave específica.
 
@@ -40,7 +40,7 @@ Siendo las keys la columna respectiva
 sort -n -k 2 # Ordena según la columna 2
 ```
 
-### 1.1.3 Conocer el número de procesadores
+### Conocer el número de procesadores
 
 Para mirar el número de procesadores usamos
 
@@ -60,7 +60,7 @@ Muestra los 5 procesos que usan más RAM
 sudo ps auxf | sort -nr -k 4 | head -5
 ```
 
-## 1.2 Manejo de redes
+## Manejo de redes
 
 Las IPs privadas se usan para identificar los dispositivos en una red
 local, mientras que las públicas son para identificar cualquier
@@ -96,7 +96,7 @@ Y para ver las direcciones IP asignadas
 hostname -I
 ```
 
-### 1.2.1 nslookup
+### nslookup
 
 Para ver las direcciones IP usamos nslookup, y sirve para internet o
 para las redes locales
@@ -107,7 +107,7 @@ nslookup google.com
 
 Y esto nos arrojará la información pertinente
 
-### 1.2.2 curl
+### curl
 
 Para realizar peticiones http
 
@@ -115,7 +115,7 @@ Para realizar peticiones http
 curl localhost:8000
 ```
 
-### 1.2.3 wget
+### wget
 
 Para descargar archivos de internet
 
@@ -123,9 +123,9 @@ Para descargar archivos de internet
 wget https://example.org
 ```
 
-## 1.3 Administración de paquetes
+## Administración de paquetes
 
-### 1.3.1 RedHat/CentOS/Fedora
+### RedHat/CentOS/Fedora
 
 Su gestor de paquetes es rpm. Su base de datos está en /var/lib/rpm
 
@@ -135,7 +135,7 @@ Para listar todos los paquetes
 rpm -qa
 ```
 
-#### 1.3.1.1 Instalación de paquetes rpm
+#### Instalación de paquetes rpm
 
 Para instalar y remover paquetes utilizamos
 
@@ -162,7 +162,7 @@ Para ver la configuración de un paquete
 rpm -qc <paquete>
 ```
 
-#### 1.3.1.2 yum
+#### yum
 
 Yum nos permite instalar o buscar el nombre del paquete. Es el
 equivalente de apt en Debian.
@@ -172,11 +172,11 @@ yum install nombre-del-paquete
 yum search nombre-del-paquete
 ```
 
-### 1.3.2 Debian
+### Debian
 
 Su administración de paquetes es con .deb
 
-#### 1.3.2.1 dpkg
+#### dpkg
 
 para instalar un paquete usamos el comando dpkg
 
@@ -198,11 +198,11 @@ Para eliminar un paquete
 dpkg -r nombre-del-paquete-deb
 ```
 
-### 1.3.3 apt
+### apt
 
 Es el equivalente de yum en red hat.
 
-#### 1.3.3.1 apt install
+#### apt install
 
 Además, podemos usar apt para manejar los paquetes
 
@@ -210,19 +210,19 @@ Además, podemos usar apt para manejar los paquetes
 apt install <nombre-del-paquete>
 ```
 
-#### 1.3.3.2 apt update
+#### apt update
 
 Actualiza la información local sobre los repositorios.
 
-#### 1.3.3.3 apt upgrade
+#### apt upgrade
 
 Actualiza todos los programas que tenemos lados en la máquina.
 
-#### 1.3.3.4 snap install \<nombre-del-paquete\>
+#### snap install \<nombre-del-paquete\>
 
 Instala un paquete con el nuevo gestor de paquetes de Canonical.
 
-## 1.4 Descomprimir archivos
+## Descomprimir archivos
 
 El comando tar se usa para descomprimir, generalmente se usa con las
 opcionex xvfz.
@@ -238,9 +238,9 @@ Donde las opciones son:
 -   f para indicar el archivo
 -   z para indicar la desempaquetación
 
-## 1.5 Trabajando con usuarios
+## Trabajando con usuarios
 
-### 1.5.1 Identificación de usuarios
+### Identificación de usuarios
 
 El comando id nos muestra el identificador del usuario. En Debian
 empiezan a contar desde el número 1000, en Red Hat desde el 500.
@@ -257,7 +257,7 @@ whoami
 # eduardo
 ```
 
-### 1.5.2 Contraseñas de usuarios
+### Contraseñas de usuarios
 
 Las contraseñas, cifradas, de los usuarios se guardan en la ruta
 /etc/shadow. Este archivo no debe manipularse de manera directa.
@@ -276,7 +276,7 @@ para activarlo se usa el comando passwd sobre el usuario root.
 sudo passwd root
 ```
 
-### 1.5.3 Creación de usuarios
+### Creación de usuarios
 
 Los usuarios se crean con useradd, es necesario tener los privilegios
 necesarios, generalmente se usan
@@ -285,7 +285,7 @@ necesarios, generalmente se usan
 sudo useradd <nombre-de-usuario>
 ```
 
-### 1.5.4 Eliminación de usuarios
+### Eliminación de usuarios
 
 Para eliminar un usuario se usa:
 
@@ -293,7 +293,7 @@ Para eliminar un usuario se usa:
 sudo userdel <nombre-de-usuario>
 ```
 
-### 1.5.5 Cambio de usuario
+### Cambio de usuario
 
 Para cambiar de usuario usamos
 
@@ -308,7 +308,7 @@ directamente sin conocer la contraseña
 sudo su - <nombre-de-usuario>
 ```
 
-## 1.6 grupos
+## grupos
 
 Los grupos son útiles para asignar los mismos permisos a una serie de
 usuarios al mismo tiempo.
@@ -337,13 +337,13 @@ Otra opción para modificar grupos es con el comando usermod
 sudo usermod -aG <nombre-de-grupo> <nombre-de-usuario>
 ```
 
-### 1.6.1 Sudo y wheel
+### Sudo y wheel
 
 El grupo sudo permite realizar acciones como superusuario en sistemas
 basados en debian, mientras que wheel es para sistemas basados en
 RedHat, como CentOS.
 
-## 1.7 PAM
+## PAM
 
 PAM es un mecanismo para la administración de usuarios. Permite
 autenticar usuarios, controlar la cantidad de procesos que ejecutan cada
@@ -351,7 +351,7 @@ uno, validar contraseñas, ver la actividad de los usuarios y otras.
 
 Pam se encuentra en la ruta /etc/pam.d
 
-### 1.7.1 pwscore
+### pwscore
 
 Solo disponible en CentOS. Sirve para evaluar un password, verifica que
 tenga más de 8 caracteres, la presencia de caracteres especiales y la
@@ -367,7 +367,7 @@ Para instalarla en sistemas debian es necesario instalar la librería
 sudo apt install libpwquality-tools
 ```
 
-### 1.7.2 ulimit
+### ulimit
 
 ulimit nos indica las limitaciones que tiene el usuario en cuanto a
 infraestructura, memoria, número de procesadores, etc.
@@ -411,7 +411,7 @@ Por ejemplo:
 Donde ponemos Wk para indicar entre semana y luego el horario en formato
 miliar.
 
-## 1.8 SSH
+## SSH
 
 Secure Shell, es un protocolo que permite conectar dos computadoras de
 forma remota sin necesidad de un password, por medio de una conexión
@@ -427,7 +427,7 @@ sudo vim /etc/ssh/sshd_config
 En este archivo podemos bloquear la autenticación por password y otras
 medidas.
 
-### 1.8.1 Generación de llaves
+### Generación de llaves
 
 Para la generación de llaves se usa
 
@@ -439,7 +439,7 @@ El número de bits por defecto es 2048, en caso de que no se especifique
 ninguno. El comando nos indicará la dirección donde se guardarán las
 llaves generadas.
 
-### 1.8.2 Uso de SSH
+### Uso de SSH
 
 Para usar un servidor remoto
 
@@ -453,7 +453,7 @@ Para copiar la llave pública al servidor
 ssh-copy-id -i <directorio>/<llave_publica.pub> <nombre-de-usuario>@<ip-del-servidor>
 ```
 
-### 1.8.3 Aplicar cambios en SSH
+### Aplicar cambios en SSH
 
 Para aplicar los cambios reiniciamos el servicio
 
@@ -461,7 +461,7 @@ Para aplicar los cambios reiniciamos el servicio
 sudo systemctl restart ssh
 ```
 
-### 1.8.4 Problemas de conexión en ssh
+### Problemas de conexión en ssh
 
 Para obtener más información del proceso podemos especificar el nivel de
 verbosidad, de acuerdo al número de "v"
@@ -472,7 +472,7 @@ ssh -v <nombre-de-usuario>@<ip-del-servidor>
 ssh -vvvv <nombre-de-usuario>@<ip-del-servidor>
 ```
 
-## 1.9 Configurando DNS con bind
+## Configurando DNS con bind
 
 En 1983 se conectaron cerca de 70 sitios a la red de CS. En 1983 se
 publicó el RFC 882 que define el servicio de nombre de dominios.
@@ -481,7 +481,7 @@ superior), conocidos como dominios de propósito general .arpa, .com,
 .org, .edu, .gov, .mil y la letra de los países respetando su código
 ISO.
 
-### 1.9.1 Instalación de bind
+### Instalación de bind
 
 ``` bash
 sudo apt install -y bind9
@@ -506,7 +506,7 @@ También podremos ver la versión usando el flag -v.
 named -v
 ```
 
-### 1.9.2 Dig
+### Dig
 
 dig nos permite realizar consultas al dns. Para esto se usará un dominio
 y una ubicación
@@ -515,11 +515,11 @@ y una ubicación
 dig www.<dominio>.<extension> @<direccion-ip>
 ```
 
-### 1.9.3 Configuración de bind
+### Configuración de bind
 
 El archivo de configuración de bind estará en /etc/bind/named.conf
 
-## 1.10 Arranque, detención y recarga de servicios
+## Arranque, detención y recarga de servicios
 
 Systemd se encarga de la gestión de todos los servicios, los comandos
 más comunes son:
@@ -616,7 +616,7 @@ Para reducir el tamaño de los logs a cierta cantidad de días
 sudo journalctl --vacuum-time=2days
 ```
 
-## 1.11 Configuración de Nginx
+## Configuración de Nginx
 
 Para instalar nginx con sus extras usamos
 
@@ -624,7 +624,7 @@ Para instalar nginx con sus extras usamos
 sudo apt install nginx nginx-extras
 ```
 
-### 1.11.1 Nginx amplify
+### Nginx amplify
 
 NGINX Amplify es una herramienta que sirve para monitorear el servidor,
 parámetros del sistema operativo, bases de datos, etc
@@ -663,7 +663,7 @@ service amplify-agent <start | stop>
 
 Una vez hecho lo anterior amplify-agent estará ejecutándose.
 
-## 1.12 MySQL con Nagios
+## MySQL con Nagios
 
 Nagios es un sistema de monitorización de redes, de código abierto, que
 revisa el rendimiento de los equipos y servicios.
@@ -698,7 +698,7 @@ interactivo.
 sudo mysql_secure_installation
 ```
 
-### 1.12.1 Nagios
+### Nagios
 
 Instalamos los paquetes
 
@@ -749,7 +749,7 @@ Nagios estará disponible en nuestro navegador web
 <direccion-ip>:8080/nagios
 ```
 
-### 1.12.2 Configuración en base de datos
+### Configuración en base de datos
 
 ``` bash
 grant select on *.* to '<user>'@'<ip>' identified by '<password>'
@@ -762,7 +762,7 @@ Ahora agregamos la siguiente linea dentro de /usr/local/nagios o
 cfg_file=/usr/local/nagios/etc/objects/mysqlmonitoring.cfg
 ```
 
-### 1.12.3 Creación de comandos para nagios
+### Creación de comandos para nagios
 
 Dentro de la ruta /usr/local/nagios/etc/objects/commands.cfg, agregamos
 
@@ -786,7 +786,7 @@ define service {
 }
 ```
 
-## 1.13 Manejo de logs
+## Manejo de logs
 
 Hay varios comandos útiles para manejar logs
 
@@ -804,7 +804,7 @@ minutos. El 2 en el comando indica el output para STDERR
 sudo find /etc/ -mtime <minutos> 2
 ```
 
-## 1.14 awk
+## awk
 
 awk es un comando que recibe patrones y nos permite condicionales y flujos de información, como si fuera un lenguaje de programación. 
 Awk muy usado para visualizar los de una manera atractiva. 
@@ -815,7 +815,7 @@ Nos permite hacer referencia a las columnas con el simbolo "$", seguido del núm
 $<numero_de_columna>
 ```
 
-### 1.14.1 print con awk
+### print con awk
 
 Por ejemplo:
 
@@ -855,7 +855,7 @@ O solo determinadas lineas
 awk 'NR==2, NR==4 {print $0}'
 ```
 
-### 1.14.2 condicionales con awk
+### condicionales con awk
 
 También podemos usar condicionales.
 
@@ -866,7 +866,7 @@ awk '{if ($1=="<patron>") {
 }' <file>
 ```
 
-### 1.14.3 Mirando los logs de ngnix con awk
+### Mirando los logs de ngnix con awk
 
 Sabiendo que los logs de nginx se localizan en la ruta /var/log/nginx/,
 podemos visualizarlos de manera más amigable usando el comando awk.
@@ -885,37 +885,37 @@ sudo awk '{print $9}' /var/log/nginx/access.log | sort | uniq -c | sort -nr
 # 211 301
 ```
 
-## 1.15 Otros servicios
+## Otros servicios
 
-### 1.15.1 Collectd
+### Collectd
 
 Genera reportes en web del rendimiento.
 
-### 1.15.2 Nmon
+### Nmon
 
 Obtiene visualizaciones rápidas del sistema. Guardar archivos en formato
 nmon que se pueden convertir a html
 
-### 1.15.3 Munin
+### Munin
 
 Analiza el rendimiento del servidor con gráficos históricos
 
-### 1.15.4 Grafana
+### Grafana
 
 Visualiza alerta y entiende las métricas del negocio sin portar su
 ubicación.
 
-### 1.15.5 Pandora
+### Pandora
 
 Recomendado por la comunidad con una versión community.
 
-## 1.16 Bash
+## Bash
 
 Es una shell de UNIX y el intérprete de comandos por defecto en la
 mayoría de distribuciónes GNU/Linux. Se pueden crear scripts que, por
 convención, terminan con .sh
 
-### 1.16.1 Cabecera
+### Cabecera
 
 Para indicarle a GNU/Linux que un script se use con bash usamos
 
@@ -941,7 +941,7 @@ Mientras que los comentarios usan el caracter hashtag o numeral
 # Este es un comentario
 ```
 
-## 1.17 Variables de entorno
+## Variables de entorno
 
 Para mirar todas las variables que están disponibles usamos el comando
 *env*
@@ -950,7 +950,7 @@ Para mirar todas las variables que están disponibles usamos el comando
 env
 ```
 
-### 1.17.1 Variable $PATH
+### Variable $PATH
 
 La variable PATH le indica que a GNU/Linux donde debe buscar los
 binarios para ejecutar.
@@ -961,9 +961,9 @@ Para extender el PATH usamos
 export PATH=$PATH:~/otra/ruta
 ```
 
-## 1.18 Vulnerabilidades en el servidor
+## Vulnerabilidades en el servidor
 
-### 1.18.1 Buenas prácticas
+### Buenas prácticas
 
 Hay buenas prácticas a realizar
 
@@ -974,7 +974,7 @@ Hay buenas prácticas a realizar
 -   Identificar los servicios y puertos abiertos
 -   Asignarle los permisos mínimos a los usuarios
 
-### 1.18.2 Mantener actualizado el servidor
+### Mantener actualizado el servidor
 
 En sistemas basados en RedHat
 
@@ -990,7 +990,7 @@ sudo apt update
 sudo apt upgrade
 ```
 
-### 1.18.3 Principio del menor privilegio
+### Principio del menor privilegio
 
 La superficie de ataque es el conjunto de datos conocidos o
 vulnerabilidades.
@@ -999,7 +999,7 @@ Existen algunas soluciones para manejar las vulnerabilidades
 
 -   Lynis
 
-### 1.18.4 Frameworks de seguridad
+### Frameworks de seguridad
 
 Existen organizaciones encargadas de la seguridad.
 
@@ -1008,7 +1008,7 @@ Existen organizaciones encargadas de la seguridad.
 -   OWASP, proyecto destinado a pelear contra la inseguridad
     informática.
 
-### 1.18.5 Implementación de firewall
+### Implementación de firewall
 
 ufw es un software que ya viene instalado por defecto en sistemas
 ubuntu.
@@ -1016,7 +1016,7 @@ ubuntu.
 Generalmente para web se dejan abiertos únicamente los puertos 80, 443 y
 22, que corresponden a HTTP, HTTPS y SSH, respectivamente.
 
-#### 1.18.5.1 Uso de ufw
+#### Uso de ufw
 
 El nombre del comando ufw viene de Uncomplicated Firewall. 
 Muestra el estado (activo/inactivo) y las reglas del firewall.
@@ -1063,7 +1063,7 @@ Si queremos eliminar todas las reglas
 sudo ufw reset
 ```
 
-### 1.18.6 Escaneo de puertos con nmap
+### Escaneo de puertos con nmap
 
 Nmap es una herramienta que se encuentra de manera nativa en Kali Linux,
 usada para auditorias web.
@@ -1081,7 +1081,7 @@ Donde:
 -   -oA Detecta la salida a un archivo
 -   -Pn Para
 
-## 1.19 Lynis
+## Lynis
 
 Es una herramienta de auditoria y seguridad, para endurecer servidores
 GNU/Linux.
@@ -1107,7 +1107,7 @@ Lynis nos hará recomendaciones respecto a nuestro sistema.
 Emite un reporte muy completo con una checklist de las medidas y
 recomendaciones a tomar en cuenta.
 
-## 1.20 Comandos útiles
+## Comandos útiles
 
 ### compgen
 

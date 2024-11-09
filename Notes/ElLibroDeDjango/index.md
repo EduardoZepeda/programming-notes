@@ -2,9 +2,9 @@
 
 
 
-## 1.1 Django sobre ruedas
+## Django sobre ruedas
 
-### 1.1.1 Instalación
+### Instalación
 
 Al momento de iniciar un proyecto es una buena práctica usar entornos
 virtuales para evitar problemas con las dependencias de tu sistema y las
@@ -53,7 +53,7 @@ super usuario
 python3 manage.py createsuperuser
 ```
 
-### 1.1.2 Configuración de base de datos
+### Configuración de base de datos
 
 Para usar una base de datos edita el archivo settings.py para configurar
 la base de datos, puedes usar mysql, postgres, etc.
@@ -95,7 +95,7 @@ configuraciones de Django
 python3 manage.py shell
 ```
 
-### 1.1.3 Servidor de desarrollo
+### Servidor de desarrollo
 
 Puedes correr el servidor de desarrollo con los siguientes comandos
 (Este servidor está totalmente desaconsejado en producción, es
@@ -108,7 +108,7 @@ python3 manage.py runserver 192.148.1.103:8000 #Usa ifconfig para
 ver tu verdadera dirección Ip local y que los demás puedan acceder
 ```
 
-## 1.2 URLS
+## URLS
 
 El servidor recibe una petición de página web. Django revisará el
 archivo al que apunte la variable ROOT_URLCONF dentro de settings.py
@@ -135,9 +135,9 @@ urlpatterns = [
 ]
 ```
 
-## 1.3 Sistema de plantillas
+## Sistema de plantillas
 
-### 1.3.1 Plantillas HTML
+### Plantillas HTML
 
 Las plantillas son un conjunto de código HTML a rellenar con variables
 de acuerdo a un contexto que especificaremos.
@@ -186,7 +186,7 @@ equivalentes {{ variable.isdigit }}, {{ variable.upper }}, {{
 variable.lower}}, etc. La variable será reemplazada por un valor que
 especificaremos de acuerdo al contexto.
 
-### 1.3.2 Contexto
+### Contexto
 
 El contexto siempre se encontrará en forma de diccionario
 
@@ -217,9 +217,9 @@ siguientes objetos pueden usarse como contexto:
     como una cadena vacia en lugar de lenvatar una excepción
 4.  Índice de lista (por ej. foo\[bar\])
 
-### 1.3.3 Etiquetas de plantilla
+### Etiquetas de plantilla
 
-#### 1.3.3.1 Etiqueta {% if %}
+#### Etiqueta {% if %}
 
 La etiqueta If no permite el uso de diferentes operadores diferentes AND
 u OR. Pero si pueden mezclarse solo AND o solo OR en una sola sentencia.
@@ -247,7 +247,7 @@ La etiqueta {% else %} es opcional
 {% endif %}
 ```
 
-#### 1.3.3.2 Etiqueta {% for %}
+#### Etiqueta {% for %}
 
 La etiqueta {% for %} permite usar reversed para invertir el orden de
 iteración. No se permite romper un bucle mediante \"break\" ni el uso de
@@ -295,7 +295,7 @@ Numero de iteraciones sobre el bucle (Empieza a contar en 1).
 {{ forloop.parentloop.counter }}
 ```
 
-#### 1.3.3.3 Etiqueta {{ % ifequal % }}
+#### Etiqueta {{ % ifequal % }}
 
 Ideal para comparar valores bajo el siguiente formato. Pueden usarse
 variables o cadenas de texto. La etiqueta {% else %} es opcional. Solo
@@ -309,7 +309,7 @@ permite comparar cadenas de texto, números y decimales
 {% endifequal %}
 ```
 
-#### 1.3.3.4 Comentarios
+#### Comentarios
 
 Los comentarios siguen el siguiente formato
 
@@ -321,7 +321,7 @@ Los comentarios siguen el siguiente formato
 {% endcomment %}
 ```
 
-#### 1.3.3.5 Filtros
+#### Filtros
 
 Los filtros son usados para alterar las variables. Pueden ser sencillos
 o concatenarse con otros filtros
@@ -339,14 +339,14 @@ Algunos filtros reciben parametros que deben ir entre dobles comillas
 Los filtros más comunes son: \* Addslashes \* date {{ fecha\|date:\"F j,
 Y\" }} \* escape \* length
 
-### 1.3.4 Limitaciones
+### Limitaciones
 
 De acuerdo a las intenciones de los programadores de Django, el sistema
 de plantillas tiene estas limitaciones: \* Una plantilla no puede
 asignar una variable o cambiar el valor de esta. \* Una plantilla no
 puede llamar código Python crudo.
 
-### 1.3.5 Cargadores de plantillas
+### Cargadores de plantillas
 
 La llave DIRS dentro de la variable TEMPLATES especifica una lista donde
 Django buscará directorios
@@ -364,7 +364,7 @@ TEMPLATES = [
 ]
 ```
 
-### 1.3.6 Render
+### Render
 
 El archivo *urls.py* recibe una dirección web, busca en que patrón de
 expresiones regulares encaja y llama a la función correspondiente. Esta
@@ -387,7 +387,7 @@ def fecha_actual(request): #El primer parametro siempre es request
     return render(request, 'fecha_actual.html', {'fecha_actual': ahora}) #Puedes usar subdirectorios bajo el formato '/subdirectorio/otra_plantilla.html'
 ```
 
-### 1.3.7 Etiqueta {% Include %}
+### Etiqueta {% Include %}
 
 La etiqueta colocará el contenido del archivo html especificado en el
 lugar de la etiqueta.
@@ -399,7 +399,7 @@ lugar de la etiqueta.
 Si no se encuentra la plantilla esta fallará silenciosamente sin agregar
 nada si DEBUG = False, si DEBUG = True Djago mostrará una excepción.
 
-### 1.3.8 Herencia de plantillas
+### Herencia de plantillas
 
 Las plantillas pueden heredarse, cambiando solo lo que es diferente y
 definiendo bloques que serán diferentes de acuerdo a la sección de la
@@ -437,7 +437,7 @@ base.
 {% endblock %}
 ```
 
-### 1.3.9 Reglas y recomendaciones
+### Reglas y recomendaciones
 
 -   La primer etiqueta debe ser {% extends %} o la herencia no
     funcionará
@@ -447,9 +447,9 @@ base.
 -   La etiqueta {% extends %} carga la plantilla de acuerdo a la opción
     dirs de la variable TEMPLATE en settings.py
 
-## 1.4 Interactuando con una base de datos: Modelos
+## Interactuando con una base de datos: Modelos
 
-### 1.4.1 El patrón de diseño MTV
+### El patrón de diseño MTV
 
 -   M significa '\'Model\'\' (Modelo): la capa de acceso a la base de
     datos.
@@ -458,7 +458,7 @@ base.
 -   V significa '\'View\'\' (Vista): la lógica que accede al modelo y la
     delega a la plantilla apropiada
 
-### 1.4.2 Tu primera aplicación
+### Tu primera aplicación
 
 Una aplicación es un conjunto portable de alguna funcionalidad de
 Django, típicamente incluye modelos y vistas, que conviven en un solo
@@ -484,13 +484,13 @@ biblioteca/
         __init__.py
 ```
 
-### 1.4.3 Definir modelos en Python
+### Definir modelos en Python
 
 Django utilizará código python para crear las tablas en la base de
 datos. De esa manera se evita el tener que manejar al mismo tiempo
 lenguaje de base de datos y python.
 
-### 1.4.4 Tu primer Modelo
+### Tu primer Modelo
 
 Cada modelo es una clase que hereda de models.Model. Cada modelo es una
 tabla en la base de datos. Django automaticamente coloca una llave
@@ -587,13 +587,13 @@ Los pasos para crear o actualizar cambios en el modelo son:
 3.  Ejecuta python manage.py migrate para aplicar esos cambios a la base
     de datos.
 
-### 1.4.5 Migraciones
+### Migraciones
 
 Las migraciones son la forma en que Django se encarga de guardar los
 cambios que realizamos a los modelos (Agregando un campo, una tabla o
 borrando un modelo\... etc.)
 
-### 1.4.6 Acceso básico a datos
+### Acceso básico a datos
 
 Para crear un objeto, sólo importa la clase del modelo apropiado y crea
 una instancia pasándole valores para cada campo. Para guardar el objeto
@@ -619,7 +619,7 @@ Si quieres crear un objeto en un solo paso usa el método objects.create()
 ...     website='http://www.apress.com/')
 ```
 
-### 1.4.7 Agrega cadenas de representación a tus modelos
+### Agrega cadenas de representación a tus modelos
 
 Para agregar una cadena de representación, agrega una funcion
 \_\_str\_\_() a los modelos en models.py Debe ser una cadena de texto,
@@ -658,9 +658,9 @@ class Libro(models.Model):
         return self.titulo
 ```
 
-### 1.4.8 Seleccionar objetos
+### Seleccionar objetos
 
-#### 1.4.8.1 Filtrar datos
+#### Filtrar datos
 
 Se usa el metodo **filter()**. Este puede recibir uno o varios
 argumentos, traducidos a SQL AND. La parte *\_\_contains* puede ser
@@ -672,7 +672,7 @@ lista.
 >>>Editor.objects.filter(nombre__contains="press")
 ```
 
-#### 1.4.8.2 Obtener objetos individuales
+#### Obtener objetos individuales
 
 Para obtener un unico resultado se usa el metodo get() Si retorna más de
 uno o no retorna nada levantará una excepción
@@ -681,7 +681,7 @@ uno o no retorna nada levantará una excepción
 >>>Editor.objects.get(nombre="Apress Publishing")
 ```
 
-#### 1.4.8.3 Ordenar datos
+#### Ordenar datos
 
 Se usa el método order_by() equivalente a SQL ORDER BY
 
@@ -710,7 +710,7 @@ class Editor(models.Model):
       return self.nombre
 ```
 
-#### 1.4.8.4 Encadenar búsqueda
+#### Encadenar búsqueda
 
 No existe un limite para el encadenamiento.
 
@@ -718,7 +718,7 @@ No existe un limite para el encadenamiento.
 >>> Editor.objects.filter(pais="U.S.A.").order_by("-nombre")
 ```
 
-#### 1.4.8.5 Rebanar datos
+#### Rebanar datos
 
 Se pueden rebanar datos como si se tratara de una lista en Python. No se
 permiten los indices negativos.
@@ -728,7 +728,7 @@ permiten los indices negativos.
 >>> Editor.objects.order_by('nombre')[0:2]  #Equivalente a OFFSET 0 LIMIT 2;
 ```
 
-#### 1.4.8.6 Actualizar multiples campos
+#### Actualizar multiples campos
 
 El método update() puede actualizar uno o multiples campos y retorna el
 numero de cambios hechos a la base datos
@@ -738,7 +738,7 @@ numero de cambios hechos a la base datos
 2
 ```
 
-### 1.4.9 Borrar objetos
+### Borrar objetos
 
 Sirve para borrar tanto uno, como múltiples filas en la base de datos.
 El borrado es permanente
@@ -750,7 +750,7 @@ El borrado es permanente
 >>> Editor.objects.all().delete()  #Se borran todos los objetos.
 ```
 
-## 1.5 El sitio de administración
+## El sitio de administración
 
 La interfaz de administración es solo parte de django.contrib. El cual
 contiene muchas herramientas más. Esta esta activida por defecto si el
@@ -787,7 +787,7 @@ settings.py.
 LANGUAGE_CODE = 'es-mx'
 ```
 
-### 1.5.1 Agrega tus modelos al sitio administrativo
+### Agrega tus modelos al sitio administrativo
 
 Agrega lo siguiente al archivo *admin.py* de tu aplicación. Django busca
 en cada elemento de la variable INSTALLED_APPS un archivo *admin.py* y
@@ -809,7 +809,7 @@ verbose_name_plural a la clase Meta en los modelos
 verbose_name_plural = 'Autores'
 ```
 
-### 1.5.2 Como crear campos opcionales
+### Como crear campos opcionales
 
 Para especificar un campo opcional agrega la variable blank = True al
 campo que desees volver opcional.
@@ -826,7 +826,7 @@ TimeField, DateTimeField o númerico (IntegerField, DecimalField),
 FloatField) necesitas agregar null = True y blank = True. Recuerda usar
 los comandos makemigrate y migrate para aplicar los cambios.
 
-### 1.5.3 Personalizar las etiquetas de los campos
+### Personalizar las etiquetas de los campos
 
 Para modificar las etiquetas de cada campo en la interfaz agrega la
 variable verbose_name al campo del modelo a modificar.
@@ -838,9 +838,9 @@ class Autor(models.Model):
   email = models.EmailField(blank=True, verbose_name='e-mail')# Verbose_name es un argumento posicional, por lo que puedes pasarlo al principio solo como 'e-mail' Sin embargo no trabaja con campos ManyToManyField o ForeignKey
 ```
 
-### 1.5.4 Clases personalizadas de la interfaz administrativa
+### Clases personalizadas de la interfaz administrativa
 
-#### 1.5.4.1 Personalizar la lista de cambios
+#### Personalizar la lista de cambios
 
 Por omisión la interfaz administrativa solo muestra los valores en la
 función. \_\_[str]()\_ se cambiará de la sig. manera: Creamos la clase
@@ -868,7 +868,7 @@ admin.site.register(Autor, AutorAdmin)
 admin.site.register(Libro)
 ```
 
-#### 1.5.4.2 Personalizar formularios de edición
+#### Personalizar formularios de edición
 
 La variable Fields cambia el orden en el que aparecen los campos en la
 sección modificar, incluso puede desaparecer la opción de modificar si
@@ -910,7 +910,7 @@ class LibroAdmin(admin.ModelAdmin):
   raw_id_fields = ('editor',)
 ```
 
-### 1.5.5 Personalizar la apariencia de la interfaz de administración
+### Personalizar la apariencia de la interfaz de administración
 
 Puedes colocar el titulo del sitio de administración agregando la
 variable admin.site.site_header a *urls.py*
@@ -925,7 +925,7 @@ Copia la plantilla que se encuentra en django/contrib/admin/templates
 dentro de un directorio llamado admin que se encuentre dentro de la ruta
 a la que apunta la variable TEMPLATE en *settings.py*
 
-### 1.5.6 Usuarios, Grupos y Permisos
+### Usuarios, Grupos y Permisos
 
 En los usuarios hay 3 opciones: \* Activo: Si está desactivada el
 usuario no tendrá acceso a ninguna URL que requiera identificación. \*
@@ -940,11 +940,11 @@ editar sus propios permisos. También puedes asignar usuarios a grupos.
 Un grupo es simplemente un conjunto de permisos a aplicar a todos los
 usuarios de ese grupo.
 
-## 1.6 Procesamiento de formularios
+## Procesamiento de formularios
 
-### 1.6.1 Obteniendo datos de los objetos Request
+### Obteniendo datos de los objetos Request
 
-#### 1.6.1.1 Información acerca de las URL
+#### Información acerca de las URL
 
 Los objetos HttpRequest contienen algunas piezas de información acerca
 de la URL requerida.
@@ -952,25 +952,25 @@ de la URL requerida.
 -   Atributos o Métodos
 -   Descripción
 
-##### 1.6.1.1.1 request.path
+##### request.path
 
 La ruta completa, no incluye el dominio pero incluye, la barra
 inclinada.
 
-##### 1.6.1.1.2 request.get_host()
+##### request.get_host()
 
 El host (ejemplo: tu '\'dominio,\'\' en lenguaje común).
 \"127.0.0.1:8000\" o \"www.example.com\" \"/hola/?print=true\"
 
-##### 1.6.1.1.3 request.get_full_path()
+##### request.get_full_path()
 
 La ruta (path), mas una cadena de consulta (si está disponible).
 
-##### 1.6.1.1.4 request.is_secure()
+##### request.is_secure()
 
 True si la petición fue hecha vía HTTPS. Si no, False.
 
-#### 1.6.1.2 Más información acerca de las peticiones o request
+#### Más información acerca de las peticiones o request
 
 request.META es un diccionario Python, que contiene todas las cabeceras
 HTTP disponibles para la petición dada **Incluyendo la dirección IP y el
@@ -980,7 +980,7 @@ existe por lo que intenta acceder a ellos en cápsulas try, except. Los
 datos los manda el cliente, por lo que **nunca deberias confiar en
 ellos.**
 
-### 1.6.2 Tu primer formulario usando clases
+### Tu primer formulario usando clases
 
 Django posee una librería llamada django.forms, que maneja Formularios
 para validar y mostrar HTML. Lo primero es definir una clase Form para
@@ -1014,9 +1014,9 @@ etiquetas \<table\>, \<ul\> y \<form\> no se incluyen.
 >>> f.cleaned_data #Si el formulario es válido es un diccionario de datos enviados 'limpiamente'
 ```
 
-### 1.6.3 Enviar emails usando django
+### Enviar emails usando django
 
-#### 1.6.3.1 CONFIGURAR UN SERVIDOR DE CORREO EN DJANGO
+#### CONFIGURAR UN SERVIDOR DE CORREO EN DJANGO
 
 Django puede enviar correos fácilmente mediante la función send_mail()
 
@@ -1040,7 +1040,7 @@ archivo de configuraciones
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 ```
 
-#### 1.6.3.2 Un servidor de correo usando la terminal
+#### Un servidor de correo usando la terminal
 
 Modifica la variable EMAIL_BACKEND en settings.py
 
@@ -1064,7 +1064,7 @@ class FormularioContactos (forms.Form):
 Las clases Field son las encargadas de la lógica de validación ,
 mientras que los widgets se encargan de la lógica de presentación.
 
-#### 1.6.3.3 Especificar valores iníciales
+#### Especificar valores iníciales
 
 Podemos especificar valores iniciales pasándole el argumento initial al
 formulario con un diccionario que relacione campos y valores iniciales
@@ -1110,7 +1110,7 @@ class FormularioContactos(forms.Form):
         return mensaje
 ```
 
-#### 1.6.3.4 Como especificar etiquetas
+#### Como especificar etiquetas
 
 Podemos especificar nuestras propias etiquetas usando el argumento label
 en cada campo
@@ -1132,7 +1132,7 @@ class FormularioContactos(forms.Form):
       return mensaje
 ```
 
-### 1.6.4 Diseño de formularios personalizados
+### Diseño de formularios personalizados
 
 La forma más rápida de personalizar la presentación de un formulario es
 usando CSS (hojas de estilos).
@@ -1155,11 +1155,11 @@ usando CSS (hojas de estilos).
 </style>
 ```
 
-## 1.7 Vistas avanzadas y URLconfs
+## Vistas avanzadas y URLconfs
 
-### 1.7.1 Trucos de URLconf
+### Trucos de URLconf
 
-#### 1.7.1.1 Importación de funciones de forma efectiva
+#### Importación de funciones de forma efectiva
 
 Puedes importar directamente usando una cadena de texto
 
@@ -1169,7 +1169,7 @@ from misitio import views # Usar views.hola
 #Nada #Usar directamente 'misitio.views.hola' CON LAS COMILLAS
 ```
 
-#### 1.7.1.2 Casos especiales de URLs en modo Debug
+#### Casos especiales de URLs en modo Debug
 
 En urls.py
 
@@ -1197,7 +1197,7 @@ De esta forma la URL /media/ sólo estará disponible si la configuración
 DEBUG tiene asignado el valor True. El ejemplo anterior jamás debe
 usarse en producción.
 
-#### 1.7.1.3 Usar grupos con nombre
+#### Usar grupos con nombre
 
 La sintaxis para los grupos de expresiones regulares con nombre es
 (?P\<nombre\>patrón)
@@ -1220,13 +1220,13 @@ def libros_dia(request, mes, dia):
 De esta manera puedes hacer modificable las funciones vista, incluso
 usando nombres de plantilla para que el usuario coloque las suyas
 
-#### 1.7.1.4 Entendiendo la precedencia entre valores capturados vs. opciones extra
+#### Entendiendo la precedencia entre valores capturados vs. opciones extra
 
 Tiene precedencia el valor fijado en el diccionario al final de la
 función. Cuidado al crear vistas con patrones regulares pues se
 ignoraran.
 
-#### 1.7.1.5 Usando argumentos de vista por omisión
+#### Usando argumentos de vista por omisión
 
 Los especificamos en la función que usemos
 
@@ -1235,18 +1235,18 @@ def una_vista(request, plantilla='biblioteca/mi_vista.html'):
    pass
 ```
 
-#### 1.7.1.6 Capturando texto en URLs
+#### Capturando texto en URLs
 
 Cada argumento capturado es enviado a la vista como una cadena Python,
 sin importar qué tipo de coincidencia se haya producido con la expresión
 regular. Recuerda usar int() o str()
 
-#### 1.7.1.7 Entendiendo dónde busca una URLconf
+#### Entendiendo dónde busca una URLconf
 
 El método de la petición (por ejemplo POST, GET, HEAD) no se tiene en
 cuenta cuando se recorre la URLconf.
 
-#### 1.7.1.8 Incluyendo otras URLconfs
+#### Incluyendo otras URLconfs
 
 La petición url credito/cargos/ primero encontrará concordancia con
 credito/ y luego pasará a las url en include, pasando a cargos/ y
@@ -1287,7 +1287,7 @@ urlpatterns = [
 ]
 ```
 
-#### 1.7.1.9 Cómo trabajan los parámetros capturados con include()
+#### Cómo trabajan los parámetros capturados con include()
 
 La url padre pasará toda valor capturado a TODAS las funciones hijas en
 include. Asegurate de que las funciones en include puedan manejar la
@@ -1297,7 +1297,7 @@ variable.
 url(r'^(?P<username>\w+)/blog/', include('misitio.urls.blog')),
 ```
 
-#### 1.7.1.10 Cómo funcionan las opciones extra de URLconf con include()
+#### Cómo funcionan las opciones extra de URLconf con include()
 
 La url padre pasará todas las opciones extra a las funciones hijas en
 include. Asegurate de que las funciones en include puedan manejar la
@@ -1307,7 +1307,7 @@ variable.
 url(r'^blog/', include('url-interna'), {'blogid': 3}),
 ```
 
-#### 1.7.1.11 Resolución inversa de URLs
+#### Resolución inversa de URLs
 
 Al producir sitios web es necesario colocar links (href) en las
 plantillas que apunten a otros sitios para facilitar la navegación,
@@ -1354,9 +1354,9 @@ def redireccionar_libros_anuales(request):
     return HttpResponseRedirect(reverse('libros-anuales', args=(year,)))
 ```
 
-## 1.8 Plantillas avanzadas
+## Plantillas avanzadas
 
-### 1.8.1 Request context y procesadores
+### Request context y procesadores
 
 La función RequestContext recibe un primer parametro request y uno
 opcional llamado processors el cual es una lista o una tupla de
@@ -1395,7 +1395,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 ```
 
-#### 1.8.1.1 django.core.context_processors.auth
+#### django.core.context_processors.auth
 
 Contiene lo siguiente:
 
@@ -1406,7 +1406,7 @@ Contiene lo siguiente:
 -   Perm: Instancia de django.core.context_processors.PermWrapper, la
     cual representa los permisos del usuario actual
 
-#### 1.8.1.2 django.core.context_processors.debug
+#### django.core.context_processors.debug
 
 Al ser información sensible solo se mostrará si DEBUG = True y la
 solicitud ( request ) viene de una dirección IP listada en el parámetro
@@ -1417,7 +1417,7 @@ de INTERNAL_IPS. Contiene lo siguiente:
     \...} representando todas las consultas SQL que se generaron durante
     la petición ( request ) y cuánto duraron.
 
-#### 1.8.1.3 django.core.context_processors.i18n
+#### django.core.context_processors.i18n
 
 Si este procesador está habilitado, cada RequestContext contendrá las
 siguientes variables: \* LANGUAGES : El valor del parámetro de
@@ -1425,7 +1425,7 @@ configuración LANGUAGES. \* LANGUAGE_CODE : request.LANGUAGE_CODE si
 existe; de lo contrario, el valor del parámetro de configuración
 LANGUAGE_CODE.
 
-#### 1.8.1.4 django.core.context_processors.request
+#### django.core.context_processors.request
 
 Deshabilitado por default. Cada RequestContext contendrá una variable
 request, la cual es el actual objeto HttpRequest. Activalo si quieres
@@ -1435,7 +1435,7 @@ usar el objeto request en plantilla.
 {{ request.REMOTE_ADDR }}
 ```
 
-#### 1.8.1.5 Consideraciones para escribir tus propios procesadores de contexto
+#### Consideraciones para escribir tus propios procesadores de contexto
 
 Cada procesador de contexto debe ser responsable por la mínima cantidad
 de funcionalidad posible. Ten presente que cualquier procesador de
@@ -1444,7 +1444,7 @@ plantilla (Evita conflictos de nombre) No importa dónde residan en el
 sistema de archivos, mientras se hallen en tu ruta de Python (La
 convención es en context_processors.py en la ruta de la app o proyecto)
 
-#### 1.8.1.6 Escape automático de HTML
+#### Escape automático de HTML
 
 Por defecto en Django, cada plantilla se encarga automáticamente de
 escapar la salida de cada etiqueta de variable. Como desactivar el
@@ -1456,7 +1456,7 @@ plantillas para crear correos, etc. Para Variables individuales
 {{ variable | safe}} #Esto no será escapado
 ```
 
-#### 1.8.1.7 Para bloques de plantillas
+#### Para bloques de plantillas
 
 Puedes escapar bloques de plantillas, esto incluye a include y extends
 
@@ -1466,7 +1466,7 @@ Puedes escapar bloques de plantillas, esto incluye a include y extends
 {% endautoescape %}
 ```
 
-#### 1.8.1.8 Escape automático de cadenas literales en argumentos de filtros
+#### Escape automático de cadenas literales en argumentos de filtros
 
 Todas las cadenas literales son insertadas sin escape automático en la
 plantilla. Pero al decidir los autores que se muestra Escribirías
@@ -1481,7 +1481,7 @@ En lugar de
 {{ datos default:"0 < 1" }}
 ```
 
-#### 1.8.1.9 Detalles internos de la carga de plantillas
+#### Detalles internos de la carga de plantillas
 
 Django tiene dos maneras de cargar plantillas usando los valores de
 loaders de la variable TEMPLATES:
@@ -1508,9 +1508,9 @@ por default.
 Django usa los cargadores de plantilla en el orden de loaders y se
 detendrán cuando encuentren una plantilla básica.
 
-### 1.8.2 Extender el sistema de plantillas
+### Extender el sistema de plantillas
 
-#### 1.8.2.1 Crear una biblioteca para etiquetas
+#### Crear una biblioteca para etiquetas
 
 La creación de una biblioteca para etiquetas es un proceso de dos
 pasos: 1. Decidir qué aplicación Django alojará el directorio. No
@@ -1543,7 +1543,7 @@ from django import template
 register = template.Library()
 ```
 
-#### 1.8.2.2 Escribir filtros de plantilla personalizados
+#### Escribir filtros de plantilla personalizados
 
 Los filtros son funciones python con uno o dos argumentos, la variable y
 el valor del argumento, que puede tener un valor por omisión. Las
@@ -1565,7 +1565,7 @@ utilizar.
 register.filter('cortar', cortar)
 ```
 
-#### 1.8.2.3 Escribir etiquetas de plantilla personalizadas
+#### Escribir etiquetas de plantilla personalizadas
 
 Cuando Django compila una plantilla, divide el texto crudo de la
 plantilla en nodos. Cada nodo es una instancia de django.template.Node y
@@ -1573,7 +1573,7 @@ tiene un método render(). Cuando llamas a render() en una plantilla
 compilada, la plantilla llama a render() en cada Node() de su lista de
 nodos, con el contexto proporcionado y luego concatena el resultado
 
-#### 1.8.2.4 Escribir la función de compilación
+#### Escribir la función de compilación
 
 La función recibe el token, que son los contenidos de la etiqueta y los
 divide para pasarselos a la clase NodeFechaActual, la cual posee el
@@ -1594,7 +1594,7 @@ def fecha_actual(parser, token): #parser es la instancia del parser #token son l
     return NodoFechaActual(formato_cadena[1:-1]) #Siempre deben devolver una subclase de Node
 ```
 
-#### 1.8.2.5 Escribir el nodo de plantilla
+#### Escribir el nodo de plantilla
 
 El siguiente paso es escribir una sublcase Node con el metodo render()
 
@@ -1610,7 +1610,7 @@ class NodoFechaActual(template.Node):
         return ahora.strftime(self.formato_cadena)
 ```
 
-#### 1.8.2.6 Registrar la etiqueta
+#### Registrar la etiqueta
 
 El método tag() toma dos argumentos: 1. El nombre de la etiqueta 2. La
 función (Si se omite se usará el nombre de la etiqueta)
@@ -1619,7 +1619,7 @@ función (Si se omite se usará el nombre de la etiqueta)
 register.tag('fecha_actual', fecha_actual)}
 ```
 
-#### 1.8.2.7 Definir una variable en el contexto
+#### Definir una variable en el contexto
 
 Para definir una variable en el contexto, asignaremos a nuestro objeto
 contexto disponible en el método render() nuestras variables, como si de
@@ -1687,7 +1687,7 @@ def traer_hora_actual(parser, token):
     return NodoFechaActual3(fmt[1:-1], var_nombre)
 ```
 
-#### 1.8.2.8 Evaluar hasta otra etiqueta de bloque
+#### Evaluar hasta otra etiqueta de bloque
 
 Parser.parse toma una tupla de nombres de etiqueta de bloque
 django.template.NodeList (nodelist es una lista con todos los nodos
@@ -1708,7 +1708,7 @@ class CommentNode(template.Node):
         return ''
 ```
 
-#### 1.8.2.9 Evaluar hasta otra etiqueta de bloque y guardar el contenido
+#### Evaluar hasta otra etiqueta de bloque y guardar el contenido
 
 Igual que el ejemplo anterior, nodelist es la lista de todos los nodos
 antes de encontrar endupper, se borra el token para evitar
@@ -1731,7 +1731,7 @@ class UpperNode(template.Node):
         return output.upper()
 ```
 
-#### 1.8.2.10 Un atajo para etiquetas simples
+#### Un atajo para etiquetas simples
 
 Esta función, que es un método de django.template.Library, recibe una
 función que acepta un argumento, lo encapsula en una función render y lo
@@ -1744,7 +1744,7 @@ def fecha_actual(format_string):
 register.simple_tag(fecha_actual)
 ```
 
-#### 1.8.2.11 Etiquetas de inclusión
+#### Etiquetas de inclusión
 
 Visualiza ciertos datos renderizando otra plantilla
 
@@ -1788,7 +1788,7 @@ Será remplazado por
 </ul>
 ```
 
-### 1.8.3 Escribir cargadores de plantillas personalizados
+### Escribir cargadores de plantillas personalizados
 
 Aquí se muestra como implementar un cargador de plantillas
 personalizado. Debe heredar de django.template.backends.base.BaseEngine.
@@ -1846,7 +1846,7 @@ class Template:
         return self.template.render(context)
 ```
 
-### 1.8.4 Usar la referencia de plantillas incorporadas
+### Usar la referencia de plantillas incorporadas
 
 La interfaz de administración de Django incluye una referencia completa
 de todas las etiquetas y filtros de plantillas disponibles para un sitio
@@ -1857,9 +1857,9 @@ determinado entrando a /admin/doc. Los pasos para hacerlo son:
     include(\'django.contrib.admindocs.urls\')) a urls.py (Antes
     (r\'\^admin/\')
 
-## 1.9 Modelos avanzados
+## Modelos avanzados
 
-### 1.9.1 Accediendo a valores en claves foráneas
+### Accediendo a valores en claves foráneas
 
 Se accede al objeto libros y editor se trata como otro objeto con sus
 propios atributos.
@@ -1882,7 +1882,7 @@ minúsculas a \_set.
 [<Libro: The Django Libro>, <Libro: Dive Into Python>, ...]
 ```
 
-### 1.9.2 Accediendo a valores en claves muchos a muchos
+### Accediendo a valores en claves muchos a muchos
 
 El modelo autores se usa como si fuera un objeto de Libro, con sus
 atributos y métodos
@@ -1906,12 +1906,12 @@ minúsculas a \_set.
 [<Libro: The Django Libro>, <Libro: Adrian's Other Libro>]
 ```
 
-### 1.9.3 Como realizar cambios al esquema de la base de datos
+### Como realizar cambios al esquema de la base de datos
 
 Las nuevas versiones de Django borran, modifican datos solo cambiando
 los modelos y ejecutando makemigrations y migrate.
 
-#### 1.9.3.1 Agregar campos
+#### Agregar campos
 
 1.  Agrega el campo a tu modelo.
 2.  Asegúrate que el campo incluya las opciones blank=True o null=True
@@ -1920,7 +1920,7 @@ los modelos y ejecutando makemigrations y migrate.
     cambios.
 4.  Sincroniza los modelos con manage.py migrate.
 
-#### 1.9.3.2 Eliminar campos
+#### Eliminar campos
 
 1.  Remueve el campo de tu modelo.
 2.  Ejecuta el comando python3 manage.py makemigrations, para grabar los
@@ -1929,7 +1929,7 @@ los modelos y ejecutando makemigrations y migrate.
     migrate
 4.  Y reinicia el servidor Web.
 
-#### 1.9.3.3 Eliminar relaciones muchos a muchos
+#### Eliminar relaciones muchos a muchos
 
 1.  Remueve el campo muchos a muchos de tu modelo.
 2.  Ejecuta el comando python3 manage.py makemigrations, para grabar los
@@ -1938,7 +1938,7 @@ los modelos y ejecutando makemigrations y migrate.
     migrate
 4.  Y reinicia el servidor Web.
 
-#### 1.9.3.4 Eliminar modelos
+#### Eliminar modelos
 
 1.  Remueve el modelo.
 2.  Ejecuta el comando python3 manage.py makemigrations, para grabar los
@@ -1947,12 +1947,12 @@ los modelos y ejecutando makemigrations y migrate.
     migrate
 4.  Y reinicia el servidor Web.
 
-### 1.9.4 Manejadores o Managers
+### Manejadores o Managers
 
 Un Manager es la interfaz a través de la cual se proveen las operaciones
 de consulta de la base de datos a los modelos de Django
 
-#### 1.9.4.1 Nombres de manager
+#### Nombres de manager
 
 Django agrega un Manager llamado objects a cada clase modelo de Django
 para cambiar el nombre se modifica el modelo así
@@ -1964,7 +1964,7 @@ class Persona(models.Model):
    gente = models.Manager() #Esto te permitira llamar Persona.gente.all() en lugar de Persona.objects.all()
 ```
 
-#### 1.9.4.2 Managers Personalizados
+#### Managers Personalizados
 
 Las razones de usar managers personalizados pueden ser para agregar
 métodos extra al Manager, y/o para modificar el QuerySet inicial que
@@ -1989,7 +1989,7 @@ Lo que te permitirá hacer esto
 4
 ```
 
-#### 1.9.4.3 Modificando los QuerySets iniciales del Manager
+#### Modificando los QuerySets iniciales del Manager
 
 Un QuerySet base de un Manager devuelve todos los objetos en el sistema.
 Puedes sobrescribir el QuerySet base, sobrescribiendo el método
@@ -2020,7 +2020,7 @@ Dahl y puede usar todos los métodos de QuerySet sobre el
 >>> Libro.dahl_objects.filter(titulo='Matilda')
 ```
 
-#### 1.9.4.4 Métodos de un Modelo
+#### Métodos de un Modelo
 
 Se usan para obtener datos que de preferencia no estén a nivel de tabla,
 pero esten basados en los datos de tabla
@@ -2035,7 +2035,7 @@ class Persona(models.Model):
       return self.estado in ('IL', 'WI', 'MI', 'IN', 'OH', 'IA', 'MO')
 ```
 
-#### 1.9.4.5 get_absolute_url
+#### get_absolute_url
 
 Define un método get_absolute_url() para decirle a Django cómo calcular
 la URL de un objeto, por ejemplo. Si un objeto define
@@ -2055,7 +2055,7 @@ Y asi poder usar
 <a href="{{ object.get_absolute_url }}">{{ object.nombre }}</a>
 ```
 
-#### 1.9.4.6 Sobrescribir métodos predefinidos de un modelo
+#### Sobrescribir métodos predefinidos de un modelo
 
 Para obtener otros comportamientos de los métodos tradicionales.
 
@@ -2070,7 +2070,7 @@ class Autor(models.Model):
         super(Autor, self).save(*args, **kwargs)#Llama al verdadero método save()
 ```
 
-#### 1.9.4.7 Ejecutando consultas personalizadas en SQL
+#### Ejecutando consultas personalizadas en SQL
 
 Se crea un método para la clase. Connection y cursor implementan en su
 mayor parte la API de bases de datos estándar de Python que ejecute el
@@ -2093,9 +2093,9 @@ class Persona(models.Model):
      objects = PersonaManager()
 ```
 
-## 1.10 Vistas genericas
+## Vistas genericas
 
-### 1.10.1 Vista Base
+### Vista Base
 
 Todas las vistas heredan de la clase-base View. Hay 3 principales: View,
 TemplateView y RedirectView Organizan el código relacionado en métodos
@@ -2103,7 +2103,7 @@ específicos HTTP (GET, POST, etc) Usan la técnica de orientación a
 objetos para crear '\'mixins\'\' (herencia múltiple) para factorizar el
 código en componentes comunes y reutilizables.
 
-### 1.10.2 View
+### View
 
 View es la clase base maestra, las demás vistas heredan de esta clase
 base Flujo de los métodos: 1. dispatch(): El método que valida el
@@ -2137,7 +2137,7 @@ urlpatterns = [
 ]
 ```
 
-### 1.10.3 TemplateView
+### TemplateView
 
 La clase TemplateView renderiza una plantilla dada, con el contexto que
 contiene los parámetros capturados en la URL. Esta vista hereda
@@ -2176,7 +2176,7 @@ urlpatterns = [
 ]
 ```
 
-### 1.10.4 RedirectView
+### RedirectView
 
 La clase RedirectView simplemente redirecciona una vista con la URL
 dada. Si la URL dada es None, Django retornara una respuesta
@@ -2223,7 +2223,7 @@ urlpatterns = [
 ]
 ```
 
-### 1.10.5 Vistas genéricas basadas en clases usando URLconfs
+### Vistas genéricas basadas en clases usando URLconfs
 
 La manera más simple de utilizar las vistas genéricas es creándolas
 directamente en la URLconf. O, si usarás las clases blase; cualquier
@@ -2239,18 +2239,18 @@ urlpatterns = [
 ]
 ```
 
-### 1.10.6 Vistas genéricas basadas en clases usando subclases
+### Vistas genéricas basadas en clases usando subclases
 
 Los atributos y métodos de las clases anteriores se pueden heredar o
 sobreescribir en clases hijas. Los ejemplos anteriores expresan muy bien
 esto.
 
-#### 1.10.6.1 Vistas genéricas de objetos
+#### Vistas genéricas de objetos
 
 -   ListView: Muestra listas de objetos.
 -   DetailView: Muestra objetos en individual.
 
-##### 1.10.6.1.1 ListView
+##### ListView
 
 Se encarga de presentar un listado de todos los objetos de un modelo.
 (Object.objects.all()) Se crea una clase que herede de ListView y se
@@ -2279,7 +2279,7 @@ urlpatterns = [
 ]
 ```
 
-##### 1.10.6.1.2 DetailView
+##### DetailView
 
 Se encarga de presentar los detalles de un objeto, ejecutando
 self.object. Primero se creara una clase que herede de DetailView.
@@ -2307,9 +2307,9 @@ urlpatterns = [
 ]
 ```
 
-### 1.10.7 Extender las vistas genéricas
+### Extender las vistas genéricas
 
-#### 1.10.7.1 Crear contextos de plantilla \"amistosos\"
+#### Crear contextos de plantilla \"amistosos\"
 
 Para cambiar el nombre del objeto que se usará en plantilla solo se
 asigna la vaiable context_object_name. Esto facilita la vida de los
@@ -2324,7 +2324,7 @@ class ListaEditores(ListView):
     context_object_name = 'lista_editores'
 ```
 
-#### 1.10.7.2 Agregar un contexto extra
+#### Agregar un contexto extra
 
 A menudo es necesario agregar más información a parte de la vista
 genérica.
@@ -2345,7 +2345,7 @@ class DetallesEditor(DetailView):
         return context
 ```
 
-#### 1.10.7.3 Vista para un subconjunto de objetos
+#### Vista para un subconjunto de objetos
 
 El argumento model de las vistas genéricas DetailView y ListView es un
 atajo para un atajo para decir: queryset = Editor.objects.all(). Esto
@@ -2362,7 +2362,7 @@ class LibroAcme(ListView):
     template_name = 'biblioteca/lista_libros_acme.html'
 ```
 
-#### 1.10.7.4 Filtrado Dinámico
+#### Filtrado Dinámico
 
 La clase ListaLibrosEditores obtiene el objeto Editor y toma como
 variable name el argumento capturado entre parentesis de la url (Ver
@@ -2393,7 +2393,7 @@ class ListaLibrosEditores(ListView):
         return Libro.objects.filter(editor=self.editor)
 ```
 
-#### 1.10.7.5 Realizar trabajo extra
+#### Realizar trabajo extra
 
 En este caso buscamos que se haga algo al obtener un objeto. El método
 get_object obtendrá el objeto y lo retornará como si fuera un DetailView
@@ -2429,7 +2429,7 @@ class VistaDetallesAutor(DetailView):
         return objeto
 ```
 
-### 1.10.8 Introducción a los mixins
+### Introducción a los mixins
 
 Se refiere al uso de herencia múltiple. Puede volverse dificil de seguir
 al usarlo en subclases de mucha profundidad Usando un mixin en vistas
@@ -2492,7 +2492,7 @@ crea si la clase tiene el atributo paginator
 {% endblock %}
 ```
 
-#### 1.10.8.1 Envolviendo el método as_view() con mixins
+#### Envolviendo el método as_view() con mixins
 
 Una forma de aplicar un comportamiento común a muchas clases es escribir
 un mixin que envuelva el método as_view ()
@@ -2512,7 +2512,7 @@ class MiVista(RequiereLogin,  ...):
     pass
 ```
 
-#### 1.10.8.2 Manejando formularios con vistas basadas en clases genéricas
+#### Manejando formularios con vistas basadas en clases genéricas
 
 Lo interesante de esta vista es que al ser una clase puedes usarla para
 heredar métodos y atributos en otra clase hija. Tales como nombre de
@@ -2543,7 +2543,7 @@ class MiFormulario(View):
         return render(request, self.template_name, {'form': form})
 ```
 
-#### 1.10.8.3 Ejemplo de un formulario usando una clase genérica
+#### Ejemplo de un formulario usando una clase genérica
 
 Se coloca un método get_absolute_url() en el modelo, con la url inversa
 detalles-autor que es a donde redireccionará la página al llenar el
@@ -2644,7 +2644,7 @@ sobreescribirse modificando el atributo *template_name* en la clase.
 </html>
 ```
 
-### 1.10.9 Decorando vistas de una clase-base
+### Decorando vistas de una clase-base
 
 La extensión de vistas basadas en clases no se limita a usar solamente
 mixins. También puedes utilizar decoradores
@@ -2664,7 +2664,7 @@ urlpatterns = [
    ]
 ```
 
-#### 1.10.9.1 Decorando una clase
+#### Decorando una clase
 
 Si quieres que cada instancia de una vista se vea decorada usa el
 siguiente método. El decorador \@method_decorator transforma un
@@ -2685,7 +2685,7 @@ class VistaProtegida(TemplateView):
       return super(VistaProtegida, self).dispatch(*args, **kwargs)
 ```
 
-## 1.11 Comandos útiles
+## Comandos útiles
 
 A veces cuando iniciamos un desarrollo desde cero, hay muchos cambios en
 la base de datos y no es problema empezar desde cero la base de

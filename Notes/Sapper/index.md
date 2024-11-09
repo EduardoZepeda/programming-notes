@@ -4,7 +4,7 @@ Permite crear aplicaciones de alto rendimiento y manejo de rutas para
 [Svelte](../Svelte/1.-Svelte.md).
 
 
-## 1.1 Caracteristicas principales:
+## Caracteristicas principales:
 
 -   Añade a svelte manejo de rutas
 -   Trabajar con SSR y capa de SEO
@@ -12,7 +12,7 @@ Permite crear aplicaciones de alto rendimiento y manejo de rutas para
 -   Exportar sitio a estaticos
 -   Compilar y enviar a produccion
 
-## 1.2 Instalación
+## Instalación
 
 Podemos usar poka o express para servir los archivos.
 
@@ -61,7 +61,7 @@ sapper.start({
 });
 ```
 
-## 1.3 Crear el template
+## Crear el template
 
 Ahora en nuestro archivo HTML template que definamos deberemos colocar
 las siguientes etiquetas
@@ -161,7 +161,7 @@ module.exports = {
 };
 ```
 
-## 1.4 Rutas
+## Rutas
 
 Creamos una carpeta llamada *routes*, dentro de esa carpeta tendremos el
 punto de entrada a la aplicación, el archivo index.svelte. Dentro de
@@ -196,7 +196,7 @@ about.svelte dentro será <http://dominio/settings/about>
 </Main>
 ```
 
-## 1.5 Conectando el template
+## Conectando el template
 
 Creamos una carpeta llamada *static* y dentro colocamos un archivo
 *global.css* ahora lo vinculamos a nuestro template por medio de un
@@ -250,7 +250,7 @@ Hay que modificar el archivo *package.json* para que llegue así
 }
 ```
 
-## 1.6 Manejo de .gitignore
+## Manejo de .gitignore
 
 Es recomendable excluir las siguientes rutas
 
@@ -259,7 +259,7 @@ src/node_modules
 __sapper__
 ```
 
-## 1.7 Segment
+## Segment
 
 Segment nos permite obtener datos sobre las rutas para hacer
 validaciones. Esta variable la pasaremos al componente para poder
@@ -275,7 +275,7 @@ acceder a ella.
 Y luego podemos acceder a ella en el componente que nosotros necesitemos
 para hacer validaciones personalizadas.
 
-## 1.8 Aplicando las rutas
+## Aplicando las rutas
 
 Para poder usar una ruta simplemente usamos una etiqueta *anchor* normal
 que tenga un href con el mismo nombre que el componente que se encuentre
@@ -312,7 +312,7 @@ Por ejemplo
 </Main>
 ```
 
-### 1.8.1 Manejo de errores y 404
+### Manejo de errores y 404
 
 Podemos manejar los errores (incluyendo el 404) con un componente
 *\_error.svelte* dentro de la carpeta *routes*. Podemos acceder al tipo
@@ -360,7 +360,7 @@ desarrollo por medio de etiquetas if.
 </Main>
 ```
 
-## 1.9 Prefetch
+## Prefetch
 
 Prefetch precarga los componentes para que estén listos a usarse cuando
 el usuario haga click en ellos, lo logra llevando a cabo un seguimiento
@@ -371,7 +371,7 @@ atributo llamado rel con el valor de "prefetch".
 <a aria-current={segment === 'profile' ? 'page' : undefined} rel="prefetch" href='profile'></a>
 ```
 
-## 1.10 goto
+## goto
 
 goto nos permite llevar a un usuario a otra ruta, la diferencia con
 anchor es que esta podemos usarla como parte de la lógica de la
@@ -392,7 +392,7 @@ aplicación, ya sea tras una llamada API o algun otro proceso
 </Componente>
 ```
 
-## 1.11 SSR
+## SSR
 
 Especificamos otra etiqueta script a la cual le vamos a asignar la
 función preload() de un module, exportamos una function que se encargará
@@ -414,7 +414,7 @@ javascript*, sino una modificada, por eso proviene de this.
 Si desactivamos javascript desde el navegador podremos observar que el
 contenido está siendo mandado desde el servidor.
 
-## 1.12 Service worker
+## Service worker
 
 Para transformar la aplicación en una PWA creamos un archivo llamado
 *service-worker.js* dentro de src/ con el siguiente contenido:
@@ -532,7 +532,7 @@ crearemos una meta etiqueta para el manifest
 Podremos apreciar si el manifest está funcionando en las herramientas de
 desarrollador en el navegador.
 
-## 1.13 Deploy con Sapper Export
+## Deploy con Sapper Export
 
 Sapper puede compilar y exportar todo el sitio para exportarlo de forma
 estática, sin necesidad de un servidor. Para ver los resultados de

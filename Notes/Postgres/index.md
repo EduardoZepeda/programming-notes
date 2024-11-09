@@ -14,7 +14,7 @@ Toda jerarquía de base de datos se basa en los siguientes elementos:
 
 
 
-## 1.1 ACID
+## ACID
 
 Las bases de datos deben de seguir los principios *ACID*
 
@@ -23,7 +23,7 @@ Las bases de datos deben de seguir los principios *ACID*
 -   Isolation (Aislamiento)
 -   Durabilidad
 
-## 1.2 Instalar y configurar
+## Instalar y configurar
 
 Se puede instalar directo de los repositorios en GNU/Linux.
 
@@ -35,7 +35,7 @@ sudo apt-get update && apt-get upgrade
 sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev
 ```
 
-### 1.2.1 Ingresar
+### Ingresar
 
 Para ingresar a la base de datos lo haremos de la siguiente manera
 
@@ -45,7 +45,7 @@ su -
 su - postgres
 ```
 
-### 1.2.2 Crear un usuario
+### Crear un usuario
 
 Podemos crear un usuario directo desde la consola
 
@@ -60,7 +60,7 @@ psql
     # \q
 ```
 
-### 1.2.3 Crear una base de datos
+### Crear una base de datos
 
 Para crear una base de datos usamos el comando createdb
 
@@ -71,14 +71,14 @@ createdb nom_bbdd
 createuser -s -P -e nom_usuario
 ```
 
-### 1.2.4 Interfaz gráfica
+### Interfaz gráfica
 
 Existe una interfaz gráfica llamada pgadmin, también está disponible para
 instalar desde los repositorios.
 
-## 1.3 Comandos básicos
+## Comandos básicos
 
-### 1.3.1 Comandos de navegación
+### Comandos de navegación
 
 -   \l Lista todas las tablas.
 -   \c nombre_de_base_de_datos Se conecta con una base de datos.
@@ -96,7 +96,7 @@ instalar desde los repositorios.
 -   SELECT version(); Nos muestra la versión instalada.
 -   \\? Muestra todos los comandos disponibles
 
-### 1.3.2 Comandos de inspección y ejecución
+### Comandos de inspección y ejecución
 
 -   \g Ejecuta el último comando, puede haberse ejecutado desde otro servicio.
 -   \s Ver el historial de comandos ejecutados
@@ -110,16 +110,16 @@ instalar desde los repositorios.
 -   \ef Equivalente al comando anterior pero permite editar también funciones en
     PostgreSQL
 
-### 1.3.3 Comandos de debug
+### Comandos de debug
 
 -   \timing Inicializar el contador de tiempo para ver cuanto tarda en
     ejecutarse cada consulta
 
-### 1.3.4 Cerrar consola
+### Cerrar consola
 
 -   \q Cierra la consola
 
-## 1.4 Archivos de configuración
+## Archivos de configuración
 
 Existen tres archivos de configuración. La mala configuración de archivos nos
 causará la mayor cantidad de problemas.
@@ -137,13 +137,13 @@ Para que nos muestre el archivo de configuración podemos usar la consulta
 SHOW config_file;
 ```
 
-### 1.4.1 El archivo pg_hba.conf
+### El archivo pg_hba.conf
 
 Es un archivo de permisos que indica quien se puede conectar a la base de datos.
 Consta de 5 columnas que nos dicen el tipo de acceso, la base de datos, el
 usuario, la dirección y el método de autenticación.
 
-#### 1.4.1.1 Conexiones remotas
+#### Conexiones remotas
 
 ``` bash
 # TYPE    DATABASE    USER    ADDRESS       METHOD
@@ -158,7 +158,7 @@ Si establecimos el tipo host para conexiones remotas, deberemos recordar agregar
 listen_addresses = '*'
 ```
 
-#### 1.4.1.2 Conexiones locales
+#### Conexiones locales
 
 También recuerda establecer las direcciones y usuarios locales
 
@@ -167,7 +167,7 @@ También recuerda establecer las direcciones y usuarios locales
   local       all      all   127.0.0.1/32     md5
 ```
 
-### 1.4.2 El archivo pg_ident.conf
+### El archivo pg_ident.conf
 
 Permite mapear usuarios de postgres con usuarios de la base de datos. consta de
 tres columnas
@@ -177,7 +177,7 @@ tres columnas
   mapeo-admin         usuario_SO         usuario_postgres
 ```
 
-## 1.5 Crear tablas
+## Crear tablas
 
 Las tablas tienen los siguientes comandos:
 
@@ -185,7 +185,7 @@ Las tablas tienen los siguientes comandos:
 -   ALTER
 -   DROP
 
-## 1.6 Particiones
+## Particiones
 
 Cuando se tiene mucha información que queremos conservar en una tabla podemos
 particionarla, para que las consultas NO SEAN sobre la totalidad de los datos de
@@ -233,7 +233,7 @@ INSERT INTO public.bitacora(
 SELECT * FROM bitacora;
 ```
 
-## 1.7 Roles
+## Roles
 
 Para ver los permisos podemos usar el comando
 
@@ -292,7 +292,7 @@ GRANT INSERT, SELECT, UPDATEONTABLEpublic.tren TO usuario_consulta;
 GRANT INSERT, SELECT, UPDATEONTABLEpublic.viaje TO usuario_consulta;
 ```
 
-## 1.8 Llaves foráneas
+## Llaves foráneas
 
 Podemos asignar acciones en cambios y actualización
 
@@ -311,7 +311,7 @@ ALTER TABLE public.trayecto
     NOT VALID;
 ```
 
-## 1.9 Inserción masiva de datos
+## Inserción masiva de datos
 
 Si queremos poblar una tabla masivamente podemos usar la herramienta
 <https://mockaroo.com>
@@ -328,14 +328,14 @@ correr la consulta
 SELECT current_date;
 ```
 
-## 1.10 Funciones especiales principales
+## Funciones especiales principales
 
 -   ON CONFLICT DO
 -   RETURNING
 -   LIKE/ILIKE
 -   IS/IS NOT
 
-### 1.10.1 ON CONFLICT DO
+### ON CONFLICT DO
 
 Cuando haya un conflicto, por ejemplo un id que ya existe podemos manejar la
 situación.
@@ -344,7 +344,7 @@ situación.
 INSERT INTO public.estacion(id, nombre, direccion) VALUES (1, "ya existe ese id", "id repetido") ON CONFLICT(id) DO UPDATE SET nombre = 'Nombre', direccion= 'Dirección';
 ```
 
-### 1.10.2 RETURNING
+### RETURNING
 
 El comando nos permite retornar un valor. Puede ahorrarnos consultas pues
 podemos ver lo modificado o insertado sin hacer otra consulta
@@ -353,7 +353,7 @@ podemos ver lo modificado o insertado sin hacer otra consulta
 INSERTO INTO public.estacion(id, nombre, direccion) VALUES (1, "ya existe ese id", "id repetido") ON CONFLICT(id) DO UPDATE SET nombre = 'Nombre', direccion= 'Dirección';
 ```
 
-### 1.10.3 LIKE/ILIKE
+### LIKE/ILIKE
 
 El comando nos permite buscar texto
 
@@ -361,7 +361,7 @@ El comando nos permite buscar texto
 SELECT nombre FROM public.pasajero WHERE nombre ILIKE 'o%';
 ```
 
-### 1.10.4 IS/IS NOT
+### IS/IS NOT
 
 El comando nos permite ver si un campo es un valor en especifico, en sql no
 podriamos comparar directamente usando el operador '=' porque NULL no es un tipo
@@ -371,7 +371,7 @@ de dato estándar
 SELECT * FROM public.trem WHERE modelo IS NOT NULL;
 ```
 
-## 1.11 Funciones avanzadas
+## Funciones avanzadas
 
 -   COALESCE: Compara una serie de valores y retorna el que no es nulo
 -   NULLIF: Compara dos valores y retorna NULL si son iguales
@@ -380,7 +380,7 @@ SELECT * FROM public.trem WHERE modelo IS NOT NULL;
 -   BLOQUES ANONIMOS: Ingresa condicionales dentro de una consulta de base de
     datos.
 
-### 1.11.1 COALESCE
+### COALESCE
 
 Verifica que valor es nulo y regresa el otro
 
@@ -388,7 +388,7 @@ Verifica que valor es nulo y regresa el otro
 SELECT COALESCE(nombre,'No aplica porque es nulo'), direccion FROM public.pasajero WHERE id = 1;
 ```
 
-### 1.11.2 NULLIF
+### NULLIF
 
 Compara si dos campos son iguales y returna NULL si lo son
 
@@ -396,7 +396,7 @@ Compara si dos campos son iguales y returna NULL si lo son
 SELECT NULLIF (0,0);
 ```
 
-### 1.11.3 GREATESTS
+### GREATESTS
 
 Retorna el mayor valor de un arreglo de datos
 
@@ -404,7 +404,7 @@ Retorna el mayor valor de un arreglo de datos
 SELECT GREATESTS (1,2,3,4,5,6,7);
 ```
 
-### 1.11.4 LEAST
+### LEAST
 
 Retorna el menor valor de un arreglo de datos
 
@@ -412,7 +412,7 @@ Retorna el menor valor de un arreglo de datos
 SELECT GREATESTS (1,2,3,4,5,6,7);
 ```
 
-### 1.11.5 BLOQUES ANONIMOS
+### BLOQUES ANONIMOS
 
 ``` sql
 SELECT id, nombre, direccion_residencia, fecha_nacimiento, CASE WHEN fecha_nacimiento > '2015-01-01'
@@ -425,7 +425,7 @@ END
 
 La agregará como una columna extra.
 
-## 1.12 Vistas
+## Vistas
 
 Hay dos tipos de vistas:
 
@@ -451,7 +451,7 @@ datos actualizados. Por esta razón este tipo de vista es recomendable para dato
 que no cambian, pues se **se incrementa la eficiencia en la base de datos al no
 tener que consultar los datos en cada consulta**
 
-## 1.13 Procedimientos almacenados
+## Procedimientos almacenados
 
 En la sección de declaración Dos puntos igual ':=' es la asignación de variables
 
@@ -535,7 +535,7 @@ Si queremos borrar una función que definimos previamente usamos el comando DROP
 DROP FUNCTION importantePL();
 ```
 
-## 1.14 Triggers o disparadores
+## Triggers o disparadores
 
 Son funciones que se ejecutan en respuesta a una acción en SQL.
 
@@ -584,7 +584,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE public.impl();
 ```
 
-## 1.15 Base de datos remota
+## Base de datos remota
 
 Podemos conectarnos a los datos de una base de datos sin acceder a su motor. Por
 supuesto que el usuario debe tener los permisos adecuados.
@@ -603,7 +603,7 @@ SELECT * FROM dblink(
     AS datos_remotos(id integer, fecha date);
 ```
 
-## 1.16 Transacciones
+## Transacciones
 
 Las transacciones, tienen la capacidad para empaquetar varios pasos en una sola
 operación “todo o nada” Si ocurre alguna falla que impida que se complete la
@@ -630,7 +630,7 @@ INSERT INTO public.tren(modelo, capacidad) VALUES ('Modelo transporte', 123);
 -- COMMIT;
 ```
 
-## 1.17 Otras extensiones
+## Otras extensiones
 
 Postgres tiene por instaladas muchas extensiones por defecto. Para activarlas es
 necesario crear la extensión correspondiente.
@@ -644,11 +644,11 @@ SELECT levenshtein('oswaldo', 'osvaldo');
 SELECT difference('beard', 'bird');
 ```
 
-## 1.18 Respaldo
+## Respaldo
 
 Puede hacerse directo desde pgadmin
 
-## 1.19 Mantenimiento
+## Mantenimiento
 
 Postgres tiene dos niveles de limpieza son:
 
@@ -670,7 +670,7 @@ principales:
 -   Cluster. Especificamos al motor de base de datos que reorganice la
     información en el disco.
 
-## 1.20 Replicas
+## Replicas
 
 La estrategia es tener una base de datos maestra donde se hacen modificaciones y
 otras donde se hacen las lecturas, que serían las replicas de la base de datos
@@ -681,7 +681,7 @@ réplica.
 
 Es posible crear replicas de prueba en Cloudjiffy.
 
-### 1.20.1 Configuración
+### Configuración
 
 En el archivo *postgres.conf* de la base de datos maestra deberemos modificar lo
 siguiente para especificar su función como base de datos maestra.
@@ -747,7 +747,7 @@ Ahora la contraseña de la réplica será la misma que la de master, la base de
 datos réplica no efectuará ningún cambio que se haga sobre ella, y se
 sincronizará con los datos de master.
 
-## 1.21 Otras buenas prácticas
+## Otras buenas prácticas
 
 Básicamente el problema es de bloqueo de tabla, cuando una consulta tipo borrado
 se debe ejecutar, le avisa al motor de base de datos su objetivo y este debe
@@ -792,7 +792,7 @@ ALTER TABLE estadistica_temp RENAME TO estadistica_offload;
 COMMIT;
 ```
 
-## 1.22 Comandos Linux
+## Comandos Linux
 
 Entrar como el usuario postgres
 
@@ -836,7 +836,7 @@ Otorgar todos los permisos de una base de datos a un usuario
 
 ``` bash
 GRANT ALL ON DATABASE <base_de_datos> TO <usuario>;
-```## 1.23 Criptografía
+```## Criptografía
 
 Postgres soporta funciones criptográficas para manejar passwords para usarlas
 necesitamos instalarlas
@@ -863,7 +863,7 @@ Para crear un hash
 crypt(<password>, gen_salt('bf', <n>));
 ```
 
-## 1.24 Contraints o restricciones
+## Contraints o restricciones
 
 Los constraint son restricciones que se imponen a una tabla para modificar la
 manera en la que se comportan las columnas y en las que podemos alterarlas. Por
@@ -880,7 +880,7 @@ ejemplo:
   filas en las columnas o expresiones especificadas utilizando los operadores
   especificados, no todas estas comparaciones arrojarán VERDADERO.
 
-### 1.24.1 Añadir un constraint
+### Añadir un constraint
 
 Si bien los constraint pueden tener más parámetros, la sintaxis normal para agregar un constraint es la siguiente
 
@@ -896,7 +896,7 @@ ALTER TABLE <table_name>
 ADD CONSTRAINT <nombre_del_constraint> UNIQUE (<columna>);
 ```
 
-### 1.24.2 Eliminar un constraint
+### Eliminar un constraint
 
 Mientras que para eliminar un constraint usamos:
 

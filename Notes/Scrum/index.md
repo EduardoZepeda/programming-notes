@@ -2,7 +2,7 @@
 
 
 
-## 1.1 Diferencia con otras metodologías agiles
+## Diferencia con otras metodologías agiles
 
 SCRUM lo usas en proyectos. Kanban en productos. Agil en desarrollos
 simples, prototipos, MVP’s, o cuando tienes 100% definido los
@@ -17,7 +17,7 @@ prototipos y validaciones en 5 dias. Muy bueno. Si analizas, no son
 compatibles entre ellos como tal. Cada uno tiene su propósito. Si
 entiendes esos propósitos no necesitarás combinarlos.
 
-## 1.2 Definción
+## Definción
 
 SCRUM es un marco de trabajo que nos proporciona una serie de
 herramientas y roles para, de una forma iterativa, poder ver el progreso
@@ -29,7 +29,7 @@ Se divide en:
 -   Aspectos
 -   Procesos
 
-## 1.3 Principios
+## Principios
 
 Principales pautas y deben de implementarse obligatoriamente.
 
@@ -51,11 +51,11 @@ Son 6 principios:
 6.  Desarrollo iterativo: Proporcionar ciclos completos que entreguen
     valor de manera constante
 
-## 1.4 Aspectos
+## Aspectos
 
 Abordados y administrados a lo largo de un proyecto
 
-### 1.4.1 La organización y los diferente roles de SCRUM
+### La organización y los diferente roles de SCRUM
 
 ![image](Notes/Scrum/img/scrum_team.jpg)
 
@@ -86,7 +86,7 @@ Los aspectos son los siguientes:
     objetivos de un proyecto y pueden contribuir a su fracaso. Hay que
     identificarlos, evaluarlos, priorizarlos, mitigarlos y comunicarlos.
 
-## 1.5 Fases y Procesos
+## Fases y Procesos
 
 Hay 19 procesos agrupados en 5 fases. Para grandes proyectos con
 múltiples equipos hay 8 pasos extra.
@@ -136,7 +136,7 @@ divididos en 5 fases.
 -   Enviar entregables
 -   Retrospectiva del proyecto
 
-## 1.6 Flujo de SCRUM
+## Flujo de SCRUM
 
 ![image](Notes/Scrum/img/scrum_process.jpg)
 
@@ -152,15 +152,15 @@ divididos en 5 fases.
 6.  Se tiene una retro-alimentación diaria del valor que se está
     logrando en cada tarea para así, tener entregables aceptados.
 
-## 1.7 Procesos
+## Procesos
 
-### 1.7.1 Fase de Planificación de SCRUM
+### Fase de Planificación de SCRUM
 
 Crear historias de usuario: Aquí representamos los requisitos del
 cliente. Estimar historias de usuario Comprometer historias de usuario
 Identificar tareas Estimar tareas Crear el sprint backlog
 
-### 1.7.2 Fase de Implementación
+### Fase de Implementación
 
 Creación de entregables Realizar reunión diaria de pies Mantenimiento de
 la lista priorizada del pendiente del producto Demostrar y validar el

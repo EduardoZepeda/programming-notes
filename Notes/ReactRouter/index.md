@@ -8,7 +8,7 @@ npm install react-router react-router-dom --save
 
 
 
-## 1.1 BrowserRouter
+## BrowserRouter
 
 El primer componente que debemos ver a fondo y manipular será el
 BrowserRouter, este enrutador cuenta con diferentes propiedades (props)
@@ -41,7 +41,7 @@ function App() {
 export default App;
 ```
 
-## 1.2 Route
+## Route
 
 Aun no estas cambiando nada dentro de la interfaz, solamente se esta
 cambiando la url. Para poder cambiar la interfaz acorde a la url
@@ -78,7 +78,7 @@ function App() {
 }
 ```
 
-### 1.2.1 Parámetros
+### Parámetros
 
 Para manejar parámetros usamos dos puntos seguido del nombre del parámetro. 
 
@@ -120,7 +120,7 @@ function App() {
 }
 ```
 
-### 1.2.2 Anidación de rutas
+### Anidación de rutas
 
 Las rutas pueden anidarse y usar el atributo index para establecer el índice de esa ruta
 
@@ -139,7 +139,7 @@ function App() {
 }
 ```
 
-### 1.2.3 Página 404
+### Página 404
 
 PAra establecer una página con error de 404 usamos el wildcard asterisco, para que capture cualquier otra ruta que no fue capturada.
 
@@ -155,7 +155,7 @@ function App() {
 }
 ```
 
-### 1.2.4 Contexto con useOutletContext
+### Contexto con useOutletContext
 
 Existe un hook que nos permite pasarle contexto a nuestras rutas, este contexto puede ser cualquier tipo de dato, incluso un componente JSX.
 
@@ -186,7 +186,7 @@ function App() {
 }
 ```
 
-## 1.3 useRoutes
+## useRoutes
 
 useRoutes nos permite reemplazar la lógica de rutas usando componentes y usar javascript.
 
@@ -215,7 +215,7 @@ function App(){
 ```
 
 
-## 1.4 Parámetros de búsqueda
+## Parámetros de búsqueda
 
 useSearchParams funciona de manera similar a useState de react, pero este se encargará de darle formato de un parámetro de búsqueda. Transformando objetos de javascript a la forma ?<parametro>=<valor> y colocándolos en la url.
 
@@ -239,7 +239,7 @@ const SearchParams = () => {
 export default searchParams
 ```
 
-## 1.5 Link y NavLink
+## Link y NavLink
 
 BrowserRouter no hará mucho si no esta acompañado de enlaces y rutas,
 empecemos hablando de los enlaces que se llaman Link y NavLink. Estos
@@ -279,7 +279,7 @@ características más poderosas como, por ejemplo:
 <NavLink exact to="/" activeClassName="is-selected">Enlace</NavLink>
 ```
 
-## 1.6 Navigate
+## Navigate
 
 Navigate se encarga de dirigir a nuestro usuario a cierta ubicación
 
@@ -312,7 +312,7 @@ const NotFound = () => {
 }
 ```
 
-## 1.7 Redirect-Switch
+## Redirect-Switch
 
 Switch se encarga de solo renderizar el primer componente que haga match
 con la ruta que estés designando.
@@ -326,7 +326,7 @@ el redireccionamiento.
 <Redirect from="/v" to="/videos"></Redirect>
 ```
 
-## 1.8 Prompt, validación antes de dejar la página
+## Prompt, validación antes de dejar la página
 
 El componente Prompt cuyos parámetros que recibe son when que recibe un
 booleano para indicar si muestra el mensaje del navegador y message que
@@ -338,7 +338,7 @@ when={props.value}
 message="¿Estás seguro de querer dejar la página?. Tienes una búsqueda en proceso"/>
 ```
 
-## 1.9 Manipulando el historial
+## Manipulando el historial
 
 Dentro de los componentes que renderizamos a través de Route encontramos
 en sus props un objeto llamado history, este objeto cuenta con multiples
@@ -371,7 +371,7 @@ Las propiedades son:
 -   search
 -   state
 
-## 1.10 Obteniendo el historial desde cualquier componente
+## Obteniendo el historial desde cualquier componente
 
 El history, location y match son unas propiedad que le llegan a
 componentes que son renderizados por el componente padre Route, ¿qué
@@ -387,7 +387,7 @@ import { withRouter } from 'react-router'
 export default withRouter(componente)
 ```
 
-## 1.11 Otros tipos de Enrutadores
+## Otros tipos de Enrutadores
 
 React Router es una librería más que añadimos a nuestro stack, lo más
 básico que debemos aprender de React Router son sus distintos
@@ -408,7 +408,7 @@ enrutadores:
     Native, NO lo veremos en este curso. Es recomendable usar en su
     lugar React Navigation.
 
-## 1.12 Configurando Webpack para server render
+## Configurando Webpack para server render
 
 El SSR (Server Side Rendering) permite renderizar el código desde el
 servidor y mandarlo como la respuesta HTTP por medio de Node
