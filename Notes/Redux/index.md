@@ -200,5 +200,6 @@ import {createStore, applyMiddleware} from 'redux';
 
 const store = createStore(asyncReducer, applyMiddleware(thunk));
 ```
+
 # Redux toolkit[Redux Toolkit](/Notes/ReduxToolkit/1.-Redux-toolkit.md)
 

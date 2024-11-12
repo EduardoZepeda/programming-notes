@@ -311,6 +311,7 @@ Remueve los tipos nullos como undefined o null de la respuesta
 ``` javascript
 type A = NonNullable<Parameters<typeof function>[0]>
 ```
+
 ## Alias de tipos
 
 Los tipos se crearán usando la palabra type

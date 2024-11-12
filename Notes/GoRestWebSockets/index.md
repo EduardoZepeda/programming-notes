@@ -634,7 +634,9 @@ func (hub *Hub) Broadcast(message interface{}, ignore *Client) {
 	}
 }
 
-```## Paquetes de terceros útiles
+```
+
+## Paquetes de terceros útiles
 
 -   godotenv, ideal para leer variables de entorno.
 -   golang-jwt, para manejar JWT.

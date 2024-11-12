@@ -25,7 +25,9 @@ ReactDOM.createRoot(root).render(
         <App/>
     </QueryClientProvider>
 )
-```## Acciones de React-Query
+```
+
+## Acciones de React-Query
 
 React Query solo permite realizar dos tipos de acciones:
 * Queries
@@ -34,6 +36,7 @@ React Query solo permite realizar dos tipos de acciones:
 ```javascript
 import { useQuery, useMutation } from 'react-query'
 ```
+
 ### useQuery
 
 La función useQuery recibe un array de identificadores únicos y una promesa, bajo los nombres de *queryKey* y *queryFn*, respectivamente.
@@ -79,6 +82,7 @@ const mutation = useMutation({})
 
 mutation.mutateAsync()
 ```
+
 ## useMutation
 
 En el caso de mutationFn, este espera también una promesa, y recibe un único dato
@@ -219,7 +223,9 @@ Pueden habilitarse con la propiedad retry, aunque **no es recomendado**.
     // ...
     retry: <numero>
     })
-```## Manteniendo la información actualizada
+```
+
+## Manteniendo la información actualizada
 
 El hook useQuery detecta cambios de página para actualizar los datos ante focus y unfocus o perdida de conexión de internet. Mostrando primero la información cacheada y luego obteniendo la información actualizada.
 
@@ -259,7 +265,9 @@ const query = useQuery({
     // ...
     refetchInterval: <milisegundos>
 })
-```## Refetching
+```
+
+## Refetching
 
 Para mantener actualizada la información periódicamente usamos la propiedad refetchInterval.
 
@@ -268,7 +276,9 @@ const query = useQuery({
     // ...
     refetchInterval: <milisegundos>
 })
-```## Fetching condicional
+```
+
+## Fetching condicional
 
 Es posible condicionar la ejecución de una query usando la propiedad *enabled*.
 
@@ -292,7 +302,8 @@ const queryClient = useQueryClient()
 queryClient.setQueryData(["<key>", "<key.property>"], data)
 ```
 
-Para actualizar múltiples queries se usa el método *setQueriesData*. 
+Para actualizar múltiples queries se usa el método *setQueriesData*.
+
 ## Paginación
 
 Para llevar a cabo la paginación es importante colocar la página dentro de la *queryKey* y usar *keepPreviousData*.
@@ -375,6 +386,7 @@ queryClient.prefetchQuery({
     placeholderData: [{key: "<value>"}]
 })
 ```
+
 ## convertir un objecto en formData
 
 Para convertir un objecto en formData, bastante útil para subir archivos a django rest framework directamente, en lugar de usar base64 podemos echar mano de Javascript en el frontend

@@ -674,9 +674,7 @@ git show-branch -all
 
 ## Flujo de trabajo en github
 
-Para modificar un repositorio **jamás se deben realizar commits directos
-a main**. El flujo correcto es crear una nueva branch o rama que
-contenga los cambios.
+Para modificar un repositorio **jamás se deben realizar commits directos a main**. 
 
 ### Para colaboradores
 
@@ -697,6 +695,14 @@ bitbucket u otras páginas de repositorios) directo desde la plataforma
 de github dando click en el botón que dice *Compare & pull request*, que
 aparecerá tras haber subido los cambios. O directamente en el botón *new
 pull request*.
+
+El flujo completo para realizar una contribución en un repositorio que no nos pertenece es:
+
+1. Crear un fork del repositorio
+2. Hacer pull o clone del repositorio creado en el paso anterior
+3. Crear una rama donde se realizarán los cambios
+4. Hacer push de la rama al fork del repositorio
+5. Solicitar un pull request (en el caso de github).
 
 ### Review changes
 
@@ -770,13 +776,16 @@ inicializarlos.
 ``` bash
 git submodule update --init --recursive
 ```
+
 ## Mostrar archivos de otra rama
 
 Para mostrar archivos en otra rama usamos el comando git show en la siguiente forma:
 
 ``` bash
 git show <branch-name>:<file-name>
-```## Git bisect
+```
+
+## Git bisect
 
 Bisect se usa cuando hay un bug en cierta secuencia de cambios, pero no sabemos donde está. Git biseccionará el código y nos preguntará si el bug está presente para ir acotando los commits y llegar al commit que lo causa.
 

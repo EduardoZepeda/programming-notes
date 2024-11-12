@@ -8,6 +8,7 @@ elementos al redimensionar.
 .container{
     display: flex;
 ```
+
 ## CSS compuesto
 
 CSS nos permite componer varios elementos de CSS para lograr diferentes
@@ -139,6 +140,7 @@ image-rendering: auto;
 image-rendering: crisp-edges;
 image-rendering: pixelated;
 ```
+
 ## Diferentes tipos de display
 
 ### Inline
@@ -163,19 +165,25 @@ Para capturar imágenes o video desde la cámara nativa del celular usamos el at
 
 <input type="file" accept="video/*" capture="user" />
 <input type="file" accept="video/*" capture="environment" />
-```## Revisar ortografía
+```
+
+## Revisar ortografía
 
 Si queremos que el navegador revise la ortografía del input usamos el atributo spellcheck.
 
 ``` html
 <input spellcheck="true"/>
-```## Contenido editable
+```
+
+## Contenido editable
 
 Vuelve editable el contenido del a etiqueta. 
 
 ``` html
 <p contenteditable>Contenido editable</p>
-```## Option group
+```
+
+## Option group
 
 Permite agrupar opciones dentro de la etiqueta select.
 
@@ -185,7 +193,9 @@ Permite agrupar opciones dentro de la etiqueta select.
         <option>Opcion 1</option>
     </optgroup>
 </select>
-```## Container query
+```
+
+## Container query
 
 ``` css
 .panel {
@@ -201,7 +211,9 @@ Permite agrupar opciones dentro de la etiqueta select.
     padding: 2rem;
   }
 }
-```## SCroll snap
+```
+
+## SCroll snap
 
 Para detener el scroll en ciertos puntos
 
@@ -219,7 +231,9 @@ Para detener el scroll en ciertos puntos
 .snap-force-stop {
   scroll-snap-stop: always;
 }
-```## Centrar con grid
+```
+
+## Centrar con grid
 
 Para centrar contenido con grid
 
@@ -232,7 +246,9 @@ Para centrar contenido con grid
 .pile > * {
   grid-area: 1/1;
 }
-```## Circulos
+```
+
+## Circulos
 
 Se pueden crear circulos en CSS con mínimo código así
 
@@ -242,7 +258,9 @@ Se pueden crear circulos en CSS con mínimo código así
   aspect-ratio: 1;
   border-radius: 50%;
 }
-```## Padding-inline
+```
+
+## Padding-inline
 
 define el relleno en línea lógico de inicio y final de un elemento, que asigna las propiedades de relleno físicas dependiendo del modo de escritura del elemento, direccionalidad, y orientación del texto.
 
@@ -260,7 +278,9 @@ article > p {
 .something::before {
   inset-inline: auto 0;
 }
-```## Theme color
+```
+
+## Theme color
 
 Define el tema en dispositivos modules
 

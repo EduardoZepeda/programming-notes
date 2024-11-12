@@ -350,6 +350,7 @@ import { PageNotFound } from './pages/PageNotFound'
         <PageNotFound default/>
     </Router>
 ```
+
 ## Ciclo de vida de un componentes
 
 Cuando React renderiza los componentes decimos que entran en escena, cuando su
@@ -1214,7 +1215,9 @@ show && <article ref={ref}>...<article/>
 
 // Podemos reemplazarlo por
 <article ref={ref}>{show&&<contenido/>}<article/>
-```## RenderProps
+```
+
+## RenderProps
 
 Es una técnica para compartir código entre componentes en React que
 utiliza una prop (cómo children u otra de otro nombre, aunque
@@ -1362,6 +1365,7 @@ import { PageNotFound } from './pages/PageNotFound'
         <PageNotFound default/>
     </Router>
 ```
+
 ## React router
 
 Reach Router es una versión simplificada y mejor optimizada de React
@@ -1478,6 +1482,7 @@ import { PageNotFound } from './pages/PageNotFound'
         <PageNotFound default/>
     </Router>
 ```
+
 ## React Helmet
 
 Helmet nos permite reemplazar el title y colocar cualquier otro
@@ -1529,6 +1534,7 @@ export const Layout = ({ children, title, description, showTitle = false, showDe
   )
 }
 ```
+
 ## PWA
 
 ``` javascript
@@ -1852,6 +1858,7 @@ it('Prueba si la ruta favs muestra dos formularios', function() {
     cy.get('form').should('have.length', 2) //Obten los elementos form del DOM y asegúrate de que sean 2
 })
 ```
+
 ## Graphql
 
 GraphQL es un lenguaje creado por Facebook para obtener solo los datos
@@ -1957,6 +1964,7 @@ export const useRegisterMutation = (email,password) => {
   return { registerMutation, mutationLoading, mutationError }
 }
 ```
+
 ## Clear component
 
 En react cuando un componente se desmonta, pueden quedarse funciones activas funcionando, como setInterval, creando un memory leak. Por lo que es necesario "limpiar" las funciones cuando se desmonta el componente.
@@ -2012,7 +2020,9 @@ const profilePicture = register("profile_picture", { required: false })
     }}
 />
 
-```## No utilices múltiples await
+```
+
+## No utilices múltiples await
 
 Cuando tienes múltiples awaits el código para, es mejor ejecutar las promesas de forma concurrente con
 

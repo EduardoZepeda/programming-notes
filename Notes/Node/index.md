@@ -486,7 +486,9 @@ Para evitar que el usuario pueda acceder a esa información es necesario borrar 
 
 ```javascript
 delete window.__PRELOADED_STATE__
-```## Helmet y SSR en el servidor
+```
+
+## Helmet y SSR en el servidor
 
 Para configurar la ruta pública
 

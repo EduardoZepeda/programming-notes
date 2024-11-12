@@ -67,7 +67,9 @@ userSchema.methods.generateAuthToken = async function () {
 
     return token
 }
-```## Queries
+```
+
+## Queries
 
 Podemos obtener las colecciones con el método getCollection
 
@@ -81,7 +83,9 @@ Luego podemos encadenar métodos de búsqueda como find
 
 ``` javascript
 db.getCollection(name).find({owner: user._id})
-```### FindOne
+```
+
+### FindOne
 
 En este ejemplo creamos un método para encontrar credenciales. El método
 findOne nos lo provee mongoose para manipular nuestros modelos, le
@@ -104,7 +108,9 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
     return user
 }
-```## Hooks
+```
+
+## Hooks
 
 Podemos especificar acciones previas a ejecutar cuando un método se
 ejecuta.
@@ -146,7 +152,9 @@ const Task = mongoose.model('Task', {
 })
 
 module.exports = Task
-```## Relaciones inversas
+```
+
+## Relaciones inversas
 
 Para crear una relación inverse podemos usar la relación usando la
 función virtual, esta es solo una relación virtual, no está en la base
@@ -160,7 +168,9 @@ userSchema.virtual('tasks', {
     localField: '_id',
     foreignField: 'owner'
 })
-```## Validación
+```
+
+## Validación
 
 También podemos especificar métodos de validación para cada campo.
 

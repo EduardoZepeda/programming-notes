@@ -185,7 +185,9 @@ FROM <table2> as <t1>
 GROUP BY <col_1>
 HAVING
   SUM(<col> = '<value>') > SUM(<col> = '<value>');
-```## Actualizar datos: UPDATE
+```
+
+## Actualizar datos: UPDATE
 
 Update nos permite modificar información existente en una tabla.
 
@@ -499,6 +501,7 @@ Donde query es una consulta tal como:
 ``` sql
 SELECT * FROM <tabla> WHERE ...;
 ```
+
 ## Window views o vistas de ventanas
 
 Una función de ventana lleva a cabo un cálculo a través de un conjunto de filas de una tabla que están relacionadas a la fila actual.
@@ -525,7 +528,9 @@ La palabra clave OVER es la que se encarga de hacer que se comporte como una fun
  sales     |     1 |   5000 | 4866.6
  sales     |     4 |   4800 | 4866.6
 (10 rows)
-```## Queries comunes
+```
+
+## Queries comunes
 
 ### Encontrar datos duplicados en varias columnas
 

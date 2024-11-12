@@ -1,7 +1,5 @@
 # Arquitectura backend
 
-
-
 ## Sistema monolítico
 
 Una sola pieza, por ejemplo: LAMP
@@ -14,13 +12,13 @@ Múltiples piezas que se comunican por red
 
 Existen
 
--   Load Balancers
--   Máquinas Virtuales
--   Bases de datos Relacionales o No Relacionales
--   Servicios de Colas (Ejemplo: SQS)
--   Servicios de Storage (Ejemplo: S3)
--   Servicios Publisher-Suscriber (Ejemplo: SNS)
--   Pipelines
+- Load Balancers
+- Máquinas Virtuales
+- Bases de datos Relacionales o No Relacionales
+- Servicios de Colas (Ejemplo: SQS)
+- Servicios de Storage (Ejemplo: S3)
+- Servicios Publisher-Suscriber (Ejemplo: SNS)
+- Pipelines
 
 ## Conexión en el backend
 
@@ -93,10 +91,10 @@ Costo: En esta parte hacemos estimaciones del costo del sistema
 
 Cosas importantes a tener en cuenta:
 
--   ¿Por qué? Para evaluar alternativas de arquitectura
--   ¿Cómo afecta la infraestructura?
--   ¿Cómo ligarlo con los requerimientos originales del negocio?
--   ¿Cómo mejoran los costos?
+- ¿Por qué? Para evaluar alternativas de arquitectura
+- ¿Cómo afecta la infraestructura?
+- ¿Cómo ligarlo con los requerimientos originales del negocio?
+- ¿Cómo mejoran los costos?
 
 Elaboración de la arquitectura del sistema
 

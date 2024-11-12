@@ -75,6 +75,7 @@ Una vez hecho esto los datos en JSON estarán disponibles como un diccionario de
 ``` python
 request.data
 ```
+
 ## Obtener request y el objeto usuario en un serializer
 
 Si queremos usar el objeto usuario o el objeto request como parte de una validación podemos hacerlo a través del contexto de nuestro serializador
@@ -86,6 +87,7 @@ def validate_user_to(self, user_to):
     if request and hasattr(request, "user"):
         user = request.user
 ```
+
 ## Representar un objeto con to_representation o meta
 
 ### to_representation
@@ -146,7 +148,9 @@ Considera que si reemplazas el queryset, necesitaras agregar un tercer argumento
 ``` python
 def get_queryset(self):
     return Modelo.objects.filter(...)
-```## Acciones
+```
+
+## Acciones
 
 Un "action" es una característica que permite definir funciones personalizadas para una vista basada en clases (class-based view). Esto permite agregar funcionalidades adicionales a una vista específica sin tener que crear una vista completamente nueva.
 
@@ -167,6 +171,7 @@ La estructura anterior añadirá la ruta change_password en el router que le ind
 ``` bash
 <ruta_original>/<ruta_de_la_accion>/
 ```
+
 ## HyperlinkedModelSerializer
 
 En Django Rest Framework (DRF), HyperlinkedModelSerializer es una clase de serializador que se utiliza para serializar modelos con enlaces de hipertexto (hipermedia). Proporciona una representación de los modelos que incluye enlaces a otros recursos relacionados, lo que facilita la navegación a través de la API.
@@ -185,13 +190,16 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     fields = ['url', 'id']
         lookup_field = "<field>"
         extra_kwargs = {"url": {"lookup_field": "<field>"}}
-```## Incluir contexto
+```
+
+## Incluir contexto
 
 Para incluir contexto, lo agregamos como un argumento opcional al serializador.
 
 ``` python
 Serializer(data, context={'request': request})
 ```
+
 ## ¿Cómo hacer un annotate que devuelva si un objecto está en una relación many to many?
 
 Este patrón es bastante útil para situaciones donde queremos ver si un objeto (generalmente request.user) forma parte de la relación ManytoMany de un objeto o un queryset. Como por ejemplo para saber si un usuario le ha dado like a una entidad.
@@ -217,7 +225,9 @@ exists = serializers.BooleanField()
 # ...
 
 fields =[..., "exists"]
-```## Anotar objetos anidados
+```
+
+## Anotar objetos anidados
 
 Para anotar objetos anidados echamos mano del método Prefetch, el cual colocaremos dentro de *prefetch_related* para asignar la propiedad. de esta forma se les añadará a cada objeto de nuestra relación ManyToMany, la propiedad que especifiquemos.
 
@@ -245,6 +255,7 @@ User.objects
     )
 )
 ```
+
 ## Enviar imágenes y archivos
 
 Si vamos a enviar un archivo de manera multipart/form-data tenemos que activar los parsers para ese serializador.
@@ -252,7 +263,9 @@ Si vamos a enviar un archivo de manera multipart/form-data tenemos que activar l
 ``` python
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     parser_classes = (MultiPartParser, FormParser)
-```## ¿Cómo autenticar un usuario en django channels?
+```
+
+## ¿Cómo autenticar un usuario en django channels?
 
 Podemos echar mano de los middleware para autenticar un usuario en django channels. Para esto buscaremos obtener el token desde un parámetro query en la url, los cuales son accesibles desde django channels por medio del diccionario *scope["query_string"]*
 
@@ -302,7 +315,9 @@ application = ProtocolTypeRouter(
     }
 )
 
-```## Manejar datos en JSON
+```
+
+## Manejar datos en JSON
 
 Si le pasamos un dato no serializable a json.dumps, el intérprete devolverá un error, para solucionar esto es muy útil usar el default de string.
 

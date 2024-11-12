@@ -636,6 +636,7 @@ construida la imagen
 ``` bash
 dive nombre_del_contenedor
 ```
+
 ## Docker compose
 
 Cuando queremos administrar una gran cantidad de contenedores, usamos la herramienta Docker compose.## Redes en Docker

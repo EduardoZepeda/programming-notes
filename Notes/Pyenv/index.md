@@ -41,7 +41,9 @@ Pyenv shell ($PYENV_VERSION)
 Pyenv local (.python-version file)
 Pyenv global (~./pyenv/version)
 System Python
-```## Gestión de entornos virtuales
+```
+
+## Gestión de entornos virtuales
 
 Para crear un entorno virtual usamos
 

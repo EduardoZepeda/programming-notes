@@ -895,6 +895,7 @@ propios estilos CSS.
    height: 100%;   
 }
 ```
+
 ## Autenticación 
 
 ### Autenticación clásica y moderna
@@ -1426,7 +1427,9 @@ declare module "next-auth" {
         }
     }
 }
-```## Sobreescribir la página signin
+```
+
+## Sobreescribir la página signin
 
 Para sobreescribir la página signin, ya sea para meterla dentro de un layout, o para cambiar su apariencia predeterminada, agregamos el atributo pages en [...nextauth].ts
 
@@ -1495,6 +1498,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     }
 }
 ```
+
 ## Actualizar la sesión
 
 useSession nos provee de un método llamado update, para actualizar la sesión.
@@ -1504,6 +1508,7 @@ useSession nos provee de un método llamado update, para actualizar la sesión.
 export default function Page() {
   const { data: session, status, update } = useSession()
 ```
+
 ## Revisar los parámetros del router
 
 El objeto router de Nextjs cuenta con un parámetro isReady, que le indica si ya se han cargado todos los parámetros de la url.
@@ -1515,6 +1520,7 @@ router.query: {}
 router.isReady: false
 router.query: {"key": "value"}
 ```
+
 ## Internacionalización
 
 ## i18n
@@ -1788,6 +1794,7 @@ export function componente(){
     return <h2>{t('pages')}</h2>
 }
 ```
+
 ## Seguridad
 
 * [4.1-A1-Injection](<4.1-A1-Injection.md>)
@@ -2111,6 +2118,7 @@ jwt: {
     async decode({secret, token, maxAge}) {},
 }
 ```
+
 ## OWASP
 
 OWASP es una organización que aboga por las buenas prácticas de

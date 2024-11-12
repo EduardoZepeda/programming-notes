@@ -836,7 +836,9 @@ Otorgar todos los permisos de una base de datos a un usuario
 
 ``` bash
 GRANT ALL ON DATABASE <base_de_datos> TO <usuario>;
-```## Criptografía
+```
+
+## Criptografía
 
 Postgres soporta funciones criptográficas para manejar passwords para usarlas
 necesitamos instalarlas

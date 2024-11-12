@@ -6,8 +6,6 @@ Protobuf se utiliza en combinación con HTTP y RPC (Remote Procedure Call o llam
 
 Al estar en formato binario, se requiere su deserialización y serialización para su manejo. Sin embargo este proceso es mucho más rápido que el que ocurre en JSON.
 
-
-
 ## gRPC
 
 gRPC es un protocolo creado por Google basado en RPC.
@@ -38,7 +36,7 @@ Similar a como funciona una API con arquitectura REST; el cliente envía una pet
 Se define
 
 ``` go
-rpc Nombre(Request) returns (Response)
+rpc Name(Request) returns (Response)
 ```
 
 ### Streaming
@@ -81,8 +79,8 @@ protoc --version
 También es recomendable instalar las dependencias en el proyecto
 
 ```bash
-go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+go get -u google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 
 ## Estructura de un Protobuffer
@@ -150,7 +148,7 @@ Cuyo comportamiento podemos modificar con los siguientes flags:
 * --go-grpc_opt. Índica la ubicación del output
 * source_relative. Para usar el directorio de trabajo actual como base
 
-Tras correr el comando se crearán archivos con extensión go, estos archivos son generados de manera automática y no necesitan modificarse.
+Tras correr el comando se crearán uno o varios archivos con extensión go, estos archivos son generados de manera automática y no necesitan modificarse.
 
 ## Creación de un servidor gRPC
 
@@ -161,16 +159,23 @@ s := grpc.NewServer()
 studentpb.RegisterStudentServiceServer(s, server)
 ```
 
-El objeto server que implementa debe heredar UnimplementedStudentServiceServer del protobuffer generado
+El objeto server que implementa debe heredar UnimplementedStudentServiceServer del protobuffer generado y puedes añadir los métodos que quieras añadiéndolos al objeto server.
+Solo asegurate que los métodos aparezcan en el archivo *proto* y que respeten sus parámetros y sus tipos de respuesta.
 
+```go
 type Server struct {
     // ...
     studentpb.UnimplementedStudentServiceServer
 }
 
+func (s *Server) GetStudent(ctx context.Context, in *studentpb.Student) (*studentpb.SetStudentResponse, error) {
+	// Just make sure the name and the signature of the function is followed
+}
+```
+
 ### Usando reflection para obtener los métodos
 
-El paquete reflection puede ser de mucha utilidad para leer los métodos del servidor gRPC usando herramientas como Postman.
+El paquete reflection puede ser de mucha utilidad para leer los métodos del servidor gRPC usando herramientas como Postman, lo que nos orientará sobre que espera el endpoint y el tipo de respuesta que nos retornará.
 
 ```go
 s := grpc.NewServer()
@@ -178,7 +183,29 @@ testpb.RegisterTestServiceServer(s, server)
 reflection.Register(s)
 ```
 
-## Streaming
+## Ejemplo de Server gRPC completo 
+
+Podemos empezar el servidor con un listener, el cual le pasaremos al método Serve del servidor grpc.
+
+```go
+const addr = "0.0.0.0:9090"
+// create a TCP listener on the specified port
+listener, err := net.Listen("tcp", addr)
+if err != nil {
+	log.Fatalf("failed to listen: %v", err)
+}
+s := grpc.NewServer()
+server := &Server{}
+studentpb.RegisterStudentServiceServer(s, server)
+reflection.Register(s)
+if e := s.Serve(listener); e != nil {
+	panic(e)
+}
+```
+
+Si no hay ningún problema deberiamos tener un servidor funcionando.
+
+## Manejo de Streaming en gRPC
 
 Para manejar el streaming se usa la palabra stream en el argumento de nuestro método rpc. De esta manera le decimos al servidor que el cliente puede enviar un stream de data, del tipo del argumento.
 
@@ -186,7 +213,7 @@ Para manejar el streaming se usa la palabra stream en el argumento de nuestro m�
 rpc SetQuestions(stream Question) returns (SetQuestionResponse);
 ```
 
-### Cerrar el streaming
+### Cerrar el streaming gRPC
 
 Escucharemos eternamente por un error de tipo EOF, que se dispara cuando el cliente cancela la conexión y lo manejaremos cerrando el stream.
 
@@ -201,6 +228,68 @@ func (s *TestServer) SetQuestions(stream testpb.TestService_SetQuestionsServer) 
     		})
     	}
     }
+}
+```
+
+## Añadir SSL/TLS al server gRPC
+
+### Generación de llaves
+
+Lo primero es obtener una llave privada y una pública (certificado), para conseguir esto podemos usar openSSL.
+
+```go
+# Generate a private key and a certificate
+openssl genrsa -out server.key 4096
+openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
+```
+
+Ahora contaremos con un archivo *server.crt*, que representa la llave pública y un archivo *server.key*, que representa la llave privada.
+
+### Implementación de SSL/TLS del lado del servidor
+
+El paquete nos provee un método para manejar credenciales del mismo nombre. 
+Observa como le pasamos ambas llaves, tanto la pública como la privada.
+
+```go
+import (
+    "google.golang.org/grpc"
+    "google.golang.org/grpc/credentials"
+)
+
+func main() {
+    credentials, err := credentials.NewServerTLSFromFile("server.crt", "server.key")
+    if err != nil {
+        log.Fatalf("Failed to use credentials for the server %v", err)
+    }
+
+    server := grpc.NewServer(grpc.Creds(credentials))
+
+}
+```
+
+### Implementación de SSL/TLS del lado del cliente
+
+De la misma forma, necesitamos implementar la funcionalidad del lado del server.
+Observa que no estamos utilizando la llave privada; *server.key*, solo la pública, pues se trata del cliente.
+
+```go
+import (
+    "google.golang.org/grpc"
+    "google.golang.org/grpc/credentials"
+)
+
+func main() {
+    credentials, err := credentials.NewClientTLSFromFile("server.crt", "")
+    if err != nil {
+        log.Fatalf("The client could not load the TLS certificate: %s", err)
+    }
+    conn, err := grpc.Dial("server.address:port", grpc.WithTransportCredentials(credentials))
+    if err != nil {
+        log.Fatalf("Could not connect: %v", err)
+    }
+    defer conn.Close()
+
+   // Rest of the code for the client
 }
 ```
 
