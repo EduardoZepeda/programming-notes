@@ -31,7 +31,9 @@ esta librería es la ideal para cargar y entender tus datos. los comandos mas ba
 
 Los gráficos más famosos para analizar tus datos son:
 * Histogramas: Te dice qué tan “frecuentes” y distribuidos son ciertos valores en tus datos.
-* Gráficas de dispersión: Muestra la relación entre 2 features graficándolos como pares ordenados. Te puede ayudar a detectar anomalías.### Tipos de datos
+* Gráficas de dispersión: Muestra la relación entre 2 features graficándolos como pares ordenados. Te puede ayudar a detectar anomalías.
+
+### Tipos de datos
 
 - Numéricos: su feature es un número de tipo entero o flotante.
 - Categórica: sus features representan una clase o tipo; usualmente se representan como un mapeo de números o un “one-hot” vector.
@@ -123,7 +125,10 @@ Intenta inferir el tipo de los datos.
 ### Visualización
 
 - Histogramas: nos ayudan a ver la distribución de un feature
-- Gráficos de dispersión: útil para detectar anomalias.## Paradigmas de machine learning
+- Gráficos de dispersión: útil para detectar anomalias.
+- 
+
+## Paradigmas de machine learning
 
 ### Aprendizaje supervisado
 
@@ -165,7 +170,9 @@ Particionar los datos:
 - Validación: Datos para verificar el aprendizaje (0-20%)
 - Testing: Datos para revisar si el aprendizaje fue exitoso
 
-Las proporciones del modelo pueden cambiar y se necesita experimentar con ellos.## Regresión lineal
+Las proporciones del modelo pueden cambiar y se necesita experimentar con ellos.
+
+## Regresión lineal
 
 Un modelo que mide la relación entre cambios de una variable independiente e independientes para ver que tan correlacionados están.
 
@@ -191,7 +198,9 @@ $Update rule=minJ(w_0,w_1)$
 
 ### Rendimiento
 
-El MSE y $R²$ ayudan a identificar la fortaleza de la relación entre los datos de entrada y de salida.## Regresión logística
+El MSE y $R²$ ayudan a identificar la fortaleza de la relación entre los datos de entrada y de salida.
+
+## Regresión logística
 
 ### Proceso de decisión
 
@@ -393,7 +402,9 @@ Es la regla de actualización para ajustar los pesos
 Se actualizan tomando la derivada parcial, empezando desde la salida hacia atrás, hasta las entradas de datos.
 
 - Si la tasa de aprendizaje es muy pequeña toma mucho tiempo encontrar buenos pesos
-- Si es muy grande, el modelo podría "atorarse" en una meseta local.## Overfitting
+- Si es muy grande, el modelo podría "atorarse" en una meseta local.
+
+## Overfitting
 
 El término se refiere a cuando el método ha memorizado la información de entrenamiento de los datos, pero no ha encontrado el patrón que los predice. El modelo funcionará perfectamente con los datos de entrada, pero fallará con datos nuevos.
 
@@ -425,7 +436,9 @@ La arquitectura de la red neuronal se dividide en tres partes:
 
 Dentro de la arquitectura de la red neuronal ocurren muchas operaciones de producto punto entre las entradas de cada perceptron con sus respectivos pesos. Estas operaciones son lineales.
 
-Las funciones de activación son la solución al colapso de las linealidades de las capas de la red neuronal.## Funciones de activación
+Las funciones de activación son la solución al colapso de las linealidades de las capas de la red neuronal.
+
+## Funciones de activación
 
 En redes computacionales, la Función de Activación de un nodo define la salida de un nodo dada una entrada o un conjunto de entradas.
 
@@ -440,7 +453,9 @@ En redes computacionales, la Función de Activación de un nodo define la salida
 
 ![](Notes/MachineLearningPython/img/funciones-activacion_2.png)
 
-La página [wolframalpha](https://www.wolframalpha.com/) nos permite obtener las fórmulas de las funciones y su comportamiento.## Descenso del gradiente
+La página [wolframalpha](https://www.wolframalpha.com/) nos permite obtener las fórmulas de las funciones y su comportamiento.
+
+## Descenso del gradiente
 
 El objetivo es disminuir la función de coste respecto a los pesos (weights) de cada neurona. Un punto bajo indica mayor precisión en las predicciones.
 
@@ -678,7 +693,9 @@ model.add(layers.Dropout(<flotante entre 0 y 1>))
 
 ### Regularización de elastic net
 
-La regularización de elastic net es una combinación de la regularización L1 y L2. Aplica una penalización que incluye tanto términos de regularización L1 como L2, lo que combina las propiedades de ambas. La regularización de elastic net permite seleccionar características y al mismo tiempo manejar la multicolinealidad en los datos.## K-fold validation
+La regularización de elastic net es una combinación de la regularización L1 y L2. Aplica una penalización que incluye tanto términos de regularización L1 como L2, lo que combina las propiedades de ambas. La regularización de elastic net permite seleccionar características y al mismo tiempo manejar la multicolinealidad en los datos.
+
+## K-fold validation
 
 K-fold validation, también conocida como validación cruzada en k grupos, es una técnica utilizada en el aprendizaje automático (machine learning) para evaluar y validar modelos de manera más robusta y precisa.
 

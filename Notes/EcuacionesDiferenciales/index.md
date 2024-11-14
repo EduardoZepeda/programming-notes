@@ -354,7 +354,9 @@ $y={e}^{ax}(C*Cosbx+C2Senbx)$
 
 Se selecciona la solución positiva de la ecuación y se reemplaza "a" como la parte real de la solución y "b" por la parte imaginaria.
 
-El origen viene de una relación que se obtiene de las matemáticas complejas.## Ecuaciones diferenciales no homogéneas
+El origen viene de una relación que se obtiene de las matemáticas complejas.
+
+## Ecuaciones diferenciales no homogéneas
 
 Son aquellas que no estan igualadas a 0, sin embargo es posible tratar con ellas
 

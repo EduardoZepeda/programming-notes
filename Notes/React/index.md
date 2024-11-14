@@ -1702,7 +1702,9 @@ import { Spinner } from './components/Spinner'
 Si todo funcionó correctamente podrás ver que al acceder al componente,
 este realiza una petición al código que necesita para renderizarse. De
 esta manera, se reduce el tamaño del bundle principal y el resto del
-código se va cargando conforme se necesite.## PropTypes
+código se va cargando conforme se necesite.
+
+## PropTypes
 
 Solia ser parte de React, pero fue separada. Es bastante similar al
 tipado que ofrece Typescript.

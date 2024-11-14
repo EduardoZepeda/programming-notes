@@ -421,7 +421,9 @@ require('asset-require-hook')({
 });
 ```
 
-Y listo, tendremos cualquier tipo de imagen disponible en nuestro SSR app.## Hydrate en React con Redux.
+Y listo, tendremos cualquier tipo de imagen disponible en nuestro SSR app.
+
+## Hydrate en React con Redux.
 
 Cuando estamos renderizando a un string no hay eventos de javascript asociados a esto. al entrar a frontend necesitamos hidratar el contenido con todos los *event listeners* que genera React.
 

@@ -155,7 +155,9 @@ Estos elementos si admiten dimensiones pero no pueden tener otro elemento a su l
 
 ### Inline-block
 
-Es una combinacion entre los dos anteriores, admiten dimensiones pero todavia son elementos de linea, es decir, estaran colocados uno al lado de otro.## Capturar imágen o video
+Es una combinacion entre los dos anteriores, admiten dimensiones pero todavia son elementos de linea, es decir, estaran colocados uno al lado de otro.
+
+## Capturar imágen o video
 
 Para capturar imágenes o video desde la cámara nativa del celular usamos el atributo capture, usando user.
 

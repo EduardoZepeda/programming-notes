@@ -639,7 +639,9 @@ dive nombre_del_contenedor
 
 ## Docker compose
 
-Cuando queremos administrar una gran cantidad de contenedores, usamos la herramienta Docker compose.## Redes en Docker
+Cuando queremos administrar una gran cantidad de contenedores, usamos la herramienta Docker compose.
+
+## Redes en Docker
 
 Docker nos permite crear redes para conectar contenedores. Si dos contenedores se encuentran en la misma red, pueden encontrarse por medio de su nombre, como si fuera un hostname.
 

@@ -353,7 +353,9 @@ const queries = useQueries({queries: query?.data?.map(()=>{
 })})
 ```
 
-El resultado de queries debe ser así mismo un query.## Prefetch queries
+El resultado de queries debe ser así mismo un query.
+
+## Prefetch queries
 
 Podemos realizar un prefetch de las queries usando el método *prefetchQuery* de manera que cuando se requiera la información, esta ya se encuentre en la caché.
 
@@ -364,7 +366,9 @@ queryClient.prefetchQuery({
 })
 ```
 
-Este prefetch podemos vincularlo a un *onMouseHover* o cualquier otro evento que consideremos pertinente.## Información inicial
+Este prefetch podemos vincularlo a un *onMouseHover* o cualquier otro evento que consideremos pertinente.
+
+## Información inicial
 
 Existen dos tipos de información inicial que podemos especificar en el objeto *useQuery*
 
