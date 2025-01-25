@@ -1,14 +1,14 @@
-## Pyenv## Pyenv
+# Pyenv
 
 Pyenv es un programa que nos permite  utilizar múltiples versiones de Python en un mismo entorno. Pyenv sobreescribe la prioridad
 
-### Instalación
+## Instalación
 
 ``` bash
 curl https://pyenv.run | bash
 ```
 
-### Instalar versiones de Python
+## Instalar versiones de Python
 
 Para instalar una versión en específico usamos
 
@@ -16,7 +16,7 @@ Para instalar una versión en específico usamos
 pyenv install -v <numero.numero.numero>
 ```
 
-### Listar versiones instaladas
+## Listar versiones instaladas
 
 Para ver las versiones instaladas usamos
 
@@ -24,7 +24,7 @@ Para ver las versiones instaladas usamos
 pyenv versions
 ```
 
-### Establecer una versión para el directorio actual
+## Establecer una versión para el directorio actual
 
 Para establecer la versión a usar dentro de un proyecto usamos local
 
@@ -32,7 +32,7 @@ Para establecer la versión a usar dentro de un proyecto usamos local
 pyenv local <numero.numero.numero>
 ```
 
-### Prioridad de binarios de Python
+## Prioridad de binarios de Python
 
 Pyenv establecerá la prioridad del binario a usar de acuerdo al siguiente diagrama, priorizando el elemento superior y luego al subsecuente.
 
@@ -43,7 +43,7 @@ Pyenv global (~./pyenv/version)
 System Python
 ```
 
-## Gestión de entornos virtuales
+# Gestión de entornos virtuales
 
 Para crear un entorno virtual usamos
 
@@ -51,7 +51,7 @@ Para crear un entorno virtual usamos
 pyenv virtualenv <python_version> <project_name>
 ```
 
-### Activar un entorno virtual
+## Activar un entorno virtual
 
 Para activar un entorno usamos local
 
@@ -59,7 +59,7 @@ Para activar un entorno usamos local
 pyenv local <project_name>
 ```
 
-### Activar múltiples versiones simultaneamente
+## Activar múltiples versiones simultaneamente
 
 Para usar múltiples versiones simultaneamente, ideal para probar varias versiones con software como Tox.
 

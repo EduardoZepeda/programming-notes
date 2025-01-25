@@ -6,8 +6,6 @@ Las dependencias son
 npm install react-router react-router-dom --save
 ```
 
-
-
 ## BrowserRouter
 
 El primer componente que debemos ver a fondo y manipular será el

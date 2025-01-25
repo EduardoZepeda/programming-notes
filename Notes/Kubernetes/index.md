@@ -123,6 +123,10 @@ instrucciones de una API a la que se accede con una UI o un CLI.
 
 ![image](Notes/Kubernetes/img/arquitectura-kubernetes.jpg)
 
+
+![image](Notes/Kubernetes/img/Kubernetes-schema.jpg)
+
+
 ### Estructura del nodo master
 
 El nodo master consiste en los siguientes elementos:

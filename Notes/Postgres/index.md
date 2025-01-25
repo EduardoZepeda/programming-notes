@@ -907,10 +907,18 @@ ALTER TABLE <table_name>
 DROP CONSTRAINT <nombre_del_constraint>;
 ```
 
-## FLujo para crear una base de datos con usuario y password cifrado
+## Flujo para crear una base de datos con usuario y password cifrado
 
 ``` sql
 CREATE DATABASE yourdbname;
 CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
 GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
+```
+
+## Consultas útiles
+
+Obtener todos los indexes
+
+``` sql
+SELECT * FROM pg_indexes;
 ```

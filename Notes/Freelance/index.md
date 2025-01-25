@@ -1,8 +1,5 @@
 # Trabajo para freelance
 
-
-
-
 ## Contratos
 
 En este tema debemos ser serios y responsables. Debemos tener claro el
@@ -116,3 +113,20 @@ Mint es un sitio y app que reúne todo lo anterior. Maneja gráficos
 sencillos de ver, presupuestos y un sistema de alertas (¡muy bueno!).
 Algo que la hace más atractiva es que funciona con Paypal y algunos
 bancos.
+
+
+## Lista de precios creada con ChatGPT
+
+
+| Type                   | Price Range (USD)  | Average Hours | Main Features / Scope                                                       |
+| ---------------------- | ------------------ | ------------- | --------------------------------------------------------------------------- |
+| **Personal Website**   | $500 - $2,000      | 10 - 40       | Single-page design, responsive layout, contact form, basic SEO              |
+| **Business Website**   | $2,000 - $5,000    | 40 - 80       | Multi-page design, CMS (e.g., WordPress), basic analytics, SEO              |
+| **E-commerce Website** | $5,000 - $20,000   | 80 - 200+     | Product catalog, payment gateway, user accounts, inventory management       |
+| **Portfolio Website**  | $800 - $3,000      | 20 - 50       | Image galleries, responsive design, contact info, social media integration  |
+| **Landing Page**       | $500 - $1,500      | 10 - 30       | Single-page design, conversion-focused, email capture, SEO optimization     |
+| **Blog Website**       | $1,500 - $4,000    | 30 - 60       | CMS (e.g., WordPress), post categories, commenting system, basic SEO        |
+| **Web Application**    | $10,000 - $50,000+ | 200+          | Custom backend, database integration, user authentication, dynamic features |
+| **Membership Website** | $8,000 - $25,000   | 150 - 300     | User profiles, subscription plans, content restriction, payment integration |
+| **Event Website**      | $1,500 - $5,000    | 30 - 80       | Event details, RSVP forms, ticket purchasing, calendar integration          |
+| **Non-Profit Website** | $2,000 - $8,000    | 40 - 100      | Donation platform, mission statement, volunteer forms, responsive design    |

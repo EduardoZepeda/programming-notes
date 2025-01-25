@@ -1156,3 +1156,13 @@ El comando ss nos muestra estadísticas de sockets abiertos.
 ```bash
 ss
 ```
+
+## Optimización en la compilación de código en C
+
+Podemos usar flags para compilar código específicamente para la máquina local, mejorando el rendimiento a nivel interno usando los siguientes flags.
+
+```bash
+export CFLAGS="-02 -march=native -mtune=native"
+export CXXFLAGS="-02 -march=native -mtune=native"
+export DEB_BUILD_OPTIONS="parallel=$(nproc)"
+```
