@@ -19,7 +19,8 @@ create/pdf:
 	@echo 'Converting Cursos folder into a single pdf'
 	@	mkdir -p output;
 	@	mkdir -p output/pdf;
-	@	pandoc -f markdown -t pdf -N --template=templates/template.tex -s -o output/pdf/apuntes.pdf  $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ') --css styles/pandoc_styles.css --pdf-engine=xelatex -f markdown-raw_tex;
+	@   crowbook apuntes.book --create $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ');
+	@   crowbook apuntes.book --to pdf --output output/pdf/apuntes.pdf --verbose;
 	@echo 'Pdf was created at output/pdf/apuntes.pdf'
 
 

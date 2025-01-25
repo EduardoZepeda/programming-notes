@@ -1,0 +1,91 @@
+author: Eduardo Zepeda
+title: Apuntes de programación
+lang: en
+rendering.inline_toc: true
+
+## Output formats
+
+# Uncomment and fill to generate files
+# output.html: some_file.html
+# output.epub: some_file.epub
+# output.pdf: some_file.pdf
+
+# Or uncomment the following to generate PDF, HTML and EPUB files based on this file's name
+# output: [pdf, epub, html]
+
+# Uncomment and fill to set cover image (for EPUB)
+# cover: some_cover.png
+
+## List of chapters
+- Notes/AdministracionServidoresLinux/index.md
+- Notes/AlgebraLineal/index.md
+- Notes/Algoritmos/index.md
+- Notes/ArquitecturaAltaConcurrencia/index.md
+- Notes/ArquitecturaBackend/index.md
+- Notes/ArquitecturaSoftware/index.md
+- Notes/Azure/index.md
+- Notes/Bootstrap/index.md
+- Notes/CSSGridLayout/index.md
+- Notes/CloudComputingAWS/index.md
+- Notes/CreacionDeStartups/index.md
+- Notes/DesarrolloDeLenguajes/index.md
+- Notes/DesignSprint/index.md
+- Notes/DesignThinking/index.md
+- Notes/Devops/index.md
+- Notes/DiseñoDeInterFacesUX/index.md
+- Notes/DiseñoParaProgramadores/index.md
+- Notes/DjangoAvanzado/index.md
+- Notes/DjangoRestFramework/index.md
+- Notes/Docker/index.md
+- Notes/EcuacionesDiferenciales/index.md
+- Notes/ElLibroDeDjango/index.md
+- Notes/ElasticSearch/index.md
+- Notes/EnglishForDevelopers/index.md
+- Notes/Freelance/index.md
+- Notes/FundamentosDeAWS/index.md
+- Notes/FundamentosDeIngenieria/index.md
+- Notes/FundamentosDeJavascript/index.md
+- Notes/GitYGithub/index.md
+- Notes/GoProtobuffersYgRPC/index.md
+- Notes/GoRestWebSockets/index.md
+- Notes/GoogleAdwords/index.md
+- Notes/Go/index.md
+- Notes/Graphql/index.md
+- Notes/GuiaPracticaDeFineTuningDeUnLLM/index.md
+- Notes/HtmlYCss/index.md
+- Notes/Jenkins/index.md
+- Notes/Jest/index.md
+- Notes/Kubernetes/index.md
+- Notes/MachineLearningPython/index.md
+- Notes/MatematicasDiscretas/index.md
+- Notes/Mongoose/index.md
+- Notes/Nextjs/index.md
+- Notes/Node/index.md
+- Notes/NomadismoDigital/index.md
+- Notes/NumpyYPandas/index.md
+- Notes/PatronesDeDiseno/index.md
+- Notes/Postgres/index.md
+- Notes/PromptEngineering/index.md
+- Notes/Pyenv/index.md
+- Notes/PythonYKeras/index.md
+- Notes/ReactNative/index.md
+- Notes/ReactQuery/index.md
+- Notes/ReactRouter/index.md
+- Notes/React/index.md
+- Notes/ReduxToolkit/index.md
+- Notes/Redux/index.md
+- Notes/Sapper/index.md
+- Notes/Sass/index.md
+- Notes/Scrum/index.md
+- Notes/SitiosWebUtiles/index.md
+- Notes/Sql/index.md
+- Notes/Svelte/index.md
+- Notes/Tailwind/index.md
+- Notes/Travis/index.md
+- Notes/Typescript/index.md
+- Notes/Upwork/index.md
+- Notes/Vite/index.md
+- Notes/WebComponents/index.md
+- Notes/WebDevelopment/index.md
+- Notes/WebPerformance/index.md
+- Notes/Webpack/index.md
