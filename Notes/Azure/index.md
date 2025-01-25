@@ -609,40 +609,6 @@ Agregue funcionalidades web en tiempo real con facilidad.
 Permite a los recursos de Azure comunicarse entre sí, con usuarios de internet y
 equipos cliente en local.
 
-* Funcionalidades:
-
-    > -   Aislamiento y segmentación
-    >
-    > -   Comunicación con internet
-    >
-    > -   Comunicación entre recursos
-    >
-    >     > -   Redes virtuales.
-    >     > -   Puntos de conexión de servicio.
-    >
-    > -   Comunicación entre recursos locales
-    >
-    >     > -   Redes virtuales de punto a sitio. Desde un equipo ajeno, con una
-    >     >     conexión VPN cifrada
-    >     > -   Redes privadas virtuales (VPN) de sitio a sitio. La conexión
-    >     >     entre el VPN Gateway de microsoft y el propio se cifra y
-    >     >     funciona a través de Internet.
-    >     > -   Azure ExpressRoute. Una conectividad privada dedicada a Azure
-    >     >     que no viaja por Internet ideal, para altas cargas.
-    >
-    > -   Enrutamiento del tráfico de red
-    >
-    >     > -   Tablas de ruta. Personalizadas para enrutar paquetes en subredes
-    >     > -   Protocolo de puerta de enlace de borde (BGP). Propaga las rutas
-    >     >     BGP locales a las redes virtuales de Azure.
-    >
-    > -   Filtrado del tráfico de red
-    >
-    >     > -   Grupos de seguridad de red. Reglas de seguridad de entrada y
-    >     >     salida con base en IP, protocolo y puerto.
-    >     > -   Aplicaciones virtuales de red. Un máquina virtual especializada
-    >     >     con una función especializada (Firewall, optimizar WAN, etc.)
-
 #### Conexión de redes virtuales
 
 Puede vincular redes virtuales entre sí mediante el emparejamiento de red
@@ -1054,19 +1020,7 @@ SDK y software propio de Microsoft brinda mayor seguridad.
     >     >     integridad del dispositivo.
     >
     > -   Requisitos:.. image:: Notes/Azure/img/EstructuraDataCenterAzure.jpg
-    >
-    >     > -   Kit de desarrollo.
-    >     >
-    >     > -   Windows
-    >     >
-    >     >     > -   Visual Studio.
-    >     >     > -   Visual Studio Code.
-    >     >     > -   Línea de comandos con CMake.
-    >     >
-    >     > -   Linux
-    >     >
-    >     >     > -   Visual Studio Code.
-    >     >     > -   Línea de comandos con CMake.
+
 
 ## Seguridad en Azure
 
