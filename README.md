@@ -4,11 +4,11 @@ Here are my programming notes, in spanish, most of them are from online courses 
 
 I started taking notes years ago, therefore some notes could be outdated (For example: Django book), please be careful when using them. I don't take any responsability for any consequence you could experience by using these notes. 
 
-The notes are in Markdown format, you can read them directly in github, or convert them to the format you're most comfortable with using pandoc or other libraries. I'm using [Rust's library Crowbook](https://github.com/crowdagger/crowbook) to convert files to PDF and pandoc to the epub version. However I'm planning to move epub version to crowbook soon.
+The notes are in Markdown format, you can read them directly in github, or convert them to the format you're most comfortable with using pandoc or other libraries. I'm using [Rust's library Crowbook](https://github.com/crowdagger/crowbook) to build files into PDF and EPUB files. 
 
 ## Build Requisites
 
-To convert the files you'll need to install [pandoc](https://pandoc.org/installing.html), xelatex and Crowbook. Please refer to the *Makefile* file for detailed instructions
+For this to work we need Crowbook and Xelatex. Please refer to the *Makefile* file for detailed instructions
 
 ## Quickstart
 
@@ -16,7 +16,7 @@ To convert the files you'll need to install [pandoc](https://pandoc.org/installi
 
 ``` bash
 cargo install crowbook
-apt install pandoc xelatex texlive-xetex
+apt install xelatex texlive-xetex
 ```
 
 ### Display available commands
