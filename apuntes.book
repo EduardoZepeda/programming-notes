@@ -2,6 +2,7 @@ author: Eduardo Zepeda
 title: Apuntes de programación
 lang: en
 rendering.inline_toc: true
+tex.template: templates/template.tex
 
 ## Output formats
 
