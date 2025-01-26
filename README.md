@@ -1,30 +1,45 @@
 ﻿# My programming notes
 
-Here are my programming notes, in spanish, most of them are from online courses and have been updated over the years from stackoverflow questions, youtube videos and other sources.
+Here are my programming notes, in spanish, most of them are from online courses and have been updated over the years from stackoverflow questions, youtube videos and other sources as books or articles.
 
 I started taking notes years ago, therefore some notes could be outdated (For example: Django book), please be careful when using them. I don't take any responsability for any consequence you could experience by using these notes. 
 
-The notes are in rst format, you can read them directly in github, or convert them to the format you're most comfortable with using pandoc or rst2 libraries. 
+The notes are in Markdown format, you can read them directly in github, or convert them to the format you're most comfortable with using pandoc or other libraries. I'm using [Rust's library Crowbook](https://github.com/crowdagger/crowbook) to convert files to PDF and pandoc to the epub version. However I'm planning to move epub version to crowbook soon.
 
-## Requisites
+## Build Requisites
 
-To convert the files you'll need to install [pandoc](https://pandoc.org/installing.html). Please refer to the *Makefile* file for detailed instructions
+To convert the files you'll need to install [pandoc](https://pandoc.org/installing.html), xelatex and Crowbook. Please refer to the *Makefile* file for detailed instructions
 
 ## Quickstart
 
-### Convert all rst in the Cursos directory to a single epub file
+### Install the required dependencies
 
-This instruction will convert all rst files to epub, one epub file for each rst file, and place them into the output directory.
-
+``` bash
+cargo install crowbook
+apt install pandoc xelatex texlive-xetex
 ```
+
+### Display available commands
+
+Executing make will display the available commands.
+
+``` bash
+make
+```
+
+### Convert all Markdown files in the Notes directory to a single epub file
+
+This command will convert all Markdown files inside the Notes folder into a single epub file, and place it inside the output directory.
+
+``` bash
 make create/epub
 ```
 
-### Convert all rst in the Cursos directory to a single pdf file
+### Convert all Markdown in the Cursos directory to a single pdf file
 
-This script will convert all rst files to pdf files, one pdf file for each rst file, and place them into the output directory.
+This script will convert all Markdown files into a single pdf file, and place it inside the output directory. This could take a while depending on your computer's resources.
 
-```
+``` bash
 make create/pdf
 ```
 
