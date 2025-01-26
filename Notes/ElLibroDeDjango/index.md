@@ -814,7 +814,7 @@ verbose_name_plural = 'Autores'
 Para especificar un campo opcional agrega la variable blank = True al
 campo que desees volver opcional.
 
-``` {.python
+``` python
 class Autor(models.Model):
 nombre = models.CharField(max_length=30)
 apellidos = models.CharField(max_length=40)
