@@ -8,8 +8,9 @@ tex.template: templates/template.tex
 
 # Uncomment and fill to generate files
 # output.html: some_file.html
-# output.epub: some_file.epub
-# output.pdf: some_file.pdf
+output.base_path: output/
+output.epub: apuntes_de_programacion_by_ed.epub
+output.pdf: apuntes_de_programacion_by_ed.pdf
 
 # Or uncomment the following to generate PDF, HTML and EPUB files based on this file's name
 # output: [pdf, epub, html]
