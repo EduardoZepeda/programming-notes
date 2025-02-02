@@ -432,7 +432,7 @@ De esta manera podremos iterar sobre el primer argumento para modificar
 el atributo src de etiquetas img y que empiece a cargar la imagen al
 momento.
 
-``` html
+``` javascript
 const callback = (entries, observer) => {
    entries.forEach(entry => {
       if(entry.isIntersecting){

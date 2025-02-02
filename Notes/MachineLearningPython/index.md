@@ -424,6 +424,7 @@ El funcionamiento del perceptrón se describe de la siguiente manera:
 1. Se realiza una suma ponderada de las entradas con los pesos (weights w). Esto da como resultado una salida lineal.
 2. Esta salida se pasa por una función de activación que introduce no linealidades al perceptrón.
 3. Si el modelo no satisface de forma adecuada el problema entonces se itera. Se itera actualizando los pesos hasta resolver el problema.
+
 ## Redes neuronales
 
 La arquitectura de la red neuronal se dividide en tres partes:

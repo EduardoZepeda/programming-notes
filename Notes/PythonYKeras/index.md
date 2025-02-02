@@ -16,6 +16,7 @@ En el Deep learning existen dos grandes problemas:
 
 - Overfitting: Es cuando el algoritmo “memoriza” los datos y la red neuronal no sabe generalizar.
 - Caja negra: Nosotros conocemos las entradas a las redes neuronales. Sin embargo, no conocemos que es lo que pasa dentro de las capas intermedias de la red.
+
 ## ¿Qué es una neurona en AI?
 
 La neurona, también llamado perceptrón (nacido en los años 50’s) está inspirado en las redes neuronales biológicas.
