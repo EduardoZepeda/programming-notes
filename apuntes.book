@@ -57,6 +57,7 @@ epub.css.add: pre{font-size:0.75rem;}
 - Notes/Go/index.md
 - Notes/Graphql/index.md
 - Notes/GuiaPracticaDeFineTuningDeUnLLM/index.md
+- Notes/HowToStripeByTheo/index.md
 - Notes/HtmlYCss/index.md
 - Notes/Jenkins/index.md
 - Notes/Jest/index.md
