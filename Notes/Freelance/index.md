@@ -1,6 +1,6 @@
 # Trabajo para freelance
 
-## Contratos
+## Manejo de Contratos
 
 En este tema debemos ser serios y responsables. Debemos tener claro el
 pago y las condiciones que estamos solicitando. También debemos ser
@@ -8,44 +8,95 @@ empáticos con el cliente que espera recibir garantías.
 
 -   Plan de trabajo. El cliente se va a seguir más tranquilo si le  
     muestras esta proyección de actividades y resultados.
-
 -   Cronogramas. Puedes enseñarle que harás en los próximos días.
-
 -   Documentación.
-
 -   Alcances.
 
-Nunca ejecutes un proyecto sin un contrato
+Nunca jamás ejecutes un proyecto sin un contrato.
 
-En cobros se suele pedir 50% del costo total para arrancar y 50% al
-finalizar.
+### Plataforma de contratos para firmas electrónicas
 
-Una recomendación es solicitar 50% para iniciar el proyecto y el resto
-diferido en meses
+- [Hello Sign](www.hellosign.com)
 
-### Hello sign
+## ¿Cómo cobrar?
 
-Plataforma de contratos para firmas electrónicas
+En cobros se suele pedir 50% del costo total para arrancar y 50% al finalizar.
 
-www.hellosign.com
+Una recomendación es solicitar 50% para iniciar el proyecto y el resto diferido en meses.
 
-## Recibir pagos trabajando como Freelance
+## ¿Cómo organizar un proyecto?
 
-### Transferencia Electrónicas.
+Siempre **debe de existir una métrica del éxito de un proyecto**, y obviamente el cliente tiene que aceptarla.
+
+Siempre **debe estar estipulado el número de cambios** y los cambios extras se cobran.
+
+Pedir un medio de contacto con el cliente.
+
+Usar un sistema de tableros, Trello es una opción, Appflowy también tiene uno. **Es importante que pueda compartirse con el cliente para el cliente pueda vigilar** en tiempo real en donde va el proyecto.
+
+Consiste en dos secciones:
+- Recursos
+- Todo
+
+Antes de iniciar el proyecto el primer paso será pedirle recursos al cliente, tales como textos, imágenes, videos, etc.
+Para esto se puede usar Drive u otra herramienta.
+
+### Herramientas de productividad
+
+-   App Flowy (Clon de notion open source)
+-   Jira (Cronograma de trabajo)
+-   Trello (To-Do’s)
+-   Google Tasks (Controlar Detalles)
+-   Google Calendar (Definir jornadas de trabajo)
+-   Monday (Combina varias herramientas)
+-   Técnica Pomodoro (Centra en tareas específicas)
+
+### Uso de etiquetas
+
+Pueden usarse colores para etiquetar el estado de las tareasm. Por ejemplo:
+- Color rojo, tareas que requieren información del cliente y tareas críticas en paralelo.
+- Color amarillas, requieren del insumo del cliente y, por ende, no pueden empezar a ejecutarse.
+- Color verde, tareas ya ejecutadas.
+
+Es también una buena idea crear etiquetas para establecer que tareas corresponden al cliente y cual al Freelancer.
+
+![image](Notes/Freelance/img/tablero-actividades.jpg)
+
+### Seguimiento semanal
+
+Es importante llevar un programa de seguimiento semanal, para dar confianza al cliente, al menos durante el primer mes del proyecto. 
+
+Si se obtuvieron resultados se puede mover a un sistema bisemanal o trisemanal.
+
+Airtable puede usarse para automatizar el envío de correos, en caso de bloqueos, imprevistos u otra situación.
+
+## ¿Cómo cobrar?
+
+No es necesario que tus clientes sepan tu costo por hora, se cobra por el valor aportado, no por cuanto tiempo toma producirlo.
+
+### ¿Cuánto cobrar?
+
+Es necesario cobrar lo suficiente para tener un salario como tú, a parte una ganancia ~30-35%, tomar en cuenta la depreciación de tus assets y establecer el tiempo real que estás trabajando.
+
+Conviene agregar un cerca de un 15% para imprevistos que pueden ocurrir durante el proceso, además de un fee por experiencia.
+
+### Recibir pagos trabajando como Freelance
+
+#### Transferencia Electrónicas.
 
 Debes tener una cuenta en el banco a tu nombre, en algunas empresas no
 te van a realizar el pago si la cuenta no está a tu nombre. Esto
 funciona muy bien cuando están en el mismo país, si manejas negocios con
 bancos nacionales.
 
-### Payoneer
+#### Payoneer
 
 Esto funciona muy bien cuando tu cliente se encuentra en otro país.
 Payoneer es la forma de manejar transferencias electrónicas de manera
 internacional y te proporciona una tarjeta de débito, puedes manejar tu
 moneda en dolares y euros.
 
-### Paypal
+#### Paypal
 
 Es la opción amada por muchos. Es el método de pago más popular, por la
 facilidad para crear una cuenta. Es como una capa que te permite generar
@@ -55,18 +106,26 @@ bancaria nacional.
 Paypal tiene una comisión al momento de hacer esta transferencia a tu
 cuenta bancaria nacional.
 
-### Skrill
+#### Skrill
 
 Es un método de pago que también tiene bastante tiempo en el mercado.
 
-### MercadoPago
+#### MercadoPago
 
 Con esta opción puedes generar un código QR y enviárselo a tu cliente y
 a partir de eso puede generar una transferencia a tu cuenta. Puede que
 tenga alguna restricción dependiendo de tu país. Funciona muy bien en
 México, Colombia y Argentina.
 
-### Impuestos
+#### Belo
+
+Es una billetera para recibir pagos desde todo Latam.
+
+#### Astropay
+
+Otra opción disponible, es necesario investigar si funciona bien.
+
+## Pago de Impuestos
 
 México:
 
@@ -84,16 +143,11 @@ con todo el sistema tributario y nunca evadir impuestos.
 -   Las facturas son digitales respaldadas por un Comprobante Fiscal
     Digital por Internet(CFDI)
 
-## Herramientas de productividad
-
--   Jira (Cronograma de trabajo)
--   Trello (To-Do’s)
--   Google Tasks (Controlar Detalles)
--   Google Calendar (Definir jornadas de trabajo)
--   Monday (Combina varias herramientas)
--   Técnica Pomodoro (Centra en tareas específicas)
-
 ## Aplicaciones de administración financiera
+
+Es conveniente registrar absolutamente todos los gastos para entender como funciona el negocio. 
+Es necesario separar el dinero personal del dinero del negocio.
+Prepárate para las contingencias y destina un porcentaje para afrontarlas.
 
 ### iHomeMoney
 
@@ -114,8 +168,9 @@ sencillos de ver, presupuestos y un sistema de alertas (¡muy bueno!).
 Algo que la hace más atractiva es que funciona con Paypal y algunos
 bancos.
 
+## Lista de precios para desarrollo web
 
-## Lista de precios creada con ChatGPT
+Esta tabla fue creada usando ChatGPT:
 
 
 | Type                   | Price Range (USD)  | Average Hours | Main Features / Scope                                                       |

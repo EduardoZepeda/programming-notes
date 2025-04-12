@@ -806,7 +806,7 @@ Para crear un rol
 CREATE ROLE <user> WITH LOGIN ENCRYPTED PASSWORD '<password>';
 ```
 
-Para exportar una base de datos podemos usar el comando
+Para exportar, y respaldar, una base de datos podemos usar el comando
 
 ``` bash
 pg_dump -U <username> <dbname> > dbexport.pgsql
@@ -922,3 +922,29 @@ Obtener todos los indexes
 ``` sql
 SELECT * FROM pg_indexes;
 ```
+
+Obten el nombre de todas las tablas
+
+``` sql
+SELECT * FROM pg_catalog.pg_tables;
+```
+
+Actualiza columnas reemplazando texto
+
+``` sql
+UPDATE <table> SET <column>=Replace(<column>, <old>, <new>);
+```
+
+Muestra el *search_path*
+
+``` sql
+SHOW search_path;
+```
+
+Cambia el search_path a un schema o schema en particular
+
+``` sql
+SET search_path TO <schema> [, <schema>];
+```
+
+

@@ -125,8 +125,7 @@ Intenta inferir el tipo de los datos.
 ### Visualización
 
 - Histogramas: nos ayudan a ver la distribución de un feature
-- Gráficos de dispersión: útil para detectar anomalias.
-- 
+- Gráficos de dispersión: útil para detectar anomalias. 
 
 ## Paradigmas de machine learning
 
@@ -474,7 +473,9 @@ $MSE = \frac{1}{n}\sum(y-y)$
 
 Mientras que para las categoricas tenemos la cross Entrupy function.
 
-$-\sum_xp(x)log q(x)$## Backpropagation
+$-\sum_xp(x)log q(x)$
+
+## Backpropagation
 
 Backpropagation (propagación hacia atrás) es un algoritmo de entrenamiento utilizado en redes neuronales artificiales para ajustar los pesos de las conexiones entre las neuronas. Es una técnica de optimización que utiliza el descenso del gradiente para minimizar la función de error entre las salidas de la red y los valores objetivo.
 
@@ -486,7 +487,9 @@ La propagación hacia atrás se llama así porque el error se propaga a través 
 
 La derivada del coste se calcula con la regla de la cadena.
 
-$C(a(Z^L))$## Dimensiones, tensores y reshape
+$C(a(Z^L))$
+
+## Dimensiones, tensores y reshape
 
 Los datos pueden tener diferentes dimensiones dependiendo de su estructura y complejidad:
 
