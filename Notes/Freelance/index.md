@@ -72,13 +72,37 @@ Airtable puede usarse para automatizar el envío de correos, en caso de bloqueos
 
 ## ¿Cómo cobrar?
 
-No es necesario que tus clientes sepan tu costo por hora, se cobra por el valor aportado, no por cuanto tiempo toma producirlo.
+No es necesario que tus clientes sepan tu costo por hora, es irrelevante, lo mejor sería cobrar por valor aportado.
 
 ### ¿Cuánto cobrar?
 
 Es necesario cobrar lo suficiente para tener un salario como tú, a parte una ganancia ~30-35%, tomar en cuenta la depreciación de tus assets y establecer el tiempo real que estás trabajando.
 
 Conviene agregar un cerca de un 15% para imprevistos que pueden ocurrir durante el proceso, además de un fee por experiencia.
+
+### Tres aproximaciones para cobrar
+
+- Cobrar por hora, el cliente toma el riesgo porque un proyecto puede tomar más tiempo, no hay certeza para el cliente. Aunque también podría tomar menos tiempo.
+- Cobrar por proyecto, el riesgo recae en el freelancer, puede estimar erróneamente el tiempo del proyecto.
+- Cobrar por valor, ambas partes corren con el riesgo, mientras más dinero haya es más posible que el proyecto llegue a buen término.
+
+### ¿Cómo establecer un salario?
+
+Una opción es la ley de 50-30-20
+
+Donde la proporción 50 representa todo aquello básico para vivir: vivienda, comida, servicios. El 30 representa gustos, como suscripciones, restaurantes, etc. Mientras que el 20 restante va para el futuro e inversión. Puedes variar estos porcentajes de acuerdo a tus necesidades. 
+
+Las finanzas personales siempre deberían estar separadas de las profesionales.
+
+### Como lidiar con el regateo y descuentos
+
+Con el ánimo de no depreciar la percepción de valor y no ver afectada la ganancia. 
+Los descuentos solo se ofrecen a cambio de algo por parte del cliente.
+- Un Bundle, si compra otro servicio
+- Referidos, que adquieran el servicio, es necesario que ya hayan pagado.
+- Servicio basico no premium.
+- Mejores condiciones de pago, pago por adelantado del 100%.
+- Atencion no prioritaria, no urgente sin estar tan pendiente de los correos.
 
 ### Recibir pagos trabajando como Freelance
 
@@ -185,3 +209,64 @@ Esta tabla fue creada usando ChatGPT:
 | **Membership Website** | $8,000 - $25,000   | 150 - 300     | User profiles, subscription plans, content restriction, payment integration |
 | **Event Website**      | $1,500 - $5,000    | 30 - 80       | Event details, RSVP forms, ticket purchasing, calendar integration          |
 | **Non-Profit Website** | $2,000 - $8,000    | 40 - 100      | Donation platform, mission statement, volunteer forms, responsive design    |
+
+
+## Freelance desde el punto de vista legal
+
+### Contrato de trabajo o laboral
+
+Se requieren tres requisitos:
+- Prestación de un servicio
+- RemunPago en contraprestaciónerado
+- Relación de subordinación
+
+En Colombia la subordinación se define como:
+
+> Exigirle el cumplimiento de órdenes, en cualquier momento, en cuanto al modo, tiempo o cantidad de trabajo, e imponerles reglamentos (...) CST, Art. 23.
+
+La consecuencia de una subordinación son las prestaciones sociales, de las cuales un porcentaje los paga el patrón y otros el empleado.
+
+### Contrato de prestación de servicios
+
+En Colombia la prestación de servicios se define como:
+
+- Prestación de un servicio
+- Pago en contraprestación
+- Autonomía técnica y científica
+
+> Dispone de un amplio margen de discrecionalidad en cuanto concierne a la ejecución del objeto contractual dentro del plazo fijado y la realización de la labor (...) Corte Constitucional
+
+Las implicaciones son que el pago de pensión y salud los toma el contratista en su totalidad.
+
+### Contrato
+
+Es un acuerdo formal entre dos o más partes, en el que se establecen obligaciones y derechos específicos. Para ser válido, debe cumplir con ciertos requisitos legales, como el consentimiento mutuo, capacidad legal y un objeto lícito.
+
+### Términos y condiciones
+
+Son un conjunto de reglas o directrices que una empresa o proveedor establece para el uso de un producto, servicio o plataforma. Al aceptarlos, el usuario está de acuerdo en cumplir con esas reglas.
+
+#### Diferencias entre contrato y términos y condiciones
+
+Un contrato es un acuerdo bilateral o multilateral que se personaliza para las partes involucradas, mientras que los términos y condiciones son más generalizados y suelen establecerse de manera unilateral por una empresa o proveedor.
+
+#### Partes de un contrato
+
+Un buen contrato es aquel que te ayuda a salir de problemas en el futuro y te ahorra dolores de cabeza.
+
+Must-have:
+- Partes.
+- Objeto. (objetivo, propósito).
+- Duración. (cubrir tareas indefinidas).
+- Precio.
+- Forma de pago. (cuotas y porcentajes).
+- Obligaciones.
+
+Nice-to-have (Misceláneos):
+
+- Confidencialidad.
+- Propiedad intelectual.
+- Garantías.
+- Cesión de derechos.
+- Resolución de conflictos.
+- Ley aplicable.

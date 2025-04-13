@@ -26,4 +26,9 @@ create/book:
 	@echo 'Creating book file at apuntes.book'
 	@   crowbook apuntes.book --create $$(find Notes/ -depth -iregex '.*\.\(md\)' -printf "%p\n" | sort -V | tr '\n' ' ');
 
-
+## create/epub-equations-rendered: Create a book file in the output directory rendering all equations as images using --webtex flag, requires internet connection.
+.PHONY: create/epub-equations-rendered
+create/epub-equations-rendered:
+	@echo 'Converting Cursos folder into a single epub using pandoc and rendering equations as images. This could take a while'
+	@	mkdir -p output;
+	@   find Notes/ -type f -name "index.md" -print0 | sort -z | xargs -0 pandoc -t epub3 --webtex --toc --toc-depth=1 --metadata title="Apuntes de programación" -o output/apuntes_programacion_with_equations.epub

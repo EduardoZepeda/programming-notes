@@ -28,23 +28,23 @@ Podemos tener un stack de vectores
 
 Por ejemplo:
 
-*a* = *b*, *c*, *d*
+*a* = *b*, *c*, *d*
 
 Siendo b, c y d subvectores de a y vectores por si mismos.
 
 Y para expresarlo se van a poner en orden, siendo m la longitud de b, n
 la longitud de c y p la longitud de d:
 
-*a* = *b*0...*b**m*, *c*0...*c**n*, *d*0...*c**p*
+*a* = *b*0...*b**m*, *c*0...*c**n*, *d*0...*c**p*
 
 Para referirnos a un subvector usaremos la notación
 
-*a**r* : *s* = (*a**r*,*a**r*+1,...,*a**s*)
+*a**r* : *s* = (*a**r*,*a**r*+1,...,*a**s*)
 
 El subíndice r:s se llama índice de rango por lo que, el primer ejemplo
 quedaría de la siguiente manera:
 
-*b* = *a*0 : (*m*−1)*c* = *a**m* : (*m*+*n*−1)*d* = *a*(*m*+*n*) : (*m*+*n*+*p*−1)
+*b* = *a*0 : (*m*−1)*c* = *a**m* : (*m*+*n*−1)*d* = *a*(*m*+*n*) : (*m*+*n*+*p*−1)
 
 ## Convenciones
 
@@ -63,10 +63,10 @@ igual a 1, se representa como 1n o como 1.
 Vector unitario. El vector unitario es aquel donde todas sus entradas
 son cero, salvo la i-ésima. Se nombran como e0, e1 y e2 para:
 
-*e*0 = 1, 0, 0*e*1 = 0, 1, 0*e*2 = 0, 0, 1 Una forma de representarlos
+*e*0 = 1, 0, 0*e*1 = 0, 1, 0*e*2 = 0, 0, 1 Una forma de representarlos
 es
 
-(*e**i*)*j* = 1, *s**i**i* = *j**o*0*s**i**i*! = *j*
+(*e**i*)*j* = 1, *s**i**i* = *j**o*0*s**i**i*! = *j*
 
 ## Modelo aditivo RGB
 
@@ -85,7 +85,7 @@ El amarillo, por ejemplo es (255, 255, 0).
 Para sumar vectores ambos deben tener la misma dimensión y simplemente
 se sumando elemento a elemento a sus entradas.
 
-0, 1, 2 + 2, 3,  − 1 = 2, 4, 1
+0, 1, 2 + 2, 3,  − 1 = 2, 4, 1
 
 ### Propiedades de la suma
 

@@ -155,11 +155,11 @@ Receta de algoritmos ML
 ### Normalizar los datos
 
 Para cada columna de tu dataset con valores numéricos:
-1. Calcular el promedio de tus datos (μ).
+1. Calcular el promedio de tus datos (µ).
 2. Calcular la desviacién estandar (σ) de tus datos.
 3. Para cada punto de datos, realizar el siguiente cálculo:
 
-$x_i=\frac{x_i-μ}{σ}$
+$x_i=\frac{x_i-µ}{σ}$
 
 ### Preparar tus datos para modelos
 

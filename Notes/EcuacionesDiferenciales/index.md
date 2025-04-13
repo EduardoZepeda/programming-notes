@@ -53,9 +53,9 @@ linealidad:
 Cuando tenemos una ecuación normal, solucionarla significaba encontrar
 ese número que satisfacía la igualdad de la ecuación:
 
-$y + 5 = 2$
+$y + 5 = 2$
 
-$y =  − 3$
+$y = - 3$
 
 Cuando hablamos de ecuaciones diferenciales, no vamos a buscar un
 número, vamos a buscar una función. Un conjunto de funciones que me
@@ -89,15 +89,15 @@ Son las E.D. más sencillas, se dan cuando podemos expresar la ecuación
 de manera que tengamos en cada término únicamente expresiones de una
 variable de manera que podamos integrar directamente.
 
-$\frac{dy}{dx} = f(x,y)$.
+$\frac{dy}{dx} = f(x , y)$
 
-$\frac{dy}{dx} = g(x)p(y)$.
+$\frac{dy}{dx} = g(x) p(y)$
 
-$\frac{dy}{p(y)} = g(x)dx$.
+$\frac{dy}{p( y )} = g(x) dx$
 
-$\frac{1}{p(y)} = h(y)$.
+$\frac{1}{p( y )} = h(y)$
 
-$h(y)dy = g(x)dx.$
+$h(y)dy = g( x )dx.$
 
 ### Procedimiento para saber si una ecuación es separable
 
@@ -111,7 +111,7 @@ en el segundo paso.
 
 Lo que estamos haciendo es comprobar si
 
-$f(xo,yo)f(x,y) = f(xo,y)f(x,yo)$
+$f(xo, yo)f(x, y) = f(xo, y)f(x, yo)$
 
 Si los tres pasos salen correctos sabremos si la ecuación es separable o
 no.
@@ -120,54 +120,54 @@ no.
 
 Aplicable para ecuaciones de la forma
 
-$\frac{dy}{dx}=f(x+y+c)$.
+$\frac{dy}{dx} = f(x + y + c)$
 
-*v* = *x* + *y* + *c*.
+$v = x + y + c$
 
-*d**v* = *d*(*x*+*y*+*c*).
+$dv = d(x + y + c)$
 
-*d**v* = *d**x* + *d**y*.
+$dv = dx + dy$
 
-$\frac{dv}{dx}=\frac{dx}{dx}+\frac{dy}{dx}$.
+$\frac{dv}{dx}=\frac{dx}{dx}+\frac{dy}{dx}$
 
-$\frac{dv}{dx}=1+\frac{dy}{dx}$.
+$\frac{dv}{dx}=1+\frac{dy}{dx}$
 
-$\frac{dy}{dx}=1-\frac{dv}{dx}$.
+$\frac{dy}{dx}=1-\frac{dv}{dx}$
 
-$\frac{dv}{dx}-1=f(x+y+c)$.
+$\frac{dv}{dx}-1=f(x+y+c)$
 
-$\frac{dv}{dx}-1=f(v)$.
+$\frac{dv}{dx}-1=f(v)$
 
-$\frac{dv}{dx}=f(v)+1$.
+$\frac{dv}{dx}=f(v)+1$
 
-*d**v* = (*f*(*v*)+1)*d**x*.
+$dv=(f(v)+1)dx$
 
-$\frac{dv}{f(v)+a}=dx$.
+$\frac{dv}{f(v)+a}=dx$
 
-$\int \frac{dv}{f(v)+a}=\int dx$.
+$\int \frac{dv}{f(v)+a}=\int dx$
 
-*l**n*(*v*+1) = *x* + *C*.
+$ln(v+1) = x + C$
 
-*v* = *x* + *y* + 4.
+$v = x + y + 4$
 
-*l**n*(*x*+*y*+4+1) = *x* + *C*.
+$ln(x + y + 4 + 1) = x + C$
 
-*e*<sup>*l**n*(*x*+*y*+4+1)</sup> = *e*<sup>*x* + *c*</sup>.
+$e^ln(x + y + 4 + 1 ) = e^(x+c)$
 
-*x* + *y* + 5 = *e*<sup>*x* + *c*</sup>.
+$x + y + 5 = e^(x+c)$
 
-*y* = *e*<sup>*x*</sup>*C* − *x* − 5.
+$y = e^x C - x - 5$
 
 ## Ecuaciones diferenciales exactas
 
 Estas ecuaciones cumplen dos condiciones:
 
 1.  Puedan ser representadas de la forma
-    *M*(*x*,*y*)*d**x* + *N*(*x*,*y*)*d**y* = 0.
+    *M*(*x*,*y*)*d**x* + *N*(*x*,*y*)*d**y* = 0.
 2.  La derivada de M con respecto a la derivada de y sea igual a la
     derivada de N con la derivada de x
 
-$\frac{dM}{dy} = \frac{dN}{dx}$.
+$\frac{dM}{dy} = \frac{dN}{dx}$
 
 Para resolver una ecuación exacta primero debemos verificar que, si sea
 una ecuación exacta, una vez verificada debemos integrar a M o a N.
@@ -183,9 +183,9 @@ Cuando tenemos una función homogenea todos los términos de la ecuación
 tienen el mismo grado y podemos generar una ecuacinó diferencial
 separable.
 
-*M*(*x*,*y*)*d**x* + *N*(*x*,*y*)*d**y* = 0.
+$M(x,y)dx + N(x,y)dy = 0$
 
-*f*(*t**x*,*t**y*) = *t*<sup>*n*</sup>*f*(*x*,*y*).
+$f(tx,ty) = t^n</sup>f(x,y)$
 
 Antes de llegar a la ecuación homogénea deberemos observar las
 siguientes características de la ecuación:
@@ -201,14 +201,14 @@ siguientes pasos:
 
 Cambiaremos una de las variables:
 
-*x* = *y**v*.
+$x=yv$
 
-*y* = *x**v*.
+$y=xv$
 
 Realizaremos una sustitución: No solo remplazaremos la variable, si no
 también su derivada, que será la derivada del producto de dos funciones.
 
-*x* = *y* \* *v* −  \> *d**x* = *y**d**v* + *v**d**y*.
+$x = y \ v -  \> dx = ydv + vdy$
 
 Una vez conseguimos su ecuación separable, integraremos.
 
@@ -266,7 +266,7 @@ $\frac{{\frac{dM}{dy}}-{\frac{dN}{dx}}}{N}=g(x)$
 
 Y el factor integrante será
 
-$μ=\mathrm{e}^{\int^\ g(x)dx}$
+$\mu=\mathrm{e}^{\int^ g(x)dx}$
 
 #### Caso 2
 
@@ -276,7 +276,7 @@ $\frac{{\frac{dM}{dy}}-{\frac{dN}{dx}}}{-M}=g(y)$
 
 Y el factor integrante será
 
-$μ=\mathrm{e}^{\int^\ g(y)dx}$
+$\mu=\mathrm{e}^{\int^ g(y)dx}$
 
 #### Caso 3
 
@@ -286,7 +286,7 @@ $\frac{{\frac{dM}{dy}}-{\frac{dN}{dx}}}{Ny-Mx}=g(xy)=g(z)$
 
 Y el factor integrante será
 
-$μ=\mathrm{e}^{\int^\ g(z)dx}$
+$\mu=\mathrm{e}^{\int^ g(z)dx}$
 
 ## El factor integrante en las ecuaciones lineales
 
@@ -302,7 +302,9 @@ La ecuación diferencial lineal va a tener una función que multiplica por la de
 
 La formula para resolver ecuaciones lineales con el factor de integración es la siguiente:
 
-$y=\frac{1}{μ(x)}\int μQ(x)dx+C$## Ecuaciones linealmente independientes
+$y=\frac{1}{\mu(x)}\int\mu Q(x)dx+C$
+
+## Ecuaciones linealmente independientes
 
 Cuando una solución de una ecuación diferencial es linealmente independiente significa que una de las soluciones para la ecuacion diferencial no puede ser obtenida a partir de otra solución multiplicando simplemente por una constante.
 
@@ -344,7 +346,7 @@ $y=c{e}^{(-1-\sqrt2x)}$
 
 Y la solución general será
 
-$y=c{e}^{(-1+\sqrt2x)} + c{e}^{(-1-\sqrt2x)}$
+$y=c{e}^{(-1+\sqrt2x)}+c{e}^{(-1-\sqrt2x)}$
 
 ## Ecuaciones lineales homogeneas con raices
 
@@ -375,8 +377,6 @@ $xy^"+5y'-13y=0$
     2. Variación de parámetros
 
 3. La solución general será $y=y_h+y_p$
-
-
 
 
 ## Ecuaciones diferenciales no homogéneas con Coeficientes no determinados
@@ -524,7 +524,9 @@ Y ahora la solución será la suma de la particular y la homogénea.
 
 $y_p=-2e^{4x}e^{-2x}+\frac{8e^{3x}}{3}e^{-x}$
 
-$y=\frac{2}{3}e^{2x}+C_1e^{-2x}+C_2e^{-x}$## Transformada de Laplace
+$y=\frac{2}{3}e^{2x}+C_1e^{-2x}+C_2e^{-x}$
+
+## Transformada de Laplace
 
 La transformada de Laplace permite transformar una función de una variable, normalmente tiempo, a otro dominio. 
 

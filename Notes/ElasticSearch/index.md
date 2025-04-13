@@ -1,8 +1,8 @@
 # Elastic Search
 
 Búsquedas y analíticas en tiempo real Interfaz HTTP con documentos JSON
-usando GET, POST, PUT, DELETE, etc. Guardado e indexación eficiente, la
-búsqueda es 
+usando GET, POST, PUT, DELETE, etc. Guardado e indexación eficiente.
+
 ## Casos de uso
 
 Búsqueda de información en una app o sitio web Motor de almacenamiento
