@@ -947,4 +947,17 @@ Cambia el search_path a un schema o schema en particular
 SET search_path TO <schema> [, <schema>];
 ```
 
+## Importar un archivo CSV a Postgres
+
+Bastante común pues muchas empresas tienen sus tablas en formato CSV.
+
+``` sql
+COPY table(<column_1>, <column_2>, ...<column_n>) FROM '<location>.csv' DELIMITER ',' CSV HEADER;
+```
+
+directo en la consola de PSQL
+
+``` sql
+\copy <table> FROM '<location>.csv' DELIMITER ',' CSV HEADER;
+```
 

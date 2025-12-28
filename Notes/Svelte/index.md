@@ -7,6 +7,8 @@ siguientes:
 -   Menos código
 -   No más código innecesario
 -   No virtual DOM (A diferencia de [React](../React/1.-React.md))
+
+
 ## Creación de una instancia
 
 Para crear un entorno de trabajo con svelte podemos partir de una

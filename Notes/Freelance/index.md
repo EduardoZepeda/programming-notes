@@ -149,6 +149,62 @@ Es una billetera para recibir pagos desde todo Latam.
 
 Otra opción disponible, es necesario investigar si funciona bien.
 
+## Objeciones de clientes y como lidiar con ellas
+
+### ¿Cuanto me cuesta esto?
+
+Cobrar por el impacto que va a generar el proyecto en el negocio y no por mi tiempo invertido.
+Dar un rango y no una cifra exacta.
+
+### ¿Cuántas revisiones puedo hacer?
+
+Las que sean necesarias.
+Las primeras dos estas incluidas en el precio del proyecto.
+Las revisiones adicionales las podemos manejar por hora trabajada.
+
+### ¿Puedes hacerme el trabajo gratis?
+
+No trabajo gratis.
+Recomendarle al cliente que invierta en el proyecto para lograr sus objetivos.
+Necesitamos hacer ajustes que no estaban en el plan inicial:
+Tendran un valor adicional ya que no estaban contempladas desde el inicio.
+El cliente analizara la importancia de dicho ajuste.
+El cliente entendera que mi tiempo vale.
+
+
+### Conozco gente no tan cara.
+
+Preguntarle al cliente cual es su presupuesto y con base en eso yo determinare que tanto trabajo puedo hacer.
+Es clave trasmitir al cliente el impacto que mi trabajo va a generar en el negocio.
+Puedes hacerlo por menos precio?
+Trasmitir al cliente el valor que aportaremos a su negocio
+Mostrarle los beneficios que esta contratando
+Comunicarle aquello que me diferencia del resto y el impacto que esto traera al negocio.
+
+
+### Se me sale por completo del presupuesto.
+
+Nos podemos ajustar a su presupuesto siempre y cuando cambiemos el entregable
+Dejarle saber que el proyecto no sera el mismo.
+No rebajar el precio.
+
+### Me urge.
+
+Cobrar un 30% mas
+Tiempo extra. Horas no laborables.
+Parar otros proyectos. Para poder dedicar el 100%
+Personal adicional (posiblemente necesite ayuda)
+Determinar la fecha de entrega del proyecto.
+
+### La vez pasada me cobraste menos.
+Precio del mercado
+Nuevas habilidades y experiencia adquirida.
+Te pago cuando me entregues el trabajo.
+El pago es por adelantado:
+50% al inicio.
+50% al terminar.
+Nunca entregar el proyecto sin haber recibido el 100% del pago.
+
 ## Pago de Impuestos
 
 México:
@@ -257,7 +313,7 @@ Un buen contrato es aquel que te ayuda a salir de problemas en el futuro y te ah
 Must-have:
 - Partes.
 - Objeto. (objetivo, propósito).
-- Duración. (cubrir tareas indefinidas).
+- Duración. (Cubrir tareas indefinidas, es importante pues no pueden retenerte con tareas infinitas).
 - Precio.
 - Forma de pago. (cuotas y porcentajes).
 - Obligaciones.

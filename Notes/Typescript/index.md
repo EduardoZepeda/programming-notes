@@ -1020,6 +1020,26 @@ type C = Awaited<boolean | Promise<number>>;
 type C = number | boolean
 ```
 
+### Record
+
+Record es un diccionario.
+
+``` typescript
+Record<key, value>
+```
+
+La llave puede ser un union para casos más versátiles, tales como un union de strings
+
+``` typescript
+type Role = "admin" | "user"
+type User = {
+  id string
+}
+Record<Role, User>
+```
+
+
+
 ### Pick<Type, Keys> 
 
 Pick te permite crear un nuevo tipo eligiendo propiedades específicas (`Keys`) de un tipo existente (`Type`). Pick es útil para limitar los tipos a sólo las propiedades que nos son importantes
@@ -1057,3 +1077,61 @@ Construye un tipo consistente en todas las propiedades de Type establecidas como
 ### ReturnType<Type>
 
 Construye un tipo consistente en el tipo de retorno de la función Tipo.
+
+``` typescript
+function getUser(id:string){
+	return {id: 1, name: "name"}
+}
+
+type T = ReturnType<typeof getUser>
+```
+
+### Parameters<Type>
+
+Construye un tipo consistente en el tipo de los parámetros de la función
+
+``` typescript
+function getUser(id:string){
+	return {id: 1, name: "name"}
+}
+
+type T = Parameters<typeof getUser>
+```
+
+Puedes referenciar el parámetro específico usando indices
+
+``` typescript
+type T = Parameters<typeof getUser>[0]
+```
+
+### ConstructorParameters
+
+El método anterior sirve solo para funciones, si necesitamos un método constructor
+
+``` typescript
+
+type T = ConstructionsParameters<typeof ClassName>
+```
+
+### Extract
+
+Extract permite extraer aquellos que sean extraibles, es decir que puedan aplicarse
+
+``` typescript
+type RoleExtended = "admin" | "user" | "moderator"
+type Role = "admin" | "user"
+type T = Extract<RoleExtended, Role>
+```
+
+### NonNullable
+
+Remueve la opción null de un type
+
+``` typescript
+type Data = string | number | null
+type T = NonNullable<Data>
+
+```
+
+
+

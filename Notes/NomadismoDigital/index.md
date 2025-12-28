@@ -64,6 +64,8 @@ remoto](https://about.gitlab.com/company/culture/all-remote/guide/).
 -   [Pluo jobs](https://pluo.jobs/)
 -   [Vanhack](https://vanhack.com/)
 -   [First job](https://firstjob.me/)
+-   [Solid gits](https://solidgigs.com/)
+
 
 ## Páginas para buscar hospedaje como nómada digital
 
