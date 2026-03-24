@@ -5,7 +5,7 @@
 Django REST framework es un framework de django que nos permite crear REST API de manera sencilla, echando de mano los modelos, vistas y otros elementos que ya provee Django
 
 
-### lujo de información en Django REST Framework
+### Flujo de información en Django REST Framework
 
 1. El método create de un ViewSet se llama
 2. Esto crea un serializador y lo valida, una vez válido se llama al método perform_create
@@ -24,6 +24,327 @@ Para poder usar la protección la CSRF con CSRF necesitamos
 
 * Obtener cookie con el valor *csrftoken* accediendo por primera vez al sitio
 * Añadir un header X-CSRFToken a cada una de nuestras peticiones.
+
+
+````markdown
+# Django REST Framework — Notas Básicas
+
+Guía directa para entender y usar los componentes más comunes en producción.
+
+---
+
+## Serializers
+
+Transforman modelos ↔ JSON.
+
+### Ejemplo básico
+```python
+from rest_framework import serializers
+from .models import Product
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'price']
+````
+
+### Nested Serializers
+
+Relaciones entre modelos.
+
+```python
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'category']
+```
+
+### Uso común en producción
+
+* Representar relaciones (`ForeignKey`, `ManyToMany`)
+* Validación de datos de entrada
+* Serialización parcial (`partial=True` en updates)
+
+### Errores comunes
+
+* Olvidar `many=True` en relaciones múltiples
+* No sobrescribir `create()` o `update()` en nested writes
+* Exponer campos sensibles
+
+---
+
+## Permissions
+
+Controlan acceso a endpoints o datos.
+
+### Permiso básico
+
+```python
+from rest_framework.permissions import BasePermission
+
+class IsOwner(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.user == request.user
+```
+
+### Aplicación
+
+```python
+class ProductViewSet(ModelViewSet):
+    permission_classes = [IsOwner]
+```
+
+### Diferencia clave
+
+* `has_permission`: nivel endpoint
+* `has_object_permission`: nivel objeto
+
+### Uso común en producción
+
+* Acceso por dueño del recurso
+* Roles (admin vs usuario)
+* Filtrado de datos por usuario
+
+### Error común
+
+* Usar solo `has_permission` cuando se requiere control por objeto
+
+---
+
+## API Views
+
+Control total sobre lógica.
+
+```python
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class HelloView(APIView):
+    def get(self, request):
+        return Response({"message": "Hello"})
+```
+
+### Uso común
+
+* Lógica custom compleja
+* Integraciones externas
+
+### Error común
+
+* Reescribir CRUD manualmente innecesariamente
+
+---
+
+## Generic Views
+
+CRUD simplificado.
+
+```python
+from rest_framework.generics import ListCreateAPIView
+
+class ProductListCreateView(ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+```
+
+### Uso común
+
+* Endpoints estándar CRUD
+
+### Error común
+
+* No sobrescribir `get_queryset()` cuando se necesita filtrar por usuario
+
+---
+
+## Routers
+
+Generan rutas automáticamente para ViewSets.
+
+```python
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
+
+urlpatterns = router.urls
+```
+
+### Uso común
+
+* APIs REST estándar
+
+### Error común
+
+* No usar routers y definir rutas manuales innecesariamente
+
+---
+
+## Actions
+
+Endpoints personalizados dentro de un ViewSet.
+
+```python
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+class ProductViewSet(ModelViewSet):
+
+    @action(detail=True, methods=['post'])
+    def publish(self, request, pk=None):
+        return Response({"status": "published"})
+```
+
+### Uso común
+
+* Operaciones no CRUD (`publish`, `cancel`, etc.)
+
+### Error común
+
+* Meter lógica compleja en actions en lugar de servicios separados
+
+---
+
+## Parsers
+
+Definen cómo se interpreta el request body.
+
+```python
+from rest_framework.parsers import JSONParser, MultiPartParser
+
+class UploadView(APIView):
+    parser_classes = [MultiPartParser]
+```
+
+### Uso común
+
+* Subida de archivos (`multipart/form-data`)
+* APIs JSON
+
+### Error común
+
+* No configurar parser para uploads
+
+---
+
+## Validators
+
+Validación extra en serializers.
+
+```python
+from rest_framework import serializers
+
+def validate_price(value):
+    if value < 0:
+        raise serializers.ValidationError("Debe ser positivo")
+    return value
+
+class ProductSerializer(serializers.ModelSerializer):
+    price = serializers.FloatField(validators=[validate_price])
+```
+
+### Uso común
+
+* Reglas de negocio
+* Validaciones cross-field (`validate()`)
+
+### Error común
+
+* Duplicar validaciones ya existentes en el modelo
+
+---
+
+## Pagination
+
+Divide resultados en páginas.
+
+```python
+from rest_framework.pagination import PageNumberPagination
+
+class CustomPagination(PageNumberPagination):
+    page_size = 10
+```
+
+```python
+class ProductListView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    pagination_class = CustomPagination
+```
+
+### Uso común
+
+* Listados grandes
+
+### Error común
+
+* No paginar endpoints → problemas de rendimiento
+
+---
+
+## Authentication
+
+Identifica al usuario.
+
+### Ejemplo básico
+
+```python
+from rest_framework.authentication import TokenAuthentication
+
+class ProductViewSet(ModelViewSet):
+    authentication_classes = [TokenAuthentication]
+```
+
+### Tipos comunes
+
+* Token
+* Session
+* JWT (con librerías externas)
+
+### Uso común
+
+* APIs protegidas
+* Microservicios
+
+### Error común
+
+* No proteger endpoints sensibles
+
+---
+
+## Testing
+
+Pruebas de endpoints.
+
+```python
+from rest_framework.test import APITestCase
+from django.urls import reverse
+
+class ProductTest(APITestCase):
+    def test_list_products(self):
+        url = reverse('product-list')
+        response = self.client.get(url)
+        assert response.status_code == 200
+```
+
+### Uso común
+
+* Validar endpoints críticos
+* Testing de permisos y autenticación
+
+### Error común
+
+* No probar casos de error (403, 400, etc.)
+
+---
+
 ## Diferencia entre perform_create y create
 
 La diferencia entre estas dos es que *perform_create* se llama dentro del método *create* una vez que se sabe que la serialización es válida, especificamente *serializer.save*.
@@ -51,8 +372,6 @@ class CreateModelMixin(object):
         except (TypeError, KeyError):
             return {}
 ```
-
-
 
 
 ## JSON parser

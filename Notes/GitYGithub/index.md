@@ -830,3 +830,9 @@ Para salir usamos:
 ``` bash
 git bisect reset
 ```
+
+## Ver todos los cambios de un archivo
+
+``` bash
+git log -p -- <file_location>
+```

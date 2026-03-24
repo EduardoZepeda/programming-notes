@@ -1166,3 +1166,59 @@ export CFLAGS="-02 -march=native -mtune=native"
 export CXXFLAGS="-02 -march=native -mtune=native"
 export DEB_BUILD_OPTIONS="parallel=$(nproc)"
 ```
+
+## Añadir llaves para conectarse a un servidor remoto SSH
+
+Paso 1: Generar un Par de Claves SSH en tu Máquina Local
+Abre una terminal en tu computadora local y ejecuta el comando ssh-keygen. Usar el algoritmo Ed25519 es el estándar moderno recomendado por su mayor seguridad y rendimiento.
+
+```bash
+ssh-keygen -t ed25519
+```
+
+**Indicaciones:**
+*   **"Introduce la ubicación donde se guardará el archivo"**: Presiona Enter para aceptar la ubicación por defecto (~/.ssh/id_ed25519).
+*   **"Enter passphrase"**: Es altamente recomendable introducir una frase de contraseña segura para añadir una capa extra de seguridad. Necesitarás esta frase cada vez que uses la clave, a menos que utilices un agente SSH.
+
+Este comando genera dos archivos: una clave privada (id_ed25519) que debe mantenerse en secreto, y una clave pública (id_ed25519.pub) que puedes compartir.
+
+Paso 2: Copiar la Clave Pública al Servidor Remoto
+El método más sencillo y recomendado es utilizar la utilidad ssh-copy-id.
+
+```bash
+ssh-copy-id usuario@servidor_remoto
+```
+
+Reemplaza `usuario` con tu cuenta de usuario en el servidor remoto y `servidor_remoto` con la dirección IP o nombre de dominio del servidor.
+La primera vez que te conectes, se te pedirá confirmar la autenticidad del host. Escribe `yes` y presiona ENTER.
+Introduce la contraseña del usuario remoto cuando se solicite. La utilidad creará entonces el directorio `~/.ssh` y el archivo `authorized_keys` necesarios en el servidor, y añadirá tu clave pública con los permisos correctos.
+
+**Métodos Alternativos (si ssh-copy-id no está disponible):**
+
+*   **Usando ssh y cat:**
+    ```bash
+    cat ~/.ssh/id_ed25519.pub | ssh usuario@servidor_remoto "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+    ```
+    Se te solicitará la contraseña del usuario remoto.
+
+*   **Método Manual:**
+    1.  Muestra tu clave pública en tu máquina local usando `cat ~/.ssh/id_ed25519.pub` y copia toda la salida.
+    2.  Conéctate a tu servidor remoto utilizando un método disponible (ej. autenticación por contraseña).
+    3.  En el servidor, asegúrate de que el directorio `~/.ssh` exista y tenga los permisos correctos:
+        ```bash
+        mkdir -p ~/.ssh && chmod 700 ~/.ssh
+        ```
+    4.  Añade la clave pública copiada al archivo `authorized_keys`:
+        ```bash
+        echo "pega_el_contenido_de_tu_clave_pública_aquí" >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
+        ```
+        Asegúrate de usar `>>` para añadir la clave, no `>` que sobrescribiría el archivo.
+
+Paso 3: Autenticarse Usando la Nueva Clave SSH
+Una vez que la clave está instalada, intenta iniciar sesión sin contraseña desde tu máquina local:
+
+```bash
+ssh usuario@servidor_remoto
+```
+
+
