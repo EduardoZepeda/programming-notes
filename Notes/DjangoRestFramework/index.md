@@ -4,87 +4,87 @@
 
 Django REST framework es un framework de django que nos permite crear REST API de manera sencilla, echando de mano los modelos, vistas y otros elementos que ya provee Django
 
-
-### Flujo de información en Django REST Framework
-
-1. El método create de un ViewSet se llama
-2. Esto crea un serializador y lo valida, una vez válido se llama al método perform_create
-3. Lo anterior llamada al método save del serializador
-4. Que a su vez llama al método create o update de la instancia que le fue pasada al serializador.
-5. El ViewSet retorna una respuesta con la información que viene de serializer.data
-6. Esta información se representa con el método to_representation
-7. Y la respuesta en forma de diccionario de Python se procesa por un renderizador, ya sea JSON, XML, etc.
-
-
-la página donde podemos ver la estructura de drf es https://www.cdrf.co/## CSRF
-
-CSRF (Cross-Site Request Forgery) es un ataque en el que un sitio web malicioso engaña al usuario para que realice una acción no deseada en un sitio web en el que ya está autenticado. Por ejemplo, un atacante podría crear un enlace que parezca inofensivo, pero en realidad, cuando el usuario hace clic en él, envía una solicitud HTTP al sitio web objetivo, como una transferencia de fondos o el cambio de una contraseña, sin el conocimiento del usuario. Para prevenir CSRF, los desarrolladores pueden incluir tokens aleatorios en las solicitudes HTTP para verificar que la solicitud proviene del usuario autorizado.
-
-Para poder usar la protección la CSRF con CSRF necesitamos 
-
-* Obtener cookie con el valor *csrftoken* accediendo por primera vez al sitio
-* Añadir un header X-CSRFToken a cada una de nuestras peticiones.
-
-
-````markdown
-# Django REST Framework — Notas Básicas
-
-Guía directa para entender y usar los componentes más comunes en producción.
-
----
-
 ## Serializers
 
-Transforman modelos ↔ JSON.
+Los serializers se encargan de transformar datos complejos (modelos, querysets) en tipos nativos de Python que luego pueden renderizarse como JSON, XML, etc. También validan datos de entrada.
 
-### Ejemplo básico
 ```python
 from rest_framework import serializers
-from .models import Product
+from .models import User
 
-class ProductSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
-        fields = ['id', 'name', 'price']
-````
-
-### Nested Serializers
-
-Relaciones entre modelos.
-
-```python
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name']
-
-class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
-
-    class Meta:
-        model = Product
-        fields = ['id', 'name', 'category']
+        model = User
+        fields = ["id", "email"]
 ```
 
-### Uso común en producción
+### Validación
 
-* Representar relaciones (`ForeignKey`, `ManyToMany`)
-* Validación de datos de entrada
-* Serialización parcial (`partial=True` en updates)
+Toman el formato de *validate_<field>* y retornan el value o levantan una excepción:
 
-### Errores comunes
+Pueden ir directamente dentro de la clase serializer.
 
-* Olvidar `many=True` en relaciones múltiples
-* No sobrescribir `create()` o `update()` en nested writes
-* Exponer campos sensibles
+```python
+    def validate_email(self, value):
+        if "example.com" in value:
+            raise serializers.ValidationError("Dominio no permitido")
+        return value
+```
+
+#### Validación general
+
+si no especificamos un field, recibiremos todos los datos y podemos validar con ellos.
+
+``` python
+     def validate(self, data):  
+        if data['password'] != data['confirm_password']: 
+        raise sertaltzers.ValidationError( "Passwords do not match.")
+```
+
+### Nested serializers
+
+Permiten representar relaciones entre modelos dentro de un mismo JSON.
+
+```python
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ["bio"]
+
+class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer()
+
+    class Meta:
+        model = User
+        fields = ["id", "email", "profile"]
+```
+
+Para escritura:
+
+```python
+def create(self, validated_data):
+    profile_data = validated_data.pop("profile")
+    user = User.objects.create(**validated_data)
+    Profile.objects.create(user=user, **profile_data)
+    return user
+```
 
 ---
 
 ## Permissions
 
-Controlan acceso a endpoints o datos.
+Controlan quién puede acceder a qué recursos.
 
-### Permiso básico
+### Permisos a nivel de vista
+
+```python
+from rest_framework.permissions import IsAuthenticated
+
+class MyView(APIView):
+    permission_classes = [IsAuthenticated]
+```
+
+### Permisos personalizados
 
 ```python
 from rest_framework.permissions import BasePermission
@@ -94,256 +94,272 @@ class IsOwner(BasePermission):
         return obj.user == request.user
 ```
 
-### Aplicación
+### Diferencia list vs object
+
+* `has_permission`: se ejecuta antes de acceder a la vista (ej. list, create)
+* `has_object_permission`: se ejecuta por objeto (ej. retrieve, update, destroy)
 
 ```python
-class ProductViewSet(ModelViewSet):
-    permission_classes = [IsOwner]
+def has_permission(self, request, view):
+    return request.user.is_authenticated
 ```
 
-### Diferencia clave
-
-* `has_permission`: nivel endpoint
-* `has_object_permission`: nivel objeto
-
-### Uso común en producción
-
-* Acceso por dueño del recurso
-* Roles (admin vs usuario)
-* Filtrado de datos por usuario
-
-### Error común
-
-* Usar solo `has_permission` cuando se requiere control por objeto
+```python
+def has_object_permission(self, request, view, obj):
+    return obj.user == request.user
+```
 
 ---
 
 ## API Views
 
-Control total sobre lógica.
+Son vistas basadas en clases que trabajan directamente con métodos HTTP.
 
 ```python
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-class HelloView(APIView):
+class MyView(APIView):
     def get(self, request):
-        return Response({"message": "Hello"})
+        return Response({"message": "ok"})
+
+    def post(self, request):
+        return Response(request.data)
 ```
 
-### Uso común
-
-* Lógica custom compleja
-* Integraciones externas
-
-### Error común
-
-* Reescribir CRUD manualmente innecesariamente
+Se tiene control total, pero más código repetitivo.
 
 ---
 
 ## Generic Views
 
-CRUD simplificado.
+Abstracciones sobre APIView que reducen boilerplate.
 
 ```python
 from rest_framework.generics import ListCreateAPIView
+from .models import Post
+from .serializers import PostSerializer
 
-class ProductListCreateView(ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+class PostListView(ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 ```
 
-### Uso común
+Incluyen lógica predefinida para:
 
-* Endpoints estándar CRUD
-
-### Error común
-
-* No sobrescribir `get_queryset()` cuando se necesita filtrar por usuario
+* list
+* create
+* retrieve
+* update
+* destroy
 
 ---
 
 ## Routers
 
-Generan rutas automáticamente para ViewSets.
+Automatizan la generación de rutas para ViewSets.
 
 ```python
 from rest_framework.routers import DefaultRouter
+from .views import PostViewSet
 
 router = DefaultRouter()
-router.register(r'products', ProductViewSet)
+router.register(r"posts", PostViewSet, basename="post")
 
 urlpatterns = router.urls
 ```
 
-### Uso común
-
-* APIs REST estándar
-
-### Error común
-
-* No usar routers y definir rutas manuales innecesariamente
+Si se sobrescribe `get_queryset`, es necesario definir `basename`.
 
 ---
 
 ## Actions
 
-Endpoints personalizados dentro de un ViewSet.
+Permiten añadir endpoints personalizados a un ViewSet.
 
 ```python
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-class ProductViewSet(ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
 
-    @action(detail=True, methods=['post'])
-    def publish(self, request, pk=None):
-        return Response({"status": "published"})
+    @action(detail=True, methods=["post"])
+    def deactivate(self, request, pk=None):
+        user = self.get_object()
+        user.is_active = False
+        user.save()
+        return Response({"status": "deactivated"})
 ```
 
-### Uso común
+* `detail=True`: opera sobre un objeto
+* `detail=False`: opera sobre colección
 
-* Operaciones no CRUD (`publish`, `cancel`, etc.)
+Ruta generada:
 
-### Error común
-
-* Meter lógica compleja en actions en lugar de servicios separados
+```
+/users/{id}/deactivate/
+```
 
 ---
 
 ## Parsers
 
-Definen cómo se interpreta el request body.
+Transforman el cuerpo de la request en `request.data`.
 
 ```python
-from rest_framework.parsers import JSONParser, MultiPartParser
+from rest_framework.parsers import JSONParser
 
-class UploadView(APIView):
-    parser_classes = [MultiPartParser]
+class MyView(APIView):
+    parser_classes = [JSONParser]
 ```
 
-### Uso común
+### Multipart (archivos)
 
-* Subida de archivos (`multipart/form-data`)
-* APIs JSON
+```python
+from rest_framework.parsers import MultiPartParser, FormParser
 
-### Error común
-
-* No configurar parser para uploads
+parser_classes = [MultiPartParser, FormParser]
+```
 
 ---
 
 ## Validators
 
-Validación extra en serializers.
+Validaciones reutilizables a nivel de serializer o campo.
+
+### Validador de campo
 
 ```python
-from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 
-def validate_price(value):
-    if value < 0:
-        raise serializers.ValidationError("Debe ser positivo")
-    return value
-
-class ProductSerializer(serializers.ModelSerializer):
-    price = serializers.FloatField(validators=[validate_price])
+email = serializers.EmailField(
+    validators=[UniqueValidator(queryset=User.objects.all())]
+)
 ```
 
-### Uso común
+### Validación global
 
-* Reglas de negocio
-* Validaciones cross-field (`validate()`)
-
-### Error común
-
-* Duplicar validaciones ya existentes en el modelo
+```python
+def validate(self, data):
+    if data["start"] > data["end"]:
+        raise serializers.ValidationError("Fechas inválidas")
+    return data
+```
 
 ---
 
 ## Pagination
 
-Divide resultados en páginas.
+Divide resultados en múltiples páginas.
+
+### Configuración global
+
+```python
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10
+}
+```
+
+### Personalizada
 
 ```python
 from rest_framework.pagination import PageNumberPagination
 
-class CustomPagination(PageNumberPagination):
-    page_size = 10
+class MyPagination(PageNumberPagination):
+    page_size = 20
 ```
 
 ```python
-class ProductListView(ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    pagination_class = CustomPagination
+class MyView(ListAPIView):
+    pagination_class = MyPagination
 ```
 
-### Uso común
+Respuesta incluye:
 
-* Listados grandes
-
-### Error común
-
-* No paginar endpoints → problemas de rendimiento
+* count
+* next
+* previous
+* results
 
 ---
 
 ## Authentication
 
-Identifica al usuario.
+Define cómo se identifica el usuario.
 
-### Ejemplo básico
+### Token Authentication
 
 ```python
 from rest_framework.authentication import TokenAuthentication
 
-class ProductViewSet(ModelViewSet):
+class MyView(APIView):
     authentication_classes = [TokenAuthentication]
 ```
 
-### Tipos comunes
+Header requerido:
 
-* Token
-* Session
-* JWT (con librerías externas)
+```
+Authorization: Token <token>
+```
 
-### Uso común
+### Session Authentication
 
-* APIs protegidas
-* Microservicios
+Usa cookies y CSRF.
 
-### Error común
+```python
+from rest_framework.authentication import SessionAuthentication
+```
 
-* No proteger endpoints sensibles
+### Custom authentication
+
+```python
+from rest_framework.authentication import BaseAuthentication
+
+class CustomAuth(BaseAuthentication):
+    def authenticate(self, request):
+        return (user, None)
+```
 
 ---
 
 ## Testing
 
-Pruebas de endpoints.
+DRF provee utilidades para testear APIs.
+
+### APIClient
+
+```python
+from rest_framework.test import APIClient
+
+client = APIClient()
+response = client.get("/posts/")
+```
+
+### Autenticación en tests
+
+```python
+client.force_authenticate(user=user)
+```
+
+### TestCase
 
 ```python
 from rest_framework.test import APITestCase
-from django.urls import reverse
 
-class ProductTest(APITestCase):
-    def test_list_products(self):
-        url = reverse('product-list')
-        response = self.client.get(url)
+class PostTest(APITestCase):
+    def test_list(self):
+        response = self.client.get("/posts/")
         assert response.status_code == 200
 ```
 
-### Uso común
+Permite testear:
 
-* Validar endpoints críticos
-* Testing de permisos y autenticación
+* endpoints
+* permisos
+* autenticación
+* serialización
 
-### Error común
-
-* No probar casos de error (403, 400, etc.)
-
----
 
 ## Diferencia entre perform_create y create
 
@@ -372,6 +388,27 @@ class CreateModelMixin(object):
         except (TypeError, KeyError):
             return {}
 ```
+
+
+### Flujo de información en Django REST Framework
+
+1. El método create de un ViewSet se llama
+2. Esto crea un serializador y lo valida, una vez válido se llama al método perform_create
+3. Lo anterior llamada al método save del serializador
+4. Que a su vez llama al método create o update de la instancia que le fue pasada al serializador.
+5. El ViewSet retorna una respuesta con la información que viene de serializer.data
+6. Esta información se representa con el método to_representation
+7. Y la respuesta en forma de diccionario de Python se procesa por un renderizador, ya sea JSON, XML, etc.
+
+
+la página donde podemos ver la estructura de drf es https://www.cdrf.co/## CSRF
+
+CSRF (Cross-Site Request Forgery) es un ataque en el que un sitio web malicioso engaña al usuario para que realice una acción no deseada en un sitio web en el que ya está autenticado. Por ejemplo, un atacante podría crear un enlace que parezca inofensivo, pero en realidad, cuando el usuario hace clic en él, envía una solicitud HTTP al sitio web objetivo, como una transferencia de fondos o el cambio de una contraseña, sin el conocimiento del usuario. Para prevenir CSRF, los desarrolladores pueden incluir tokens aleatorios en las solicitudes HTTP para verificar que la solicitud proviene del usuario autorizado.
+
+Para poder usar la protección la CSRF con CSRF necesitamos 
+
+* Obtener cookie con el valor *csrftoken* accediendo por primera vez al sitio
+* Añadir un header X-CSRFToken a cada una de nuestras peticiones.
 
 
 ## JSON parser
