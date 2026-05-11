@@ -1169,6 +1169,39 @@ export DEB_BUILD_OPTIONS="parallel=$(nproc)"
 
 ## Añadir llaves para conectarse a un servidor remoto SSH
 
+Vamos a explicar esto de manera muy sencilla. Primero tú necesitas una llave pública dentro del servidor al que quieres acceder por SSH. Esta llave va a estar en un archivo llamado *~/.ssh/authorized_keys*.
+
+Las llave públicas se van añadiando una a una y se ve algo como esto:
+
+```bash
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvlv+5b6+x9eIKUHNghxSsB0M93vw+8I6ZCspXB6c/j eduardo@lain
+```
+
+Esta llave pública debe corresponderse con una llave privada que vivirá en tu máquina.
+La llave privada debe ir dentro de de la carpeta ~/.ssh y se algo así internamente:
+
+```bash
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACAb5b/uW+vsfXiClBzYIcUrAdDPd78PvCOmQrKVwenP4wAAAJDRWb/j0Vm/
+4wAAAAtzc2gtZWQyNTUxOQAAACAb5b/uW+vsfXiClBzYIcUrAdDPd78PvCOmQrKVwenP4w
+AAAEA/RD294c3XQIhyN0OgSq8Ce02r1S7IBLg29nRYMSQaXRvlv+5b6+x9eIKUHNghxSsB
+0M93vw+8I6ZCspXB6c/jAAAADGVkdWFyZG9AbGFpbgE=
+-----END OPENSSH PRIVATE KEY-----
+```
+
+Dentro de la misma carpeta existe un archivo config, en el cual se listan aquellas llaves privadas que tienes disponibles.
+
+```bash
+# <domain>
+Host <domain name>
+Hostname <IP or domain>
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/<private_key_file>
+```
+
+### Procedimiento para generar llaves
+
 Paso 1: Generar un Par de Claves SSH en tu Máquina Local
 Abre una terminal en tu computadora local y ejecuta el comando ssh-keygen. Usar el algoritmo Ed25519 es el estándar moderno recomendado por su mayor seguridad y rendimiento.
 

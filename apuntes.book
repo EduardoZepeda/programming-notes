@@ -23,6 +23,7 @@ epub.css.add: pre{font-size:0.75rem;}
 
 ## List of chapters
 - Notes/AdministracionServidoresLinux/index.md
+- Notes/AIAgents/index.md
 - Notes/AlgebraLineal/index.md
 - Notes/Algoritmos/index.md
 - Notes/ArquitecturaAltaConcurrencia/index.md

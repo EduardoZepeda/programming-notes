@@ -179,7 +179,7 @@ hacer una búsqueda dns de los recursos, se recomienda para contenido
 servido por un CDN
 
 ``` html
-<link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 ```
 
 ## Fases Paint y Layour del CRP
