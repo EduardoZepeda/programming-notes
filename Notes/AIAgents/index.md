@@ -6,9 +6,11 @@ Guía práctica para construir agentes inteligentes con LangChain y LangGraph. C
 
 ## Cómo construir agentes inteligentes con LangGraph
 
-LangGraph permite orquestar agentes como grafos de nodos. Ejecuta el servidor de desarrollo con `langgraph dev --tunnel`.
+LangGraph permite orquestar agentes como grafos de nodos. El flujo de desarrollo consiste en correr `langgraph dev`, pero si encuentras errores de puerto puedes usar `langgraph dev --tunnel`.
 
 ### Agente básico con tool de clima
+
+Este ejemplo muestra cómo crear un agente mínimo con una tool personalizada. Se configura un LLM (en este caso DeepSeek vía la API compatible con OpenAI) y se le asigna una tool que el modelo puede invocar cuando detecta que necesita información del clima. El decorador `@tool` registra la función para que LangChain la entienda como una herramienta ejecutable.
 
 ```python
 from langchain.agents import create_agent
@@ -26,6 +28,8 @@ agent = create_agent(llm, [get_weather])
 
 ### Visualizar el grafo del agente
 
+Este código genera una imagen PNG del grafo del agente usando Mermaid. Es útil para depurar y entender la estructura de nodos y conexiones. Se ejecuta típicamente en un notebook de Jupyter donde `IPython.display` puede renderizar la imagen directamente.
+
 ```python
 from IPython.display import Image, display
 display(Image(agent.get_graph().draw_mermaid_png()))
@@ -37,11 +41,15 @@ display(Image(agent.get_graph().draw_mermaid_png()))
 
 ### Inicializar proyecto con uv
 
+`uv` es un gestor de paquetes moderno que reemplaza pip, pip-tools, Poetry y Virtualenv en un solo herramienta. Es aproximadamente 10 veces más rápido que pip. Este comando inicializa un nuevo proyecto y genera archivos base como `project.toml` y `.gitignore`.
+
 ```bash
 uv init
 ```
 
 ### Agregar dependencias
+
+Con `uv add` se sustituye `pip install`. La flag `--dev` separa dependencias de desarrollo (como LangGraph CLI y Jupyter) de las de producción. Esto evita empaquetar herramientas innecesarias y reduce riesgos al desplegar.
 
 ```bash
 # Producción
@@ -52,6 +60,8 @@ uv add --dev langgraph jupyter
 ```
 
 ### Ejecutar con uv
+
+En lugar de activar/desactivar el entorno virtual manualmente, `uv run` ejecuta comandos directamente dentro del entorno gestionado por uv.
 
 ```bash
 uv run
@@ -78,6 +88,8 @@ CDC/
 
 ### Configuración de project.toml
 
+Esta sección en `project.toml` indica a Python dónde buscar todos los paquetes y módulos del proyecto, sin importar la profundidad. Esto hace que Python "vea" correctamente submódulos como `CDC/agents`, `CDC/api` y otros.
+
 ```toml
 [tool.setuptools.packages.find]
 where = ["."]
@@ -97,6 +109,8 @@ El **estado** es un diccionario tipado (`TypedDict`) compartido entre todos los 
 
 ### Definición de estado
 
+El estado en LangGraph es un diccionario tipado con `TypedDict` que se comparte entre todos los nodos del grafo. Se recomienda tiparlo para claridad y seguridad. Cada campo representa una pieza de memoria que los nodos pueden leer y actualizar.
+
 ```python
 from typing import TypedDict
 
@@ -107,6 +121,8 @@ class State(TypedDict):
 
 ### Acceso seguro al estado
 
+Usa `get()` para leer claves opcionales y evitar `KeyError` cuando una key no existe. El segundo parámetro de `get()` proporciona un valor por defecto como fallback, lo que previene que el flujo se rompa.
+
 ```python
 state: State = {}
 print(state.get("customer_name"))           # None si no existe
@@ -114,6 +130,8 @@ name = state.get("customer_name", "default")  # con fallback
 ```
 
 ### Nodos que actualizan estado
+
+Un nodo es una función que recibe el estado y devuelve **solo las partes que actualiza**. No devuelvas todo el estado si no lo modificas por completo. Si no hay cambios, retorna un diccionario vacío. Esta buena práctica evita confusión y sobreescrituras innecesarias.
 
 ```python
 def node_1(state: State):
@@ -123,6 +141,8 @@ def node_1(state: State):
 ```
 
 ### Construcción del grafo
+
+`StateGraph` es el orquestador: defines nodos, conectas `START` → nodo → `END` con edges, y compilas para obtener el agente ejecutable. Los edges definen el flujo de ejecución entre nodos.
 
 ```python
 from langgraph.graph import StateGraph, START, END
@@ -135,6 +155,8 @@ agent = builder.compile()
 ```
 
 ### MessagesState para historial automático
+
+`MessagesState` es una clase base que ya incluye el campo `messages` para gestionar el historial de conversaciones. Heredar de ella te ahorra definir manualmente la lista de mensajes y aprovecha el `messages_stage` de LangGraph que concatena automáticamente sin sobrescribir.
 
 ```python
 from langgraph.graph import MessagesState
@@ -158,6 +180,8 @@ LangChain ofrece tipos de mensajes para estructurar conversaciones.
 
 ### Tipos de mensajes
 
+LangChain ofrece clases tipadas para cada rol en la conversación: `AIMessage` (respuesta de la IA), `HumanMessage` (mensaje del usuario) y `SystemMessage` (instrucciones del sistema). El rol es crucial para que el modelo entienda quién habla en cada momento.
+
 ```python
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
@@ -166,6 +190,8 @@ h_msg = HumanMessage(content="Message from a Human")
 ```
 
 ### Concatenación correcta de listas
+
+En Python, usa el operador `+` entre listas, nunca sumes un elemento suelto. El patrón correcto es `lista + [nuevo_mensaje]`. Sumar un objeto directamente (`history + new_ai`) dará error.
 
 ```python
 # Correcto
@@ -178,6 +204,8 @@ history = history + [new_ai]  # Lista + Lista
 ```
 
 ### Nodo que agrega mensajes al historial
+
+Este nodo demuestra la lógica condicional: si no hay `customer_name`, lo establece; si ya existe, agrega una respuesta de la IA al historial. Solo retorna lo que modifica; el `messages_stage` de LangGraph se encarga de concatenar con el historial existente.
 
 ```python
 def simple_node(state):
@@ -205,6 +233,8 @@ Arquitectura agnóstica: cambia de proveedor sin reescribir código.
 
 ### Configuración con .env
 
+Carga las variables de entorno desde un archivo `.env` usando `load_dotenv()`. **Nunca imprimas tus API keys** en notebooks, ya que el historial de ejecuciones puede exponerlas. Usa `assert` para verificar que existen sin revelarlas.
+
 ```python
 from dotenv import load_dotenv
 load_dotenv()
@@ -212,6 +242,8 @@ assert os.getenv("OPENAI_API_KEY") is not None
 ```
 
 ### ChatOpenAI básico
+
+Inicializa un modelo de OpenAI con temperatura configurable. La respuesta es un `AIMessage` cuyo contenido se accede con `.text`. Cambiar de modelo es tan simple como modificar el parámetro `model`.
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -223,6 +255,8 @@ print(response.text)
 
 ### ChatAnthropic
 
+Para usar modelos de Anthropic, instala la dependencia `langchain-anthropic` y configura tu API key en `.env`. El código casi no cambia respecto a OpenAI: solo la declaración del modelo y la dependencia.
+
 ```python
 pip install -U langchain-anthropic --pre
 
@@ -231,6 +265,8 @@ llm = ChatAnthropic(model="claude-sonnet-4", temperature=0.7)
 ```
 
 ### API agnóstica con init_chat_model
+
+`init_chat_model` compacta la configuración y mantiene la misma API de `invoke` independientemente del proveedor. Cambiar de OpenAI a Anthropic (o Google, Mistral, etc.) solo requiere modificar `model_provider` sin reescribir imports ni lógica. Internamente hace un gran `if` por proveedor y verifica el paquete instalado.
 
 ```python
 from langchain import init_chat_model
@@ -243,6 +279,8 @@ llm = init_chat_model(
 ```
 
 ### Envío de historial de chat
+
+El historial permite que el modelo "recuerde" el contexto. Con `SystemMessage`, `HumanMessage` y `AIMessage` defines instrucciones, entradas y salidas previas. El modelo responde considerando toda la conversación, no solo el último mensaje.
 
 ```python
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
@@ -262,6 +300,8 @@ response = llm.invoke(history)
 Inyecta un LLM en el grafo para que los nodos **decidan, ramifiquen y hagan ciclos**.
 
 ### Nodo con memoria y mensajes
+
+Este nodo demuestra cómo consolidar cambios en un `new_state` antes de retornarlos. Primero aplica lógica de negocio (asignar nombre o edad aleatoria), luego toma el historial existente, agrega la nueva respuesta de la IA y lo guarda. Al devolver `new_state`, LangGraph actualiza la memoria compartida. La temperatura = 1 produce respuestas más creativas y variadas.
 
 ```python
 import random
@@ -295,6 +335,8 @@ RAG sencillo usando la tool `file_search` de OpenAI para consultar PDFs subidos.
 
 ### Configuración de file search
 
+La tool `file_search` de OpenAI permite consultar PDFs subidos a un vector store. El modelo decide automáticamente si necesita consultar la base vectorial según la pregunta. Si la pregunta lo amerita, hará un query al vector store; si es trivial, responde directo sin llamar la tool.
+
 ```python
 vector_store_ids = ["vs_XXXXXXXX"]
 
@@ -309,6 +351,8 @@ llm = LLM(provider="openai", tools=tools)
 ```
 
 ### Envío de último mensaje (evitar errores de contexto)
+
+La tool `file_search` puede fallar si le envías todo el array de mensajes (demasiado contexto). La solución práctica es enviar solo el último mensaje del historial. Pierdes memoria conversacional pero evitas errores. Alternativas: resumir mensajes o pasar a un RAG más avanzado.
 
 ```python
 last_message = history[-1].text
@@ -330,12 +374,16 @@ Conecta nodos en secuencia donde cada uno realiza una tarea específica.
 
 ### Secuencia básica
 
+Conecta nodos en orden fijo: del nodo uno al dos, del dos al tres. En este patrón, el modelo no decide el flujo: solo sigue un orden predefinido, aunque cada nodo razona localmente su tarea específica.
+
 ```python
 builder.add_edge("node_one", "node_two")
 builder.add_edge("node_two", "node_three")
 ```
 
 ### Alternativa compacta
+
+`add_sequence` acepta un arreglo de funciones y las conecta automáticamente en orden. El nombre de la función se usa como nombre del nodo. Es más conciso pero menos explícito que definir cada edge manualmente.
 
 ```python
 builder.add_sequence([node_one, node_two, node_three])
@@ -357,6 +405,8 @@ Fuerza al LLM a devolver JSON válido con schema definido.
 
 ### Schema con Pydantic
 
+Define una clase Pydantic con campos tipados y descripciones claras. El schema se traduce a lo que la API necesita para forzar al modelo a devolver JSON válido. Las descripciones en `Field()` guían al modelo sobre qué extraer y cómo evaluar variables (rangos, enums, etc.).
+
 ```python
 from pydantic import BaseModel, Field
 from typing import List
@@ -370,6 +420,8 @@ class Aspirant(BaseModel):
 ```
 
 ### Configurar structured output
+
+`with_structured_output()` fuerza al LLM a devolver un objeto validado según el schema Pydantic. La respuesta llega como objeto Pydantic, listo para acceso directo a campos (`response.name`, `response.email`, etc.). Esto resuelve la necesidad de "responder en JSON" sin depender del antiguo JSON mode.
 
 ```python
 llm_with_structured_output = llm.with_structured_output(schema=Aspirant)
@@ -390,6 +442,8 @@ Refactoriza hacia arquitectura modular: **cada agente = carpeta**.
 
 ### Estructura recomendada
 
+Cada agente se convierte en una carpeta con subcarpetas por nodo. Cada nodo tiene su propio `node.py`, `prompt.py` y, si aplica, `tools.py`. Esta separación mejora mantenibilidad, escalabilidad y claridad: localizar y mejorar un nodo es inmediato.
+
 ```
 agents/
 ├── support/
@@ -408,12 +462,16 @@ agents/
 
 ### Prompt por nodo
 
+Cada nodo tiene su propio `prompt.py` con su system prompt declarado de forma explícita. Esto permite mantener prompts organizados y específicos por responsabilidad.
+
 ```python
 # extractor/prompt.py
 SYSTEM_PROMPT = """Tú eres un asistente que extrae información de una conversación."""
 ```
 
 ### Nodo autocontenido
+
+Cada nodo declara su propio LLM y configura sus tools con `bind_tools()`. Los imports apuntan a paths claros (ej: `agents.support.state`). Mantener la configuración aislada por nodo facilita el mantenimiento y la escalabilidad.
 
 ```python
 # conversation/node.py
@@ -429,6 +487,8 @@ def configure_conversation_node(llm):
 Gestiona prompts como plantillas, no como strings concatenados.
 
 ### Template básico
+
+`PromptTemplate` permite declarar variables sin resolverlas al definir el string. El backslash inicial (`\`) evita que el primer salto de línea se convierta en tokens innecesarios. Si faltan variables al formatear, el template lanza un error, lo que te obliga a completar lo necesario.
 
 ```python
 from langchain.prompts import PromptTemplate
@@ -449,6 +509,8 @@ prompt_final = prompt_tmpl.format(
 
 ### Partial variables (autocompletado)
 
+`partial_variables` permite declarar valores por defecto (como la fecha actual) que se autocompletan. Así el template funciona aunque no envíes todas las variables. Útil para campos que pueden derivarse automáticamente.
+
 ```python
 from datetime import date
 
@@ -459,6 +521,8 @@ prompt_tmpl = PromptTemplate(
 ```
 
 ### Templates condicionales con Jinja2
+
+Cuando necesitas variaciones pequeñas (ej: saludar por nombre si está disponible), un motor de plantillas tipo Jinja2 permite bloques condicionales en el propio template. Los guiones `-` en los tags (`{% if name -%}`, `{%- endif %}`) recortan saltos de línea y evitan huecos. Ideal para asistentes RAG donde el campo `customer_name` podría faltar.
 
 ```bash
 pip install jinja2
@@ -517,6 +581,8 @@ Las tools son funciones que el modelo invoca para actuar, no el modelo ejecuta.
 
 ### Definición de tools
 
+Una tool es una función decorada con `@tool` que el modelo puede invocar. La descripción y los argumentos tipados guían al modelo sobre qué hace la tool, cuándo usarla y con qué argumentos. Aunque podrías responder con arrays, el modelo entiende mejor texto formateado, así que mapea y concatena los elementos para ofrecer una lista legible.
+
 ```python
 from langchain_core.tools import tool
 
@@ -540,6 +606,8 @@ def get_products(category: str = None, min_price: int = None) -> str:
 ```
 
 ### Conexión al LLM
+
+`bind_tools()` conecta las tools al LLM. El modelo no ejecuta la tool directamente: primero identifica la herramienta y extrae parámetros (similar al structured output), luego tu capa de aplicación ejecuta la función y devuelve el resultado al modelo para que lo interprete.
 
 ```python
 llm_with_tools = llm.bind_tools([get_products])
@@ -567,6 +635,8 @@ Combina tools + structured output para agentes que actúan y responden con forma
 
 ### Integrar extractor en agente
 
+Combina structured output con tools: el extractor usa un LLM separado (ej: Claude Opus) para extraer datos del historial y guardarlos en el estado compartido. Mantén el LLM conversacional separado del extractor para optimizar costos y calidad.
+
 ```python
 # Nodo extractor con structured output
 extractor_llm = ChatAnthropic(model="claude-opus-4")
@@ -582,6 +652,8 @@ def extractor_node(state):
 ```
 
 ### Lógica de disparo
+
+Define cuándo ejecutar la extracción: si no hay `customer_name` o si el historial supera cierto umbral (>10 mensajes), vuelve a extraer. Evita llamadas innecesarias si ya se obtuvo el dato y el historial no cambió significativamente.
 
 ```python
 def should_extract(state):
@@ -617,6 +689,8 @@ El routing puede basarse en:
 
 ### Implementación de conditional edge
 
+Un conditional edge es una función que recibe el estado y devuelve el nombre del siguiente nodo según lógica condicional. El edge **accede** al estado pero **no lo actualiza**; solo el nodo es responsable de persistir cambios.
+
 ```python
 def route_edge(state: State):
     if condition:
@@ -625,6 +699,8 @@ def route_edge(state: State):
 ```
 
 ### En el builder
+
+`add_conditional_edges` registra la función de routing en el grafo. Start puede conectarse directamente a un conditional edge si el routing evalúa intención desde el inicio, sin necesitar un nodo intermedio.
 
 ```python
 builder.add_conditional_edges('node_1', route_edge)
@@ -658,6 +734,8 @@ Inicio → Extractor → Intent Route → Conversation | Booking → End
 
 ### Definición del schema de decisión
 
+El schema Pydantic con `Literal` define las opciones válidas de enrutamiento. El system prompt guía al LLM para clasificar la intención del usuario. Usa términos generales (ej: "appointments") para que el router sea flexible.
+
 ```python
 from typing import Literal
 from pydantic import BaseModel
@@ -673,6 +751,8 @@ SYSTEM_PROMPT = (
 ```
 
 ### Función de enrutamiento
+
+El router usa `with_structured_output()` para que el LLM decida dinámicamente a qué nodo enviar. Usa el historial completo para mayor precisión. Si la decisión es `None`, retorna un valor por defecto ("conversation"). Para clasificación simple, un LLM sin razonamiento puede bastar.
 
 ```python
 def intent_route(messages, llm):
@@ -737,6 +817,8 @@ La **paralelización** ejecuta varios nodos simultáneamente, dividiendo el prob
 
 ### Implementación
 
+Para ejecutar nodos en paralelo, añade múltiples edges desde un mismo nodo origen. Todos los caminos paralelos deben converger en un único aggregator para evitar respuestas duplicadas. Si los nodos paralelos finalizaran solos, el agente intentaría responder dos veces.
+
 ```python
 # Desde node_1, disparar a node_2 y node_3 en paralelo obligatoriamente
 builder.add_edge("node_1", "node_2")
@@ -791,6 +873,8 @@ El **orchestrator** elige dinámicamente qué nodos ejecutar según el contexto,
 
 ### Decisión del orchestrator
 
+El orchestrator elige dinámicamente qué nodos ejecutar según el contexto. A diferencia del routing (uno u otro) o la paralelización fija (todos siempre), el orchestrator puede seleccionar uno, dos o tres nodos según la necesidad.
+
 ```python
 import random
 
@@ -805,7 +889,9 @@ def orchestrator(state: dict) -> dict:
     return state
 ```
 
-### Envío en paralelo con send
+### Envío en paralelo con Send
+
+`Send` de LangGraph permite despachar nodos dinámicamente en paralelo. La lista de nodos a ejecutar es dinámica (no fija como en paralelización simple). El aggregator debe consolidar solo los resultados disponibles.
 
 ```python
 from langgraph.constants import Send
@@ -852,6 +938,8 @@ Generator → Evaluator → ¿Pasa criterios? → End
 
 ### Schema de evaluación
 
+El evaluador usa structured output para devolver un veredicto determinístico (`es_gracioso`) y feedback accionable. La temperatura = 0 garantiza consistencia en la evaluación.
+
 ```python
 from pydantic import BaseModel
 
@@ -861,6 +949,8 @@ class EvaluationResult(BaseModel):
 ```
 
 ### Ejemplo: generador de chistes
+
+El nodo evaluador invoca el LLM con temperatura 0 para consistencia. Extrae el chiste actual del estado, lo evalúa según los criterios del schema, y retorna veredicto + feedback al estado para que el generador lo use en el siguiente intento.
 
 ```python
 def evaluator_node(state):
@@ -880,6 +970,8 @@ def evaluator_node(state):
 ```
 
 ### Routing edge para el ciclo
+
+El conditional edge decide si terminar (criterios cumplidos) o reintentar con el generador. El generador usa el feedback del estado para mejorar su siguiente intento. El ciclo termina cuando se cumplen todos los criterios.
 
 ```python
 def routing_edge(state: State):
@@ -956,6 +1048,8 @@ docker compose ps
 
 ### Configuración del agente con checkpointer
 
+`PostgresSaver` crea un snapshot del diálogo, lo asocia a un `thread_id` y lo persiste para restaurar: mensajes, memoria compartida y nodo actual. Compilar con `checkpointer=` habilita la persistencia automática.
+
 ```python
 from langgraph.checkpoint.postgres import PostgresSaver
 from langgraph.graph import StateGraph, START, END
@@ -972,6 +1066,8 @@ agent = builder.compile(checkpointer=checkpointer)
 ```
 
 ### Uso con thread ID
+
+Cada usuario o conversación tiene su propio `thread_id`. Cambiar el ID = empezar hilo nuevo; reutilizar = continuar con el historial previo. El agente recupera el estado previo automáticamente al invocar con el config correcto.
 
 ```python
 # Cada usuario tiene su propio thread
@@ -1004,21 +1100,9 @@ response = agent.invoke({"messages": [("user", user_input)]}, config)
 - Recuperación ante fallos sin perder contexto
 
 
-```python
-@app.post("/chat/{chat_id}")
-async def chat(chat_id: str, item: Message):
-    config = {
-        "configurable": {
-        "thread_id": chat_id
-        }
-    }
-    human_message = HumanMessage(content=item.message)
+### Endpoint de chat con thread ID
 
-    response = agent.invoke({"messages": [human_message]}, config)
-    last_message = response["messages"][-1]
-
-    return last_message. text
-```
+Este endpoint de FastAPI usa el `chat_id` como `thread_id` para persistir la conversación. Cada usuario tiene su propia memoria. El agente recupera el historial previo automáticamente y retorna la última respuesta del modelo.
 
 ---
 
@@ -1031,6 +1115,8 @@ Conecta tu agente a una base de datos y preserva el historial sin dolores de cab
 Para que el agente recuerde y comparta estado, la configuración debe ser dinámica. La clave es recibir el checkpointer desde la app web y no quemarlo en el build del agente.
 
 ### ¿Cómo definir la función makegraph con configuración dinámica?
+
+Define una función que construya el grafo y reciba un config con el checkpointer. Esto permite seguir usando LangGraph Studio para debug (si no pasas checkpointer, usarán uno propio) y, a la vez, integrarlo bien con FastAPI.
 
 Define una función que construya el grafo y reciba un config con el checkpointer. Envía el checkpointer al construir el agente.
 
@@ -1050,6 +1136,8 @@ def makegraph(config: GraphConfig):
 Ventaja: permite seguir usando LangGraph Studio para debug (si no pasas checkpointer, usarán uno propio) y, a la vez, integrarlo bien con FastAPI.
 
 ### ¿Cómo inicializar la conexión en el lifespan de FastAPI?
+
+`lifespan` inicializa el checkpointer antes de levantar la app y ejecuta `setup()` para crear las tablas del estado. Usa variables de ambiente para las credenciales, nunca las quemes en el código.
 
 Crea una instancia global para el checkpointer de Postgres. Inicializa antes de levantar la app con lifespan y ejecuta el setup para las tablas del estado. Evita credenciales quemadas; usa variables de ambiente.
 
@@ -1077,6 +1165,8 @@ def get_checkpointer():
 
 ### ¿Cómo invocar el grafo desde el endpoint con dependencia?
 
+Inyecta el checkpointer como dependencia de FastAPI con `Depends()`. Construye el grafo con `makegraph` y pásale la instancia. Si usas el endpoint de stream, inyecta también la dependencia del checkpointer.
+
 Inyecta el checkpointer como dependencia. Construye el grafo con makegraph y pásale la instancia.
 
 ```python
@@ -1101,6 +1191,8 @@ Tip: si usas el endpoint de stream, inyecta también la dependencia del checkpoi
 El estado es memoria compartida. Si guardas metadatos ruidosos, el prompt y el routing se degradan. La solución: persistir solo el texto útil.
 
 ### ¿Qué guardar del AI message para no corromper el contexto?
+
+Guardar la respuesta con metadata y response completos ensucia el historial. La solución: parsear el AI message y almacenar solo el texto cuando trabajes con texto plano. Así el language model recibe contexto claro y evitas errores en system history y routing.
 
 Problema observado: guardar la respuesta con metadata y response completos ensucia el historial. Solución: parsear el AI message y almacenar solo el texto cuando trabajes con texto plano.
 
@@ -1151,4 +1243,5 @@ El booking (creative rig agent) comparte estado completo y suele manejar mejor e
 - Evitar búsquedas a file search para preguntas simples
 - Inyectar prompt con datos del usuario si corresponde
 - Limpiar también la salida del agente de booking si añade metadata
+
 
